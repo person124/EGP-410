@@ -28,7 +28,6 @@
 #include "GraphicsSystem.h"
 #include "GraphicsBuffer.h"
 #include "Sprite.h"
-#include "KinematicUnit.h"
 #include "Timer.h"
 #include "PerformanceTracker.h"
 #include "MemoryTracker.h"

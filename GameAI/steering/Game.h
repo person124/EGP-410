@@ -13,7 +13,6 @@ class GraphicsBuffer;
 class GraphicsBufferManager;
 class SpriteManager;
 class KinematicUnit;
-class GameMessageManager;
 class Timer;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
@@ -39,7 +38,6 @@ public:
 	inline GraphicsSystem* getGraphicsSystem() const { return mpGraphicsSystem; };
 	inline GraphicsBufferManager* getGraphicsBufferManager() const { return mpGraphicsBufferManager; };
 	inline SpriteManager* getSpriteManager() const { return mpSpriteManager; };
-	inline GameMessageManager* getMessageManager() { return mpMessageManager; };
 	inline Timer* getMasterTimer() const { return mpMasterTimer; };
 	inline double getCurrentTime() const { return mpMasterTimer->getElapsedTime(); };
 	inline ALLEGRO_FONT* getFont() const { return mpFont; };
@@ -52,7 +50,6 @@ private:
 	GraphicsSystem* mpGraphicsSystem;
 	GraphicsBufferManager* mpGraphicsBufferManager;
 	SpriteManager* mpSpriteManager;
-	GameMessageManager* mpMessageManager;
 	Timer* mpLoopTimer;
 	Timer* mpMasterTimer;
 	bool mShouldExit;
@@ -74,4 +71,3 @@ float genRandomFloat();//range 0:1 from "Artificial Intelligence for Games", Mil
 
 extern Game* gpGame;
 extern PerformanceTracker* gpPerformanceTracker;
-
