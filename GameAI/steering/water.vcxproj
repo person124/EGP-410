@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventListener.h" />
+    <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
@@ -22,6 +25,9 @@
     <ClInclude Include="UnitManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventListener.cpp" />
+    <ClCompile Include="Events.cpp" />
+    <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
