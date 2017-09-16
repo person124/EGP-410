@@ -37,6 +37,12 @@
     <ClCompile Include="EventListener.cpp">
       <Filter>Source Files\Events</Filter>
     </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="EventQuit.cpp">
+      <Filter>Source Files\Events</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -73,6 +79,12 @@
       <Filter>Header Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="EventListener.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="EventQuit.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,11 +14,13 @@
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventListener.h" />
+    <ClInclude Include="EventQuit.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Unit.h" />
@@ -26,12 +28,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventListener.cpp" />
+    <ClCompile Include="EventQuit.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />

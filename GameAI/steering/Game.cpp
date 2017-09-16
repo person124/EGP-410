@@ -17,6 +17,10 @@
 #include "Sprite.h"
 #include "SpriteManager.h"
 #include "Timer.h"
+#include "InputManager.h"
+
+#include "EventSystem.h"
+#include "EventQuit.h"
 
 Game* gpGame = NULL;
 
@@ -35,6 +39,7 @@ Game::Game()
 	,mBackgroundBufferID(INVALID_ID)
 	//,mSmurfBufferID(INVALID_ID)
 {
+	gpEventSystem->addListener(QUIT_EVENT, this);
 }
 
 Game::~Game()
@@ -97,17 +102,10 @@ bool Game::init()
 		return false;
 	}
 
-	//should probably be done in the InputSystem!
-	if( !al_install_keyboard() )
+	mpInputManager = new InputManager();
+	if (!mpInputManager->init())
 	{
-		printf( "Keyboard not installed!\n" ); 
-		return false;
-	}
-
-	//should probably be done in the InputSystem!
-	if( !al_install_mouse() )
-	{
-		printf( "Mouse not installed!\n" ); 
+		printf( "Input failed to install!\n" ); 
 		return false;
 	}
 
@@ -172,12 +170,18 @@ bool Game::init()
 		pEnemyArrow = mpSpriteManager->createAndManageSprite( AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, pAIBuffer->getWidth(), pAIBuffer->getHeight() );
 	}
 
+
+
 	return true;
 }
 
 void Game::cleanup()
 {
 	//TODO
+
+	//delete the input system
+	delete mpInputManager;
+	mpInputManager = NULL;
 
 	//delete the timers
 	delete mpLoopTimer;
@@ -204,8 +208,6 @@ void Game::cleanup()
 	al_shutdown_image_addon();
 	al_shutdown_font_addon();
 	al_shutdown_ttf_addon();
-	al_uninstall_keyboard();
-	al_uninstall_mouse();
 	al_shutdown_primitives_addon();
 
 }
@@ -230,19 +232,8 @@ void Game::processLoop()
 	//TODO
 	//mpMessageManager->processMessagesForThisframe();
 
-	//get input - should be moved someplace better
-	ALLEGRO_MOUSE_STATE mouseState;
-	al_get_mouse_state( &mouseState );
-
-	if( al_mouse_button_down( &mouseState, 1 ) )//left mouse click
-	{
-		Vector2D pos( mouseState.x, mouseState.y );
-		//GameMessage* pMessage = new PlayerMoveToMessage( pos );
-		//MESSAGE_MANAGER->addMessage( pMessage, 0 );
-	}
-
-
-
+	mpInputManager->update();
+	/*
 	//all this should be moved to InputManager!!!
 	{
 		//get mouse state
@@ -268,6 +259,9 @@ void Game::processLoop()
 			mShouldExit = true;
 		}
 	}
+	*/
+
+	mpGraphicsSystem->swap();
 }
 
 bool Game::endLoop()
@@ -286,6 +280,12 @@ float genRandomFloat()
 {
 	float r = (float)rand()/(float)RAND_MAX;
 	return r;
+}
+
+void Game::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == QUIT_EVENT)
+		mShouldExit = true;
 }
 
 /*#include "System.h"

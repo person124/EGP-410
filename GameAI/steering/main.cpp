@@ -31,6 +31,7 @@
 #include "Timer.h"
 #include "PerformanceTracker.h"
 #include "MemoryTracker.h"
+#include "EventSystem.h"
 
 using namespace std;
 
@@ -41,6 +42,8 @@ int main(int argc, char **argv)
 	gpPerformanceTracker = new PerformanceTracker();
 
 	gpPerformanceTracker->startTracking("init");
+
+	gpEventSystem = new EventSystem();
 
 	//create the global game object
 	gpGame = new Game;
@@ -83,6 +86,8 @@ int main(int argc, char **argv)
 	gpGame->cleanup();
 	delete gpGame;
 	gpGame = NULL;
+
+	delete gpEventSystem;
 
 	delete gpPerformanceTracker;
 	gMemoryTracker.reportAllocations( cout );
