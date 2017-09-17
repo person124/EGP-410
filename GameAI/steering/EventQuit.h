@@ -1,4 +1,3 @@
-// MadeByCalum
 #ifndef EVENT_QUIT_H
 #define EVENT_QUIT_H
 
@@ -7,8 +6,8 @@
 class EventQuit : public Event
 {
 	public:
-		EventQuit();
-		~EventQuit();
+		EventQuit() :Event(EVENT_QUIT) {};
+		~EventQuit() {};
 };
 
 #endif

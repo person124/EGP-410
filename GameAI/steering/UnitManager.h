@@ -1,4 +1,3 @@
-// MadeByCalum
 #ifndef UNIT_MANAGER_H
 #define UNIT_MANAGER_H
 
@@ -7,6 +6,7 @@
 #include <Trackable.h>
 
 class Unit;
+class UnitPlayer;
 class GraphicsBuffer;
 
 class UnitManager : public Trackable
@@ -27,6 +27,8 @@ class UnitManager : public Trackable
 		void draw(GraphicsBuffer* buffer);
 	private:
 		std::vector<Unit*> mUnits;
+
+		UnitPlayer* mpPlayer;
 };
 
 #endif

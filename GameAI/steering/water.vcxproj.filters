@@ -40,14 +40,14 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="EventQuit.cpp">
-      <Filter>Source Files\Events</Filter>
-    </ClCompile>
     <ClCompile Include="UnitDynamic.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
     <ClCompile Include="Phys.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitPlayer.cpp">
+      <Filter>Source Files\Units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +98,12 @@
     </ClInclude>
     <ClInclude Include="Phys.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitPlayer.h">
+      <Filter>Header Files\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMouseClick.h">
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

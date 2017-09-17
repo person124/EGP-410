@@ -1,8 +1,8 @@
-// MadeByCalum
 #include "InputManager.h"
 
 #include "EventSystem.h"
 #include "EventQuit.h"
+#include "EventMouseClick.h"
 
 #include "Game.h"
 #include <allegro5\allegro.h>
@@ -37,6 +37,9 @@ void InputManager::update()
 
 	if (al_key_down(&mKeyState, ALLEGRO_KEY_ESCAPE))
 		gpEventSystem->fireEvent(EventQuit());
+
+	if (mMouseState.buttons & 1)
+		gpEventSystem->fireEvent(EventMouseClick(mMouseState.x, mMouseState.y));
 
 	std::stringstream ss;
 	ss << mMouseState.x << ":" << mMouseState.y;

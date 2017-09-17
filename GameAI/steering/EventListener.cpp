@@ -1,4 +1,3 @@
-// MadeByCalum
 #include "EventListener.h"
 
 #include "EventSystem.h"

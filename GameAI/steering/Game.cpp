@@ -40,7 +40,7 @@ Game::Game()
 	,mBackgroundBufferID(INVALID_ID)
 	//,mSmurfBufferID(INVALID_ID)
 {
-	gpEventSystem->addListener(QUIT_EVENT, this);
+	gpEventSystem->addListener(EVENT_QUIT, this);
 }
 
 Game::~Game()
@@ -258,7 +258,7 @@ float genRandomFloat()
 
 void Game::handleEvent(const Event& theEvent)
 {
-	if (theEvent.getType() == QUIT_EVENT)
+	if (theEvent.getType() == EVENT_QUIT)
 		mShouldExit = true;
 }
 

@@ -1,4 +1,3 @@
-// MadeByCalum
 #ifndef EVENT_H
 #define EVENT_H
 
@@ -8,13 +7,15 @@
 enum EventType
 {
 	INVALID_EVENT_TYPE = -1,
-	QUIT_EVENT,
+	EVENT_QUIT,
+	EVENT_MOUSE_CLICK,
 	NUM_EVENT_TYPES
 };
 
 const std::string EVENT_NAMES[NUM_EVENT_TYPES] =
 {
-"Quit Game Event"
+"Quit Game Event",
+"Mouse Click Event"
 };
 
 class Event : public Trackable

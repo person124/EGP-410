@@ -1,4 +1,3 @@
-// MadeByCalum
 #ifndef UNIT_DYNAMIC_H
 #define UNIT_DYNAMIC_H
 
@@ -14,8 +13,13 @@ class UnitDynamic : public Unit
 		//Movement functions
 		void seek(Vector2& target);
 		void arrive(Vector2& target);
+
+		// Getters / Setters
+		void setMaxAccel(float accel) { mMaxAccel = accel; };
+		float getMaxAccel() { return mMaxAccel; };
 	private:
 		bool mArrive;
+		float mMaxAccel;
 };
 
 #endif
