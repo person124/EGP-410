@@ -21,9 +21,11 @@
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Phys.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="UnitDynamic.h" />
     <ClInclude Include="UnitManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -37,9 +39,11 @@
     <ClCompile Include="GraphicsSystem.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Phys.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="UnitDynamic.cpp" />
     <ClCompile Include="UnitManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

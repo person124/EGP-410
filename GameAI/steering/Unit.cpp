@@ -1,14 +1,17 @@
 // MadeByCalum
 #include "Unit.h"
 
+#include "Phys.h"
 #include "Sprite.h"
 
-Unit::Unit()
+Unit::Unit(Sprite* sprite)
 {
-	mPos = { 0, 0 };
-	mVel = { 0, 0 };
+	//mPos = { 0, 0 };
+	//mVel = { 0, 0 };
 	mAngle = 0.0f;
 	mRotation = 0.0f;
+
+	mpSprite = sprite;
 }
 
 Unit::~Unit()

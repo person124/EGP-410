@@ -18,6 +18,7 @@
 #include "SpriteManager.h"
 #include "Timer.h"
 #include "InputManager.h"
+#include "UnitManager.h"
 
 #include "EventSystem.h"
 #include "EventQuit.h"
@@ -170,7 +171,7 @@ bool Game::init()
 		pEnemyArrow = mpSpriteManager->createAndManageSprite( AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, pAIBuffer->getWidth(), pAIBuffer->getHeight() );
 	}
 
-
+	mpUnitManager = new UnitManager();
 
 	return true;
 }
@@ -178,6 +179,8 @@ bool Game::init()
 void Game::cleanup()
 {
 	//TODO
+	delete mpUnitManager;
+	mpUnitManager = NULL;
 
 	//delete the input system
 	delete mpInputManager;
@@ -220,46 +223,17 @@ void Game::beginLoop()
 void Game::processLoop()
 {
 	//update units
-	//TODO
+	mpUnitManager->update(LOOP_TARGET_TIME / 1000.0f);
 	
 	//draw background
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
 	pBackgroundSprite->draw( *(mpGraphicsSystem->getBackBuffer()), 0, 0 );
 
 	//draw units
-	//TODO
-
-	//TODO
-	//mpMessageManager->processMessagesForThisframe();
+	mpUnitManager->draw(mpGraphicsSystem->getBackBuffer());
 
 	mpInputManager->update();
-	/*
-	//all this should be moved to InputManager!!!
-	{
-		//get mouse state
-		ALLEGRO_MOUSE_STATE mouseState;
-		al_get_mouse_state( &mouseState );
-
-		//create mouse text
-		stringstream mousePos;
-		mousePos << mouseState.x << ":" << mouseState.y;
-
-		//write text at mouse position
-		al_draw_text( mpFont, al_map_rgb( 255, 255, 255 ), mouseState.x, mouseState.y, ALLEGRO_ALIGN_CENTRE, mousePos.str().c_str() );
-
-		mpGraphicsSystem->swap();
-
-		//get current keyboard state
-		ALLEGRO_KEYBOARD_STATE keyState;
-		al_get_keyboard_state( &keyState );
-
-		//if escape key was down then exit the loop
-		if( al_key_down( &keyState, ALLEGRO_KEY_ESCAPE ) )
-		{
-			mShouldExit = true;
-		}
-	}
-	*/
+	mpInputManager->draw();
 
 	mpGraphicsSystem->swap();
 }

@@ -2,27 +2,31 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include "Phys.h"
+
 #include <Trackable.h>
 
 class Sprite;
 class GraphicsBuffer;
 
-struct Vector2
-{
-	int x, y;
-};
-
 class Unit : public Trackable
 {
 	public:
-		Unit();
+		Unit(Sprite* sprite);
 		~Unit();
 		void update(float dt);
 		void draw(GraphicsBuffer* buffer);
-	private:
+
+		// Getters and Setters
+		void setMaxSpeed(float speed) { mMaxSpeed = speed; };
+		float getMaxSpeed() { return mMaxSpeed; };
+	protected:
 		Sprite* mpSprite;
 		Vector2 mPos, mVel;
+		SteeringOutput mSteer;
 		float mAngle, mRotation;
+		
+		float mMaxSpeed;
 };
 
 #endif

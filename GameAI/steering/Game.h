@@ -13,9 +13,9 @@ class GraphicsSystem;
 class GraphicsBuffer;
 class GraphicsBufferManager;
 class SpriteManager;
-class KinematicUnit;
 class Timer;
 class InputManager;
+class UnitManager;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
 const IDType PLAYER_ICON_SPRITE_ID = 1;
@@ -47,10 +47,7 @@ public:
 	inline double getCurrentTime() const { return mpMasterTimer->getElapsedTime(); };
 	inline ALLEGRO_FONT* getFont() const { return mpFont; };
 	inline InputManager* getInputManager() const { return mpInputManager; };
-
-	inline KinematicUnit* getPlayerUnit() { return mpUnit; };//should be someplace else
-	inline KinematicUnit* getAIUnit() { return mpAIUnit; };//should be someplace else
-	inline KinematicUnit* getAIUnit2() { return mpAIUnit2; };//should be someplace else
+	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
 private:
 	GraphicsSystem* mpGraphicsSystem;
@@ -60,17 +57,13 @@ private:
 	Timer* mpMasterTimer;
 	bool mShouldExit;
 	InputManager* mpInputManager;
+	UnitManager* mpUnitManager;
 
-	//should be somewhere else
 	ALLEGRO_FONT* mpFont;
 	ALLEGRO_SAMPLE* mpSample;
 	IDType mBackgroundBufferID;
 	IDType mPlayerIconBufferID;
 	IDType mEnemyIconBufferID;
-
-	KinematicUnit* mpUnit;
-	KinematicUnit* mpAIUnit;
-	KinematicUnit* mpAIUnit2;
 };
 
 float genRandomBinomial();//range -1:1 from "Artificial Intelligence for Games", Millington and Funge
