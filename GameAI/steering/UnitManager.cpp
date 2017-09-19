@@ -2,10 +2,21 @@
 
 #include "Unit.h"
 #include "UnitPlayer.h"
+#include "UnitDynamic.h"
+
+#include "EventSystem.h"
+#include "EventAddAI.h"
+#include "EventDeleteAI.h"
+
+#include "Game.h"
+#include "SpriteManager.h"
 
 UnitManager::UnitManager()
 {
 	mpPlayer = new UnitPlayer();
+
+	gpEventSystem->addListener(EVENT_ADD_AI, this);
+	gpEventSystem->addListener(EVENT_DELETE_AI, this);
 }
 
 UnitManager::~UnitManager()
@@ -69,4 +80,24 @@ void UnitManager::draw(GraphicsBuffer* buffer)
 		unit->draw(buffer);
 
 	mpPlayer->draw(buffer);
+}
+
+void UnitManager::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == EVENT_ADD_AI)
+	{
+		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
+		Unit* unit = new UnitDynamic(gpGame->getSpriteManager()->getSprite(2), e.isArrive());
+		unit->setPosition(mpPlayer->getX() + 200, mpPlayer->getY());
+		addUnit(unit);
+	}
+}
+
+Vector2& UnitManager::getRandDistFromPlayer(float distance)
+{
+	Vector2 output;
+
+	//TODO
+
+	return output;
 }

@@ -105,6 +105,12 @@
     <ClInclude Include="EventMouseClick.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
+    <ClInclude Include="EventAddAI.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventDeleteAI.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

@@ -57,24 +57,24 @@ void GraphicsSystem::swap()
 	al_flip_display();
 }
 
-void GraphicsSystem::wrapCoordinates( Vector2D& vector )
+void GraphicsSystem::wrapCoordinates( Vector2& vector )
 {
-	if( vector.getX() < 0.0f )
+	if( vector.x < 0.0f )
 	{
-		vector.setX( getWidth() - 1.0f );
+		vector.x = getWidth() - 1.0f;
 	}
-	else if( vector.getX() >= getWidth() )
+	else if( vector.x >= getWidth() )
 	{
-		vector.setX( 0.0f );
+		vector.x = 0.0f;
 	}
 
-	if( vector.getY() < 0.0f )
+	if( vector.y < 0.0f )
 	{
-		vector.setY( getHeight() - 1.0f );
+		vector.y = getHeight() - 1.0f;
 	}
-	else if( vector.getY() >= getHeight() )
+	else if( vector.y >= getHeight() )
 	{
-		vector.setY( 0.0f );
+		vector.y = 0.0f;
 	}
 }
 

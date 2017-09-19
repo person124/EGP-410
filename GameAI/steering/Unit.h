@@ -13,12 +13,18 @@ class Unit : public Trackable
 	public:
 		Unit(Sprite* sprite);
 		~Unit();
-		void update(float dt);
+		virtual void update(float dt);
 		void draw(GraphicsBuffer* buffer);
 
 		// Getters and Setters
 		void setMaxSpeed(float speed) { mMaxSpeed = speed; };
 		float getMaxSpeed() { return mMaxSpeed; };
+
+		void setPositon(Vector2& pos) { mPos = pos; };
+		void setPosition(float x, float y) { mPos.x = x; mPos.y = y; };
+		Vector2& getPosition() { return mPos; };
+		float getX() { return mPos.x; };
+		float getY() { return mPos.y; };
 
 		void setAngle(Vector2& vel);
 	protected:

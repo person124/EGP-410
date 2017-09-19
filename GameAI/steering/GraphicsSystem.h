@@ -2,9 +2,10 @@
 
 #include <allegro5/allegro.h>
 #include "Trackable.h"
-#include "Vector2D.h"
+#include "Phys.h"
 
 class GraphicsBuffer;
+
 
 class GraphicsSystem:public Trackable
 {
@@ -16,7 +17,7 @@ public:
 	void cleanup();
 
 	void swap();
-	void wrapCoordinates( Vector2D& vector );//change the x and y values in the vector to keep them on the visible screen
+	void wrapCoordinates( Vector2& vector );//change the x and y values in the vector to keep them on the visible screen
 
 	//accessors
 	int getWidth() const { return mWidth; };

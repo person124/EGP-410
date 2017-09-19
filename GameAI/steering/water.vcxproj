@@ -13,6 +13,8 @@
   <ItemGroup>
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventAddAI.h" />
+    <ClInclude Include="EventDeleteAI.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="EventMouseClick.h" />
     <ClInclude Include="EventQuit.h" />

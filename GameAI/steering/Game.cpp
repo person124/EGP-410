@@ -178,7 +178,6 @@ bool Game::init()
 
 void Game::cleanup()
 {
-	//TODO
 	delete mpUnitManager;
 	mpUnitManager = NULL;
 
