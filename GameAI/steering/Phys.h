@@ -4,6 +4,7 @@
 struct Vector2
 {
 	Vector2();
+    Vector2(float xVal, float yVal);
 
 	float x, y;
 
@@ -18,6 +19,7 @@ struct Vector2
 	Vector2& operator+=(Vector2& right);
 	Vector2& operator-=(Vector2& right);
 	Vector2& operator*=(float right);
+    Vector2& operator/=(float right);
 };
 
 struct SteeringOutput

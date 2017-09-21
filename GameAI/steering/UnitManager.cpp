@@ -7,9 +7,16 @@
 #include "EventSystem.h"
 #include "EventAddAI.h"
 #include "EventDeleteAI.h"
+#include "EventQuit.h"
 
 #include "Game.h"
 #include "SpriteManager.h"
+
+// For random
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+const float RAND_ANGLE = static_cast<float>(RAND_MAX / (2 * M_PI));
 
 UnitManager::UnitManager()
 {
@@ -17,6 +24,8 @@ UnitManager::UnitManager()
 
 	gpEventSystem->addListener(EVENT_ADD_AI, this);
 	gpEventSystem->addListener(EVENT_DELETE_AI, this);
+
+    srand(unsigned(time(NULL)));
 }
 
 UnitManager::~UnitManager()
@@ -88,16 +97,32 @@ void UnitManager::handleEvent(const Event& theEvent)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 		Unit* unit = new UnitDynamic(gpGame->getSpriteManager()->getSprite(2), e.isArrive());
-		unit->setPosition(mpPlayer->getX() + 200, mpPlayer->getY());
+        unit->setPosition(getRandDistFromPlayer(e.isArrive() ? 200 : 100));
 		addUnit(unit);
 	}
+    else if (theEvent.getType() == EVENT_DELETE_AI)
+    {
+        if (getSize() == 0)
+        {
+            gpEventSystem->fireEvent(EventQuit());
+            return;
+        }
+
+        int random = rand() % getSize();
+        removeUnit(random);
+    }
 }
 
-Vector2& UnitManager::getRandDistFromPlayer(float distance)
-{
-	Vector2 output;
+#include <iostream>
 
-	//TODO
+Vector2 UnitManager::getRandDistFromPlayer(float distance)
+{
+	Vector2 output = mpPlayer->getPosition();
+
+    float angle = rand() / (RAND_ANGLE);
+    
+    output.x += distance * cos(angle);
+    output.y += distance * sin(angle);
 
 	return output;
 }

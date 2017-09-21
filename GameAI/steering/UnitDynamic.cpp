@@ -16,6 +16,10 @@ UnitDynamic::UnitDynamic(Sprite* sprite, bool isArrive):Unit(sprite)
 
 	setMaxAccel(100);
 	setMaxSpeed(300);
+
+    setTargetRadius(10);
+    setSlowRadius(100);
+    setTimeToTarget(0.5);
 }
 
 UnitDynamic::~UnitDynamic()
@@ -43,6 +47,8 @@ void UnitDynamic::update(float dt)
 	}
 
 	GRAPHICS_SYSTEM->wrapCoordinates(mPos);
+
+    setAngle(mVel);
 }
 
 void UnitDynamic::seek(Vector2& target)
@@ -56,5 +62,31 @@ void UnitDynamic::seek(Vector2& target)
 
 void UnitDynamic::arrive(Vector2& target)
 {
+    Vector2 direction = target - mPos;
+    float distance = direction.length();
 
+    if (distance < mTargetRadius)
+    {
+        stop();
+        return;
+    }
+
+    float targetSpeed;
+    if (distance > mSlowRadius)
+        targetSpeed = mMaxSpeed;
+    else
+        targetSpeed = (mMaxSpeed * distance) / mSlowRadius;
+
+    Vector2 targetVelocity = direction;
+    targetVelocity.normalize();
+    targetVelocity *= targetSpeed;
+
+    mSteer.linear = targetVelocity - mVel;
+    mSteer.linear /= mTimeToTarget;
+
+    if (mSteer.linear.length() > mMaxAccel)
+    {
+        mSteer.linear.normalize();
+        mSteer.linear *= mMaxAccel;
+    }
 }

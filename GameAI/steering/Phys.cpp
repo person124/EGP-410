@@ -8,6 +8,12 @@ Vector2::Vector2()
 	y = 0;
 }
 
+Vector2::Vector2(float xVal, float yVal)
+{
+    x = xVal;
+    y = yVal;
+}
+
 Vector2 Vector2::normal()
 {
 	Vector2 output = *this / length();
@@ -53,6 +59,13 @@ Vector2& Vector2::operator*=(float right)
 	x *= right;
 	y *= right;
 	return *this;
+}
+
+Vector2& Vector2::operator/=(float right)
+{
+    x /= right;
+    y /= right;
+    return *this;
 }
 
 Vector2 operator+(Vector2& left, Vector2& right)

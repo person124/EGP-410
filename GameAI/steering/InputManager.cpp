@@ -60,6 +60,5 @@ void InputManager::update()
 void InputManager::draw()
 {
 	//Draw Mouse pos text
-	//al_draw_text(mpFont, al_map_rgb(255, 255, 255), mouseState.x, mouseState.y, ALLEGRO_ALIGN_CENTRE, mousePos.str().c_str());
 	al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), mMouseState.x, mMouseState.y, ALLEGRO_ALIGN_CENTER, mStrMousePos.c_str());
 }

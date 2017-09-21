@@ -28,6 +28,14 @@ void Unit::draw(GraphicsBuffer* buffer)
 	mpSprite->draw(*buffer, mPos.x, mPos.y, mAngle);
 }
 
+void Unit::stop()
+{
+    mVel = Vector2(0, 0);
+    mRotation = 0;
+    mSteer.linear = Vector2(0, 0);
+    mSteer.angular = 0;
+}
+
 void Unit::setAngle(Vector2& vel)
 {
 	if (vel.length() > 0)

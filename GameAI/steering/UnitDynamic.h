@@ -17,9 +17,16 @@ class UnitDynamic : public Unit
 		// Getters / Setters
 		void setMaxAccel(float accel) { mMaxAccel = accel; };
 		float getMaxAccel() { return mMaxAccel; };
+        void setTargetRadius(float radius) { mTargetRadius = radius; };
+        float getTargetRadius() { return mTargetRadius; };
+        void setSlowRadius(float radius) { mSlowRadius = radius; };
+        float getSlowRadius() { return mSlowRadius; };
+        void setTimeToTarget(float time) { mTimeToTarget = time; };
+        float getTimeToTarget() { return mTimeToTarget; };
 	private:
 		bool mArrive;
 		float mMaxAccel;
+        float mTargetRadius, mSlowRadius, mTimeToTarget;
 };
 
 #endif

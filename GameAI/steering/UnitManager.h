@@ -36,7 +36,7 @@ class UnitManager : public EventListener
 		void handleEvent(const Event& theEvent);
 
 		// Misc Functions
-		Vector2& getRandDistFromPlayer(float distance);
+		Vector2 getRandDistFromPlayer(float distance);
 	private:
 		std::vector<Unit*> mUnits;
 		UnitPlayer* mpPlayer;
