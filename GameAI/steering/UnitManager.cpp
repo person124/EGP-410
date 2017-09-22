@@ -97,7 +97,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 	if (theEvent.getType() == EVENT_ADD_AI)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
-		Unit* unit = new UnitDynamic(gpGame->getSpriteManager()->getSprite(2), e.isArrive());
+		Unit* unit = new UnitDynamic(e.isArrive());
         unit->setPosition(getRandDistFromPlayer(e.isArrive() ? 200 : 100));
 		addUnit(unit);
 	}

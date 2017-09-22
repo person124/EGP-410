@@ -11,7 +11,7 @@ class GraphicsBuffer;
 class Unit : public Trackable
 {
 	public:
-		Unit(Sprite* sprite);
+		Unit(int spriteID);
 		~Unit();
 		virtual void update(float dt);
 		void draw(GraphicsBuffer* buffer);

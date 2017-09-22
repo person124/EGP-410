@@ -6,7 +6,7 @@
 #include "Game.h"
 #include "SpriteManager.h"
 
-UnitPlayer::UnitPlayer():Unit(gpGame->getSpriteManager()->getSprite(1))
+UnitPlayer::UnitPlayer():Unit(PLAYER_ICON_SPRITE_ID)
 {
 	gpEventSystem->addListener(EVENT_MOUSE_CLICK, this);
 

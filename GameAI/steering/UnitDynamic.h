@@ -6,7 +6,7 @@
 class UnitDynamic : public Unit
 {
 	public:
-		UnitDynamic(Sprite* sprite, bool isArrive);
+		UnitDynamic(bool isArrive);
 		~UnitDynamic();
 		void update(float dt);
 

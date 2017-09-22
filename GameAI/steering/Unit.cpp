@@ -1,18 +1,20 @@
 #include "Unit.h"
 
+#include "Game.h"
+#include "SpriteManager.h"
 #include "Phys.h"
 #include "Sprite.h"
 
 #include <math.h>
 
-Unit::Unit(Sprite* sprite)
+Unit::Unit(int spriteID)
 {
 	//mPos = { 0, 0 };
 	//mVel = { 0, 0 };
 	mAngle = 0.0f;
 	mRotation = 0.0f;
 
-	mpSprite = sprite;
+	mpSprite = gpGame->getSpriteManager()->getSprite(spriteID);
 }
 
 Unit::~Unit()

@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-UnitDynamic::UnitDynamic(Sprite* sprite, bool isArrive):Unit(sprite)
+UnitDynamic::UnitDynamic(bool isArrive):Unit(AI_ICON_SPRITE_ID)
 {
 	//mSteer.linear = { 0, 0 };
 	mSteer.angular = 0.0f;
