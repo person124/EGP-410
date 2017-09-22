@@ -5,6 +5,7 @@
 #include "EventMouseClick.h"
 #include "EventAddAI.h"
 #include "EventDeleteAI.h"
+#include "EventClearAI.h"
 
 #include "Game.h"
 #include <allegro5\allegro.h>
@@ -48,6 +49,9 @@ void InputManager::update()
 
 	if (al_key_down(&mKeyState, ALLEGRO_KEY_D))
 		gpEventSystem->fireEvent(EventDeleteAI());
+
+	if (al_key_down(&mKeyState, ALLEGRO_KEY_C))
+		gpEventSystem->fireEvent(EventClearAI());
 
 	if (mMouseState.buttons & 1)
 		gpEventSystem->fireEvent(EventMouseClick(mMouseState.x, mMouseState.y));

@@ -11,6 +11,7 @@ enum EventType
 	EVENT_MOUSE_CLICK,
 	EVENT_ADD_AI,
 	EVENT_DELETE_AI,
+	EVENT_CLEAR_AI,
 	NUM_EVENT_TYPES
 };
 
@@ -19,7 +20,8 @@ const std::string EVENT_NAMES[NUM_EVENT_TYPES] =
 "Quit Game Event",
 "Mouse Click Event",
 "Add AI Arrive/Seek Event",
-"Remove AI Event"
+"Remove AI Event",
+"Clear All AI Event"
 };
 
 class Event : public Trackable

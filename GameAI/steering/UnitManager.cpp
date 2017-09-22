@@ -7,6 +7,7 @@
 #include "EventSystem.h"
 #include "EventAddAI.h"
 #include "EventDeleteAI.h"
+#include "EventClearAI.h"
 #include "EventQuit.h"
 
 #include "Game.h"
@@ -111,6 +112,10 @@ void UnitManager::handleEvent(const Event& theEvent)
         int random = rand() % getSize();
         removeUnit(random);
     }
+	else if (theEvent.getType() == EVENT_CLEAR_AI)
+	{
+		removeAll();
+	}
 }
 
 #include <iostream>
