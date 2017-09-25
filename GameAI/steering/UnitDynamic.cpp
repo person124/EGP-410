@@ -5,8 +5,6 @@
 #include "UnitPlayer.h"
 #include "GraphicsSystem.h"
 
-#include <iostream>
-
 UnitDynamic::UnitDynamic(bool isArrive):Unit(AI_ICON_SPRITE_ID)
 {
 	//mSteer.linear = { 0, 0 };

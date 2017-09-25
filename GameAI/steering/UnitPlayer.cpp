@@ -34,9 +34,6 @@ void UnitPlayer::update(float dt)
 	mPos += mVel * dt;
 }
 
-#include <iostream>
-#include <math.h>
-
 void UnitPlayer::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_MOUSE_CLICK)

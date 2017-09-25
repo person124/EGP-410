@@ -25,6 +25,7 @@ UnitManager::UnitManager()
 
 	gpEventSystem->addListener(EVENT_ADD_AI, this);
 	gpEventSystem->addListener(EVENT_DELETE_AI, this);
+	gpEventSystem->addListener(EVENT_CLEAR_AI, this);
 
     srand(unsigned(time(NULL)));
 }
@@ -117,8 +118,6 @@ void UnitManager::handleEvent(const Event& theEvent)
 		removeAll();
 	}
 }
-
-#include <iostream>
 
 Vector2 UnitManager::getRandDistFromPlayer(float distance)
 {
