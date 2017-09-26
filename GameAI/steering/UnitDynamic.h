@@ -7,7 +7,7 @@ class UnitDynamic : public Unit
 {
 	public:
 		UnitDynamic(bool isArrive);
-		~UnitDynamic();
+		virtual ~UnitDynamic();
 		void update(float dt);
 
 		//Movement functions

@@ -8,7 +8,7 @@ class UnitPlayer : public Unit, public EventListener
 {
 	public:
 		UnitPlayer();
-		~UnitPlayer();
+		virtual ~UnitPlayer();
 		void update(float dt);
 
 		void handleEvent(const Event& theEvent);
