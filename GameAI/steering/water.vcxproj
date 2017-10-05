@@ -25,6 +25,7 @@
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventToggleDebug.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameValues.h" />
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameValues.cpp" />
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />

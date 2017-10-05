@@ -24,7 +24,7 @@ class EventModifyStat : public Event
 		};
 		~EventModifyStat() {};
 
-		ModifyValues getValue() { return mValue; };
+		ModifyValues getValue() const { return mValue; };
 	private:
 		ModifyValues mValue;
 };

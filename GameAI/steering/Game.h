@@ -17,6 +17,7 @@ class Timer;
 class InputManager;
 class UnitManager;
 class HUD;
+class GameValues;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
 const IDType PLAYER_ICON_SPRITE_ID = 1;
@@ -51,6 +52,7 @@ public:
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
 	inline HUD* getHUD() const { return mpHUD; };
+	inline GameValues* getValues() const { return mpValues; };
 
 private:
 	GraphicsSystem* mpGraphicsSystem;
@@ -63,6 +65,7 @@ private:
 	UnitManager* mpUnitManager;
 
 	HUD* mpHUD;
+	GameValues* mpValues;
 
 	ALLEGRO_FONT* mpFont;
 	ALLEGRO_SAMPLE* mpSample;

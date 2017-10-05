@@ -18,6 +18,8 @@ class HUD : public EventListener
 	private:
 		std::string mStrMousePos;
 		int mX, mY;
+
+		bool mDrawDebug = false;
 };
 
 #endif

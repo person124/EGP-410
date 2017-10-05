@@ -21,6 +21,7 @@
 #include "UnitManager.h"
 
 #include "HUD.h"
+#include "GameValues.h"
 
 #include "EventSystem.h"
 #include "EventQuit.h"
@@ -176,6 +177,7 @@ bool Game::init()
 	mpUnitManager = new UnitManager();
 
 	mpHUD = new HUD();
+	mpValues = new GameValues();
 
 	return true;
 }
@@ -184,6 +186,9 @@ void Game::cleanup()
 {
 	delete mpHUD;
 	mpHUD = NULL;
+
+	delete mpValues;
+	mpValues = NULL;
 
 	delete mpUnitManager;
 	mpUnitManager = NULL;
