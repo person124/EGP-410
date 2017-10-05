@@ -26,6 +26,11 @@ float GameValues::getValue(int pos)
 	return mValues[pos];
 }
 
+std::string GameValues::getValueString(int pos)
+{
+	return std::to_string(getValue(pos));
+}
+
 void GameValues::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_MODIFY)

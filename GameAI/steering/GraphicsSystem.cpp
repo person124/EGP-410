@@ -10,6 +10,7 @@ GraphicsSystem::GraphicsSystem()
 	,mWidth(0)
 	,mHeight(0)
 {
+	mTextColor = al_map_rgb(255, 255, 255);
 }
 
 GraphicsSystem::~GraphicsSystem()
@@ -87,4 +88,9 @@ ALLEGRO_BITMAP* GraphicsSystem::switchTargetBitmap( ALLEGRO_BITMAP* pNewTarget )
 	al_set_target_bitmap( pNewTarget );
 
 	return pOldTarget;
+}
+
+void GraphicsSystem::drawText(float x, float y, std::string text, int flag)
+{
+	al_draw_text(gpGame->getFont(), mTextColor, x, y, flag, text.c_str());
 }

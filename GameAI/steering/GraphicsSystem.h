@@ -1,11 +1,13 @@
 #pragma once
 
 #include <allegro5/allegro.h>
+#include <allegro5\allegro_font.h>
 #include "Trackable.h"
 #include "Phys.h"
 
-class GraphicsBuffer;
+#include <string>
 
+class GraphicsBuffer;
 
 class GraphicsSystem:public Trackable
 {
@@ -27,9 +29,13 @@ public:
 
 	static ALLEGRO_BITMAP* switchTargetBitmap( ALLEGRO_BITMAP* pNewTarget );//return old target
 
+	//Functions for drawing text
+	void drawText(float x, float y, std::string text, int flag = ALLEGRO_ALIGN_CENTER);
 private:
 	ALLEGRO_DISPLAY* mpDisplay;
 	GraphicsBuffer* mpBackBuffer;
 	int mWidth;
 	int mHeight;
+
+	ALLEGRO_COLOR mTextColor;
 };

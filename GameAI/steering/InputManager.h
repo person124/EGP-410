@@ -5,6 +5,8 @@
 
 #include "Event.h"
 
+#include "Trackable.h"
+
 enum Keys
 {
 	KEYS_ESCAPE,
@@ -24,14 +26,14 @@ enum Keys
 struct KeyInput
 {
 	KeyInput() {};
-	KeyInput(int allegroKey, Event& mEvent)
+	KeyInput(int allegroKey, Event* mEvent)
 		:mAllegroKey(allegroKey), mPressed(false), mEvent(mEvent) {};
 	int mAllegroKey;
 	bool mPressed;
-	Event mEvent;
+	Event* mEvent;
 };
 
-class InputManager
+class InputManager : public Trackable
 {
 	public:
 		InputManager();

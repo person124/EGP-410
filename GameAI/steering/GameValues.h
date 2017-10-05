@@ -5,6 +5,8 @@
 
 #include "EventModifyStat.h"
 
+#include <string>
+
 class GameValues : public EventListener
 {
 	public:
@@ -12,6 +14,7 @@ class GameValues : public EventListener
 		~GameValues();
 
 		float getValue(int pos);
+		std::string getValueString(int pos);
 		int getCurrentSelected() { return mCurrentModValue; };
 
 		void handleEvent(const Event& theEvent);

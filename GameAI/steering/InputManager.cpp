@@ -14,38 +14,41 @@
 InputManager::InputManager()
 {
 	//Escape Key
-	mKeys[KEYS_ESCAPE] = KeyInput(ALLEGRO_KEY_ESCAPE, EventQuit());
+	mKeys[KEYS_ESCAPE] = KeyInput(ALLEGRO_KEY_ESCAPE, new EventQuit());
 
 	//Add Seek Unit
-	mKeys[KEYS_S] = KeyInput(ALLEGRO_KEY_S, EventAddAI(false));
+	mKeys[KEYS_S] = KeyInput(ALLEGRO_KEY_S, new EventAddAI(false));
 	//Add Flee Unit
-	mKeys[KEYS_F] = KeyInput(ALLEGRO_KEY_F, EventAddAI(true));
+	mKeys[KEYS_F] = KeyInput(ALLEGRO_KEY_F, new EventAddAI(true));
 
 	//Delete a Unit
-	mKeys[KEYS_D] = KeyInput(ALLEGRO_KEY_D, EventDeleteAI());
+	mKeys[KEYS_D] = KeyInput(ALLEGRO_KEY_D, new EventDeleteAI());
 	//Clear ALL Units
-	mKeys[KEYS_C] = KeyInput(ALLEGRO_KEY_C, EventClearAI());
+	mKeys[KEYS_C] = KeyInput(ALLEGRO_KEY_C, new EventClearAI());
 
 	//Toggle Debug Menu
-	mKeys[KEYS_I] = KeyInput(ALLEGRO_KEY_I, EventToggleDebug());
+	mKeys[KEYS_I] = KeyInput(ALLEGRO_KEY_I, new EventToggleDebug());
 
 	//Modify Value Up
-	mKeys[KEYS_MOD_UP] = KeyInput(ALLEGRO_KEY_EQUALS, EventModify(true));
+	mKeys[KEYS_MOD_UP] = KeyInput(ALLEGRO_KEY_EQUALS, new EventModify(true));
 	//Modify Value Down
-	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, EventModify(false));
+	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, new EventModify(false));
 
 	//Modify Velocity
-	mKeys[KEYS_V] = KeyInput(ALLEGRO_KEY_V, EventModifyStat(MOD_VELOCITY));
+	mKeys[KEYS_V] = KeyInput(ALLEGRO_KEY_V, new EventModifyStat(MOD_VELOCITY));
 	//Modify Radius
-	mKeys[KEYS_R] = KeyInput(ALLEGRO_KEY_R, EventModifyStat(MOD_REACTION_RADIUS));
+	mKeys[KEYS_R] = KeyInput(ALLEGRO_KEY_R, new EventModifyStat(MOD_REACTION_RADIUS));
 	//Modify Angular Velocity
-	mKeys[KEYS_A] = KeyInput(ALLEGRO_KEY_A, EventModifyStat(MOD_ANGULAR_SPEED));
+	mKeys[KEYS_A] = KeyInput(ALLEGRO_KEY_A, new EventModifyStat(MOD_ANGULAR_SPEED));
 }
 
 InputManager::~InputManager()
 {
 	al_uninstall_keyboard();
 	al_uninstall_mouse();
+
+	for (int i = 0; i < KEYS_COUNT; i++)
+		delete mKeys[i].mEvent;
 }
 
 bool InputManager::init()
@@ -70,7 +73,7 @@ void InputManager::update()
 		if (al_key_down(&mKeyState, mKeys[i].mAllegroKey))
 		{
 			if (!mKeys[i].mPressed)
-				gpEventSystem->fireEvent(mKeys[i].mEvent);
+				gpEventSystem->fireEvent(*mKeys[i].mEvent);
 			mKeys[i].mPressed = true;
 		}
 		else

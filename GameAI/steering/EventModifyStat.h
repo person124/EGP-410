@@ -15,9 +15,9 @@ enum ModifyValues
 class EventModifyStat : public Event
 {
 	public:
-		EventModifyStat(ModifyValues value) :Event(EVENT_MODIFY)
+		EventModifyStat(ModifyValues value) :Event(EVENT_MODIFY_STAT)
 		{
-			if (value < 0 || value > MOD_NUM_TYPES)
+			if (value < 0 || value >= MOD_NUM_TYPES)
 				mValue = MOD_INVALID;
 			else
 				mValue = value;

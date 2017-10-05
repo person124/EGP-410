@@ -3,16 +3,21 @@
 #include "EventSystem.h"
 #include "EventMouseMove.h"
 
-#include <sstream>
-
 #include "Game.h"
 #include "GameValues.h"
+#include "GraphicsSystem.h"
 
 HUD::HUD()
 {
 	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
 
 	gpEventSystem->addListener(EVENT_TOGGLE_DEBUG, this);
+
+	mDebugText[MOD_VELOCITY] = "Enemy (V)elocity:";
+	mDebugText[MOD_REACTION_RADIUS] = "Reaction (R)adius:";
+	mDebugText[MOD_ANGULAR_SPEED] = "(A)ngular Velocity:";
+
+	mVal = gpGame->getValues();
 }
 
 HUD::~HUD()
@@ -21,13 +26,17 @@ HUD::~HUD()
 
 void HUD::draw()
 {
-	al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), mX, mY, ALLEGRO_ALIGN_CENTER, mStrMousePos.c_str());
+	GRAPHICS_SYSTEM->drawText(mX, mY, mStrMousePos);
 
 	if (mDrawDebug)
 	{
-		al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), 0, 0, ALLEGRO_ALIGN_LEFT, "Enemy (V)elocity:");
-		al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), 0, 25, ALLEGRO_ALIGN_LEFT, "Reaction (R)adius:");
-		al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), 0, 50, ALLEGRO_ALIGN_LEFT, "(A)ngular Velocity:");
+		for (int i = 0; i < MOD_NUM_TYPES; i++)
+		{
+			char c = '-';
+			if (mVal->getCurrentSelected() == i)
+				c = '>';
+			GRAPHICS_SYSTEM->drawText(0, 20 * i, c + mDebugText[i] + mVal->getValueString(i), ALLEGRO_ALIGN_LEFT);
+		}
 	}
 }
 
@@ -40,9 +49,7 @@ void HUD::handleEvent(const Event& theEvent)
 		mX = e.getX();
 		mY = e.getY();
 
-		std::stringstream ss;
-		ss << mX << ":" << mY;
-		mStrMousePos = ss.str();
+		mStrMousePos = std::to_string(mX) + ":" + std::to_string(mY);
 	}
 	else if (theEvent.getType() == EVENT_TOGGLE_DEBUG)
 	{

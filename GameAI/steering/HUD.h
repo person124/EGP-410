@@ -2,8 +2,11 @@
 #define HUD_H
 
 #include "EventListener.h"
+#include "EventModifyStat.h"
 
 #include <string>
+
+class GameValues;
 
 class HUD : public EventListener
 {
@@ -20,6 +23,8 @@ class HUD : public EventListener
 		int mX, mY;
 
 		bool mDrawDebug = false;
+		std::string mDebugText[MOD_NUM_TYPES];
+		GameValues* mVal;
 };
 
 #endif

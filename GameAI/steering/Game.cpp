@@ -176,8 +176,8 @@ bool Game::init()
 
 	mpUnitManager = new UnitManager();
 
-	mpHUD = new HUD();
 	mpValues = new GameValues();
+	mpHUD = new HUD();
 
 	return true;
 }
