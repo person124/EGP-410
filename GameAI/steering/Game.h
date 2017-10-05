@@ -16,6 +16,7 @@ class SpriteManager;
 class Timer;
 class InputManager;
 class UnitManager;
+class HUD;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
 const IDType PLAYER_ICON_SPRITE_ID = 1;
@@ -49,6 +50,8 @@ public:
 	inline InputManager* getInputManager() const { return mpInputManager; };
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
+	inline HUD* getHUD() const { return mpHUD; };
+
 private:
 	GraphicsSystem* mpGraphicsSystem;
 	GraphicsBufferManager* mpGraphicsBufferManager;
@@ -58,6 +61,8 @@ private:
 	bool mShouldExit;
 	InputManager* mpInputManager;
 	UnitManager* mpUnitManager;
+
+	HUD* mpHUD;
 
 	ALLEGRO_FONT* mpFont;
 	ALLEGRO_SAMPLE* mpSample;

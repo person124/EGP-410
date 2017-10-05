@@ -2,6 +2,7 @@
 
 #include "EventSystem.h"
 #include "EventQuit.h"
+#include "EventMouseMove.h"
 #include "EventMouseClick.h"
 #include "EventAddAI.h"
 #include "EventDeleteAI.h"
@@ -9,11 +10,6 @@
 #include "EventToggleDebug.h"
 #include "EventModify.h"
 #include "EventModifyStat.h"
-
-#include "Game.h"
-#include <allegro5\allegro.h>
-
-#include <sstream>
 
 InputManager::InputManager()
 {
@@ -81,18 +77,15 @@ void InputManager::update()
 			mKeys[i].mPressed = false;
 	}
 
-	//Click event
+	//Move Mouse Handler
+	if (mMouseX != mMouseState.x || mMouseY != mMouseState.y)
+	{
+		mMouseX = mMouseState.x;
+		mMouseY = mMouseState.y;
+		gpEventSystem->fireEvent(EventMouseMove(mMouseX, mMouseY));
+	}
+
+	//Click Handler
 	if (mMouseState.buttons & 1)
-		gpEventSystem->fireEvent(EventMouseClick(mMouseState.x, mMouseState.y));
-
-	//TODO
-	std::stringstream ss;
-	ss << mMouseState.x << ":" << mMouseState.y;
-	mStrMousePos = ss.str();
-}
-
-void InputManager::draw()
-{
-	//Draw Mouse pos text
-	al_draw_text(gpGame->getFont(), al_map_rgb(255, 255, 255), mMouseState.x, mMouseState.y, ALLEGRO_ALIGN_CENTER, mStrMousePos.c_str());
+		gpEventSystem->fireEvent(EventMouseClick(mMouseX, mMouseY));
 }

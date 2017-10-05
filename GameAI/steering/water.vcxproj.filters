@@ -52,6 +52,9 @@
     <ClCompile Include="UnitSlottable.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -128,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="EventModify.h">
       <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMouseMove.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

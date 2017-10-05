@@ -20,6 +20,8 @@
 #include "InputManager.h"
 #include "UnitManager.h"
 
+#include "HUD.h"
+
 #include "EventSystem.h"
 #include "EventQuit.h"
 
@@ -173,11 +175,16 @@ bool Game::init()
 
 	mpUnitManager = new UnitManager();
 
+	mpHUD = new HUD();
+
 	return true;
 }
 
 void Game::cleanup()
 {
+	delete mpHUD;
+	mpHUD = NULL;
+
 	delete mpUnitManager;
 	mpUnitManager = NULL;
 
@@ -232,7 +239,8 @@ void Game::processLoop()
 	mpUnitManager->draw(mpGraphicsSystem->getBackBuffer());
 
 	mpInputManager->update();
-	mpInputManager->draw();
+
+	mpHUD->draw();
 
 	mpGraphicsSystem->swap();
 }

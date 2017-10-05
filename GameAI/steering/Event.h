@@ -8,6 +8,7 @@ enum EventType
 {
 	EVENT_INVALID = -1,
 	EVENT_QUIT,
+	EVENT_MOUSE_MOVE,
 	EVENT_MOUSE_CLICK,
 	EVENT_ADD_AI,
 	EVENT_DELETE_AI,
@@ -21,12 +22,14 @@ enum EventType
 const std::string EVENT_NAMES[EVENT_NUM_TYPES] =
 {
 "Quit Game Event",
+"Mose Move Event",
 "Mouse Click Event",
-"Add AI Arrive/Seek Event",
-"Remove AI Event",
+"Add AI Seek/Flee Event",
+"Delete AI Event",
 "Clear All AI Event",
 "Toggle Debug Option Event",
-"Switch Debug Stat"
+"+/- Debug Stat Event",
+"Switch Debug Stat Event"
 };
 
 class Event : public Trackable

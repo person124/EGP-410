@@ -20,6 +20,7 @@
     <ClInclude Include="EventModify.h" />
     <ClInclude Include="EventModifyStat.h" />
     <ClInclude Include="EventMouseClick.h" />
+    <ClInclude Include="EventMouseMove.h" />
     <ClInclude Include="EventQuit.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventToggleDebug.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Phys.h" />
     <ClInclude Include="Sprite.h" />
@@ -45,6 +47,7 @@
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Phys.cpp" />
