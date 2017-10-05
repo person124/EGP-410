@@ -6,27 +6,33 @@
 
 enum EventType
 {
-	INVALID_EVENT_TYPE = -1,
+	EVENT_INVALID = -1,
 	EVENT_QUIT,
 	EVENT_MOUSE_CLICK,
 	EVENT_ADD_AI,
 	EVENT_DELETE_AI,
 	EVENT_CLEAR_AI,
-	NUM_EVENT_TYPES
+	EVENT_TOGGLE_DEBUG,
+	EVENT_MODIFY,
+	EVENT_MODIFY_STAT,
+	EVENT_NUM_TYPES
 };
 
-const std::string EVENT_NAMES[NUM_EVENT_TYPES] =
+const std::string EVENT_NAMES[EVENT_NUM_TYPES] =
 {
 "Quit Game Event",
 "Mouse Click Event",
 "Add AI Arrive/Seek Event",
 "Remove AI Event",
-"Clear All AI Event"
+"Clear All AI Event",
+"Toggle Debug Option Event",
+"Switch Debug Stat"
 };
 
 class Event : public Trackable
 {
 	public:
+		Event() { mType = EVENT_INVALID; };
 		Event(EventType type);
 		virtual ~Event();
 

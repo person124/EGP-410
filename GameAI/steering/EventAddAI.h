@@ -6,12 +6,12 @@
 class EventAddAI : public Event
 {
 	public:
-		EventAddAI(bool isArrive) :Event(EVENT_ADD_AI) { mIsArrive = isArrive; };
+		EventAddAI(bool isFlee) :Event(EVENT_ADD_AI) { mIsFlee = isFlee; };
 		~EventAddAI() {};
 
-		bool isArrive() const { return mIsArrive; };
+		bool isArrive() const { return mIsFlee; };
 	private:
-		bool mIsArrive;
+		bool mIsFlee;
 };
 
 #endif

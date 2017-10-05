@@ -17,9 +17,12 @@
     <ClInclude Include="EventClearAI.h" />
     <ClInclude Include="EventDeleteAI.h" />
     <ClInclude Include="EventListener.h" />
+    <ClInclude Include="EventModify.h" />
+    <ClInclude Include="EventModifyStat.h" />
     <ClInclude Include="EventMouseClick.h" />
     <ClInclude Include="EventQuit.h" />
     <ClInclude Include="EventSystem.h" />
+    <ClInclude Include="EventToggleDebug.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
@@ -32,6 +35,7 @@
     <ClInclude Include="UnitDynamic.h" />
     <ClInclude Include="UnitManager.h" />
     <ClInclude Include="UnitPlayer.h" />
+    <ClInclude Include="UnitSlottable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventListener.cpp" />
@@ -50,6 +54,7 @@
     <ClCompile Include="UnitDynamic.cpp" />
     <ClCompile Include="UnitManager.cpp" />
     <ClCompile Include="UnitPlayer.cpp" />
+    <ClCompile Include="UnitSlottable.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07ED8114-0659-4424-9468-50DBBEA5882A}</ProjectGuid>

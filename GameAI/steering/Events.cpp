@@ -11,7 +11,7 @@ Event::~Event()
 
 const std::string& Event::getEventName() const
 {
-	if (mType > INVALID_EVENT_TYPE && mType < NUM_EVENT_TYPES)
+	if (mType > EVENT_INVALID && mType < EVENT_NUM_TYPES)
 		return EVENT_NAMES[mType];
 	else
 	{

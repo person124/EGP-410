@@ -49,6 +49,9 @@
     <ClCompile Include="UnitPlayer.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
+    <ClCompile Include="UnitSlottable.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -112,6 +115,18 @@
       <Filter>Header Files\Events</Filter>
     </ClInclude>
     <ClInclude Include="EventClearAI.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitSlottable.h">
+      <Filter>Header Files\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="EventToggleDebug.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventModifyStat.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventModify.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,12 +26,6 @@ UnitDynamic::~UnitDynamic()
 
 void UnitDynamic::update(float dt)
 {
-	//Get target
-	if (mArrive)
-		arrive(gpGame->getUnitManager()->getPlayer()->getPosition());
-	else 
-		seek(gpGame->getUnitManager()->getPlayer()->getPosition());
-
 	mPos += mVel * dt + 0.5f * mSteer.linear * (dt * dt);
 	mAngle += mRotation * dt + 0.5f * mSteer.angular * (dt * dt);
 
