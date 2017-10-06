@@ -98,8 +98,11 @@ void UnitManager::handleEvent(const Event& theEvent)
 	if (theEvent.getType() == EVENT_ADD_AI)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
-		Unit* unit = new UnitDynamic(e.isArrive());
-        unit->setPosition(getRandDistFromPlayer(e.isArrive() ? 200 : 100));
+		Unit* unit = new UnitDynamic(e.isFlee());
+
+        //For position, its 100 if it is flee, and 200 if seek
+        unit->setPosition(getRandDistFromPlayer(e.isFlee() ? 100 : 200));
+
 		addUnit(unit);
 	}
     else if (theEvent.getType() == EVENT_DELETE_AI)

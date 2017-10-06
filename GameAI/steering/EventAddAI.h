@@ -9,7 +9,7 @@ class EventAddAI : public Event
 		EventAddAI(bool isFlee) :Event(EVENT_ADD_AI) { mIsFlee = isFlee; };
 		~EventAddAI() {};
 
-		bool isArrive() const { return mIsFlee; };
+		bool isFlee() const { return mIsFlee; };
 	private:
 		bool mIsFlee;
 };

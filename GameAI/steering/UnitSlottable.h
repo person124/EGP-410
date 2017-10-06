@@ -3,11 +3,20 @@
 
 #include "UnitDynamic.h"
 
+typedef WeightB (*SteeringFunc)();
+
 class UnitSlottable : public UnitDynamic
 {
 	public:
-		UnitSlottable();
+		UnitSlottable(SteeringFunc* behaviourArray, int size);
 		virtual ~UnitSlottable();
+
+		void update(float dt);
+		
+		SteeringOutput runBehaviours();
+    private:
+		SteeringFunc* mpBehaviourArray;
+		int mBehaviourSize;
 };
 
 #endif

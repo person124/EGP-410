@@ -22,12 +22,6 @@ struct Vector2
     Vector2& operator/=(float right);
 };
 
-struct SteeringOutput
-{
-	Vector2 linear;
-	float angular;
-};
-
 // Operator Overloads
 Vector2 operator+(Vector2& left, Vector2& right);
 Vector2 operator-(Vector2& left, Vector2& right);
@@ -36,5 +30,25 @@ Vector2 operator*(Vector2& left, float right);
 Vector2 operator*(float left, Vector2& right);
 
 Vector2 operator/(Vector2& left, float right);
+
+
+struct SteeringOutput
+{
+	Vector2 linear;
+	float angular;
+};
+
+struct WeightedBehaviour
+{
+    WeightedBehaviour(SteeringOutput steer, float w)
+    {
+        steering = steer;
+        weight = w;
+    };
+    SteeringOutput steering;
+    float weight;
+};
+
+typedef WeightedBehaviour WeightB;
 
 #endif
