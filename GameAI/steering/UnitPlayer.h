@@ -11,6 +11,8 @@ class UnitPlayer : public Unit, public EventListener
 		virtual ~UnitPlayer();
 		void update(float dt);
 
+		void stop();
+
 		void handleEvent(const Event& theEvent);
 	private:
 		Vector2 mTarget;

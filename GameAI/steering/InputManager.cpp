@@ -10,6 +10,7 @@
 #include "EventToggleDebug.h"
 #include "EventModify.h"
 #include "EventModifyStat.h"
+#include "EventPause.h"
 
 InputManager::InputManager()
 {
@@ -33,6 +34,8 @@ InputManager::InputManager()
 	mKeys[KEYS_MOD_UP] = KeyInput(ALLEGRO_KEY_EQUALS, new EventModify(true));
 	//Modify Value Down
 	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, new EventModify(false));
+
+	mKeys[KEYS_SPACE] = KeyInput(ALLEGRO_KEY_SPACE, new EventPause());
 
 	for (int i = 0; i < MOD_NUM_TYPES; i++)
 		mKeys[i + KEYS_COUNT] = KeyInput(MOD_KEYCODES[i], new EventModifyStat((ModifyValues)i));

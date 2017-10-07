@@ -40,9 +40,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="Phys.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="UnitPlayer.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
@@ -52,11 +49,17 @@
     <ClCompile Include="GameValues.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="MovementFunctions.cpp">
-      <Filter>Source Files\Units</Filter>
-    </ClCompile>
     <ClCompile Include="GUI.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Phys.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementFunctions.cpp">
+      <Filter>Source Files\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="WallManager.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +105,6 @@
     <ClInclude Include="EventQuit.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="Phys.h">
-      <Filter>Header Files\Util</Filter>
-    </ClInclude>
     <ClInclude Include="UnitPlayer.h">
       <Filter>Header Files\Units</Filter>
     </ClInclude>
@@ -138,14 +138,23 @@
     <ClInclude Include="GameValues.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="MovementFunctions.h">
-      <Filter>Header Files\Units</Filter>
-    </ClInclude>
     <ClInclude Include="GameValueTypes.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="GUI.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Phys.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementFunctions.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="WallManager.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="EventPause.h">
+      <Filter>Header Files\Events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +187,12 @@
     </Filter>
     <Filter Include="Source Files\Events">
       <UniqueIdentifier>{f14d634a-c255-4ed7-961e-5c2799fa3f05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{62b715d2-5d87-4b99-9909-3abeb5254aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{1db2af66-ee40-4816-b817-951fdd4bb4f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

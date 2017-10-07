@@ -1,6 +1,11 @@
 #ifndef PHYS_H
 #define PHYS_H
 
+#include "Trackable.h"
+
+class Unit;
+
+//Vectors and rays
 struct Vector2
 {
 	//Static Functions
@@ -22,6 +27,8 @@ struct Vector2
 
 	Vector2& operator+=(Vector2& right);
 	Vector2& operator-=(Vector2& right);
+	Vector2& operator+=(float right);
+	Vector2& operator-=(float right);
 	Vector2& operator*=(float right);
     Vector2& operator/=(float right);
 };
@@ -35,7 +42,19 @@ Vector2 operator*(float left, Vector2& right);
 
 Vector2 operator/(Vector2& left, float right);
 
+bool operator==(Vector2& left, Vector2& right);
+bool operator!=(Vector2& left, Vector2& right);
 
+struct Ray : public Vector2
+{
+	Ray() {};
+	Ray(Unit* unit);
+	//x and y are its direction
+	Vector2 origin;
+};
+
+
+//Steering Related Stuff
 struct SteeringOutput
 {
 	Vector2 linear;
@@ -54,5 +73,29 @@ struct WeightedBehaviour
 };
 
 typedef WeightedBehaviour WeightB;
+
+
+//Walls
+struct Collision : public Trackable
+{
+	Vector2 position;
+	Vector2 normal;
+	float size;
+};
+
+struct Wall : public Trackable
+{
+	Wall() {};
+	Wall(float minX, float minY, float maxX, float maxY)
+	{
+		min = Vector2(minX, minY);
+		max = Vector2(maxX, maxY);
+	}
+	Vector2 min;
+	Vector2 max;
+
+	Collision* checkCollision(Ray& raycast);
+	Vector2 getNormalFromPoint(Vector2& point);
+};
 
 #endif

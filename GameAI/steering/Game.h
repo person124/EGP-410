@@ -16,6 +16,7 @@ class SpriteManager;
 class Timer;
 class InputManager;
 class UnitManager;
+class WallManager;
 class GUI;
 class GameValues;
 
@@ -50,6 +51,7 @@ public:
 	inline ALLEGRO_FONT* getFont() const { return mpFont; };
 	inline InputManager* getInputManager() const { return mpInputManager; };
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
+	inline WallManager* getWallManager() const { return mpWallManager; };
 
 	inline GUI* getGUI() const { return mpGUI; };
 	inline GameValues* getValues() const { return mpValues; };
@@ -63,6 +65,7 @@ private:
 	bool mShouldExit;
 	InputManager* mpInputManager;
 	UnitManager* mpUnitManager;
+	WallManager* mpWallManager;
 
 	GUI* mpGUI;
 	GameValues* mpValues;
@@ -72,6 +75,8 @@ private:
 	IDType mBackgroundBufferID;
 	IDType mPlayerIconBufferID;
 	IDType mEnemyIconBufferID;
+
+	bool mPaused = false;
 };
 
 float genRandomBinomial();//range -1:1 from "Artificial Intelligence for Games", Millington and Funge

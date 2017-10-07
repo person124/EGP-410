@@ -19,7 +19,8 @@ UnitPlayer::~UnitPlayer()
 void UnitPlayer::update(float dt)
 {
 	// Move torwards target
-	if (mTarget.x == 0 && mTarget.y == 0);
+	if (mTarget.x == 0 && mTarget.y == 0)
+		return;
 	else
 	{
 		mVel = mTarget - mPos;
@@ -31,6 +32,15 @@ void UnitPlayer::update(float dt)
 
 	// Adjust values
 	mPos += mVel * dt;
+
+	if ((mPos - mTarget).length() <= 20)
+		stop();
+}
+
+void UnitPlayer::stop()
+{
+	Unit::stop();
+	mTarget = Vector2(0, 0);
 }
 
 void UnitPlayer::handleEvent(const Event& theEvent)
