@@ -12,6 +12,8 @@ namespace slot {
 	WeightB wander(UnitSlottable* unit);
 
 	WeightB avoid(UnitSlottable* unit);
+
+	WeightB wallAvoid(UnitSlottable* unit);
 };
 
 #endif

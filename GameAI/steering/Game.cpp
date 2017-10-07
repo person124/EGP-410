@@ -19,12 +19,14 @@
 #include "Timer.h"
 #include "InputManager.h"
 #include "UnitManager.h"
+#include "WallManager.h"
 
 #include "GUI.h"
 #include "GameValues.h"
 
 #include "EventSystem.h"
 #include "EventQuit.h"
+#include "EventPause.h"
 
 Game* gpGame = NULL;
 
@@ -44,6 +46,7 @@ Game::Game()
 	//,mSmurfBufferID(INVALID_ID)
 {
 	gpEventSystem->addListener(EVENT_QUIT, this);
+	gpEventSystem->addListener(EVENT_PAUSE, this);
 }
 
 Game::~Game()
@@ -175,6 +178,7 @@ bool Game::init()
 	}
 
 	mpUnitManager = new UnitManager();
+	mpWallManager = new WallManager();
 
 	mpValues = new GameValues();
 	mpGUI = new GUI();
@@ -192,6 +196,9 @@ void Game::cleanup()
 
 	delete mpUnitManager;
 	mpUnitManager = NULL;
+
+	delete mpWallManager;
+	mpWallManager = NULL;
 
 	//delete the input system
 	delete mpInputManager;
@@ -233,8 +240,10 @@ void Game::beginLoop()
 	
 void Game::processLoop()
 {
-	//update units
-	mpUnitManager->update(LOOP_TARGET_TIME / 1000.0f);
+	//Update
+	mpInputManager->update();
+	if (!mPaused)
+		mpUnitManager->update(LOOP_TARGET_TIME / 1000.0f);
 	
 	//draw background
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
@@ -242,8 +251,6 @@ void Game::processLoop()
 
 	//draw units
 	mpUnitManager->draw(mpGraphicsSystem->getBackBuffer());
-
-	mpInputManager->update();
 
 	mpGUI->draw();
 
@@ -272,6 +279,8 @@ void Game::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_QUIT)
 		mShouldExit = true;
+	else if (theEvent.getType() == EVENT_PAUSE)
+		mPaused = !mPaused;
 }
 
 /*#include "System.h"

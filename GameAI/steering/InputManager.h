@@ -19,6 +19,7 @@ enum Keys
 	KEYS_I, //Display Debug Info
 	KEYS_MOD_UP, // +
 	KEYS_MOD_DOWN, //-
+	KEYS_SPACE, //Pause
 	KEYS_COUNT
 };
 

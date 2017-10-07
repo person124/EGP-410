@@ -21,6 +21,7 @@
     <ClInclude Include="EventModifyStat.h" />
     <ClInclude Include="EventMouseClick.h" />
     <ClInclude Include="EventMouseMove.h" />
+    <ClInclude Include="EventPause.h" />
     <ClInclude Include="EventQuit.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventToggleDebug.h" />
@@ -40,6 +41,7 @@
     <ClInclude Include="UnitManager.h" />
     <ClInclude Include="UnitPlayer.h" />
     <ClInclude Include="UnitSlottable.h" />
+    <ClInclude Include="WallManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EventListener.cpp" />
@@ -61,6 +63,7 @@
     <ClCompile Include="UnitManager.cpp" />
     <ClCompile Include="UnitPlayer.cpp" />
     <ClCompile Include="UnitSlottable.cpp" />
+    <ClCompile Include="WallManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{07ED8114-0659-4424-9468-50DBBEA5882A}</ProjectGuid>

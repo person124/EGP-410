@@ -16,6 +16,7 @@ enum EventType
 	EVENT_TOGGLE_DEBUG,
 	EVENT_MODIFY,
 	EVENT_MODIFY_STAT,
+	EVENT_PAUSE,
 	EVENT_NUM_TYPES
 };
 
@@ -29,7 +30,8 @@ const std::string EVENT_NAMES[EVENT_NUM_TYPES] =
 "Clear All AI Event",
 "Toggle Debug Option Event",
 "+/- Debug Stat Event",
-"Switch Debug Stat Event"
+"Switch Debug Stat Event",
+"Pause Game Event"
 };
 
 class Event : public Trackable

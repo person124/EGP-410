@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GameValues.h"
 #include "UnitManager.h"
+#include "WallManager.h"
 
 #include "UnitPlayer.h"
 
@@ -75,7 +76,7 @@ WeightB seekOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
 	//TODO Make weights customizable
-	float weight = 0.65f;
+	float weight = 0.25f;
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
@@ -122,7 +123,7 @@ WeightB slot::wander(UnitSlottable* unit)
 
 WeightB slot::avoid(UnitSlottable* unit)
 {
-	float weight = 0.25f;
+	float weight = 0.5f;
 
 	float shortestTime = (float) INT_MAX;
 	Unit* target = NULL;
@@ -172,4 +173,34 @@ WeightB slot::avoid(UnitSlottable* unit)
 	steer.linear = relativePosition * GameValues::value(MOD_NPC_ACCEL);
 
 	return WeightB(steer, weight);
+}
+
+WeightB slot::wallAvoid(UnitSlottable* unit)
+{
+	SteeringOutput out;
+	float weight = 1.25f;
+
+	float lookAhead = 200;
+	float avoidDistance = 500;
+
+	Ray ray = Ray((Unit*)unit);
+
+	if (ray.length() == 0)
+		return WeightB(out, weight);
+
+	ray.normalize();
+	ray *= lookAhead;
+
+	//Do collision Detection here.
+	Collision* col = gpGame->getWallManager()->checkCollision(ray);
+
+	if (col != NULL)
+	{
+		//printf("true\n");
+		Vector2 target = col->position + col->normal * avoidDistance;
+		out = seek(target, unit, false);
+		delete col;
+	}
+
+	return WeightB(out, weight);
 }
