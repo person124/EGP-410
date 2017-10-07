@@ -12,7 +12,6 @@ UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size):UnitDynamic
 
 UnitSlottable::~UnitSlottable()
 {
-	delete[] mpBehaviourArray;
 }
 
 void UnitSlottable::update(float dt)

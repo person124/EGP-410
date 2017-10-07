@@ -3,6 +3,9 @@
 
 struct Vector2
 {
+	//Static Functions
+	static Vector2 toVector(float angle);
+
 	Vector2();
     Vector2(float xVal, float yVal);
 

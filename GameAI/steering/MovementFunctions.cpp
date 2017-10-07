@@ -8,7 +8,7 @@
 
 SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 {
-	//TODO Make this an actuall definition somewhere
+	//TODO Make this an actual definition somewhere
 	float mTargetRadius = 10;
 	float mSlowRadius = 100;
 	float mMaxSpeed = 300;
@@ -58,7 +58,7 @@ WeightB arriveOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
 	//TODO Make weights customizable
-	float weight = 1;
+	float weight = 0.9f;
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
@@ -82,6 +82,24 @@ WeightB fleePlayerWithinRange(UnitSlottable* unit)
 
 WeightB wander(UnitSlottable* unit)
 {
-	//REMEMBER TO HAVE THIS ONE CONTROL ITS SPEED, AS IN SLOW IT DOWN
-	return WeightB(SteeringOutput(), 0);
+	float weight = 0.1;
+	//TODO FIX WANDER
+	float wanderOffset = 300;
+	float wanderRadius = 150;
+	float wanderRate = 2;
+	float maxAcell = 100;
+
+	float currentAngle = unit->getAngle();
+	currentAngle += gpGame->getUnitManager()->randomBinomial() * wanderRadius;
+	float targetAngle = currentAngle + unit->getAngle();
+
+	Vector2 target = unit->getPosition() + wanderOffset * unit->getAngleAsVector();
+	target += wanderRadius * Vector2::toVector(targetAngle);
+
+	unit->setAngle(target);
+
+	SteeringOutput steer;
+	steer.linear = maxAcell * unit->getAngleAsVector();
+
+	return WeightB(steer, weight);
 }

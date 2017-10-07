@@ -2,6 +2,11 @@
 
 #include <math.h>
 
+Vector2 Vector2::toVector(float angle)
+{
+	return Vector2(cosf(angle), sinf(angle));
+}
+
 Vector2::Vector2()
 {
 	x = 0;

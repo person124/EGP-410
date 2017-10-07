@@ -10,7 +10,7 @@ UnitPlayer::UnitPlayer():Unit(PLAYER_ICON_SPRITE_ID)
 {
 	gpEventSystem->addListener(EVENT_MOUSE_CLICK, this);
 
-	setMaxSpeed(100);
+	setMaxSpeed(300);
 }
 
 UnitPlayer::~UnitPlayer()

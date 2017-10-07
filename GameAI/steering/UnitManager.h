@@ -39,13 +39,14 @@ class UnitManager : public EventListener
 
 		// Misc Functions
 		Vector2 getRandDistFromPlayer(float distance);
+		float randomBinomial();
 	private:
 		std::vector<Unit*> mUnits;
 		UnitPlayer* mpPlayer;
 
-		//SteeringFunc mfWander;
-		SteeringFunc mfFlee;
+		SteeringFunc mfWander;
 		SteeringFunc mfArrive;
+		SteeringFunc mfFlee;
 };
 
 #endif

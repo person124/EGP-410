@@ -38,6 +38,11 @@ void Unit::stop()
     mSteer.angular = 0;
 }
 
+Vector2 Unit::getAngleAsVector()
+{
+	return Vector2::toVector(mAngle);
+}
+
 void Unit::setAngle(Vector2& vel)
 {
 	if (vel.length() > 0)

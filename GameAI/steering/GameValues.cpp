@@ -12,7 +12,7 @@ GameValues::GameValues()
 	//TODO be able to set adjustment amounts
 	//TODO add min and maxs
 	mValues[MOD_VELOCITY] = 10.0f;
-	mValues[MOD_REACTION_RADIUS] = 300.0f;
+	mValues[MOD_REACTION_RADIUS] = 150.0f;
 	mValues[MOD_ANGULAR_SPEED] = 10.0f;
 }
 

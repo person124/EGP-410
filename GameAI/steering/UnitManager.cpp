@@ -31,8 +31,9 @@ UnitManager::UnitManager()
 
     srand(unsigned(time(NULL)));
 
-	mfArrive = arrivePlayerWithinRange;
 	mfFlee = fleePlayerWithinRange;
+	mfArrive = arrivePlayerWithinRange;
+	mfWander = wander;
 }
 
 UnitManager::~UnitManager()
@@ -104,9 +105,10 @@ void UnitManager::handleEvent(const Event& theEvent)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
-		int size = 1;
+		int size = 2;
 		SteeringFunc* funcs = new SteeringFunc[size];
 		funcs[0] = e.isFlee() ? mfFlee : mfArrive;
+		funcs[1] = mfWander;
 
 		Unit* unit = new UnitSlottable(funcs, size);
 
@@ -142,4 +144,9 @@ Vector2 UnitManager::getRandDistFromPlayer(float distance)
     output.y += distance * sin(angle);
 
 	return output;
+}
+
+float UnitManager::randomBinomial()
+{
+	return ((float)rand() / RAND_MAX) - ((float)rand() / RAND_MAX);
 }
