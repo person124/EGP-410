@@ -5,11 +5,13 @@
 
 class UnitSlottable;
 
-SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee);
-WeightB arriveOrFlee(UnitSlottable* unit, bool flee);
+namespace slot {
+	WeightB arrivePlayerWithinRange(UnitSlottable* unit);
+	WeightB fleePlayerWithinRange(UnitSlottable* unit);
 
-WeightB arrivePlayerWithinRange(UnitSlottable* unit);
-WeightB fleePlayerWithinRange(UnitSlottable* unit);
-WeightB wander(UnitSlottable* unit);
+	WeightB wander(UnitSlottable* unit);
+
+	WeightB avoid(UnitSlottable* unit);
+};
 
 #endif

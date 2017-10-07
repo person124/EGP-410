@@ -33,7 +33,7 @@ SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 	}
 
 	float targetSpeed;
-	if (distance > mSlowRadius)
+	if (!flee && distance > mSlowRadius)
 		targetSpeed = mMaxSpeed;
 	else
 		targetSpeed = (mMaxSpeed * distance) / mSlowRadius;
@@ -58,7 +58,7 @@ WeightB arriveOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
 	//TODO Make weights customizable
-	float weight = 0.9f;
+	float weight = 0.65f;
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
@@ -70,17 +70,17 @@ WeightB arriveOrFlee(UnitSlottable* unit, bool flee)
 	return WeightB(steer, weight);
 }
 
-WeightB arrivePlayerWithinRange(UnitSlottable* unit)
+WeightB slot::arrivePlayerWithinRange(UnitSlottable* unit)
 {
 	return arriveOrFlee(unit, false);
 }
 
-WeightB fleePlayerWithinRange(UnitSlottable* unit)
+WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
 {
 	return arriveOrFlee(unit, true);
 }
 
-WeightB wander(UnitSlottable* unit)
+WeightB slot::wander(UnitSlottable* unit)
 {
 	float weight = 0.1;
 	//TODO FIX WANDER
@@ -100,6 +100,62 @@ WeightB wander(UnitSlottable* unit)
 
 	SteeringOutput steer;
 	steer.linear = maxAcell * unit->getAngleAsVector();
+
+	return WeightB(steer, weight);
+}
+
+WeightB slot::avoid(UnitSlottable* unit)
+{
+	float weight = 0.25f;
+
+	float maxAcell = 200; //Higher for faster avoidance
+
+	float shortestTime = (float) INT_MAX;
+	Unit* target = NULL;
+	Vector2 targetRelativePos;
+	Vector2 targetRelativeVel;
+	float targetMinSeperation;
+	float targetDistance;
+
+	for (int i = 0; i < gpGame->getUnitManager()->getSize(); i++)
+	{
+		Unit* test = gpGame->getUnitManager()->getUnit(i);
+		if (test == unit)
+			continue;
+
+		Vector2 relativePos = unit->getPosition() - test->getPosition();
+		Vector2 relativeVel = unit->getVelocity() - test->getPosition();
+		float relativeSpeed = relativeVel.length();
+		float timetoCollision = Vector2::dot(relativePos, relativeVel) / (relativeSpeed * relativeSpeed);
+		
+		float distance = relativePos.length();
+		float minSeperation = distance - relativeSpeed * timetoCollision;
+
+		if (minSeperation > 2 * gpGame->getValues()->getValue(MOD_REACTION_RADIUS))
+			continue;
+		if (timetoCollision <= 0 || timetoCollision >= shortestTime)
+			continue;
+
+		shortestTime = timetoCollision;
+		target = test;
+		targetRelativePos = relativePos;
+		targetRelativeVel = relativeVel;
+		targetMinSeperation = minSeperation;
+		targetDistance = distance;
+	}
+
+	if (target == NULL)
+		return WeightB(SteeringOutput(), weight);
+
+	Vector2 relativePosition;
+	if (targetMinSeperation <= 0 || targetDistance < 2 * gpGame->getValues()->getValue(MOD_REACTION_RADIUS))
+		relativePosition = targetRelativePos;
+	else
+		relativePosition = targetRelativePos + targetRelativeVel * shortestTime;
+
+	relativePosition.normalize();
+	SteeringOutput steer;
+	steer.linear = relativePosition * maxAcell;
 
 	return WeightB(steer, weight);
 }

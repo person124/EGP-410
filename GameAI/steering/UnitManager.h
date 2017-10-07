@@ -47,6 +47,7 @@ class UnitManager : public EventListener
 		SteeringFunc mfWander;
 		SteeringFunc mfArrive;
 		SteeringFunc mfFlee;
+		SteeringFunc mfAvoid;
 };
 
 #endif

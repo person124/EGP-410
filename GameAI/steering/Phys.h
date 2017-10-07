@@ -5,6 +5,7 @@ struct Vector2
 {
 	//Static Functions
 	static Vector2 toVector(float angle);
+	static float dot(Vector2& v1, Vector2& v2);
 
 	Vector2();
     Vector2(float xVal, float yVal);

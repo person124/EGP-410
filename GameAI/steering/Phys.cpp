@@ -7,6 +7,11 @@ Vector2 Vector2::toVector(float angle)
 	return Vector2(cosf(angle), sinf(angle));
 }
 
+float Vector2::dot(Vector2& v1, Vector2& v2)
+{
+	return v1.x * v2.x + v1.y * v2.y;
+}
+
 Vector2::Vector2()
 {
 	x = 0;

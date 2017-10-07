@@ -13,7 +13,7 @@ UnitDynamic::UnitDynamic(bool isArrive):Unit(AI_ICON_SPRITE_ID)
 	mArrive = isArrive;
 
 	setMaxAccel(100);
-	setMaxSpeed(300);
+	setMaxSpeed(150);
 
     setTargetRadius(10);
     setSlowRadius(100);
