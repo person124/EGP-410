@@ -1,13 +1,13 @@
 #include "UnitSlottable.h"
 
-UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size):UnitDynamic(true)
+#include "Game.h"
+#include "UnitManager.h"
+#include "GraphicsSystem.h"
+
+UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size):Unit(AI_ICON_SPRITE_ID)
 {
 	mpBehaviourArray = behaviourArray;
 	mBehaviourSize = size;
-
-	/*
-	setMaxSpeed(300);
-	*/
 }
 
 UnitSlottable::~UnitSlottable()
@@ -18,7 +18,21 @@ void UnitSlottable::update(float dt)
 {
 	mSteer = runBehaviours();
 
-	UnitDynamic::update(dt);
+	mPos += mVel * dt + 0.5f * mSteer.linear * (dt * dt);
+	mAngle += mRotation * dt + 0.5f * mSteer.angular * (dt * dt);
+
+	mVel += mSteer.linear * dt;
+	mRotation += mSteer.angular * dt;
+
+	if (mVel.length() > mMaxSpeed)
+	{
+		mVel.normalize();
+		mVel *= mMaxSpeed;
+	}
+
+	GRAPHICS_SYSTEM->wrapCoordinates(mPos);
+
+	setAngle(mVel);
 }
 
 SteeringOutput UnitSlottable::runBehaviours()

@@ -1,18 +1,16 @@
-#ifndef HUD_H
-#define HUD_H
+#ifndef GUI_H
+#define GUI_H
 
 #include "EventListener.h"
-#include "EventModifyStat.h"
-
-#include <string>
+#include "GameValueTypes.h"
 
 class GameValues;
 
-class HUD : public EventListener
+class GUI : public EventListener
 {
 	public:
-		HUD();
-		~HUD();
+		GUI();
+		~GUI();
 
 		//void update(float dt);
 		void draw();
@@ -23,7 +21,6 @@ class HUD : public EventListener
 		int mX, mY;
 
 		bool mDrawDebug = false;
-		std::string mDebugText[MOD_NUM_TYPES];
 		GameValues* mVal;
 };
 

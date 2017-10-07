@@ -5,6 +5,8 @@
 
 #include "Event.h"
 
+#include "GameValueTypes.h"
+
 #include "Trackable.h"
 
 enum Keys
@@ -17,9 +19,6 @@ enum Keys
 	KEYS_I, //Display Debug Info
 	KEYS_MOD_UP, // +
 	KEYS_MOD_DOWN, //-
-	KEYS_V, //Mod Velocity
-	KEYS_R, //Mod Radius
-	KEYS_A, //Mod Angular Speed
 	KEYS_COUNT
 };
 
@@ -46,7 +45,8 @@ class InputManager : public Trackable
 		ALLEGRO_MOUSE_STATE mMouseState;
 		int mMouseX, mMouseY;
 
-		KeyInput mKeys[KEYS_COUNT];
+		const static int TOTAL_KEYS = KEYS_COUNT + MOD_NUM_TYPES;
+		KeyInput mKeys[TOTAL_KEYS];
 };
 
 #endif

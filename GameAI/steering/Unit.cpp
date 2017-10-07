@@ -9,8 +9,6 @@
 
 Unit::Unit(int spriteID)
 {
-	//mPos = { 0, 0 };
-	//mVel = { 0, 0 };
 	mAngle = 0.0f;
 	mRotation = 0.0f;
 

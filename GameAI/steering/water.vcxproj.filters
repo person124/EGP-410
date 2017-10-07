@@ -40,9 +40,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
-    <ClCompile Include="UnitDynamic.cpp">
-      <Filter>Source Files\Units</Filter>
-    </ClCompile>
     <ClCompile Include="Phys.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
@@ -52,14 +49,14 @@
     <ClCompile Include="UnitSlottable.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
-    <ClCompile Include="HUD.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="GameValues.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="MovementFunctions.cpp">
       <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +102,6 @@
     <ClInclude Include="EventQuit.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="UnitDynamic.h">
-      <Filter>Header Files\Units</Filter>
-    </ClInclude>
     <ClInclude Include="Phys.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
@@ -141,14 +135,17 @@
     <ClInclude Include="EventMouseMove.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
-    <ClInclude Include="HUD.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="GameValues.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="MovementFunctions.h">
       <Filter>Header Files\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="GameValueTypes.h">
+      <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="GUI.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

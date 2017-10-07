@@ -2,15 +2,7 @@
 #define EVENT_MODIFY_STAT_H
 
 #include "Event.h"
-
-enum ModifyValues
-{
-	MOD_INVALID = -1,
-	MOD_VELOCITY,
-	MOD_REACTION_RADIUS,
-	MOD_ANGULAR_SPEED,
-	MOD_NUM_TYPES
-};
+#include "GameValueTypes.h"
 
 class EventModifyStat : public Event
 {

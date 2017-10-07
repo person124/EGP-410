@@ -3,9 +3,7 @@
 
 #include "EventListener.h"
 
-#include "EventModifyStat.h"
-
-#include <string>
+#include "GameValueTypes.h"
 
 class GameValues : public EventListener
 {

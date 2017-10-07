@@ -1,12 +1,12 @@
 #ifndef UNIT_SLOTTABLE_H
 #define UNIT_SLOTTABLE_H
 
-#include "UnitDynamic.h"
+#include "Unit.h"
 
 class UnitSlottable;
 typedef WeightB(*SteeringFunc)(UnitSlottable* currentPos);
 
-class UnitSlottable : public UnitDynamic
+class UnitSlottable : public Unit
 {
 	public:
 		UnitSlottable(SteeringFunc* behaviourArray, int size);

@@ -16,7 +16,7 @@ class SpriteManager;
 class Timer;
 class InputManager;
 class UnitManager;
-class HUD;
+class GUI;
 class GameValues;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
@@ -51,7 +51,7 @@ public:
 	inline InputManager* getInputManager() const { return mpInputManager; };
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
-	inline HUD* getHUD() const { return mpHUD; };
+	inline GUI* getGUI() const { return mpGUI; };
 	inline GameValues* getValues() const { return mpValues; };
 
 private:
@@ -64,7 +64,7 @@ private:
 	InputManager* mpInputManager;
 	UnitManager* mpUnitManager;
 
-	HUD* mpHUD;
+	GUI* mpGUI;
 	GameValues* mpValues;
 
 	ALLEGRO_FONT* mpFont;

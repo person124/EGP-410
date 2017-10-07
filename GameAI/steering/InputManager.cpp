@@ -34,12 +34,8 @@ InputManager::InputManager()
 	//Modify Value Down
 	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, new EventModify(false));
 
-	//Modify Velocity
-	mKeys[KEYS_V] = KeyInput(ALLEGRO_KEY_V, new EventModifyStat(MOD_VELOCITY));
-	//Modify Radius
-	mKeys[KEYS_R] = KeyInput(ALLEGRO_KEY_R, new EventModifyStat(MOD_REACTION_RADIUS));
-	//Modify Angular Velocity
-	mKeys[KEYS_A] = KeyInput(ALLEGRO_KEY_A, new EventModifyStat(MOD_ANGULAR_SPEED));
+	for (int i = 0; i < MOD_NUM_TYPES; i++)
+		mKeys[i + KEYS_COUNT] = KeyInput(MOD_KEYCODES[i], new EventModifyStat((ModifyValues)i));
 }
 
 InputManager::~InputManager()
@@ -47,7 +43,7 @@ InputManager::~InputManager()
 	al_uninstall_keyboard();
 	al_uninstall_mouse();
 
-	for (int i = 0; i < KEYS_COUNT; i++)
+	for (int i = 0; i < TOTAL_KEYS; i++)
 		delete mKeys[i].mEvent;
 }
 
@@ -68,7 +64,7 @@ void InputManager::update()
 	al_get_mouse_state(&mMouseState);
 
 	//Main Loop for Checking Keys
-	for (int i = 0; i < KEYS_COUNT; i++)
+	for (int i = 0; i < TOTAL_KEYS; i++)
 	{
 		if (al_key_down(&mKeyState, mKeys[i].mAllegroKey))
 		{

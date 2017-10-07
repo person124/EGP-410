@@ -4,13 +4,12 @@
 #include "EventMouseClick.h"
 
 #include "Game.h"
+#include "GameValues.h"
 #include "SpriteManager.h"
 
 UnitPlayer::UnitPlayer():Unit(PLAYER_ICON_SPRITE_ID)
 {
 	gpEventSystem->addListener(EVENT_MOUSE_CLICK, this);
-
-	setMaxSpeed(300);
 }
 
 UnitPlayer::~UnitPlayer()
@@ -25,7 +24,7 @@ void UnitPlayer::update(float dt)
 	{
 		mVel = mTarget - mPos;
 		mVel.normalize();
-		mVel *= mMaxSpeed;
+		mVel *= gpGame->getValues()->getValue(MOD_PLAYER_SPEED);
 
 		setAngle(mVel);
 	}

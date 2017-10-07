@@ -26,17 +26,17 @@
     <ClInclude Include="EventToggleDebug.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameValues.h" />
+    <ClInclude Include="GameValueTypes.h" />
     <ClInclude Include="GraphicsBuffer.h" />
     <ClInclude Include="GraphicsBufferManager.h" />
     <ClInclude Include="GraphicsSystem.h" />
-    <ClInclude Include="HUD.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MovementFunctions.h" />
     <ClInclude Include="Phys.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Unit.h" />
-    <ClInclude Include="UnitDynamic.h" />
     <ClInclude Include="UnitManager.h" />
     <ClInclude Include="UnitPlayer.h" />
     <ClInclude Include="UnitSlottable.h" />
@@ -50,7 +50,7 @@
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />
-    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MovementFunctions.cpp" />
@@ -58,7 +58,6 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Unit.cpp" />
-    <ClCompile Include="UnitDynamic.cpp" />
     <ClCompile Include="UnitManager.cpp" />
     <ClCompile Include="UnitPlayer.cpp" />
     <ClCompile Include="UnitSlottable.cpp" />

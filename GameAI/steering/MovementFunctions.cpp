@@ -6,6 +6,17 @@
 
 #include "UnitPlayer.h"
 
+/*
+void UnitDynamic::seek(Vector2& target)
+{
+mSteer.linear = target - mPos;
+mSteer.linear.normalize();
+mSteer.linear *= mMaxAccel;
+
+mSteer.angular = 0;
+}
+*/
+
 SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 {
 	//TODO Make this an actual definition somewhere
@@ -131,7 +142,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 		float distance = relativePos.length();
 		float minSeperation = distance - relativeSpeed * timetoCollision;
 
-		if (minSeperation > 2 * gpGame->getValues()->getValue(MOD_REACTION_RADIUS))
+		if (minSeperation > 2 * gpGame->getValues()->getValue(MOD_AVOID_RADIUS))
 			continue;
 		if (timetoCollision <= 0 || timetoCollision >= shortestTime)
 			continue;
@@ -148,7 +159,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 		return WeightB(SteeringOutput(), weight);
 
 	Vector2 relativePosition;
-	if (targetMinSeperation <= 0 || targetDistance < 2 * gpGame->getValues()->getValue(MOD_REACTION_RADIUS))
+	if (targetMinSeperation <= 0 || targetDistance < 2 * gpGame->getValues()->getValue(MOD_AVOID_RADIUS))
 		relativePosition = targetRelativePos;
 	else
 		relativePosition = targetRelativePos + targetRelativeVel * shortestTime;

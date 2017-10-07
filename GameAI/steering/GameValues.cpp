@@ -9,11 +9,8 @@ GameValues::GameValues()
 	gpEventSystem->addListener(EVENT_MODIFY, this);
 	gpEventSystem->addListener(EVENT_MODIFY_STAT, this);
 
-	//TODO be able to set adjustment amounts
-	//TODO add min and maxs
-	mValues[MOD_VELOCITY] = 10.0f;
-	mValues[MOD_REACTION_RADIUS] = 175.0f;
-	mValues[MOD_ANGULAR_SPEED] = 10.0f;
+	for (int i = 0; i < MOD_NUM_TYPES; i++)
+		mValues[i] = MOD_VALUES[i].starting;
 }
 
 GameValues::~GameValues()
@@ -43,9 +40,11 @@ void GameValues::handleEvent(const Event& theEvent)
 			return;
 
 		if (e.isIncrease())
-			mValues[mCurrentModValue] += 0.5f;
+			mValues[mCurrentModValue] += MOD_VALUES[mCurrentModValue].adjust;
 		else
-			mValues[mCurrentModValue] -= 0.5f;
+			mValues[mCurrentModValue] -= MOD_VALUES[mCurrentModValue].adjust;
+
+		MOD_VALUES[mCurrentModValue].check(mValues[mCurrentModValue]);
 	}
 	else if (theEvent.getType() == EVENT_MODIFY_STAT)
 	{
