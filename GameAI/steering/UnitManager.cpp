@@ -2,7 +2,7 @@
 
 #include "Unit.h"
 #include "UnitPlayer.h"
-#include "UnitDynamic.h"
+#include "UnitSlottable.h"
 
 #include "EventSystem.h"
 #include "EventAddAI.h"
@@ -12,6 +12,8 @@
 
 #include "Game.h"
 #include "SpriteManager.h"
+
+#include "MovementFunctions.h"
 
 // For random
 #define _USE_MATH_DEFINES
@@ -28,6 +30,9 @@ UnitManager::UnitManager()
 	gpEventSystem->addListener(EVENT_CLEAR_AI, this);
 
     srand(unsigned(time(NULL)));
+
+	mfArrive = arrivePlayerWithinRange;
+	mfFlee = fleePlayerWithinRange;
 }
 
 UnitManager::~UnitManager()
@@ -98,7 +103,12 @@ void UnitManager::handleEvent(const Event& theEvent)
 	if (theEvent.getType() == EVENT_ADD_AI)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
-		Unit* unit = new UnitDynamic(e.isFlee());
+
+		int size = 1;
+		SteeringFunc* funcs = new SteeringFunc[size];
+		funcs[0] = e.isFlee() ? mfFlee : mfArrive;
+
+		Unit* unit = new UnitSlottable(funcs, size);
 
         //For position, its 100 if it is flee, and 200 if seek
         unit->setPosition(getRandDistFromPlayer(e.isFlee() ? 100 : 200));

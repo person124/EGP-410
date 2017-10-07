@@ -28,7 +28,7 @@ SteeringOutput UnitSlottable::runBehaviours()
 
 	for (int i = 0; i < mBehaviourSize; i++)
 	{
-		WeightB behav = mpBehaviourArray[i]();
+		WeightB behav = mpBehaviourArray[i](this);
 		output.linear += behav.weight * behav.steering.linear;
 	}
 

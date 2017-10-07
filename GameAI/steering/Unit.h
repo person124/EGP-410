@@ -27,6 +27,7 @@ class Unit : public Trackable
 		Vector2& getPosition() { return mPos; };
 		float getX() { return mPos.x; };
 		float getY() { return mPos.y; };
+		Vector2& getVelocity() { return mVel; };
 
 		void setAngle(Vector2& vel);
 	protected:

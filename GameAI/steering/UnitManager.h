@@ -4,7 +4,9 @@
 #include <vector>
 
 #include "EventListener.h"
-//#include "Phys.h"
+
+//For the typedef of SteeringFunc
+#include "UnitSlottable.h"
 
 class Unit;
 class UnitPlayer;
@@ -40,6 +42,10 @@ class UnitManager : public EventListener
 	private:
 		std::vector<Unit*> mUnits;
 		UnitPlayer* mpPlayer;
+
+		//SteeringFunc mfWander;
+		SteeringFunc mfFlee;
+		SteeringFunc mfArrive;
 };
 
 #endif

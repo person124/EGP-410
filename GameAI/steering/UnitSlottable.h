@@ -3,7 +3,8 @@
 
 #include "UnitDynamic.h"
 
-typedef WeightB (*SteeringFunc)();
+class UnitSlottable;
+typedef WeightB(*SteeringFunc)(UnitSlottable* currentPos);
 
 class UnitSlottable : public UnitDynamic
 {

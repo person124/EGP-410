@@ -58,6 +58,9 @@
     <ClCompile Include="GameValues.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="MovementFunctions.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="GameValues.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementFunctions.h">
+      <Filter>Header Files\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

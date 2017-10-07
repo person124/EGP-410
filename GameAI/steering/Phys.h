@@ -35,7 +35,7 @@ Vector2 operator/(Vector2& left, float right);
 struct SteeringOutput
 {
 	Vector2 linear;
-	float angular;
+	float angular = 0;
 };
 
 struct WeightedBehaviour
