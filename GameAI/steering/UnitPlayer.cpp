@@ -24,7 +24,7 @@ void UnitPlayer::update(float dt)
 	{
 		mVel = mTarget - mPos;
 		mVel.normalize();
-		mVel *= gpGame->getValues()->getValue(MOD_PLAYER_SPEED);
+		mVel *= GameValues::value(MOD_PLAYER_SPEED);
 
 		setAngle(mVel);
 	}

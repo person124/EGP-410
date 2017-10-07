@@ -6,17 +6,22 @@
 
 #include "UnitPlayer.h"
 
-/*
-void UnitDynamic::seek(Vector2& target)
+SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 {
-mSteer.linear = target - mPos;
-mSteer.linear.normalize();
-mSteer.linear *= mMaxAccel;
+	SteeringOutput out;
 
-mSteer.angular = 0;
+	if (!flee)
+		out.linear = target - unit->getPosition();
+	else
+		out.linear = unit->getPosition() - target;
+
+	out.linear.normalize();
+	out.linear *= GameValues::value(MOD_NPC_ACCEL);
+
+	return out;
 }
-*/
 
+/*
 SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 {
 	//TODO Make this an actual definition somewhere
@@ -64,8 +69,9 @@ SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 
 	return out;
 }
+*/
 
-WeightB arriveOrFlee(UnitSlottable* unit, bool flee)
+WeightB seekOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
 	//TODO Make weights customizable
@@ -73,35 +79,34 @@ WeightB arriveOrFlee(UnitSlottable* unit, bool flee)
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
-	if ((playerPos - unit->getPosition()).length() <= gpGame->getValues()->getValue(MOD_REACTION_RADIUS))
+	if ((playerPos - unit->getPosition()).length() <= GameValues::value(MOD_NPC_REACT))
 	{
-		steer = arrive(playerPos, unit, flee);
+		steer = seek(playerPos, unit, flee);
 	}
 
 	return WeightB(steer, weight);
 }
 
-WeightB slot::arrivePlayerWithinRange(UnitSlottable* unit)
+WeightB slot::seekPlayerWithinRange(UnitSlottable* unit)
 {
-	return arriveOrFlee(unit, false);
+	return seekOrFlee(unit, false);
 }
 
 WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
 {
-	return arriveOrFlee(unit, true);
+	return seekOrFlee(unit, true);
 }
 
 WeightB slot::wander(UnitSlottable* unit)
 {
-	float weight = 0.1;
-	//TODO FIX WANDER
-	float wanderOffset = 300;
-	float wanderRadius = 150;
-	float wanderRate = 2;
-	float maxAcell = 100;
+	float weight = 0.1f;
+	
+	float wanderOffset = GameValues::value(MOD_NPC_WANDER_CIRCLE);
+	float wanderRadius = wanderOffset * 2;
+	float wanderRate = GameValues::value(MOD_NPC_WANDER_RATE);
 
 	float currentAngle = unit->getAngle();
-	currentAngle += gpGame->getUnitManager()->randomBinomial() * wanderRadius;
+	currentAngle += gpGame->getUnitManager()->randomBinomial() * wanderRate;
 	float targetAngle = currentAngle + unit->getAngle();
 
 	Vector2 target = unit->getPosition() + wanderOffset * unit->getAngleAsVector();
@@ -110,7 +115,7 @@ WeightB slot::wander(UnitSlottable* unit)
 	unit->setAngle(target);
 
 	SteeringOutput steer;
-	steer.linear = maxAcell * unit->getAngleAsVector();
+	steer.linear = GameValues::value(MOD_NPC_ACCEL) * unit->getAngleAsVector();
 
 	return WeightB(steer, weight);
 }
@@ -118,8 +123,6 @@ WeightB slot::wander(UnitSlottable* unit)
 WeightB slot::avoid(UnitSlottable* unit)
 {
 	float weight = 0.25f;
-
-	float maxAcell = 200; //Higher for faster avoidance
 
 	float shortestTime = (float) INT_MAX;
 	Unit* target = NULL;
@@ -142,7 +145,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 		float distance = relativePos.length();
 		float minSeperation = distance - relativeSpeed * timetoCollision;
 
-		if (minSeperation > 2 * gpGame->getValues()->getValue(MOD_AVOID_RADIUS))
+		if (minSeperation > 2 * GameValues::value(MOD_NPC_AVOID))
 			continue;
 		if (timetoCollision <= 0 || timetoCollision >= shortestTime)
 			continue;
@@ -159,14 +162,14 @@ WeightB slot::avoid(UnitSlottable* unit)
 		return WeightB(SteeringOutput(), weight);
 
 	Vector2 relativePosition;
-	if (targetMinSeperation <= 0 || targetDistance < 2 * gpGame->getValues()->getValue(MOD_AVOID_RADIUS))
+	if (targetMinSeperation <= 0 || targetDistance < 2 * GameValues::value(MOD_NPC_AVOID))
 		relativePosition = targetRelativePos;
 	else
 		relativePosition = targetRelativePos + targetRelativeVel * shortestTime;
 
 	relativePosition.normalize();
 	SteeringOutput steer;
-	steer.linear = relativePosition * maxAcell;
+	steer.linear = relativePosition * GameValues::value(MOD_NPC_ACCEL);
 
 	return WeightB(steer, weight);
 }

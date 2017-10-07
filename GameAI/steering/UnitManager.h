@@ -45,7 +45,7 @@ class UnitManager : public EventListener
 		UnitPlayer* mpPlayer;
 
 		SteeringFunc mfWander;
-		SteeringFunc mfArrive;
+		SteeringFunc mfSeek;
 		SteeringFunc mfFlee;
 		SteeringFunc mfAvoid;
 };

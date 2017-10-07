@@ -8,6 +8,9 @@
 class GameValues : public EventListener
 {
 	public:
+		static float value(int pos);
+
+	public:
 		GameValues();
 		~GameValues();
 

@@ -1,8 +1,15 @@
 #include "GameValues.h"
 
+#include "Game.h"
+
 #include "EventSystem.h"
 #include "EventModify.h"
 #include "EventModifyStat.h"
+
+float GameValues::value(int pos)
+{
+	return gpGame->getValues()->getValue(pos);
+}
 
 GameValues::GameValues()
 {

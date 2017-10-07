@@ -2,7 +2,6 @@
 
 #include "Game.h"
 #include "SpriteManager.h"
-#include "Phys.h"
 #include "Sprite.h"
 
 #include <math.h>

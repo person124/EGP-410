@@ -1,6 +1,7 @@
 #include "UnitSlottable.h"
 
 #include "Game.h"
+#include "GameValues.h"
 #include "UnitManager.h"
 #include "GraphicsSystem.h"
 
@@ -16,6 +17,8 @@ UnitSlottable::~UnitSlottable()
 
 void UnitSlottable::update(float dt)
 {
+	mMaxSpeed = GameValues::value(MOD_NPC_SPEED);
+
 	mSteer = runBehaviours();
 
 	mPos += mVel * dt + 0.5f * mSteer.linear * (dt * dt);

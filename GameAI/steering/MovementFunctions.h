@@ -6,7 +6,7 @@
 class UnitSlottable;
 
 namespace slot {
-	WeightB arrivePlayerWithinRange(UnitSlottable* unit);
+	WeightB seekPlayerWithinRange(UnitSlottable* unit);
 	WeightB fleePlayerWithinRange(UnitSlottable* unit);
 
 	WeightB wander(UnitSlottable* unit);

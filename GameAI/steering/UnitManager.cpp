@@ -31,8 +31,8 @@ UnitManager::UnitManager()
 
     srand(unsigned(time(NULL)));
 
+	mfSeek = slot::seekPlayerWithinRange;
 	mfFlee = slot::fleePlayerWithinRange;
-	mfArrive = slot::arrivePlayerWithinRange;
 	mfWander = slot::wander;
 	mfAvoid = slot::avoid;
 }
@@ -106,11 +106,11 @@ void UnitManager::handleEvent(const Event& theEvent)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
-		int size = 2;
+		int size = 1;
 		SteeringFunc* funcs = new SteeringFunc[size];
-		funcs[0] = e.isFlee() ? mfFlee : mfArrive;
-		//funcs[1] = mfWander;
-		funcs[1] = mfAvoid;
+		//funcs[0] = e.isFlee() ? mfFlee : mfSeek;
+		funcs[0] = mfWander;
+		//funcs[1] = mfAvoid;
 
 		Unit* unit = new UnitSlottable(funcs, size);
 
