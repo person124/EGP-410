@@ -178,10 +178,10 @@ WeightB slot::avoid(UnitSlottable* unit)
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {
 	SteeringOutput out;
-	float weight = 1.25f;
+	float weight = 5;
 
-	float lookAhead = 200;
-	float avoidDistance = 500;
+	float lookAhead = 75;
+	float avoidDistance = 1000;
 
 	Ray ray = Ray((Unit*)unit);
 
@@ -196,7 +196,6 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 
 	if (col != NULL)
 	{
-		//printf("true\n");
 		Vector2 target = col->position + col->normal * avoidDistance;
 		out = seek(target, unit, false);
 		delete col;

@@ -249,6 +249,8 @@ void Game::processLoop()
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
 	pBackgroundSprite->draw( *(mpGraphicsSystem->getBackBuffer()), 0, 0 );
 
+	mpWallManager->draw();
+
 	//draw units
 	mpUnitManager->draw(mpGraphicsSystem->getBackBuffer());
 

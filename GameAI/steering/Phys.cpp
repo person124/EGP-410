@@ -131,6 +131,16 @@ Vector2 operator/(Vector2& left, float right)
 	return output;
 }
 
+bool operator==(Vector2& left, Vector2& right)
+{
+	return (left.x == right.x) && (left.y == right.y);
+}
+
+bool operator!=(Vector2& left, Vector2& right)
+{
+	return !(left == right);
+}
+
 Ray::Ray(Unit* unit)
 {
 	origin = unit->getPosition();
@@ -143,7 +153,7 @@ bool isInsideBounds(Vector2& bounds, float num)
 	return num >= bounds.x && num <= bounds.y;
 }
 
-Collision* Wall::checkCollision(Ray raycast)
+Collision* Wall::checkCollision(Ray& raycast)
 {
 	Collision* col = NULL;
 
@@ -188,38 +198,43 @@ Collision* Wall::checkCollision(Ray raycast)
 
 	if (doesCollide)
 	{
-		float dist = getDistanceTo(raycast.origin);
-		raycast.normalize();
-		raycast *= dist;
+		float p[4] = { -raycast.x, raycast.x, -raycast.y, raycast.y };
+		float q[4] = { raycast.origin.x - min.x, max.x - raycast.origin.x, raycast.origin.y - min.y, max.y - raycast.origin.y };
+		float col1 = (float)-INT_MAX;
+		float col2 = (float)INT_MAX;
+
+		for (int i = 0; i < 4; i++)
+		{
+			float t = q[i] / p[i];
+			if (p[i] < 0 && col1 < t)
+				col1 = t;
+			else if (p[i] > 0 && col2 > t)
+				col2 = t;
+		}
+
+		if (col1 > col2 || col1 > 1 || col1 < 0)
+			return col;
 
 		col = new Collision();
-		col->size = dist;
-		col->position = Vector2(raycast.origin.x + raycast.x, raycast.origin.y + raycast.y);
+		col->position.x = raycast.origin.x + col1 * raycast.x;
+		col->position.y = raycast.origin.y + col2 * raycast.y;
 		col->normal = getNormalFromPoint(col->position);
 	}
 
 	return col;
 }
 
-float Wall::getDistanceTo(Vector2& point)
-{
-	float xDist = fminf(abs(min.x - point.x), abs(max.x - point.x));
-	float yDist = fminf(abs(min.y - point.y), abs(max.y - point.y));
-	
-	return Vector2(xDist, yDist).length();
-}
-
 Vector2 Wall::getNormalFromPoint(Vector2& point)
 {
 	if (point.x == min.x)
-		return Vector2(0, -1);
-	if (point.x == max.x)
-		return Vector2(0, 1);
-	if (point.y == min.y)
-
 		return Vector2(-1, 0);
-	if (point.y == max.y)
+	if (point.x == max.x)
 		return Vector2(1, 0);
+
+	if (point.y == min.y)
+		return Vector2(0, 1);
+	if (point.y == max.y)
+		return Vector2(0, -1);
 
 	return Vector2();
 }

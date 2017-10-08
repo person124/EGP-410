@@ -107,12 +107,12 @@ void UnitManager::handleEvent(const Event& theEvent)
 	{
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
-		int size = 2;
+		int size = 4;
 		SteeringFunc* funcs = new SteeringFunc[size];
 		funcs[0] = e.isFlee() ? mfFlee : mfSeek;
-		//funcs[1] = mfWander;
-		//funcs[2] = mfAvoid;
-		funcs[1] = mfWallAvoid;
+		funcs[1] = mfWander;
+		funcs[2] = mfAvoid;
+		funcs[3] = mfWallAvoid;
 
 		Unit* unit = new UnitSlottable(funcs, size);
 

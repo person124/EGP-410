@@ -42,6 +42,9 @@ Vector2 operator*(float left, Vector2& right);
 
 Vector2 operator/(Vector2& left, float right);
 
+bool operator==(Vector2& left, Vector2& right);
+bool operator!=(Vector2& left, Vector2& right);
+
 struct Ray : public Vector2
 {
 	Ray() {};
@@ -91,8 +94,7 @@ struct Wall : public Trackable
 	Vector2 min;
 	Vector2 max;
 
-	Collision* checkCollision(Ray raycast);
-	float getDistanceTo(Vector2& point);
+	Collision* checkCollision(Ray& raycast);
 	Vector2 getNormalFromPoint(Vector2& point);
 };
 

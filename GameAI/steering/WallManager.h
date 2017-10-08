@@ -13,6 +13,8 @@ class WallManager : public Trackable
 		WallManager();
 		~WallManager();
 
+		void draw();
+
 		Collision* checkCollision(Ray& raycast);
 	private:
 		Wall* mpWalls;
