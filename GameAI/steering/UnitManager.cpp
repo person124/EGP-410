@@ -36,6 +36,7 @@ UnitManager::UnitManager()
 	mfWander = slot::wander;
 	mfAvoid = slot::avoid;
 	mfWallAvoid = slot::wallAvoid;
+	mfFace = slot::face;
 }
 
 UnitManager::~UnitManager()
@@ -114,7 +115,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 		funcs[2] = mfAvoid;
 		funcs[3] = mfWallAvoid;
 
-		Unit* unit = new UnitSlottable(funcs, size);
+		Unit* unit = new UnitSlottable(funcs, size, e.isFlee() ? AI_FLEE_SPRITE_ID : AI_SEEK_SPRITE_ID);
 
         //For position, its 100 if it is flee, and 200 if seek
         unit->setPosition(getRandDistFromPlayer(e.isFlee() ? 100 : 200));

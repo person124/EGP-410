@@ -22,7 +22,8 @@ class GameValues;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
 const IDType PLAYER_ICON_SPRITE_ID = 1;
-const IDType AI_ICON_SPRITE_ID = 2;
+const IDType AI_SEEK_SPRITE_ID = 2;
+const IDType AI_FLEE_SPRITE_ID = 3;
 
 const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
@@ -74,7 +75,8 @@ private:
 	ALLEGRO_SAMPLE* mpSample;
 	IDType mBackgroundBufferID;
 	IDType mPlayerIconBufferID;
-	IDType mEnemyIconBufferID;
+	IDType mSeekIconBufferID;
+	IDType mFleeIconBufferID;
 
 	bool mPaused = false;
 };

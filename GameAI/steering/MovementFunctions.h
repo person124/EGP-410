@@ -14,6 +14,8 @@ namespace slot {
 	WeightB avoid(UnitSlottable* unit);
 
 	WeightB wallAvoid(UnitSlottable* unit);
+
+	WeightB face(UnitSlottable* unit);
 };
 
 #endif

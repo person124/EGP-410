@@ -4,12 +4,14 @@
 #include "EventMouseClick.h"
 
 #include "Game.h"
+#include "GraphicsSystem.h"
 #include "GameValues.h"
 #include "SpriteManager.h"
 
 UnitPlayer::UnitPlayer():Unit(PLAYER_ICON_SPRITE_ID)
 {
 	gpEventSystem->addListener(EVENT_MOUSE_CLICK, this);
+	setPosition(GRAPHICS_SYSTEM->getWidth() / 2, GRAPHICS_SYSTEM->getHeight() / 2);
 }
 
 UnitPlayer::~UnitPlayer()

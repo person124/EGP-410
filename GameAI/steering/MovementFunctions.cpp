@@ -7,6 +7,60 @@
 
 #include "UnitPlayer.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+//Maps to range -PI to PI
+float clampAngle(float angle)
+{
+	float output = angle;
+
+	while (output < -M_PI)
+		output += M_PI;
+	while (output > M_PI)
+		output -= M_PI;
+
+	return output;
+}
+
+SteeringOutput align(float target, UnitSlottable* unit)
+{
+	SteeringOutput steer;
+
+	//In Degrees
+	float angularRadius = M_PI_4;
+	float angularSlow = M_PI_2;
+	float maxRotation = M_PI_4;
+	float timeTotarget = 0.25f;
+
+	float rotation = target - unit->getAngle();
+
+	rotation = clampAngle(rotation);
+	float rotationSize = fabsf(rotation);
+
+	if (rotationSize <= angularRadius)
+	{
+		unit->setRotation(0);
+		return steer;
+	}
+
+	float targetRotation;
+	if (rotationSize >= angularSlow)
+		targetRotation = maxRotation;
+	else
+		targetRotation = maxRotation * rotationSize / angularSlow;
+
+	targetRotation *= rotation / rotationSize;
+
+	steer.angular = targetRotation - unit->getRotation();
+	steer.angular /= timeTotarget;
+
+	if (abs(steer.angular) > GameValues::value(MOD_NPC_ANGULAR))
+		steer.angular = GameValues::value(MOD_NPC_ANGULAR);
+
+	return steer;
+}
+
 SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 {
 	SteeringOutput out;
@@ -180,26 +234,37 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 	SteeringOutput out;
 	float weight = 5;
 
-	float lookAhead = 75;
-	float avoidDistance = 1000;
-
 	Ray ray = Ray((Unit*)unit);
 
 	if (ray.length() == 0)
 		return WeightB(out, weight);
 
 	ray.normalize();
-	ray *= lookAhead;
+	ray *= GameValues::value(MOD_NPC_WALL_LOOK);
 
 	//Do collision Detection here.
 	Collision* col = gpGame->getWallManager()->checkCollision(ray);
 
 	if (col != NULL)
 	{
-		Vector2 target = col->position + col->normal * avoidDistance;
+		Vector2 target = col->position + col->normal * GameValues::value(MOD_NPC_WALL_DIST);
 		out = seek(target, unit, false);
 		delete col;
 	}
 
 	return WeightB(out, weight);
+}
+
+WeightB slot::face(UnitSlottable* unit)
+{
+	SteeringOutput steer;
+	float weight = 1;
+
+	if (unit->getVelocity().length() != 0)
+	{
+		float targetAngle = atan2f(unit->getVelocity().y, unit->getVelocity().x);
+		steer = align(targetAngle, unit);
+	}
+
+	return WeightB(steer, weight);
 }

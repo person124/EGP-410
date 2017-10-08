@@ -156,7 +156,8 @@ bool Game::init()
 	//load buffers
 	mBackgroundBufferID = mpGraphicsBufferManager->loadBuffer("wallpaper.bmp");
 	mPlayerIconBufferID = mpGraphicsBufferManager->loadBuffer("arrow.bmp");
-	mEnemyIconBufferID = mpGraphicsBufferManager->loadBuffer("enemy-arrow.bmp");
+	mSeekIconBufferID = mpGraphicsBufferManager->loadBuffer("seek.bmp");
+	mFleeIconBufferID = mpGraphicsBufferManager->loadBuffer("flee.bmp");
 	
 	//setup sprites
 	GraphicsBuffer* pBackGroundBuffer = mpGraphicsBufferManager->getBuffer( mBackgroundBufferID );
@@ -170,11 +171,17 @@ bool Game::init()
 	{
 		pArrowSprite = mpSpriteManager->createAndManageSprite( PLAYER_ICON_SPRITE_ID, pPlayerBuffer, 0, 0, pPlayerBuffer->getWidth(), pPlayerBuffer->getHeight() );
 	}
-	GraphicsBuffer* pAIBuffer = mpGraphicsBufferManager->getBuffer( mEnemyIconBufferID );
-	Sprite* pEnemyArrow = NULL;
-	if( pAIBuffer != NULL )
+	GraphicsBuffer* pSeekBuffer = mpGraphicsBufferManager->getBuffer( mSeekIconBufferID );
+	Sprite* pSeekSprite = NULL;
+	if( pSeekBuffer != NULL )
 	{
-		pEnemyArrow = mpSpriteManager->createAndManageSprite( AI_ICON_SPRITE_ID, pAIBuffer, 0, 0, pAIBuffer->getWidth(), pAIBuffer->getHeight() );
+		pSeekSprite = mpSpriteManager->createAndManageSprite( AI_SEEK_SPRITE_ID, pSeekBuffer, 0, 0, pSeekBuffer->getWidth(), pSeekBuffer->getHeight() );
+	}
+	GraphicsBuffer* pFleeBuffer = mpGraphicsBufferManager->getBuffer(mFleeIconBufferID);
+	Sprite* pFleeSprite = NULL;
+	if (pFleeBuffer != NULL)
+	{
+		pFleeSprite = mpSpriteManager->createAndManageSprite(AI_FLEE_SPRITE_ID, pFleeBuffer, 0, 0, pFleeBuffer->getWidth(), pFleeBuffer->getHeight());
 	}
 
 	mpUnitManager = new UnitManager();

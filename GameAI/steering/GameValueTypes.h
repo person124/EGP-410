@@ -14,6 +14,8 @@ enum ModifyValues
 	MOD_NPC_AVOID,
 	MOD_NPC_WANDER_CIRCLE,
 	MOD_NPC_WANDER_RATE,
+	MOD_NPC_WALL_LOOK,
+	MOD_NPC_WALL_DIST,
 	MOD_PLAYER_SPEED,
 	MOD_NUM_TYPES
 };
@@ -27,12 +29,14 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 	"Av(O)id Radius:",
 	"(W)ander Circle:",
 	"Wa(N)der Rate:",
+	"(W)all Avoid Look:",
+	"Wa(L)l Avoid Distance:",
 	"(P)layer Speed:"
 };
 
 const int MOD_KEYCODES[MOD_NUM_TYPES] = 
 {
-	//Can't use keys: C D S F I - = ESCAPE
+	//Can't use keys: C D S F I - = ESCAPE SPACEBAR
 	ALLEGRO_KEY_V,
 	ALLEGRO_KEY_E,
 	ALLEGRO_KEY_R,
@@ -40,6 +44,8 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 	ALLEGRO_KEY_O,
 	ALLEGRO_KEY_W,
 	ALLEGRO_KEY_N,
+	ALLEGRO_KEY_W,
+	ALLEGRO_KEY_L,
 	ALLEGRO_KEY_P
 };
 
@@ -71,10 +77,12 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(100, 10, 10, 600), //Enemy Velocity
 	Value(150, 25, 25, 500), //Enemy Acceleration
 	Value(175, 5, 10, 500), //Enemy Reaction Radius
-	Value(10, 0.5, 0, 400), //Angular Speed
+	Value(1.5, 0.5, 0, 400), //Angular Speed
 	Value(120, 15, 15, 500), //Avoid Radius
 	Value(150, 25, 25, 300), //Wander Circle
 	Value(3.15f, 0.15f, 0.15f, 6.3f), //Wander Rate
+	Value(75, 15, 15, 390), //Wall avoid look
+	Value(1000, 50, 300, 1500), //Wall avoid dist
 	Value(300, 25, 25, 800) //Player Speed
 };
 

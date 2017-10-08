@@ -29,10 +29,12 @@ class Unit : public Trackable
 		float getY() { return mPos.y; };
 		Vector2& getVelocity() { return mVel; };
 		float getAngle() { return mAngle; };
+		float getRotation() { return mRotation; };
 
 		Vector2 getAngleAsVector();
 
 		void setAngle(Vector2& vel);
+		void setRotation(float angle) { mRotation = angle; };
 	protected:
 		Sprite* mpSprite;
 		Vector2 mPos, mVel;

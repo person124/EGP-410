@@ -9,7 +9,7 @@ typedef WeightB(*SteeringFunc)(UnitSlottable* currentPos);
 class UnitSlottable : public Unit
 {
 	public:
-		UnitSlottable(SteeringFunc* behaviourArray, int size);
+		UnitSlottable(SteeringFunc* behaviourArray, int size, int spriteMod);
 		virtual ~UnitSlottable();
 
 		void update(float dt);

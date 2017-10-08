@@ -5,7 +5,7 @@
 #include "UnitManager.h"
 #include "GraphicsSystem.h"
 
-UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size):Unit(AI_ICON_SPRITE_ID)
+UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size, int sprite):Unit(sprite)
 {
 	mpBehaviourArray = behaviourArray;
 	mBehaviourSize = size;
@@ -46,6 +46,7 @@ SteeringOutput UnitSlottable::runBehaviours()
 	{
 		WeightB behav = mpBehaviourArray[i](this);
 		output.linear += behav.weight * behav.steering.linear;
+		output.angular += behav.weight * behav.steering.angular;
 	}
 
 	return output;
