@@ -238,3 +238,8 @@ Vector2 Wall::getNormalFromPoint(Vector2& point)
 
 	return Vector2();
 }
+
+bool Wall::isInside(Vector2& pos)
+{
+	return pos.x >= min.x && pos.x <= max.x && pos.y >= min.y && pos.y <= max.y;
+}

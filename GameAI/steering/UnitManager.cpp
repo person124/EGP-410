@@ -1,5 +1,8 @@
 #include "UnitManager.h"
 
+#include "Game.h"
+#include "WallManager.h"
+
 #include "Unit.h"
 #include "UnitPlayer.h"
 #include "UnitSlottable.h"
@@ -141,12 +144,15 @@ void UnitManager::handleEvent(const Event& theEvent)
 
 Vector2 UnitManager::getRandDistFromPlayer(float distance)
 {
-	Vector2 output = mpPlayer->getPosition();
+	Vector2 output;
+	do {
+		output = mpPlayer->getPosition();
 
-    float angle = rand() / (RAND_ANGLE);
-    
-    output.x += distance * cos(angle);
-    output.y += distance * sin(angle);
+		float angle = rand() / (RAND_ANGLE);
+
+		output.x += distance * cos(angle);
+		output.y += distance * sin(angle);
+	} while (gpGame->getWallManager()->isInsideWall(output));
 
 	return output;
 }

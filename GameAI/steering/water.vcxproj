@@ -49,6 +49,7 @@
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameValues.cpp" />
+    <ClCompile Include="GameValueTypes.cpp" />
     <ClCompile Include="GraphicsBuffer.cpp" />
     <ClCompile Include="GraphicsBufferManager.cpp" />
     <ClCompile Include="GraphicsSystem.cpp" />

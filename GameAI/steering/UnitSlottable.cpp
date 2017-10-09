@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "GameValues.h"
 #include "UnitManager.h"
+#include "WallManager.h"
 #include "GraphicsSystem.h"
 
 UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size, int sprite):Unit(sprite)
@@ -21,11 +22,15 @@ void UnitSlottable::update(float dt)
 
 	mSteer = runBehaviours();
 
+	Vector2 pOld = mPos;
+
 	mPos += mVel * dt + 0.5f * mSteer.linear * (dt * dt);
 	mAngle += mRotation * dt + 0.5f * mSteer.angular * (dt * dt);
 
 	mVel += mSteer.linear * dt;
 	mRotation += mSteer.angular * dt;
+
+	checkWall(pOld, mPos);
 
 	if (mVel.length() > mMaxSpeed)
 	{
@@ -50,4 +55,14 @@ SteeringOutput UnitSlottable::runBehaviours()
 	}
 
 	return output;
+}
+
+void UnitSlottable::checkWall(Vector2& old, Vector2& pos)
+{
+	if (gpGame->getWallManager()->isInsideWall(pos))
+	{
+		pos = old;
+		if (GameValues::value(MOD_WALL_TYPE) == 0)
+			mVel *= -1;
+	}
 }

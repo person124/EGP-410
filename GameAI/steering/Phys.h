@@ -96,6 +96,7 @@ struct Wall : public Trackable
 
 	Collision* checkCollision(Ray& raycast);
 	Vector2 getNormalFromPoint(Vector2& point);
+	bool isInside(Vector2& pos);
 };
 
 #endif

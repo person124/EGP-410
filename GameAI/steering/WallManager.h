@@ -6,6 +6,7 @@
 #include "Phys.h"
 
 const int WALL_SIZE = 50;
+const int WALL_BUFFER = 150;
 
 class WallManager : public Trackable
 {
@@ -16,6 +17,7 @@ class WallManager : public Trackable
 		void draw();
 
 		Collision* checkCollision(Ray& raycast);
+		bool isInsideWall(Vector2& pos);
 	private:
 		Wall* mpWalls;
 		int mCount;

@@ -129,8 +129,7 @@ SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 WeightB seekOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
-	//TODO Make weights customizable
-	float weight = 0.25f;
+	float weight = 0.4f;
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
@@ -232,7 +231,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {
 	SteeringOutput out;
-	float weight = 5;
+	float weight = 0.75f;
 
 	Ray ray = Ray((Unit*)unit);
 
@@ -243,12 +242,24 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 	ray *= GameValues::value(MOD_NPC_WALL_LOOK);
 
 	//Do collision Detection here.
-	Collision* col = gpGame->getWallManager()->checkCollision(ray);
+	Collision* col = NULL;
+	if (GameValues::value(MOD_WALL_TYPE) > 0)
+		col = gpGame->getWallManager()->checkCollision(ray);
 
 	if (col != NULL)
 	{
-		Vector2 target = col->position + col->normal * GameValues::value(MOD_NPC_WALL_DIST);
-		out = seek(target, unit, false);
+		if (GameValues::value(MOD_WALL_TYPE) == 2)
+		{
+			Vector2 target = col->position + col->normal * GameValues::value(MOD_NPC_WALL_DIST);
+			out = seek(target, unit, false);
+		}
+		
+		if (GameValues::value(MOD_WALL_TYPE) == 1)
+		{
+			unit->stop();
+			out = seek(col->position, unit, true);
+		}
+
 		delete col;
 	}
 

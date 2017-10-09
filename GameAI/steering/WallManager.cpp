@@ -7,17 +7,19 @@
 
 WallManager::WallManager()
 {
-	mCount = 4;
+	mCount = 5;
 	mpWalls = new Wall[mCount];
 	
 	//Temp variables for easier readability
 	float w = GRAPHICS_SYSTEM->getWidth();
 	float h = GRAPHICS_SYSTEM->getHeight();
 
-	mpWalls[0] = Wall(0, 0, w, WALL_SIZE); //Top Wall
-	mpWalls[1] = Wall(0, 0, WALL_SIZE, h); //Left Wall
-	mpWalls[2] = Wall(w - WALL_SIZE, 0, w, h); //Right Wall
-	mpWalls[3] = Wall(0, h - WALL_SIZE, w, h); //Bottom Wall
+	mpWalls[0] = Wall(WALL_SIZE, -WALL_BUFFER, w - WALL_SIZE, WALL_SIZE); //Top Wall
+	mpWalls[1] = Wall(-WALL_BUFFER, 0, WALL_SIZE, h); //Left Wall
+	mpWalls[2] = Wall(w - WALL_SIZE, 0, w + WALL_BUFFER, h); //Right Wall
+	mpWalls[3] = Wall(WALL_SIZE, h - WALL_SIZE, w - WALL_SIZE, h + WALL_BUFFER); //Bottom Wall
+
+	mpWalls[4] = Wall(200, 200, 400, 400);
 }
 
 WallManager::~WallManager()
@@ -46,4 +48,15 @@ Collision* WallManager::checkCollision(Ray& raycast)
 	}
 
 	return col;
+}
+
+bool WallManager::isInsideWall(Vector2& pos)
+{
+	for (int i = 0; i < mCount; i++)
+	{
+		if (mpWalls[i].isInside(pos))
+			return true;
+	}
+
+	return false;
 }
