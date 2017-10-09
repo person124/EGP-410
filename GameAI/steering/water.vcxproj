@@ -14,6 +14,7 @@
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventAddAI.h" />
+    <ClInclude Include="EventChangeColor.h" />
     <ClInclude Include="EventClearAI.h" />
     <ClInclude Include="EventDeleteAI.h" />
     <ClInclude Include="EventListener.h" />
@@ -23,6 +24,7 @@
     <ClInclude Include="EventMouseMove.h" />
     <ClInclude Include="EventPause.h" />
     <ClInclude Include="EventQuit.h" />
+    <ClInclude Include="EventSetColor.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventToggleDebug.h" />
     <ClInclude Include="Game.h" />

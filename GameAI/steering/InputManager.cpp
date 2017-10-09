@@ -11,6 +11,8 @@
 #include "EventModify.h"
 #include "EventModifyStat.h"
 #include "EventPause.h"
+#include "EventChangeColor.h"
+#include "EventSetColor.h"
 
 InputManager::InputManager()
 {
@@ -36,6 +38,9 @@ InputManager::InputManager()
 	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, new EventModify(false));
 
 	mKeys[KEYS_SPACE] = KeyInput(ALLEGRO_KEY_SPACE, new EventPause());
+
+	mKeys[KEYS_QUESTION] = KeyInput(ALLEGRO_KEY_SLASH, new EventChangeColor());
+	mKeys[KEYS_Z] = KeyInput(ALLEGRO_KEY_Z, new EventSetColor());
 
 	for (int i = 0; i < MOD_NUM_TYPES; i++)
 		mKeys[i + KEYS_COUNT] = KeyInput(MOD_KEYCODES[i], new EventModifyStat((ModifyValues)i));

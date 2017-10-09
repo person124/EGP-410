@@ -159,6 +159,12 @@
     <ClInclude Include="EventPause.h">
       <Filter>Header Files\Events</Filter>
     </ClInclude>
+    <ClInclude Include="EventChangeColor.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSetColor.h">
+      <Filter>Header Files\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

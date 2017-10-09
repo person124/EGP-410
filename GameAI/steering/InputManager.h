@@ -20,6 +20,8 @@ enum Keys
 	KEYS_MOD_UP, // +
 	KEYS_MOD_DOWN, //-
 	KEYS_SPACE, //Pause
+	KEYS_QUESTION, //Change GUI Color
+	KEYS_Z, //Reset GUI Color
 	KEYS_COUNT
 };
 

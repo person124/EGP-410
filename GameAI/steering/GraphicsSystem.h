@@ -2,14 +2,16 @@
 
 #include <allegro5/allegro.h>
 #include <allegro5\allegro_font.h>
-#include "Trackable.h"
+
+#include "EventListener.h"
+
 #include "Phys.h"
 
 #include <string>
 
 class GraphicsBuffer;
 
-class GraphicsSystem:public Trackable
+class GraphicsSystem:public EventListener
 {
 public:
 	GraphicsSystem();
@@ -31,6 +33,8 @@ public:
 
 	//Functions for drawing text
 	void drawText(float x, float y, std::string text, int flag = ALLEGRO_ALIGN_CENTER);
+
+	void handleEvent(const Event& theEvent);
 private:
 	ALLEGRO_DISPLAY* mpDisplay;
 	GraphicsBuffer* mpBackBuffer;

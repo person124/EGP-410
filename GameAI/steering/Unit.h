@@ -34,6 +34,7 @@ class Unit : public Trackable
 		Vector2 getAngleAsVector();
 
 		void setAngle(Vector2& vel);
+		void setAngle(float angle) { mAngle = angle; };
 		void setRotation(float angle) { mRotation = angle; };
 	protected:
 		Sprite* mpSprite;

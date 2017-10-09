@@ -5,6 +5,9 @@
 #include "Game.h"
 #include "GraphicsSystem.h"
 
+#include "EventSystem.h"
+#include "EventSetColor.h"
+
 WallManager::WallManager()
 {
 	mCount = 5;
@@ -20,6 +23,10 @@ WallManager::WallManager()
 	mpWalls[3] = Wall(WALL_SIZE, h - WALL_SIZE, w - WALL_SIZE, h + WALL_BUFFER); //Bottom Wall
 
 	mpWalls[4] = Wall(200, 200, 400, 400);
+
+	gpEventSystem->addListener(EVENT_CHANGE_COLOR, this);
+	gpEventSystem->addListener(EVENT_SET_COLOR, this);
+	handleEvent(EventSetColor());
 }
 
 WallManager::~WallManager()
@@ -30,7 +37,7 @@ WallManager::~WallManager()
 void WallManager::draw()
 {
 	for (int i = 0; i < mCount; i++)
-		al_draw_rectangle(mpWalls[i].min.x, mpWalls[i].min.y, mpWalls[i].max.x, mpWalls[i].max.y, al_map_rgb(255, 0, 255), 1);
+		al_draw_rectangle(mpWalls[i].min.x, mpWalls[i].min.y, mpWalls[i].max.x, mpWalls[i].max.y, mWallColor, 2);
 }
 
 Collision* WallManager::checkCollision(Ray& raycast)
@@ -59,4 +66,12 @@ bool WallManager::isInsideWall(Vector2& pos)
 	}
 
 	return false;
+}
+
+void WallManager::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == EVENT_CHANGE_COLOR)
+		mWallColor = al_map_rgb(rand() % 255, rand() % 255, rand() % 255);
+	else if (theEvent.getType() == EVENT_SET_COLOR)
+		mWallColor = al_map_rgb(255, 0, 255);
 }

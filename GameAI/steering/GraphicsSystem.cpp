@@ -4,13 +4,20 @@
 #include "GraphicsSystem.h"
 #include "GraphicsBuffer.h"
 
+//For random
+#include "EventSystem.h"
+#include "EventSetColor.h"
+#include <cmath>
+
 GraphicsSystem::GraphicsSystem()
 	:mpDisplay(NULL)
 	,mpBackBuffer(NULL)
 	,mWidth(0)
 	,mHeight(0)
 {
-	mTextColor = al_map_rgb(255, 255, 255);
+	gpEventSystem->addListener(EVENT_CHANGE_COLOR, this);
+	gpEventSystem->addListener(EVENT_SET_COLOR, this);
+	handleEvent(EventSetColor());
 }
 
 GraphicsSystem::~GraphicsSystem()
@@ -93,4 +100,12 @@ ALLEGRO_BITMAP* GraphicsSystem::switchTargetBitmap( ALLEGRO_BITMAP* pNewTarget )
 void GraphicsSystem::drawText(float x, float y, std::string text, int flag)
 {
 	al_draw_text(gpGame->getFont(), mTextColor, x, y, flag, text.c_str());
+}
+
+void GraphicsSystem::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == EVENT_CHANGE_COLOR)
+		mTextColor = al_map_rgb(rand() % 255, rand() % 255, rand() % 255);
+	else if (theEvent.getType() == EVENT_SET_COLOR)
+		mTextColor = al_map_rgb(255, 255, 255);
 }

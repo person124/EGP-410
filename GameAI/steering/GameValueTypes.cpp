@@ -55,8 +55,8 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(300, 25, 25, 800), //Player Speed
 	//0 for bounce, 1 for flee, 2 for seek
 	Value(0, 1, 0, 2), //Wall detection type
-	Value(0.4f, 0.05f, 0, 1), //Seek/Flee weight
-	Value(0.1f, 0.05f, 0, 1), //Wander weight
-	Value(0.5f, 0.05f, 0, 1), //Avoid weight
-	Value(0.75f, 0.05f, 0, 1) //Wall weight
+	Value(0.4f, 0.05f, 0, 1.5f), //Seek/Flee weight
+	Value(0.1f, 0.05f, 0, 1.5f), //Wander weight
+	Value(0.5f, 0.05f, 0, 1.5f), //Avoid weight
+	Value(0.75f, 0.05f, 0, 1.5f) //Wall weight
 };
