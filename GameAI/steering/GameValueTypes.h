@@ -1,7 +1,6 @@
 #ifndef GAME_VALUE_TYPES_H
 #define GAME_VALUE_TYPES_H
 
-#include <allegro5\keycodes.h>
 #include <string>
 
 struct Value
@@ -41,6 +40,10 @@ enum ModifyValues
 	MOD_NPC_WALL_DIST,
 	MOD_PLAYER_SPEED,
 	MOD_WALL_TYPE,
+	MOD_WEIGHT_SF,
+	MOD_WEIGHT_WANDER,
+	MOD_WEIGHT_AVOID,
+	MOD_WEIGHT_WALL,
 	MOD_NUM_TYPES
 };
 

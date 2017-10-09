@@ -59,7 +59,7 @@ SteeringOutput UnitSlottable::runBehaviours()
 
 void UnitSlottable::checkWall(Vector2& old, Vector2& pos)
 {
-	if (gpGame->getWallManager()->isInsideWall(pos))
+	if (GameValues::value(MOD_WEIGHT_WALL) != 0 && gpGame->getWallManager()->isInsideWall(pos))
 	{
 		pos = old;
 		if (GameValues::value(MOD_WALL_TYPE) == 0)

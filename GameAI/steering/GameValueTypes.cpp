@@ -1,5 +1,7 @@
 #include "GameValueTypes.h"
 
+#include <allegro5\keycodes.h>
+
 const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 {
 	"Enemy (V)elocity:",
@@ -12,7 +14,11 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 	"(W)all Avoid Look:",
 	"Wa(L)l Avoid Distance:",
 	"(P)layer Speed:",
-	"Wall Detection Type(:)"
+	"Wall Detection Type(:)",
+	"(1) Seek/Flee Weight:",
+	"(2) Wander Weight:",
+	"(3) Avoid Unit Weight:",
+	"(4) Wall Avoid Weight"
 };
 
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
@@ -28,7 +34,11 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 	ALLEGRO_KEY_W,
 	ALLEGRO_KEY_L,
 	ALLEGRO_KEY_P,
-	ALLEGRO_KEY_SEMICOLON
+	ALLEGRO_KEY_SEMICOLON,
+	ALLEGRO_KEY_1,
+	ALLEGRO_KEY_2,
+	ALLEGRO_KEY_3,
+	ALLEGRO_KEY_4
 };
 
 const Value MOD_VALUES[MOD_NUM_TYPES] =
@@ -44,5 +54,9 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(250, 50, 200, 1500), //Wall avoid dist
 	Value(300, 25, 25, 800), //Player Speed
 	//0 for bounce, 1 for flee, 2 for seek
-	Value(0, 1, 0, 2) //Wall detection type
+	Value(0, 1, 0, 2), //Wall detection type
+	Value(0.4f, 0.05f, 0, 1), //Seek/Flee weight
+	Value(0.1f, 0.05f, 0, 1), //Wander weight
+	Value(0.5f, 0.05f, 0, 1), //Avoid weight
+	Value(0.75f, 0.05f, 0, 1) //Wall weight
 };

@@ -129,7 +129,7 @@ SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 WeightB seekOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
-	float weight = 0.4f;
+	float weight = GameValues::value(MOD_WEIGHT_SF);
 
 	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
 
@@ -153,7 +153,7 @@ WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
 
 WeightB slot::wander(UnitSlottable* unit)
 {
-	float weight = 0.1f;
+	float weight = GameValues::value(MOD_WEIGHT_WANDER);
 	
 	float wanderOffset = GameValues::value(MOD_NPC_WANDER_CIRCLE);
 	float wanderRadius = wanderOffset * 2;
@@ -176,7 +176,7 @@ WeightB slot::wander(UnitSlottable* unit)
 
 WeightB slot::avoid(UnitSlottable* unit)
 {
-	float weight = 0.5f;
+	float weight = GameValues::value(MOD_WEIGHT_AVOID);
 
 	float shortestTime = (float) INT_MAX;
 	Unit* target = NULL;
@@ -231,7 +231,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {
 	SteeringOutput out;
-	float weight = 0.75f;
+	float weight = GameValues::value(MOD_WEIGHT_WALL);
 
 	Ray ray = Ray((Unit*)unit);
 

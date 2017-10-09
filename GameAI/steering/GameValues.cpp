@@ -6,6 +6,8 @@
 #include "EventModify.h"
 #include "EventModifyStat.h"
 
+#include <cmath>
+
 float GameValues::value(int pos)
 {
 	return gpGame->getValues()->getValue(pos);
@@ -52,6 +54,10 @@ void GameValues::handleEvent(const Event& theEvent)
 			mValues[mCurrentModValue] -= MOD_VALUES[mCurrentModValue].adjust;
 
 		MOD_VALUES[mCurrentModValue].check(mValues[mCurrentModValue]);
+
+		float temp = mValues[mCurrentModValue];
+		temp = std::roundf(temp * 100.0f) / 100.0f;
+		mValues[mCurrentModValue] = temp;
 	}
 	else if (theEvent.getType() == EVENT_MODIFY_STAT)
 	{
