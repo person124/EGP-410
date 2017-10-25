@@ -43,13 +43,6 @@ class UnitManager : public EventListener
 	private:
 		std::vector<Unit*> mUnits;
 		UnitPlayer* mpPlayer;
-
-		SteeringFunc mfWander;
-		SteeringFunc mfSeek;
-		SteeringFunc mfFlee;
-		SteeringFunc mfAvoid;
-		SteeringFunc mfWallAvoid;
-		SteeringFunc mfFace;
 };
 
 #endif

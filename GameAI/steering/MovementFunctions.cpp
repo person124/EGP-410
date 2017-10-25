@@ -23,6 +23,7 @@ float clampAngle(float angle)
 	return output;
 }
 
+/*
 SteeringOutput align(float target, UnitSlottable* unit)
 {
 	SteeringOutput steer;
@@ -60,6 +61,7 @@ SteeringOutput align(float target, UnitSlottable* unit)
 
 	return steer;
 }
+*/
 
 SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 {
@@ -126,6 +128,7 @@ SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 }
 */
 
+/*
 WeightB seekOrFlee(UnitSlottable* unit, bool flee)
 {
 	SteeringOutput steer;
@@ -150,7 +153,9 @@ WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
 {
 	return seekOrFlee(unit, true);
 }
+*/
 
+/*
 WeightB slot::wander(UnitSlottable* unit)
 {
 	float weight = GameValues::value(MOD_WEIGHT_WANDER);
@@ -173,7 +178,9 @@ WeightB slot::wander(UnitSlottable* unit)
 
 	return WeightB(steer, weight);
 }
+*/
 
+/*
 WeightB slot::avoid(UnitSlottable* unit)
 {
 	float weight = GameValues::value(MOD_WEIGHT_AVOID);
@@ -227,7 +234,9 @@ WeightB slot::avoid(UnitSlottable* unit)
 
 	return WeightB(steer, weight);
 }
+*/
 
+/*
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {
 	SteeringOutput out;
@@ -265,7 +274,9 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 
 	return WeightB(out, weight);
 }
+*/
 
+/*
 WeightB slot::face(UnitSlottable* unit)
 {
 	SteeringOutput steer;
@@ -279,3 +290,4 @@ WeightB slot::face(UnitSlottable* unit)
 
 	return WeightB(steer, weight);
 }
+*/

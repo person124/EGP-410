@@ -33,13 +33,6 @@ UnitManager::UnitManager()
 	gpEventSystem->addListener(EVENT_CLEAR_AI, this);
 
     srand(unsigned(time(NULL)));
-
-	mfSeek = slot::seekPlayerWithinRange;
-	mfFlee = slot::fleePlayerWithinRange;
-	mfWander = slot::wander;
-	mfAvoid = slot::avoid;
-	mfWallAvoid = slot::wallAvoid;
-	mfFace = slot::face;
 }
 
 UnitManager::~UnitManager()
@@ -109,6 +102,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_ADD_AI)
 	{
+		/*
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
 		int size = 4;
@@ -124,6 +118,7 @@ void UnitManager::handleEvent(const Event& theEvent)
         unit->setPosition(getRandDistFromPlayer(e.isFlee() ? 100 : 200));
 
 		addUnit(unit);
+		*/
 	}
     else if (theEvent.getType() == EVENT_DELETE_AI)
     {

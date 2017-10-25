@@ -6,12 +6,12 @@
 class EventAddAI : public Event
 {
 	public:
-		EventAddAI(bool isFlee) :Event(EVENT_ADD_AI) { mIsFlee = isFlee; };
+		EventAddAI(bool cluster) :Event(EVENT_ADD_AI) { mCluster = cluster; };
 		~EventAddAI() {};
 
-		bool isFlee() const { return mIsFlee; };
+		bool spawnCluster() const { return mCluster; };
 	private:
-		bool mIsFlee;
+		bool mCluster;
 };
 
 #endif

@@ -16,32 +16,35 @@
 
 InputManager::InputManager()
 {
-	//Escape Key
+	//Close Game
 	mKeys[KEYS_ESCAPE] = KeyInput(ALLEGRO_KEY_ESCAPE, new EventQuit());
 
-	//Add Seek Unit
-	mKeys[KEYS_S] = KeyInput(ALLEGRO_KEY_S, new EventAddAI(false));
-	//Add Flee Unit
-	mKeys[KEYS_F] = KeyInput(ALLEGRO_KEY_F, new EventAddAI(true));
+	//Add Unit
+	mKeys[KEYS_F] = KeyInput(ALLEGRO_KEY_F, new EventAddAI(false));
+	//Spawn Cluster of 5 Units
+	mKeys[KEYS_I] = KeyInput(ALLEGRO_KEY_I, new EventAddAI(true));
 
 	//Delete a Unit
 	mKeys[KEYS_D] = KeyInput(ALLEGRO_KEY_D, new EventDeleteAI());
 	//Clear ALL Units
-	mKeys[KEYS_C] = KeyInput(ALLEGRO_KEY_C, new EventClearAI());
+	mKeys[KEYS_TAB] = KeyInput(ALLEGRO_KEY_TAB, new EventClearAI());
 
 	//Toggle Debug Menu
-	mKeys[KEYS_I] = KeyInput(ALLEGRO_KEY_I, new EventToggleDebug());
+	mKeys[KEYS_O] = KeyInput(ALLEGRO_KEY_O, new EventToggleDebug());
 
 	//Modify Value Up
 	mKeys[KEYS_MOD_UP] = KeyInput(ALLEGRO_KEY_EQUALS, new EventModify(true));
 	//Modify Value Down
 	mKeys[KEYS_MOD_DOWN] = KeyInput(ALLEGRO_KEY_MINUS, new EventModify(false));
 
+	//Pause Game
 	mKeys[KEYS_SPACE] = KeyInput(ALLEGRO_KEY_SPACE, new EventPause());
 
+	//GUI Color Stuff
 	mKeys[KEYS_QUESTION] = KeyInput(ALLEGRO_KEY_SLASH, new EventChangeColor());
 	mKeys[KEYS_Z] = KeyInput(ALLEGRO_KEY_Z, new EventSetColor());
 
+	//Setup for handling GameValues
 	for (int i = 0; i < MOD_NUM_TYPES; i++)
 		mKeys[i + KEYS_COUNT] = KeyInput(MOD_KEYCODES[i], new EventModifyStat((ModifyValues)i));
 }

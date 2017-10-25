@@ -11,12 +11,12 @@
 
 enum Keys
 {
-	KEYS_ESCAPE,
-	KEYS_S, //Seek
-	KEYS_F, //Flee
+	KEYS_ESCAPE, //Close Game
+	KEYS_F, //Add Unit
+	KEYS_I, //Spawn 5 Units
 	KEYS_D, //Delete
-	KEYS_C, //Clear
-	KEYS_I, //Display Debug Info
+	KEYS_TAB, //Clear Units
+	KEYS_O, //Open Debug Menu
 	KEYS_MOD_UP, // +
 	KEYS_MOD_DOWN, //-
 	KEYS_SPACE, //Pause
