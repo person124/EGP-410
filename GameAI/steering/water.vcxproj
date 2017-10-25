@@ -41,7 +41,6 @@
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitManager.h" />
-    <ClInclude Include="UnitPlayer.h" />
     <ClInclude Include="UnitSlottable.h" />
     <ClInclude Include="WallManager.h" />
   </ItemGroup>
@@ -64,7 +63,6 @@
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitManager.cpp" />
-    <ClCompile Include="UnitPlayer.cpp" />
     <ClCompile Include="UnitSlottable.cpp" />
     <ClCompile Include="WallManager.cpp" />
   </ItemGroup>

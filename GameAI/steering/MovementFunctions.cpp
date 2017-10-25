@@ -5,8 +5,6 @@
 #include "UnitManager.h"
 #include "WallManager.h"
 
-#include "UnitPlayer.h"
-
 #define _USE_MATH_DEFINES
 #include <math.h>
 

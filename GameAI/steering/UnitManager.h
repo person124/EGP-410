@@ -9,7 +9,6 @@
 #include "UnitSlottable.h"
 
 class Unit;
-class UnitPlayer;
 class GraphicsBuffer;
 struct Vector2;
 
@@ -28,7 +27,6 @@ class UnitManager : public EventListener
 		// Getters
 		Unit*& getUnit(unsigned int pos);
 		int getSize();
-		UnitPlayer* getPlayer() { return mpPlayer; };
 
 		// Update Functions
 		void update(float dt);
@@ -38,11 +36,12 @@ class UnitManager : public EventListener
 		void handleEvent(const Event& theEvent);
 
 		// Misc Functions
-		Vector2 getRandDistFromPlayer(float distance);
+		Vector2 offsetPosition(Vector2& base, float distance);
 		float randomBinomial();
 	private:
 		std::vector<Unit*> mUnits;
-		UnitPlayer* mpPlayer;
+
+		float mMouseX, mMouseY;
 };
 
 #endif

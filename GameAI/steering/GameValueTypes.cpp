@@ -4,7 +4,7 @@
 
 const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 {
-	"(P)layer Speed: ",
+	"NPC Sp(R)ead: ",
 	"(C)ohesion: ",
 	"(S)eperation: ",
 	"Group (A)lignment: ",
@@ -16,7 +16,7 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
 {
 	//Can't use keys: F I D TAB O = - ESCAPE SPACEBAR / Z
-	ALLEGRO_KEY_P,
+	ALLEGRO_KEY_R,
 	ALLEGRO_KEY_C,
 	ALLEGRO_KEY_S,
 	ALLEGRO_KEY_A,
@@ -27,7 +27,7 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 
 const Value MOD_VALUES[MOD_NUM_TYPES] =
 {
-	Value(200, 50, 50, 1000),
+	Value(25, 25, 25, 200), //NPC Spread
 	Value(0, 0, 0, 0), //Cohesion
 	Value(0, 0, 0, 0), //Seperation
 	Value(0, 0, 0, 0), //Alignment

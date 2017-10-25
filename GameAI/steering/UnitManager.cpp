@@ -1,10 +1,10 @@
 #include "UnitManager.h"
 
 #include "Game.h"
+#include "GameValues.h"
 #include "WallManager.h"
 
 #include "Unit.h"
-#include "UnitPlayer.h"
 #include "UnitSlottable.h"
 
 #include "EventSystem.h"
@@ -12,6 +12,7 @@
 #include "EventDeleteAI.h"
 #include "EventClearAI.h"
 #include "EventQuit.h"
+#include "EventMouseMove.h"
 
 #include "Game.h"
 #include "SpriteManager.h"
@@ -26,11 +27,11 @@ const float RAND_ANGLE = static_cast<float>(RAND_MAX / (2 * M_PI));
 
 UnitManager::UnitManager()
 {
-	mpPlayer = new UnitPlayer();
-
 	gpEventSystem->addListener(EVENT_ADD_AI, this);
 	gpEventSystem->addListener(EVENT_DELETE_AI, this);
 	gpEventSystem->addListener(EVENT_CLEAR_AI, this);
+
+	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
 
     srand(unsigned(time(NULL)));
 }
@@ -38,8 +39,6 @@ UnitManager::UnitManager()
 UnitManager::~UnitManager()
 {
 	removeAll();
-	delete mpPlayer;
-	mpPlayer = NULL;
 }
 
 void UnitManager::addUnit(Unit*& unit)
@@ -86,16 +85,12 @@ void UnitManager::update(float dt)
 {
 	for each (Unit* unit in mUnits)
 		unit->update(dt);
-
-	mpPlayer->update(dt);
 }
 
 void UnitManager::draw(GraphicsBuffer* buffer)
 {
 	for each (Unit* unit in mUnits)
 		unit->draw(buffer);
-
-	mpPlayer->draw(buffer);
 }
 
 void UnitManager::handleEvent(const Event& theEvent)
@@ -119,6 +114,31 @@ void UnitManager::handleEvent(const Event& theEvent)
 
 		addUnit(unit);
 		*/
+		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
+
+		int size = 0;
+		SteeringFunc* funcs = new SteeringFunc[size];
+
+		Unit* unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
+
+		unit->setPosition(mMouseX, mMouseY);
+
+		addUnit(unit);
+
+		if (e.spawnCluster())
+		{
+			Vector2 pos = unit->getPosition();
+			float dist = GameValues::value(MOD_NPC_SPREAD);
+
+			for (int i = 0; i < 5; i++)
+			{
+				unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
+
+				unit->setPosition(offsetPosition(pos, dist));
+
+				addUnit(unit);
+			}
+		}
 	}
     else if (theEvent.getType() == EVENT_DELETE_AI)
     {
@@ -135,19 +155,22 @@ void UnitManager::handleEvent(const Event& theEvent)
 	{
 		removeAll();
 	}
+	else if (theEvent.getType() == EVENT_MOUSE_MOVE)
+	{
+		const EventMouseMove& e = static_cast<const EventMouseMove&>(theEvent);
+
+		mMouseX = e.getX();
+		mMouseY = e.getY();
+	}
 }
 
-Vector2 UnitManager::getRandDistFromPlayer(float distance)
+Vector2 UnitManager::offsetPosition(Vector2& base, float distance)
 {
-	Vector2 output;
-	do {
-		output = mpPlayer->getPosition();
+	float angle = rand() / RAND_ANGLE;
 
-		float angle = rand() / (RAND_ANGLE);
-
-		output.x += distance * cos(angle);
-		output.y += distance * sin(angle);
-	} while (gpGame->getWallManager()->isInsideWall(output));
+	Vector2 output = base;
+	output.x += cos(angle) * distance;
+	output.y += sin(angle) * distance;
 
 	return output;
 }

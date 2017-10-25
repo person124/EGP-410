@@ -5,10 +5,10 @@
 
 struct Value
 {
-	Value(float value, float a, float minValue, float maxValue)
+	Value(float value, float modifyAmount, float minValue, float maxValue)
 	{
 		starting = value;
-		adjust = a;
+		adjust = modifyAmount;
 		min = minValue;
 		max = maxValue;
 	};
@@ -29,7 +29,7 @@ struct Value
 enum ModifyValues
 {
 	MOD_INVALID = -1,
-	MOD_PLAYER_SPEED,
+	MOD_NPC_SPREAD,
 	MOD_COHESION,
 	MOD_SEPERATION,
 	MOD_ALIGNMENT,
