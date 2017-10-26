@@ -22,6 +22,8 @@ struct Vector2
 
 	float length();
 
+	float toAngle();
+
 	// Operator Overload
 	Vector2& operator=(Vector2& right);
 

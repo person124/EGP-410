@@ -44,6 +44,11 @@ float Vector2::length()
 	return sqrtf(x * x + y * y);
 }
 
+float Vector2::toAngle()
+{
+	return atan2f(y, x);
+}
+
 // Operator Overloads
 Vector2& Vector2::operator=(Vector2& right)
 {

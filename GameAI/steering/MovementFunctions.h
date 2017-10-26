@@ -6,6 +6,7 @@
 class UnitSlottable;
 
 namespace slot {
+	WeightB wander(UnitSlottable* unit);
 };
 
 #endif

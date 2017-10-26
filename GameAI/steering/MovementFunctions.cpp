@@ -21,15 +21,13 @@ float clampAngle(float angle)
 	return output;
 }
 
-/*
-SteeringOutput align(float target, UnitSlottable* unit)
+float align(float target, UnitSlottable* unit)
 {
-	SteeringOutput steer;
+	float angular = 0;
 
-	//In Degrees
-	float angularRadius = M_PI_4;
-	float angularSlow = M_PI_2;
-	float maxRotation = M_PI_4;
+	float angularRadius = 0.05f; // ~10 degrees
+	float angularSlow = M_PI_4;
+	float maxRotation = M_PI_2;
 	float timeTotarget = 0.25f;
 
 	float rotation = target - unit->getAngle();
@@ -40,7 +38,7 @@ SteeringOutput align(float target, UnitSlottable* unit)
 	if (rotationSize <= angularRadius)
 	{
 		unit->setRotation(0);
-		return steer;
+		return angular;
 	}
 
 	float targetRotation;
@@ -51,15 +49,14 @@ SteeringOutput align(float target, UnitSlottable* unit)
 
 	targetRotation *= rotation / rotationSize;
 
-	steer.angular = targetRotation - unit->getRotation();
-	steer.angular /= timeTotarget;
+	angular = targetRotation - unit->getRotation();
+	angular /= timeTotarget;
 
-	if (abs(steer.angular) > GameValues::value(MOD_NPC_ANGULAR))
-		steer.angular = GameValues::value(MOD_NPC_ANGULAR);
+	if (abs(angular) > GameValues::value(MOD_ANGULAR))
+		angular = (angular / angular) * GameValues::value(MOD_ANGULAR);
 
-	return steer;
+	return angular;
 }
-*/
 
 SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 {
@@ -71,7 +68,7 @@ SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 		out.linear = unit->getPosition() - target;
 
 	out.linear.normalize();
-	out.linear *= GameValues::value(MOD_NPC_ACCEL);
+	out.linear *= GameValues::value(MOD_ACCEL);
 
 	return out;
 }
@@ -153,30 +150,27 @@ WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
 }
 */
 
-/*
 WeightB slot::wander(UnitSlottable* unit)
 {
-	float weight = GameValues::value(MOD_WEIGHT_WANDER);
+	float weight = 1;//GameValues::value(MOD_WEIGHT_WANDER);
 	
-	float wanderOffset = GameValues::value(MOD_NPC_WANDER_CIRCLE);
-	float wanderRadius = wanderOffset * 2;
-	float wanderRate = GameValues::value(MOD_NPC_WANDER_RATE);
+	float wanderOffset = GameValues::value(MOD_WANDER_OFFSET);
+	float wanderRadius = GameValues::value(MOD_WANDER_RADIUS);
+	float wanderRate = M_PI_4;//GameValues::value(MOD_NPC_WANDER_RATE);
 
 	float currentAngle = unit->getAngle();
 	currentAngle += gpGame->getUnitManager()->randomBinomial() * wanderRate;
 	float targetAngle = currentAngle + unit->getAngle();
 
-	Vector2 target = unit->getPosition() + wanderOffset * unit->getAngleAsVector();
+	Vector2 target = unit->getPosition() + (wanderOffset * unit->getAngleAsVector());
 	target += wanderRadius * Vector2::toVector(targetAngle);
 
-	unit->setAngle(target);
-
 	SteeringOutput steer;
-	steer.linear = GameValues::value(MOD_NPC_ACCEL) * unit->getAngleAsVector();
+	steer.linear = seek(target, unit, false).linear;
+	steer.angular = align((target - unit->getPosition()).toAngle(), unit);
 
 	return WeightB(steer, weight);
 }
-*/
 
 /*
 WeightB slot::avoid(UnitSlottable* unit)

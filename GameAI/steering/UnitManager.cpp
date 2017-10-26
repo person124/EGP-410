@@ -33,6 +33,8 @@ UnitManager::UnitManager()
 
 	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
 
+	mFWander = slot::wander;
+
     srand(unsigned(time(NULL)));
 }
 
@@ -116,21 +118,23 @@ void UnitManager::handleEvent(const Event& theEvent)
 		*/
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
-		int size = 0;
+		int size = 1;
 		SteeringFunc* funcs = new SteeringFunc[size];
+		funcs[0] = mFWander;
 
 		Unit* unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
 
 		unit->setPosition(mMouseX, mMouseY);
+		unit->setAngle(2.35619449019f);
 
 		addUnit(unit);
 
 		if (e.spawnCluster())
 		{
 			Vector2 pos = unit->getPosition();
-			float dist = GameValues::value(MOD_NPC_SPREAD);
+			float dist = GameValues::value(MOD_SPREAD);
 
-			for (int i = 0; i < 5; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
 

@@ -14,7 +14,7 @@ class Unit : public Trackable
 		Unit(int spriteID);
 		virtual ~Unit();
 		virtual void update(float dt);
-		void draw(GraphicsBuffer* buffer);
+		virtual void draw(GraphicsBuffer* buffer);
 
         virtual void stop();
 

@@ -5,6 +5,7 @@
 
 class UnitSlottable;
 typedef WeightB(*SteeringFunc)(UnitSlottable* currentPos);
+class GraphicsBuffer;
 
 class UnitSlottable : public Unit
 {
@@ -13,6 +14,7 @@ class UnitSlottable : public Unit
 		virtual ~UnitSlottable();
 
 		void update(float dt);
+		void draw(GraphicsBuffer* buffer);
 		
 		SteeringOutput runBehaviours();
     private:
