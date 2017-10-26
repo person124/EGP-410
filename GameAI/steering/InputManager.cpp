@@ -13,6 +13,8 @@
 #include "EventPause.h"
 #include "EventChangeColor.h"
 #include "EventSetColor.h"
+#include "EventSave.h"
+#include "EventLoad.h"
 
 InputManager::InputManager()
 {
@@ -86,6 +88,26 @@ void InputManager::update()
 		else
 			mKeys[i].mPressed = false;
 	}
+
+	//Checking 'S' and 'L' keys for saving and loading
+	if (al_key_down(&mKeyState, ALLEGRO_KEY_LCTRL))
+	{
+		if (!mCTRL)
+		{
+			if (al_key_down(&mKeyState, ALLEGRO_KEY_S))
+			{
+				gpEventSystem->fireEvent(EventSave());
+				mCTRL = true;
+			}
+			else if (al_key_down(&mKeyState, ALLEGRO_KEY_L))
+			{
+				gpEventSystem->fireEvent(EventLoad());
+				mCTRL = true;
+			}
+		}
+	}
+	else
+		mCTRL = false;
 
 	//Move Mouse Handler
 	if (mMouseX != mMouseState.x || mMouseY != mMouseState.y)

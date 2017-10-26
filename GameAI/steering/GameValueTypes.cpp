@@ -18,7 +18,7 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
 {
-	//Can't use keys: F I D TAB O = - ESCAPE SPACEBAR / Z
+	//Can't use keys: F I D TAB O = - ESCAPE SPACEBAR / Z LCTRL
 	ALLEGRO_KEY_R,
 	ALLEGRO_KEY_E,
 	ALLEGRO_KEY_C,

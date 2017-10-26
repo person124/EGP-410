@@ -41,7 +41,8 @@ class UnitManager : public EventListener
 	private:
 		std::vector<Unit*> mUnits;
 
-		SteeringFunc mFWander;
+		int mFuncCount;
+		SteeringFunc* mfFuncs;
 
 		float mMouseX, mMouseY;
 };

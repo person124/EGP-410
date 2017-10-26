@@ -18,12 +18,14 @@
     <ClInclude Include="EventClearAI.h" />
     <ClInclude Include="EventDeleteAI.h" />
     <ClInclude Include="EventListener.h" />
+    <ClInclude Include="EventLoad.h" />
     <ClInclude Include="EventModify.h" />
     <ClInclude Include="EventModifyStat.h" />
     <ClInclude Include="EventMouseClick.h" />
     <ClInclude Include="EventMouseMove.h" />
     <ClInclude Include="EventPause.h" />
     <ClInclude Include="EventQuit.h" />
+    <ClInclude Include="EventSave.h" />
     <ClInclude Include="EventSetColor.h" />
     <ClInclude Include="EventSystem.h" />
     <ClInclude Include="EventToggleDebug.h" />

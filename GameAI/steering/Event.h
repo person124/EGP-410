@@ -19,6 +19,8 @@ enum EventType
 	EVENT_PAUSE,
 	EVENT_CHANGE_COLOR,
 	EVENT_SET_COLOR,
+	EVENT_SAVE,
+	EVENT_LOAD,
 	EVENT_NUM_TYPES
 };
 
@@ -35,7 +37,9 @@ const std::string EVENT_NAMES[EVENT_NUM_TYPES] =
 "Switch Debug Stat Event",
 "Pause Game Event",
 "Change GUI Color Event",
-"Set GUI Color Event"
+"Set GUI Color Event",
+"Save GameValues",
+"Load GameValues"
 };
 
 class Event : public Trackable

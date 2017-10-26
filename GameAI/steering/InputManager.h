@@ -50,6 +50,8 @@ class InputManager : public Trackable
 
 		const static int TOTAL_KEYS = KEYS_COUNT + MOD_NUM_TYPES;
 		KeyInput mKeys[TOTAL_KEYS];
+
+		bool mCTRL = false;
 };
 
 #endif

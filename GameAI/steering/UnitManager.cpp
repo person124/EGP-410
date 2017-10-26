@@ -33,9 +33,11 @@ UnitManager::UnitManager()
 
 	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
 
-	mFWander = slot::wander;
-
     srand(unsigned(time(NULL)));
+
+	mFuncCount = 1;
+	mfFuncs = new SteeringFunc[mFuncCount];
+	mfFuncs[0] = slot::wander;
 }
 
 UnitManager::~UnitManager()
@@ -118,14 +120,9 @@ void UnitManager::handleEvent(const Event& theEvent)
 		*/
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
-		int size = 1;
-		SteeringFunc* funcs = new SteeringFunc[size];
-		funcs[0] = mFWander;
-
-		Unit* unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
+		Unit* unit = new UnitSlottable(mfFuncs, mFuncCount, AI_FLEE_SPRITE_ID);
 
 		unit->setPosition(mMouseX, mMouseY);
-		unit->setAngle(2.35619449019f);
 
 		addUnit(unit);
 
@@ -136,7 +133,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 
 			for (int i = 0; i < 4; i++)
 			{
-				unit = new UnitSlottable(funcs, size, AI_FLEE_SPRITE_ID);
+				unit = new UnitSlottable(mfFuncs, mFuncCount, AI_FLEE_SPRITE_ID);
 
 				unit->setPosition(offsetPosition(pos, dist));
 

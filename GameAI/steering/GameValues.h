@@ -18,6 +18,10 @@ class GameValues : public EventListener
 		std::string getValueString(int pos);
 		int getCurrentSelected() { return mCurrentModValue; };
 
+		// Saving/Loading GameValues
+		void saveValues();
+		void loadValues();
+
 		void handleEvent(const Event& theEvent);
 	private:
 		int mCurrentModValue = -1;
