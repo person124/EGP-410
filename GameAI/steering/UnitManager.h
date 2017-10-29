@@ -26,6 +26,7 @@ class UnitManager : public EventListener
 
 		// Getters
 		Unit*& getUnit(unsigned int pos);
+		Unit*& getUnitAtPos(Vector2& pos);
 		int getSize();
 
 		// Update Functions

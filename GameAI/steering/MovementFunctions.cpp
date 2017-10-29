@@ -194,10 +194,11 @@ WeightB slot::wander(UnitSlottable* unit)
 	return WeightB(steer, weight);
 }
 
-/*
 WeightB slot::avoid(UnitSlottable* unit)
 {
-	float weight = GameValues::value(MOD_WEIGHT_AVOID);
+	float weight = 1;//GameValues::value(MOD_WEIGHT_AVOID);
+
+	float avoidDistance = 2 * 50;
 
 	float shortestTime = (float) INT_MAX;
 	Unit* target = NULL;
@@ -220,7 +221,7 @@ WeightB slot::avoid(UnitSlottable* unit)
 		float distance = relativePos.length();
 		float minSeperation = distance - relativeSpeed * timetoCollision;
 
-		if (minSeperation > 2 * GameValues::value(MOD_NPC_AVOID))
+		if (minSeperation > 2 * avoidDistance)
 			continue;
 		if (timetoCollision <= 0 || timetoCollision >= shortestTime)
 			continue;
@@ -237,18 +238,17 @@ WeightB slot::avoid(UnitSlottable* unit)
 		return WeightB(SteeringOutput(), weight);
 
 	Vector2 relativePosition;
-	if (targetMinSeperation <= 0 || targetDistance < 2 * GameValues::value(MOD_NPC_AVOID))
+	if (targetMinSeperation <= 0 || targetDistance < avoidDistance)
 		relativePosition = targetRelativePos;
 	else
 		relativePosition = targetRelativePos + targetRelativeVel * shortestTime;
 
 	relativePosition.normalize();
 	SteeringOutput steer;
-	steer.linear = relativePosition * GameValues::value(MOD_NPC_ACCEL);
+	steer.linear = relativePosition * GameValues::value(MOD_ACCEL);
 
 	return WeightB(steer, weight);
 }
-*/
 
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {

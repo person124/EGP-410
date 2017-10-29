@@ -42,6 +42,7 @@ UnitManager::UnitManager()
 	funcs.push_back(slot::seperation);
 	funcs.push_back(slot::cohesion);
 	funcs.push_back(slot::matchVelocity);
+	funcs.push_back(slot::avoid);
 
 	mFuncCount = funcs.size();
 	mfFuncs = new SteeringFunc[mFuncCount];
@@ -89,6 +90,22 @@ Unit*& UnitManager::getUnit(unsigned int pos)
 	return mUnits.at(pos);
 }
 
+Unit*& UnitManager::getUnitAtPos(Vector2& pos)
+{
+	Unit* unit = NULL;
+
+	for each (Unit* u in mUnits)
+	{
+		if (u->isPointInsideUnit(pos))
+		{
+			unit = u;
+			break;
+		}
+	}
+
+	return unit;
+}
+
 int UnitManager::getSize()
 {
 	return mUnits.size();
@@ -110,28 +127,14 @@ void UnitManager::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_ADD_AI)
 	{
-		/*
-		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
-
-		int size = 4;
-		SteeringFunc* funcs = new SteeringFunc[size];
-		funcs[0] = e.isFlee() ? mfFlee : mfSeek;
-		funcs[1] = mfWander;
-		funcs[2] = mfAvoid;
-		funcs[3] = mfWallAvoid;
-
-		Unit* unit = new UnitSlottable(funcs, size, e.isFlee() ? AI_FLEE_SPRITE_ID : AI_SEEK_SPRITE_ID);
-
-        //For position, its 100 if it is flee, and 200 if seek
-        unit->setPosition(getRandDistFromPlayer(e.isFlee() ? 100 : 200));
-
-		addUnit(unit);
-		*/
 		const EventAddAI& e = static_cast<const EventAddAI&>(theEvent);
 
 		Unit* unit = new UnitSlottable(mfFuncs, mFuncCount, AI_FLEE_SPRITE_ID);
 
+		float angle = rand() / RAND_ANGLE;
+
 		unit->setPosition(mMouseX, mMouseY);
+		unit->setAngle(angle);
 
 		addUnit(unit);
 
@@ -145,6 +148,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 				unit = new UnitSlottable(mfFuncs, mFuncCount, AI_FLEE_SPRITE_ID);
 
 				unit->setPosition(offsetPosition(pos, dist));
+				unit->setAngle(angle);
 
 				addUnit(unit);
 			}
@@ -157,6 +161,13 @@ void UnitManager::handleEvent(const Event& theEvent)
             gpEventSystem->fireEvent(EventQuit());
             return;
         }
+
+		Unit* unit = getUnitAtPos(Vector2(mMouseX, mMouseY));
+		if (unit != NULL)
+		{
+			removeUnit(unit);
+			return;
+		}
 
         int random = rand() % getSize();
         removeUnit(random);

@@ -29,6 +29,7 @@ struct Value
 enum ModifyValues
 {
 	MOD_INVALID = -1,
+	MOD_UNIT_SIZE,
 	MOD_SPREAD,
 	MOD_DISPLAY_TIPS,
 	MOD_COHESION,

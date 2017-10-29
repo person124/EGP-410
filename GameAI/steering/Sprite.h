@@ -22,6 +22,7 @@ public:
 
 	//draw the contents of the sprite to a GraphicsBuffer - may be rotated
 	void draw( GraphicsBuffer& dest, float dx, float dy, float rotationInRadians = 0, int flags = 0 );
+	void drawScaled(GraphicsBuffer& dest, float x, float y, float size, float rotation = 0, int flags = 0);
 
 private:
 ALLEGRO_BITMAP* mpBitmap;//subBitmap based off the GraphicsBuffer object is contructed with

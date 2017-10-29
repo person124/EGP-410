@@ -10,6 +10,8 @@
 #include "GameValues.h"
 #include "GraphicsSystem.h"
 
+#include <allegro5\allegro_primitives.h>
+
 GUI::GUI()
 {
 	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
@@ -26,6 +28,7 @@ GUI::~GUI()
 void GUI::draw()
 {
 	GRAPHICS_SYSTEM->drawText(mX, mY, mStrMousePos);
+	al_draw_filled_circle(mX, mY, 2, al_map_rgb(0, 0, 0));
 
 	if (mDrawDebug)
 	{

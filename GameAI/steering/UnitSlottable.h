@@ -20,8 +20,6 @@ class UnitSlottable : public Unit
     private:
 		SteeringFunc* mpBehaviourArray;
 		int mBehaviourSize;
-
-		void checkWall(Vector2& old, Vector2& pos);
 };
 
 #endif

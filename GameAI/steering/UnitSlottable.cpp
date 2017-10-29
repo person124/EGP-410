@@ -25,15 +25,11 @@ void UnitSlottable::update(float dt)
 
 	mSteer = runBehaviours();
 
-	//Vector2 pOld = mPos;
-
 	mPos += mVel * dt + 0.5f * mSteer.linear * (dt * dt);
 	mAngle += mRotation * dt + 0.5f * mSteer.angular * (dt * dt);
 
 	mVel += mSteer.linear * dt;
 	mRotation += mSteer.angular * dt;
-
-	//checkWall(pOld, mPos);
 
 	if (mVel.length() > mMaxSpeed)
 	{
@@ -42,8 +38,6 @@ void UnitSlottable::update(float dt)
 	}
 
 	GRAPHICS_SYSTEM->wrapCoordinates(mPos);
-
-	//setAngle(mVel);
 }
 
 void UnitSlottable::draw(GraphicsBuffer* buffer)
@@ -90,10 +84,4 @@ SteeringOutput UnitSlottable::runBehaviours()
 	}
 
 	return output;
-}
-
-void UnitSlottable::checkWall(Vector2& old, Vector2& pos)
-{
-	if (gpGame->getWallManager()->isInsideWall(pos))
-		pos = old;
 }

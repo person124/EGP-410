@@ -2,6 +2,8 @@
 #include "GraphicsBuffer.h"
 #include "GraphicsSystem.h"
 
+#include <allegro5\bitmap.h>
+
 Sprite::Sprite( GraphicsBuffer* pBuffer, float sx, float sy, float sw, float sh )
 	:mpBitmap(NULL)
 	,mWidth(sw)
@@ -40,18 +42,21 @@ void Sprite::draw( GraphicsBuffer& dest, float dx, float dy, float rotationInRad
 	}
 }
 
-/*void Sprite::drawScaled( GraphicsBuffer& dest, float dx, float dy, float dw, float dh, int flags )
+void Sprite::drawScaled( GraphicsBuffer& dest, float x, float y, float size, float rotation, int flags )
 {
 	if( mpBitmap != NULL && dest.getBitmap() != NULL )
 	{
 		//set new target
 		ALLEGRO_BITMAP* pOldTarget = GraphicsSystem::switchTargetBitmap( dest.getBitmap() );
 		//draw
-		al_draw_scaled_bitmap( mpBitmap, 0, 0, mWidth, mHeight, dx, dy, dw, dh, flags );
+		//al_draw_scaled_bitmap( mpBitmap, 0, 0, mWidth, mHeight, dx, dy, dw, dh, flags );
+		float scale = 2 * size / mWidth;
+		float center = mWidth / 2;
+		al_draw_scaled_rotated_bitmap(mpBitmap, center, center, x, y, scale, scale, rotation, flags);
 		//restore old target
 		GraphicsSystem::switchTargetBitmap( pOldTarget );
 	}
-}*/
+}
 
 
 

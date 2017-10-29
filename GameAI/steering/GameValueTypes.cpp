@@ -4,6 +4,7 @@
 
 const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 {
+	"(1)Unit Size: ",
 	"NPC Sp(R)ead: ",
 	"Display D(E)bug: ",
 	"(C)ohesion: ",
@@ -26,6 +27,7 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
 {
 	//Can't use keys: F I D TAB O = - ESCAPE SPACEBAR / Z LCTRL
+	ALLEGRO_KEY_1,
 	ALLEGRO_KEY_R,
 	ALLEGRO_KEY_E,
 	ALLEGRO_KEY_C,
@@ -47,6 +49,7 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 
 const Value MOD_VALUES[MOD_NUM_TYPES] =
 {
+	Value(10, 5, 5, 30), //Unit Size
 	Value(25, 25, 25, 200), //NPC Spread
 	Value(0, 1, 0, 5), //Display Debug
 	Value(0.75f, 0.25f, 0, 2), //Cohesion

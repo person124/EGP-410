@@ -16,8 +16,6 @@ class Unit : public Trackable
 		virtual void update(float dt);
 		virtual void draw(GraphicsBuffer* buffer);
 
-        virtual void stop();
-
 		// Getters and Setters
 		void setMaxSpeed(float speed) { mMaxSpeed = speed; };
 		float getMaxSpeed() { return mMaxSpeed; };
@@ -36,6 +34,10 @@ class Unit : public Trackable
 		void setAngle(Vector2& vel);
 		void setAngle(float angle) { mAngle = angle; };
 		void setRotation(float angle) { mRotation = angle; };
+
+		//Misc Functions
+		virtual void stop();
+		bool isPointInsideUnit(Vector2& point);
 	protected:
 		Sprite* mpSprite;
 		Vector2 mPos, mVel;
