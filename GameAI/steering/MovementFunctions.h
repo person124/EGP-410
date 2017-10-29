@@ -11,6 +11,10 @@ namespace slot {
 	WeightB wallAvoid(UnitSlottable* unit);
 
 	WeightB face(UnitSlottable* unit);
+
+	WeightB matchVelocity(UnitSlottable* unit);
+	WeightB seperation(UnitSlottable* unit);
+	WeightB cohesion(UnitSlottable* unit);
 };
 
 #endif

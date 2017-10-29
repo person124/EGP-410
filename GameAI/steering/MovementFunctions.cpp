@@ -282,3 +282,83 @@ WeightB slot::face(UnitSlottable* unit)
 
 	return WeightB(steer, weight);
 }
+
+WeightB slot::matchVelocity(UnitSlottable* unit)
+{
+	SteeringOutput steer;
+	float weight = 1;
+
+	return WeightB(steer, weight);
+}
+
+WeightB slot::seperation(UnitSlottable* unit)
+{
+	SteeringOutput steer;
+	float weight = GameValues::value(MOD_SEPERATION);
+
+	float threshold = GameValues::value(MOD_SEPERATION_THRESHOLD);
+	float decay = GameValues::value(MOD_SEPERATION_DECAY);
+	float maxAcceleration = GameValues::value(MOD_ACCEL);
+
+	if (GameValues::value(MOD_DISPLAY_TIPS) == 5)
+		al_draw_circle(unit->getPosition().x, unit->getPosition().y, threshold, al_map_rgb(255, 255, 255), 2);
+
+	for (int i = 0; i < gpGame->getUnitManager()->getSize(); i++)
+	{
+		Unit* u = gpGame->getUnitManager()->getUnit(i);
+		if (u == unit)
+			continue;
+
+		Vector2 direction = u->getPosition() - unit->getPosition();
+		float distance = direction.length();
+
+		if (distance < threshold)
+		{
+			float strength = fminf(decay / (distance * distance), maxAcceleration);
+
+			direction.normalize();
+			steer.linear += strength * direction;
+		}
+	}
+
+	return WeightB(steer, weight);
+}
+
+WeightB slot::cohesion(UnitSlottable* unit)
+{
+	SteeringOutput steer;
+	float weight = GameValues::value(MOD_COHESION);
+
+	float maxDistance = GameValues::value(MOD_COHESION_DISTANCE);
+
+	if (GameValues::value(MOD_DISPLAY_TIPS) == 4)
+		al_draw_circle(unit->getPosition().x, unit->getPosition().y, maxDistance, al_map_rgb(255, 255, 255), 2);
+
+	Vector2 runningTotal;
+	int count = 0;
+	for (int i = 0; i < gpGame->getUnitManager()->getSize(); i++)
+	{
+		Unit* u = gpGame->getUnitManager()->getUnit(i);
+
+		Vector2 direction = u->getPosition() - unit->getPosition();
+		float distance = direction.length();
+
+		if (distance <= maxDistance)
+		{
+			runningTotal += u->getPosition();
+			count++;
+		}
+	}
+
+	if (count > 1)
+	{
+		runningTotal /= count;
+
+		steer = seek(runningTotal, unit, false);
+
+		if (GameValues::value(MOD_DISPLAY_TIPS) == 4)
+			al_draw_line(unit->getPosition().x, unit->getPosition().y, runningTotal.x, runningTotal.y, al_map_rgb(0, 255, 0), 2);
+	}
+
+	return WeightB(steer, weight);
+}
