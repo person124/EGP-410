@@ -35,9 +35,11 @@ UnitManager::UnitManager()
 
     srand(unsigned(time(NULL)));
 
-	mFuncCount = 1;
+	mFuncCount = 3;
 	mfFuncs = new SteeringFunc[mFuncCount];
 	mfFuncs[0] = slot::wander;
+	mfFuncs[1] = slot::face;
+	mfFuncs[2] = slot::wallAvoid;
 }
 
 UnitManager::~UnitManager()
@@ -123,6 +125,7 @@ void UnitManager::handleEvent(const Event& theEvent)
 		Unit* unit = new UnitSlottable(mfFuncs, mFuncCount, AI_FLEE_SPRITE_ID);
 
 		unit->setPosition(mMouseX, mMouseY);
+		unit->setAngle(M_PI_2);
 
 		addUnit(unit);
 

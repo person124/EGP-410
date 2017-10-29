@@ -206,23 +206,20 @@ Collision* Wall::checkCollision(Ray& raycast)
 		float p[4] = { -raycast.x, raycast.x, -raycast.y, raycast.y };
 		float q[4] = { raycast.origin.x - min.x, max.x - raycast.origin.x, raycast.origin.y - min.y, max.y - raycast.origin.y };
 		float col1 = (float)-INT_MAX;
-		float col2 = (float)INT_MAX;
 
 		for (int i = 0; i < 4; i++)
 		{
 			float t = q[i] / p[i];
 			if (p[i] < 0 && col1 < t)
 				col1 = t;
-			else if (p[i] > 0 && col2 > t)
-				col2 = t;
 		}
 
-		if (col1 > col2 || col1 > 1 || col1 < 0)
+		if (col1 > 1 || col1 < 0)
 			return col;
 
 		col = new Collision();
 		col->position.x = raycast.origin.x + col1 * raycast.x;
-		col->position.y = raycast.origin.y + col2 * raycast.y;
+		col->position.y = raycast.origin.y + col1 * raycast.y;
 		col->normal = getNormalFromPoint(col->position);
 	}
 
@@ -237,9 +234,9 @@ Vector2 Wall::getNormalFromPoint(Vector2& point)
 		return Vector2(1, 0);
 
 	if (point.y == min.y)
-		return Vector2(0, 1);
-	if (point.y == max.y)
 		return Vector2(0, -1);
+	if (point.y == max.y)
+		return Vector2(0, 1);
 
 	return Vector2();
 }

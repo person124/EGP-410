@@ -10,7 +10,7 @@
 
 WallManager::WallManager()
 {
-	mCount = 5;
+	mCount = 4;
 	mpWalls = new Wall[mCount];
 	
 	//Temp variables for easier readability
@@ -22,7 +22,7 @@ WallManager::WallManager()
 	mpWalls[2] = Wall(w - WALL_SIZE, 0, w + WALL_BUFFER, h); //Right Wall
 	mpWalls[3] = Wall(WALL_SIZE, h - WALL_SIZE, w - WALL_SIZE, h + WALL_BUFFER); //Bottom Wall
 
-	mpWalls[4] = Wall(200, 200, 400, 400);
+	//mpWalls[4] = Wall(200, 200, 400, 400);
 
 	gpEventSystem->addListener(EVENT_CHANGE_COLOR, this);
 	gpEventSystem->addListener(EVENT_SET_COLOR, this);

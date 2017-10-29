@@ -247,14 +247,14 @@ void Game::beginLoop()
 	
 void Game::processLoop()
 {
+	//draw background
+	Sprite* pBackgroundSprite = mpSpriteManager->getSprite(BACKGROUND_SPRITE_ID);
+	pBackgroundSprite->draw(*(mpGraphicsSystem->getBackBuffer()), 0, 0);
+
 	//Update
 	mpInputManager->update();
 	if (!mPaused)
 		mpUnitManager->update(LOOP_TARGET_TIME / 1000.0f);
-	
-	//draw background
-	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
-	pBackgroundSprite->draw( *(mpGraphicsSystem->getBackBuffer()), 0, 0 );
 
 	mpWallManager->draw();
 

@@ -7,6 +7,7 @@
 #include "UnitManager.h"
 #include "WallManager.h"
 #include "GraphicsSystem.h"
+#include "MovementFunctions.h"
 
 UnitSlottable::UnitSlottable(SteeringFunc* behaviourArray, int size, int sprite):Unit(sprite)
 {
@@ -49,7 +50,9 @@ void UnitSlottable::draw(GraphicsBuffer* buffer)
 {
 	Unit::draw(buffer);
 
-	if (GameValues::value(MOD_DISPLAY_TIPS) == 1)
+	float tips = GameValues::value(MOD_DISPLAY_TIPS);
+
+	if (tips > 0)
 	{
 		Vector2 end = mPos;
 		end += mVel.normal() * 150;
@@ -63,12 +66,15 @@ void UnitSlottable::draw(GraphicsBuffer* buffer)
 		float a = mVel.toAngle();
 		al_draw_arc(mPos.x, mPos.y, 150, a - delta, 2 * delta, al_map_rgb(0, 0, 255), 2);
 
-		float wanderOffset = GameValues::value(MOD_WANDER_OFFSET);
-		float wanderRadius = GameValues::value(MOD_WANDER_RADIUS);
+		if (tips == 2)
+		{
+			float wanderOffset = GameValues::value(MOD_WANDER_OFFSET);
+			float wanderRadius = GameValues::value(MOD_WANDER_RADIUS);
 
-		Vector2 circlePos = getPosition();
-		circlePos += wanderOffset * getAngleAsVector();
-		al_draw_circle(circlePos.x, circlePos.y, wanderRadius, al_map_rgb(255, 255, 255), 2);
+			Vector2 circlePos = getPosition();
+			circlePos += wanderOffset * getAngleAsVector();
+			al_draw_circle(circlePos.x, circlePos.y, wanderRadius, al_map_rgb(255, 255, 255), 2);
+		}
 	}
 }
 

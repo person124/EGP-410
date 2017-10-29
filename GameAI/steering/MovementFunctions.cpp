@@ -8,6 +8,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include <allegro5\allegro_primitives.h>
+
 //Maps to range -PI to PI
 float clampAngle(float angle)
 {
@@ -165,9 +167,11 @@ WeightB slot::wander(UnitSlottable* unit)
 	Vector2 target = unit->getPosition() + (wanderOffset * unit->getAngleAsVector());
 	target += wanderRadius * Vector2::toVector(targetAngle);
 
+	if (GameValues::value(MOD_DISPLAY_TIPS) == 2)
+		al_draw_filled_circle(target.x, target.y, 2.5f, al_map_rgb(0, 0, 0));
+
 	SteeringOutput steer;
 	steer.linear = seek(target, unit, false).linear;
-	steer.angular = align((target - unit->getPosition()).toAngle(), unit);
 
 	return WeightB(steer, weight);
 }
@@ -228,11 +232,10 @@ WeightB slot::avoid(UnitSlottable* unit)
 }
 */
 
-/*
 WeightB slot::wallAvoid(UnitSlottable* unit)
 {
 	SteeringOutput out;
-	float weight = GameValues::value(MOD_WEIGHT_WALL);
+	float weight = 50;
 
 	Ray ray = Ray((Unit*)unit);
 
@@ -240,25 +243,27 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 		return WeightB(out, weight);
 
 	ray.normalize();
-	ray *= GameValues::value(MOD_NPC_WALL_LOOK);
+	ray *= GameValues::value(MOD_WALL_CAST);
+
+	if (GameValues::value(MOD_DISPLAY_TIPS) == 3)
+		al_draw_line(ray.origin.x, ray.origin.y, ray.x + ray.origin.x, ray.y + ray.origin.y, al_map_rgb(0, 0, 255), 2);
 
 	//Do collision Detection here.
 	Collision* col = NULL;
-	if (GameValues::value(MOD_WALL_TYPE) > 0)
-		col = gpGame->getWallManager()->checkCollision(ray);
+	col = gpGame->getWallManager()->checkCollision(ray);
 
 	if (col != NULL)
 	{
-		if (GameValues::value(MOD_WALL_TYPE) == 2)
+		float dist = GameValues::value(MOD_WALL_SEEK);
+
+		Vector2 target = col->position + col->normal * dist;
+
+		out = seek(target, unit, false);
+
+		if (GameValues::value(MOD_DISPLAY_TIPS) == 3)
 		{
-			Vector2 target = col->position + col->normal * GameValues::value(MOD_NPC_WALL_DIST);
-			out = seek(target, unit, false);
-		}
-		
-		if (GameValues::value(MOD_WALL_TYPE) == 1)
-		{
-			unit->stop();
-			out = seek(col->position, unit, true);
+			al_draw_line(col->position.x, col->position.y, dist * col->normal.x + col->position.x, dist * col->normal.y + col->position.y, al_map_rgb(0, 255, 0), 2);
+			al_draw_filled_circle(target.x, target.y, 3, al_map_rgb(0, 0, 0));
 		}
 
 		delete col;
@@ -266,20 +271,14 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 
 	return WeightB(out, weight);
 }
-*/
 
-/*
 WeightB slot::face(UnitSlottable* unit)
 {
 	SteeringOutput steer;
 	float weight = 1;
 
 	if (unit->getVelocity().length() != 0)
-	{
-		float targetAngle = atan2f(unit->getVelocity().y, unit->getVelocity().x);
-		steer = align(targetAngle, unit);
-	}
+		steer.angular = align(unit->getVelocity().toAngle(), unit);
 
 	return WeightB(steer, weight);
 }
-*/

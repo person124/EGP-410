@@ -7,6 +7,10 @@ class UnitSlottable;
 
 namespace slot {
 	WeightB wander(UnitSlottable* unit);
+
+	WeightB wallAvoid(UnitSlottable* unit);
+
+	WeightB face(UnitSlottable* unit);
 };
 
 #endif
