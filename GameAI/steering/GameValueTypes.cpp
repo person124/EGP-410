@@ -18,7 +18,9 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 	"Wall Seek(P)oint Distance: ",
 	"Co(H)esion Effect Distance: ",
 	"Sepera(T)ion Effect Distance: ",
-	"Seperation Deca(Y): "
+	"Seperation Deca(Y) in 1K: ",
+	"Face Distance(:) ",
+	"(V)el. Match Distance: "
 };
 
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
@@ -38,15 +40,17 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 	ALLEGRO_KEY_P,
 	ALLEGRO_KEY_H,
 	ALLEGRO_KEY_T,
-	ALLEGRO_KEY_Y
+	ALLEGRO_KEY_Y,
+	ALLEGRO_KEY_SEMICOLON,
+	ALLEGRO_KEY_V
 };
 
 const Value MOD_VALUES[MOD_NUM_TYPES] =
 {
 	Value(25, 25, 25, 200), //NPC Spread
 	Value(0, 1, 0, 5), //Display Debug
-	Value(1, 0.25f, 0, 2), //Cohesion
-	Value(1, 0.25f, 0, 2), //Seperation
+	Value(0.75f, 0.25f, 0, 2), //Cohesion
+	Value(1.25f, 0.25f, 0, 2), //Seperation
 	Value(1, 0.25f, 0, 2), //Alignment
 	Value(150, 25, 0, 500), //NPC Speed
 	Value(150, 25, 0, 500), //NPC Accel
@@ -56,6 +60,8 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(100, 25, 25, 500), //Wall raycast size
 	Value(150, 25, 25, 500), //Wall seek target distance
 	Value(150, 25, 25, 600), //Cohesion distance
-	Value(150, 25, 25, 600), //Seperation distance
-	Value(100, 10, 0, 300) //Seperation decay
+	Value(75, 25, 25, 600), //Seperation distance
+	Value(100, 10, 0, 300), //Seperation decay
+	Value(150, 25, 25, 500), //Face threshold distance
+	Value(150, 25, 25, 500) //Velocity match threshold distance
 };

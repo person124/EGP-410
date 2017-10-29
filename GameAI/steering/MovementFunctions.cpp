@@ -75,6 +75,24 @@ SteeringOutput seek(Vector2& target, UnitSlottable* unit, bool flee)
 	return out;
 }
 
+Vector2 arriveVelocity(Vector2& target, UnitSlottable* unit)
+{
+	Vector2 linear;
+	float timeToTarget = 0.25f;
+	float maxAccel = GameValues::value(MOD_ACCEL);
+
+	linear = target - unit->getVelocity();
+	linear /= timeToTarget;
+
+	if (linear.length() > maxAccel)
+	{
+		linear.normalize();
+		linear *= maxAccel;
+	}
+
+	return linear;
+}
+
 /*
 SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
 {
@@ -275,10 +293,37 @@ WeightB slot::wallAvoid(UnitSlottable* unit)
 WeightB slot::face(UnitSlottable* unit)
 {
 	SteeringOutput steer;
-	float weight = 1;
+	float weight = GameValues::value(MOD_ALIGNMENT);
+
+	float threshold = GameValues::value(MOD_FACE_THRESHOLD);
+
+	float targetAngle;
+	int count = 0;
+
+	targetAngle = unit->getVelocity().toAngle();
+	count++;
+
+	for (int i = 0; i < gpGame->getUnitManager()->getSize(); i++)
+	{
+		Unit* u = gpGame->getUnitManager()->getUnit(i);
+		if (u == unit)
+			continue;
+
+		Vector2 direction = u->getPosition() - unit->getPosition();
+		float distance = direction.length();
+
+		if (distance <= threshold)
+		{
+			targetAngle += u->getAngle();
+			count++;
+		}
+	}
+
+	if (count > 1)
+		targetAngle /= count;
 
 	if (unit->getVelocity().length() != 0)
-		steer.angular = align(unit->getVelocity().toAngle(), unit);
+		steer.angular = align(targetAngle, unit);
 
 	return WeightB(steer, weight);
 }
@@ -287,6 +332,23 @@ WeightB slot::matchVelocity(UnitSlottable* unit)
 {
 	SteeringOutput steer;
 	float weight = 1;
+
+	float threshold = GameValues::value(MOD_VELOCITY_THRESHOLD);
+
+	for (int i = 0; i < gpGame->getUnitManager()->getSize(); i++)
+	{
+		Unit* u = gpGame->getUnitManager()->getUnit(i);
+		if (u == unit)
+			continue;
+
+		Vector2 direction = u->getPosition() - unit->getPosition();
+		float distance = direction.length();
+
+		if (distance <= threshold)
+		{
+			steer.linear += arriveVelocity(u->getVelocity(), unit);
+		}
+	}
 
 	return WeightB(steer, weight);
 }
@@ -297,7 +359,7 @@ WeightB slot::seperation(UnitSlottable* unit)
 	float weight = GameValues::value(MOD_SEPERATION);
 
 	float threshold = GameValues::value(MOD_SEPERATION_THRESHOLD);
-	float decay = GameValues::value(MOD_SEPERATION_DECAY);
+	float decay = GameValues::value(MOD_SEPERATION_DECAY) * -1000;
 	float maxAcceleration = GameValues::value(MOD_ACCEL);
 
 	if (GameValues::value(MOD_DISPLAY_TIPS) == 5)
@@ -320,6 +382,9 @@ WeightB slot::seperation(UnitSlottable* unit)
 			steer.linear += strength * direction;
 		}
 	}
+
+	if (GameValues::value(MOD_DISPLAY_TIPS) == 5)
+		al_draw_line(unit->getPosition().x, unit->getPosition().y, unit->getPosition().x + steer.linear.x, unit->getPosition().y + steer.linear.y, al_map_rgb(0, 255, 0), 2);
 
 	return WeightB(steer, weight);
 }

@@ -35,13 +35,18 @@ UnitManager::UnitManager()
 
     srand(unsigned(time(NULL)));
 
-	mFuncCount = 5;
+	std::vector<SteeringFunc> funcs;
+	funcs.push_back(slot::wallAvoid);
+	funcs.push_back(slot::wander);
+	funcs.push_back(slot::face);
+	funcs.push_back(slot::seperation);
+	funcs.push_back(slot::cohesion);
+	funcs.push_back(slot::matchVelocity);
+
+	mFuncCount = funcs.size();
 	mfFuncs = new SteeringFunc[mFuncCount];
-	mfFuncs[0] = slot::wander;
-	mfFuncs[1] = slot::face;
-	mfFuncs[2] = slot::seperation;
-	mfFuncs[3] = slot::cohesion;
-	mfFuncs[4] = slot::wallAvoid;
+	for (int i = 0; i < mFuncCount; i++)
+		mfFuncs[i] = funcs.at(i);
 }
 
 UnitManager::~UnitManager()

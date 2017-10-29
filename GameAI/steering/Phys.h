@@ -82,7 +82,6 @@ struct Collision : public Trackable
 {
 	Vector2 position;
 	Vector2 normal;
-	float size;
 };
 
 struct Wall : public Trackable
