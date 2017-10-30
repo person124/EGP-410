@@ -3,6 +3,7 @@
 #include <allegro5\allegro_primitives.h>
 
 #include "Game.h"
+#include "GameValues.h"
 #include "GraphicsSystem.h"
 
 #include "EventSystem.h"
@@ -22,8 +23,6 @@ WallManager::WallManager()
 	mpWalls[2] = Wall(w - WALL_SIZE, 0, w + WALL_BUFFER, h); //Right Wall
 	mpWalls[3] = Wall(WALL_SIZE, h - WALL_SIZE, w - WALL_SIZE, h + WALL_BUFFER); //Bottom Wall
 
-	//mpWalls[4] = Wall(200, 200, 400, 400);
-
 	gpEventSystem->addListener(EVENT_CHANGE_COLOR, this);
 	gpEventSystem->addListener(EVENT_SET_COLOR, this);
 	handleEvent(EventSetColor());
@@ -36,21 +35,27 @@ WallManager::~WallManager()
 
 void WallManager::draw()
 {
-	for (int i = 0; i < mCount; i++)
-		al_draw_rectangle(mpWalls[i].min.x, mpWalls[i].min.y, mpWalls[i].max.x, mpWalls[i].max.y, mWallColor, 2);
+	if (GameValues::value(MOD_WALL_ENABLED) == 1)
+	{
+		for (int i = 0; i < mCount; i++)
+			al_draw_rectangle(mpWalls[i].min.x, mpWalls[i].min.y, mpWalls[i].max.x, mpWalls[i].max.y, mWallColor, 2);
+	}
 }
 
 Collision* WallManager::checkCollision(Ray& raycast)
 {
 	Collision* col = NULL;
 
-	for (int i = 0; i < mCount; i++)
+	if (GameValues::value(MOD_WALL_ENABLED) == 1)
 	{
-		col = mpWalls[i].checkCollision(raycast);
-
-		if (col != NULL)
+		for (int i = 0; i < mCount; i++)
 		{
-			return col;
+			col = mpWalls[i].checkCollision(raycast);
+
+			if (col != NULL)
+			{
+				return col;
+			}
 		}
 	}
 
@@ -59,6 +64,9 @@ Collision* WallManager::checkCollision(Ray& raycast)
 
 bool WallManager::isInsideWall(Vector2& pos)
 {
+	if (GameValues::value(MOD_WALL_ENABLED) == 1)
+		return false;
+
 	for (int i = 0; i < mCount; i++)
 	{
 		if (mpWalls[i].isInside(pos))

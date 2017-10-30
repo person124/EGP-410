@@ -21,7 +21,8 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 	"Sepera(T)ion Effect Distance: ",
 	"Seperation Deca(Y) in 1K: ",
 	"Face Distance(:) ",
-	"(V)el. Match Distance: "
+	"(V)el. Match Distance: ",
+	"(2)Walls Enabled: "
 };
 
 const int MOD_KEYCODES[MOD_NUM_TYPES] =
@@ -44,7 +45,8 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 	ALLEGRO_KEY_T,
 	ALLEGRO_KEY_Y,
 	ALLEGRO_KEY_SEMICOLON,
-	ALLEGRO_KEY_V
+	ALLEGRO_KEY_V,
+	ALLEGRO_KEY_2
 };
 
 const Value MOD_VALUES[MOD_NUM_TYPES] =
@@ -66,5 +68,6 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(75, 25, 25, 600), //Seperation distance
 	Value(100, 10, 0, 300), //Seperation decay
 	Value(150, 25, 25, 500), //Face threshold distance
-	Value(150, 25, 25, 500) //Velocity match threshold distance
+	Value(150, 25, 25, 500), //Velocity match threshold distance
+	Value(1, 1, 0, 1) //Walls enabled
 };
