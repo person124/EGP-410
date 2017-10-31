@@ -49,7 +49,6 @@ void Sprite::drawScaled( GraphicsBuffer& dest, float x, float y, float size, flo
 		//set new target
 		ALLEGRO_BITMAP* pOldTarget = GraphicsSystem::switchTargetBitmap( dest.getBitmap() );
 		//draw
-		//al_draw_scaled_bitmap( mpBitmap, 0, 0, mWidth, mHeight, dx, dy, dw, dh, flags );
 		float scale = 2 * size / mWidth;
 		float center = mWidth / 2;
 		al_draw_scaled_rotated_bitmap(mpBitmap, center, center, x, y, scale, scale, rotation, flags);

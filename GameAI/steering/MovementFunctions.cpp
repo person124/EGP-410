@@ -93,86 +93,9 @@ Vector2 arriveVelocity(Vector2& target, UnitSlottable* unit)
 	return linear;
 }
 
-/*
-SteeringOutput arrive(Vector2& target, UnitSlottable* unit, bool flee)
-{
-	//TODO Make this an actual definition somewhere
-	float mTargetRadius = 10;
-	float mSlowRadius = 100;
-	float mMaxSpeed = 300;
-	float mTimeToTarget = 0.5f;
-	float mMaxAccel = 100;
-
-	SteeringOutput out;
-
-	Vector2 direction;
-	if (!flee)
-		direction = target - unit->getPosition();
-	else
-		direction = unit->getPosition() - target;
-
-	float distance = direction.length();
-
-	if (!flee && distance < mTargetRadius)
-	{
-		unit->stop();
-		//out is still set to default values at this point
-		return out;
-	}
-
-	float targetSpeed;
-	if (!flee && distance > mSlowRadius)
-		targetSpeed = mMaxSpeed;
-	else
-		targetSpeed = (mMaxSpeed * distance) / mSlowRadius;
-
-	Vector2 targetVelocity = direction;
-	targetVelocity.normalize();
-	targetVelocity *= targetSpeed;
-
-	out.linear = targetVelocity - unit->getVelocity();
-	out.linear /= mTimeToTarget;
-
-	if (out.linear.length() > mMaxAccel)
-	{
-		out.linear.normalize();
-		out.linear *= mMaxAccel;
-	}
-
-	return out;
-}
-*/
-
-/*
-WeightB seekOrFlee(UnitSlottable* unit, bool flee)
-{
-	SteeringOutput steer;
-	float weight = GameValues::value(MOD_WEIGHT_SF);
-
-	Vector2 playerPos = gpGame->getUnitManager()->getPlayer()->getPosition();
-
-	if ((playerPos - unit->getPosition()).length() <= GameValues::value(MOD_NPC_REACT))
-	{
-		steer = seek(playerPos, unit, flee);
-	}
-
-	return WeightB(steer, weight);
-}
-
-WeightB slot::seekPlayerWithinRange(UnitSlottable* unit)
-{
-	return seekOrFlee(unit, false);
-}
-
-WeightB slot::fleePlayerWithinRange(UnitSlottable* unit)
-{
-	return seekOrFlee(unit, true);
-}
-*/
-
 WeightB slot::wander(UnitSlottable* unit)
 {
-	float weight = 1;//GameValues::value(MOD_WEIGHT_WANDER);
+	float weight = GameValues::value(MOD_WANDER);
 	
 	float wanderOffset = GameValues::value(MOD_WANDER_OFFSET);
 	float wanderRadius = GameValues::value(MOD_WANDER_RADIUS);

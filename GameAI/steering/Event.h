@@ -21,6 +21,7 @@ enum EventType
 	EVENT_SET_COLOR,
 	EVENT_SAVE,
 	EVENT_LOAD,
+	EVENT_TOGGLE_HELP,
 	EVENT_NUM_TYPES
 };
 
@@ -39,7 +40,8 @@ const std::string EVENT_NAMES[EVENT_NUM_TYPES] =
 "Change GUI Color Event",
 "Set GUI Color Event",
 "Save GameValues",
-"Load GameValues"
+"Load GameValues",
+"Toggle Help Display"
 };
 
 class Event : public Trackable

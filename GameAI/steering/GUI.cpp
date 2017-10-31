@@ -3,6 +3,7 @@
 #include "EventSystem.h"
 #include "EventMouseMove.h"
 #include "EventToggleDebug.h"
+#include "EventHelp.h"
 
 #include "GameValueTypes.h"
 
@@ -12,11 +13,30 @@
 
 #include <allegro5\allegro_primitives.h>
 
+const int HELP_NUM = 13;
+const std::string HELP_TEXT[HELP_NUM] = {
+	"         Escape:                       Closes the Game",
+	"              F:                            Add a Unit",
+	"              I:              Spawn 5 Units in Cluster",
+	"              D: Delete a Random Unit/Mouseovered Unit",
+	"            TAB:                       Clear All Units",
+	"              O:                       Open Debug Menu",
+	"<Specified Key>:                Select Value to Change",
+	"              +:               Increase Selected Value",
+	"              -:               Decrease Selected Value",
+	"       SPACEBAR:                      Pause Simulation",
+	"              ?:                 Change GUI/Wall Color",
+	"              Z:                  Reset GUI/Wall Color",
+	"              ~:                      Toggle this Text"
+};
+
 GUI::GUI()
 {
 	gpEventSystem->addListener(EVENT_MOUSE_MOVE, this);
 
 	gpEventSystem->addListener(EVENT_TOGGLE_DEBUG, this);
+
+	gpEventSystem->addListener(EVENT_TOGGLE_HELP, this);
 
 	mVal = gpGame->getValues();
 }
@@ -40,6 +60,14 @@ void GUI::draw()
 			GRAPHICS_SYSTEM->drawText(0, 20 * i, c + MOD_GUI_STRING[i] + mVal->getValueString(i), ALLEGRO_ALIGN_LEFT);
 		}
 	}
+
+	if (mDrawHelp)
+	{
+		for (int i = 0; i < HELP_NUM; i++)
+		{
+			GRAPHICS_SYSTEM->drawText(GRAPHICS_SYSTEM->getWidth(), 20 * i, HELP_TEXT[i], ALLEGRO_ALIGN_RIGHT);
+		}
+	}
 }
 
 void GUI::handleEvent(const Event& theEvent)
@@ -56,5 +84,9 @@ void GUI::handleEvent(const Event& theEvent)
 	else if (theEvent.getType() == EVENT_TOGGLE_DEBUG)
 	{
 		mDrawDebug = !mDrawDebug;
+	}
+	else if (theEvent.getType() == EVENT_TOGGLE_HELP)
+	{
+		mDrawHelp = !mDrawHelp;
 	}
 }

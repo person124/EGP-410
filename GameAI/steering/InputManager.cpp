@@ -15,6 +15,7 @@
 #include "EventSetColor.h"
 #include "EventSave.h"
 #include "EventLoad.h"
+#include "EventHelp.h"
 
 InputManager::InputManager()
 {
@@ -45,6 +46,9 @@ InputManager::InputManager()
 	//GUI Color Stuff
 	mKeys[KEYS_QUESTION] = KeyInput(ALLEGRO_KEY_SLASH, new EventChangeColor());
 	mKeys[KEYS_Z] = KeyInput(ALLEGRO_KEY_Z, new EventSetColor());
+
+	//Toggle Help Screen
+	mKeys[KEYS_TILDE] = KeyInput(ALLEGRO_KEY_TILDE, new EventHelp());
 
 	//Setup for handling GameValues
 	for (int i = 0; i < MOD_NUM_TYPES; i++)

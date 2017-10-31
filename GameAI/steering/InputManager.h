@@ -22,6 +22,7 @@ enum Keys
 	KEYS_SPACE, //Pause
 	KEYS_QUESTION, //Change GUI Color
 	KEYS_Z, //Reset GUI Color
+	KEYS_TILDE, //Toggle Help Menu
 	KEYS_COUNT
 };
 

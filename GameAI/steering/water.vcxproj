@@ -17,6 +17,7 @@
     <ClInclude Include="EventChangeColor.h" />
     <ClInclude Include="EventClearAI.h" />
     <ClInclude Include="EventDeleteAI.h" />
+    <ClInclude Include="EventHelp.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="EventLoad.h" />
     <ClInclude Include="EventModify.h" />

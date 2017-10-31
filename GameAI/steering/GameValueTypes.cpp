@@ -10,6 +10,7 @@ const std::string MOD_GUI_STRING[MOD_NUM_TYPES] =
 	"(C)ohesion: ",
 	"(S)eperation: ",
 	"Group (A)lignment: ",
+	"(3)Wander: ",
 	"(M)ax NPC Speed: ",
 	"Ma(X) NPC Accel: ",
 	"NPC Ang(U)lar Speed: ",
@@ -34,6 +35,7 @@ const int MOD_KEYCODES[MOD_NUM_TYPES] =
 	ALLEGRO_KEY_C,
 	ALLEGRO_KEY_S,
 	ALLEGRO_KEY_A,
+	ALLEGRO_KEY_3,
 	ALLEGRO_KEY_M,
 	ALLEGRO_KEY_X,
 	ALLEGRO_KEY_U,
@@ -57,6 +59,7 @@ const Value MOD_VALUES[MOD_NUM_TYPES] =
 	Value(0.75f, 0.25f, 0, 2), //Cohesion
 	Value(1.25f, 0.25f, 0, 2), //Seperation
 	Value(1, 0.25f, 0, 2), //Alignment
+	Value(1, 0.25f, 0, 2), //Wander weight
 	Value(150, 25, 0, 500), //NPC Speed
 	Value(150, 25, 0, 500), //NPC Accel
 	Value(2.5f, 0.5f, 0, 6), //NPC Angular Speed

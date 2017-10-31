@@ -48,7 +48,6 @@ GraphicsBuffer& GraphicsBuffer::operator=( const GraphicsBuffer& rhs )
 GraphicsBuffer::~GraphicsBuffer()
 {
 	al_destroy_bitmap( mpBitmap );
-	//printf( " GraphicsBuffer destroyed!\n");
 }
 
 void GraphicsBuffer::clear( const ALLEGRO_COLOR& color )

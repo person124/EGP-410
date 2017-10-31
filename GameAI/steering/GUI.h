@@ -12,7 +12,6 @@ class GUI : public EventListener
 		GUI();
 		~GUI();
 
-		//void update(float dt);
 		void draw();
 
 		void handleEvent(const Event& theEvent);
@@ -21,6 +20,7 @@ class GUI : public EventListener
 		int mX, mY;
 
 		bool mDrawDebug = false;
+		bool mDrawHelp = true;
 		GameValues* mVal;
 };
 

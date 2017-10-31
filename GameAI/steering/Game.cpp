@@ -43,7 +43,6 @@ Game::Game()
 	,mpFont(NULL)
 	,mpSample(NULL)
 	,mBackgroundBufferID(INVALID_ID)
-	//,mSmurfBufferID(INVALID_ID)
 {
 	gpEventSystem->addListener(EVENT_QUIT, this);
 	gpEventSystem->addListener(EVENT_PAUSE, this);

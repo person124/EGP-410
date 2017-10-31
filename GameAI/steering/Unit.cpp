@@ -27,7 +27,6 @@ void Unit::draw(GraphicsBuffer* buffer)
 {
 	float size = GameValues::value(MOD_UNIT_SIZE);
 
-	//mpSprite->drawScaled(*buffer, mPos.x - size, mPos.y - size, size2, size2);
 	mpSprite->drawScaled(*buffer, mPos.x, mPos.y, size, mAngle);
 }
 
