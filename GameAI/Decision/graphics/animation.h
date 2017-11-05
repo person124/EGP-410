@@ -11,9 +11,9 @@ class Animation : public Trackable
 {
 	public:
 		//Constructors
-		Animation(std::vector<Sprite>*& sprites, double time, bool loop = true);
+		Animation(std::vector<Sprite>* sprites, double time, bool loop = true);
 		Animation(double time, bool loop = true);
-		Animation(Animation*& ani);
+		Animation(Animation* ani);
 		~Animation();
 
 		//Misc.
@@ -22,6 +22,7 @@ class Animation : public Trackable
 
 		//Setters
 		void setSpeed(double newSpeed);
+		void setFrame(int frame);
 
 		//Getters
 		double getSpeed();

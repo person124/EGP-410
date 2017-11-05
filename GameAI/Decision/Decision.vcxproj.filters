@@ -25,11 +25,11 @@
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{4cd06c20-e3be-43cb-8566-7611d20ca889}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\units">
-      <UniqueIdentifier>{2ed866a3-786c-4995-af5b-453ec10f6a9c}</UniqueIdentifier>
+    <Filter Include="Header Files\pathing">
+      <UniqueIdentifier>{88946594-0722-46c8-a08f-de173bac6627}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\units">
-      <UniqueIdentifier>{49be3ab2-706a-456e-8749-78e238690bcf}</UniqueIdentifier>
+    <Filter Include="Source Files\pathing">
+      <UniqueIdentifier>{96184297-cdce-45c8-9bd1-1c901c04ce06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,12 +63,6 @@
     <ClCompile Include="graphics\sprite.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="units\unit.cpp">
-      <Filter>Source Files\units</Filter>
-    </ClCompile>
-    <ClCompile Include="units\unitManager.cpp">
-      <Filter>Source Files\units</Filter>
-    </ClCompile>
     <ClCompile Include="events\event.cpp">
       <Filter>Source Files\events</Filter>
     </ClCompile>
@@ -80,6 +74,15 @@
     </ClCompile>
     <ClCompile Include="inputManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\grid.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\tile.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\animationManager.cpp">
+      <Filter>Source Files\graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,12 +119,6 @@
     <ClInclude Include="graphics\sprite.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="units\unit.h">
-      <Filter>Header Files\units</Filter>
-    </ClInclude>
-    <ClInclude Include="units\unitManager.h">
-      <Filter>Header Files\units</Filter>
-    </ClInclude>
     <ClInclude Include="stringManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -140,12 +137,18 @@
     <ClInclude Include="inputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pathing\grid.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
+    <ClInclude Include="pathing\tile.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
+    <ClInclude Include="globalConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="assets\game_data.dat">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="assets\graphics_buffers.dat">

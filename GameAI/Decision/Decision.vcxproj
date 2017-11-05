@@ -24,6 +24,7 @@
     <ClCompile Include="events\eventSystem.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics\animation.cpp" />
+    <ClCompile Include="graphics\animationManager.cpp" />
     <ClCompile Include="graphics\color.cpp" />
     <ClCompile Include="graphics\font.cpp" />
     <ClCompile Include="graphics\graphicsBuffer.cpp" />
@@ -33,8 +34,8 @@
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="ioUtils.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="units\unit.cpp" />
-    <ClCompile Include="units\unitManager.cpp" />
+    <ClCompile Include="pathing\grid.cpp" />
+    <ClCompile Include="pathing\tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="events\event.h" />
@@ -42,6 +43,7 @@
     <ClInclude Include="events\eventQuit.h" />
     <ClInclude Include="events\eventSystem.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="globalConst.h" />
     <ClInclude Include="graphics\animation.h" />
     <ClInclude Include="graphics\animationManager.h" />
     <ClInclude Include="graphics\color.h" />
@@ -53,13 +55,12 @@
     <ClInclude Include="graphics\sprite.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />
+    <ClInclude Include="pathing\grid.h" />
+    <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="stringManager.h" />
-    <ClInclude Include="units\unit.h" />
-    <ClInclude Include="units\unitManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat" />
-    <None Include="assets\game_data.dat" />
     <None Include="assets\graphics_buffers.dat" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -1,6 +1,6 @@
 #include "animation.h"
 
-Animation::Animation(std::vector<Sprite>*& sprites, double time, bool loop)
+Animation::Animation(std::vector<Sprite>* sprites, double time, bool loop)
 {
 	mCurrentTime = 0;
 	mCurrent = 0;
@@ -24,7 +24,7 @@ Animation::Animation(double time, bool loop)
 	mDone = false;
 }
 
-Animation::Animation(Animation*& ani)
+Animation::Animation(Animation* ani)
 {
 	mCurrentTime = 0;
 	mCurrent = 0;
@@ -71,6 +71,16 @@ void Animation::setSpeed(double newSpeed)
 	mTime = newSpeed;
 	if (mTime < 0)
 		mTime = 0;
+}
+
+void Animation::setFrame(int frame)
+{
+	if (frame < 0)
+		frame = 0;
+	else if (frame > getLength())
+		frame = getLength() - 1;
+
+	mCurrent = frame;
 }
 
 double Animation::getSpeed()

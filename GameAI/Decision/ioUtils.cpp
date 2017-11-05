@@ -7,19 +7,27 @@
 #include "graphics/animation.h"
 #include "graphics/animationManager.h"
 
+#include "pathing/grid.h"
+
 #include <iostream>
 #include <fstream>
 
-bool loadFile(std::ifstream& file, const std::string& path)
+bool readFile(std::ifstream& file, const std::string& path)
 {
 	file = std::ifstream(path.c_str());
 	return !file.fail();
 }
 
-void loadGraphicsBuffers(const std::string& path)
+bool writeFile(std::ofstream& file, const std::string& path)
+{
+	file = std::ofstream(path.c_str());
+	return !file.fail();
+}
+
+void IOUtils::loadGraphicsBuffers(const std::string& path)
 {
 	std::ifstream file;
-	if (!loadFile(file, path))
+	if (!readFile(file, path))
 	{
 		errorReport(path);
 		return;
@@ -38,10 +46,10 @@ void loadGraphicsBuffers(const std::string& path)
 	file.close();
 }
 
-void loadAnimations(const std::string& path)
+void IOUtils::loadAnimations(const std::string& path)
 {
 	std::ifstream file;
-	if (!loadFile(file, path))
+	if (!readFile(file, path))
 	{
 		errorReport(path);
 		return;
@@ -73,7 +81,47 @@ void loadAnimations(const std::string& path)
 	file.close();
 }
 
-void errorReport(const std::string& name)
+void IOUtils::saveGrid(const std::string& path, Grid* grid)
 {
-	std::cout << "Error loading in file: " << name << "!\n";
+	std::ofstream file;
+	if (!writeFile(file, path))
+	{
+		errorReport(path);
+		return;
+	}
+
+	for (int i = 0; i < grid->getSize(); i++)
+		file << grid->isSolid(i);
+
+	file.close();
+}
+
+Grid* IOUtils::loadGrid(const std::string& path)
+{
+	Grid* grid = NULL;
+
+	std::ifstream file;
+	if (!readFile(file, path))
+	{
+		errorReport(path);
+		return grid;
+	}
+
+	grid = new Grid();
+
+	bool value;
+	for (int i = 0; i < grid->getSize(); i++)
+	{
+		file >> value;
+		grid->setSolid(i, value);
+	}
+
+	file.close();
+
+	return grid;
+}
+
+void IOUtils::errorReport(const std::string& name)
+{
+	std::cout << "Error opening file: " << name << "!\n";
 }

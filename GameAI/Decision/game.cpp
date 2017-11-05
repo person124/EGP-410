@@ -9,7 +9,7 @@
 #include "graphics/animationManager.h"
 #include "graphics/hud.h"
 
-#include "units/unitManager.h"
+#include "pathing/grid.h"
 
 #include "inputManager.h"
 
@@ -33,7 +33,6 @@ void Game::cleanup()
 Game::Game()
 {
 	mpGraphics = NULL;
-	mpUnitManager = NULL;
 
 	gpEventSystem->addListener(EVENT_QUIT, this);
 }
@@ -57,19 +56,20 @@ bool Game::initGame(int width, int height)
 	}
 
 	mpBufferManager = new GraphicsBufferManager();
-	mpUnitManager = new UnitManager();
 	mpAnimationManager = new AnimationManager();
 
 	mpHud = new Hud();
 
 	// Game assets
-	loadGraphicsBuffers("assets/graphics_buffers.dat");
-	loadAnimations("assets/animations.dat");
+	IOUtils::loadGraphicsBuffers("assets/graphics_buffers.dat");
+	IOUtils::loadAnimations("assets/animations.dat");
 
 	mFPS = 0.0f;
 
 	GraphicsBuffer* bg = new GraphicsBuffer(800, 600, Color(0, 0, 0));
 	mpBufferManager->add("background", bg);
+
+	mpGrid = new Grid();
 
 	return true;
 }
@@ -81,11 +81,13 @@ void Game::destroy()
 
 	delete mpInputManager;
 
+	//TODO reorganize
 	delete mpBufferManager;
-	delete mpUnitManager;
 	delete mpAnimationManager;
 
 	delete mpHud;
+
+	delete mpGrid;
 
 	mpGraphics->destroy();
 	delete mpGraphics;
@@ -135,7 +137,7 @@ void Game::draw()
 {
 	mpGraphics->draw(0, 0, mpBufferManager->get("background"));
 
-	mpUnitManager->draw();
+	mpGrid->draw();
 
 	mpHud->drawFPS();
 
@@ -163,9 +165,4 @@ GraphicsBufferManager* Game::getBufferManager()
 AnimationManager* Game::getAnimationManager()
 {
 	return mpAnimationManager;
-}
-
-UnitManager* Game::getUnitManager()
-{
-	return mpUnitManager;
 }

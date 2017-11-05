@@ -10,8 +10,8 @@ class GraphicsSystem;
 class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
-class UnitManager;
 class Hud;
+class Grid;
 
 class Game : public EventListener
 {
@@ -33,7 +33,6 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
-		UnitManager* getUnitManager();
 	
 	private:
 		void update(float dt);
@@ -45,8 +44,8 @@ class Game : public EventListener
 		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
-		UnitManager* mpUnitManager;
 		Hud* mpHud;
+		Grid* mpGrid;
 	
 		//Things to do with the actuall game:
 		float mFPS;

@@ -8,7 +8,7 @@
 
 int main()
 {
-	const int WIDTH = 800, HEIGHT = 600;
+	const int WIDTH = 800, HEIGHT = 800;
 
 	gpEventSystem = new EventSystem();
 	Game::init();

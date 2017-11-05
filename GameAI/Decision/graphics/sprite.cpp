@@ -20,7 +20,7 @@ Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height)
 	mHeight = height;
 }
 
-GraphicsBuffer*& Sprite::getBuffer()
+GraphicsBuffer* Sprite::getBuffer()
 {
 	return mpBuffer;
 }

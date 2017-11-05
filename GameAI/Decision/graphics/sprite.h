@@ -16,7 +16,7 @@ class Sprite : public Trackable
 		//Getters
         int getWidth();
         int getHeight();
-		GraphicsBuffer*& getBuffer();
+		GraphicsBuffer* getBuffer();
 		int startX();
 		int startY();
     private:
