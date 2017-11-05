@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include <allegro5\allegro_color.h>
+#include <allegro5/allegro_color.h>
 
 #include <Trackable.h>
 

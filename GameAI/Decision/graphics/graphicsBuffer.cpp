@@ -1,8 +1,8 @@
 #include "graphicsBuffer.h"
 
-#include <allegro5\allegro.h>
-#include <allegro5\bitmap.h>
-#include <allegro5\allegro_primitives.h>
+#include <allegro5/allegro.h>
+#include <allegro5/bitmap.h>
+#include <allegro5/allegro_primitives.h>
 
 GraphicsBuffer::GraphicsBuffer(int width, int height, Color& color)
 {

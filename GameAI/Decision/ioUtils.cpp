@@ -1,11 +1,11 @@
 #include "ioUtils.h"
 #include "game.h"
 
-#include "graphics\graphicsSystem.h"
-#include "graphics\graphicsBufferManager.h"
-#include "graphics\graphicsBuffer.h"
-#include "graphics\animation.h"
-#include "graphics\animationManager.h"
+#include "graphics/graphicsSystem.h"
+#include "graphics/graphicsBufferManager.h"
+#include "graphics/graphicsBuffer.h"
+#include "graphics/animation.h"
+#include "graphics/animationManager.h"
 
 #include <iostream>
 #include <fstream>

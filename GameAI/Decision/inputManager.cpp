@@ -1,7 +1,7 @@
 #include "inputManager.h"
 
-#include "events\eventSystem.h"
-#include "events\eventQuit.h"
+#include "events/eventSystem.h"
+#include "events/eventQuit.h"
 
 InputManager::InputManager()
 {

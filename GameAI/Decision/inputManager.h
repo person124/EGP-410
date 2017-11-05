@@ -1,9 +1,9 @@
 #ifndef INPUT_SYSTEM_H
 #define INPUT_SYSTEM_H
 
-#include "events\event.h"
+#include "events/event.h"
 
-#include <allegro5\allegro.h>
+#include <allegro5/allegro.h>
 
 #include <Trackable.h>
 
