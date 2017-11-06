@@ -1,10 +1,9 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "graphicsBuffer.h"
-#include "color.h"
-
 #include <Trackable.h>
+
+class GraphicsBuffer;
 
 class Sprite : public Trackable
 {

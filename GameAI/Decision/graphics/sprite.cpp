@@ -1,5 +1,7 @@
 #include "sprite.h"
 
+#include "graphics/graphicsBuffer.h"
+
 Sprite::Sprite()
 {
 	mpBuffer = NULL;

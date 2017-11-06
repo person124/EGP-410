@@ -6,11 +6,11 @@
 class Font;
 class Color;
 
-class Hud : public Trackable
+class HUD : public Trackable
 {
 	public:
-		Hud();
-		~Hud();
+		HUD();
+		~HUD();
 
 		void update(int lives, int score, float fps);
 		void drawFPS();

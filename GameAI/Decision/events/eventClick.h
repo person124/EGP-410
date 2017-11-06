@@ -1,7 +1,7 @@
 #ifndef EVENT_CLICK_H
 #define EVENT_CLICK_H
 
-#include "event.h"
+#include "events/event.h"
 
 enum MouseButton
 {

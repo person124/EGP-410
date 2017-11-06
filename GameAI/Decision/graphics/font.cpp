@@ -1,5 +1,8 @@
 #include "font.h"
 
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+
 Font::Font(int size, const std::string& path)
 {
 	mSize = size;

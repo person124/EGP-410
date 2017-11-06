@@ -1,7 +1,7 @@
 #include "pathing.h"
 
-#include "grid.h"
-#include "pathList.h"
+#include "pathing/grid.h"
+#include "pathing/pathList.h"
 
 #include <vector>
 

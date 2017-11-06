@@ -1,7 +1,7 @@
 #include "eventSystem.h"
 
-#include "event.h"
-#include "eventListener.h"
+#include "events/event.h"
+#include "events/eventListener.h"
 
 using namespace std;
 

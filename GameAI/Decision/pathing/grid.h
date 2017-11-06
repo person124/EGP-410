@@ -1,8 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include "../events/eventListener.h"
-#include "pathList.h"
+#include "events/eventListener.h"
+#include "pathing/pathList.h"
 
 class Tile;
 class GraphicsBuffer;

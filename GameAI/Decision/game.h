@@ -10,7 +10,7 @@ class GraphicsSystem;
 class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
-class Hud;
+class HUD;
 class Grid;
 
 class Game : public EventListener
@@ -44,7 +44,7 @@ class Game : public EventListener
 		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
-		Hud* mpHud;
+		HUD* mpHud;
 		Grid* mpGrid;
 	
 		//Things to do with the actuall game:

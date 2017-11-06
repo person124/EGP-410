@@ -1,11 +1,11 @@
 #include "tile.h"
 
-#include "../globalConst.h"
-#include "../game.h"
+#include "globalConst.h"
+#include "game.h"
 
-#include "../graphics/graphicsSystem.h"
-#include "../graphics/animationManager.h"
-#include "../graphics/animation.h"
+#include "graphics/graphicsSystem.h"
+#include "graphics/animationManager.h"
+#include "graphics/animation.h"
 
 Tile::Tile(bool solid)
 {

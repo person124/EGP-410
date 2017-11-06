@@ -1,7 +1,7 @@
 #ifndef EVENT_QUIT_H
 #define EVENT_QUIT_H
 
-#include "event.h"
+#include "events/event.h"
 
 class EventQuit : public Event
 {

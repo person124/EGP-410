@@ -1,7 +1,7 @@
 #ifndef GRAPHICS_BUFFER_H
 #define GRAPHICS_BUFFER_H
 
-#include "color.h"
+#include "graphics/color.h"
 
 #include <string>
 

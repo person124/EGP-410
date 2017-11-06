@@ -58,7 +58,7 @@ bool Game::initGame(int width, int height)
 	mpBufferManager = new GraphicsBufferManager();
 	mpAnimationManager = new AnimationManager();
 
-	mpHud = new Hud();
+	mpHud = new HUD();
 
 	// Game assets
 	IOUtils::loadGraphicsBuffers("assets/graphics_buffers.dat");

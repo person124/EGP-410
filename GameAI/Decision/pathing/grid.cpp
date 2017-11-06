@@ -1,18 +1,18 @@
 #include "grid.h"
 
-#include "../globalConst.h"
+#include "globalConst.h"
+#include "game.h"
 
-#include "../game.h"
-#include "../graphics/graphicsSystem.h"
-#include "../graphics/graphicsBufferManager.h"
-#include "../graphics/color.h"
+#include "graphics/graphicsSystem.h"
+#include "graphics/graphicsBufferManager.h"
+#include "graphics/color.h"
 
-#include "../events/eventSystem.h"
-#include "../events/eventClick.h"
-#include "../events/eventDijkstra.h"
-#include "pathing.h"
+#include "events/eventSystem.h"
+#include "events/eventClick.h"
+#include "events/eventDijkstra.h"
 
-#include "tile.h"
+#include "pathing/pathing.h"
+#include "pathing/tile.h"
 
 Grid::Grid()
 {

@@ -1,16 +1,17 @@
 #ifndef GRAPHICS_SYSTEM_H
 #define GRAPHICS_SYSTEM_H
 
-#include "graphicsBuffer.h"
-#include "font.h"
-#include "color.h"
-#include "sprite.h"
+#include "graphics/font.h"
+#include "graphics/color.h"
+#include "graphics/sprite.h"
 
 #include <string>
 
 #include <Trackable.h>
 
 struct ALLEGRO_DISPLAY;
+
+class GraphicsBuffer;
 
 class GraphicsSystem : public Trackable
 {

@@ -1,7 +1,7 @@
 #include "pathList.h"
 
-#include "grid.h"
-#include "tile.h"
+#include "pathing/grid.h"
+#include "pathing/tile.h"
 
 Node::Node()
 {

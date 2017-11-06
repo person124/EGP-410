@@ -1,7 +1,7 @@
 #ifndef EVENT_DIJKSTRA_H
 #define EVENT_DIJKSTRA_H
 
-#include "event.h"
+#include "events/event.h"
 
 class EventDijkstra : public Event
 {

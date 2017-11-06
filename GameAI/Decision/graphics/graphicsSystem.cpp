@@ -1,5 +1,7 @@
 #include "graphicsSystem.h"
 
+#include "graphics/graphicsBuffer.h"
+
 #include <iostream>
 
 #include <allegro5/allegro.h>
