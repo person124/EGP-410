@@ -35,6 +35,8 @@
     <ClCompile Include="ioUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pathing\grid.cpp" />
+    <ClCompile Include="pathing\pathing.cpp" />
+    <ClCompile Include="pathing\pathList.cpp" />
     <ClCompile Include="pathing\tile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -55,7 +57,9 @@
     <ClInclude Include="graphics\sprite.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />
+    <ClInclude Include="pathing\pathing.h" />
     <ClInclude Include="pathing\grid.h" />
+    <ClInclude Include="pathing\pathList.h" />
     <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="stringManager.h" />
   </ItemGroup>

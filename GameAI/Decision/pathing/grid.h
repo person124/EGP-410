@@ -19,13 +19,16 @@ class Grid : public Trackable
 		int getSize();
 
 		Tile* getTile(int pos);
+		Tile* getTile(int x, int y);
 		bool isSolid(int pos);
+		bool isSolid(int x, int y);
 
 		//Setters
 		void setSolid(int pos, bool value);
 	private:
 		int mWidth, mHeight;
 		Tile** mpTiles;
+		Tile* mNullTile;
 };
 
 #endif

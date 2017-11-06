@@ -75,14 +75,20 @@
     <ClCompile Include="inputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pathing\grid.cpp">
-      <Filter>Source Files\pathing</Filter>
-    </ClCompile>
     <ClCompile Include="pathing\tile.cpp">
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="graphics\animationManager.cpp">
       <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\grid.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\pathList.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\pathing.cpp">
+      <Filter>Source Files\pathing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="globalConst.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pathing\pathList.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
+    <ClInclude Include="pathing\pathing.h">
+      <Filter>Header Files\pathing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

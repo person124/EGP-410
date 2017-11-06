@@ -96,6 +96,8 @@ void Game::destroy()
 	gpEventSystem->removeListenerFromAllEvents(this);
 }
 
+#include "pathing/pathing.h"
+
 void Game::mainLoop()
 {
 	PerformanceTracker* pTracker = new PerformanceTracker();
@@ -123,6 +125,12 @@ void Game::mainLoop()
 
 	delete pTracker;
 	delete pTimer;
+
+	std::vector<Node> path = pathing::dijkstra(mpGrid, 0, 0, 5, 5);
+	for (unsigned int i = 0; i < path.size(); i++)
+	{
+		std::cout << path.at(i).x << ' ' << path.at(i).y << '\n';
+	}
 }
 
 void Game::update(float dt)
