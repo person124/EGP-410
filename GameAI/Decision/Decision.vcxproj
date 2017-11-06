@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="events\event.h" />
+    <ClInclude Include="events\eventAStar.h" />
     <ClInclude Include="events\eventClick.h" />
     <ClInclude Include="events\eventDijkstra.h" />
     <ClInclude Include="events\eventListener.h" />

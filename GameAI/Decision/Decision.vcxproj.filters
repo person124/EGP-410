@@ -167,6 +167,9 @@
     <ClInclude Include="events\eventLoad.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
+    <ClInclude Include="events\eventAStar.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat">

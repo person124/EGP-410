@@ -11,6 +11,7 @@ enum EventType
 	EVENT_QUIT,
 	EVENT_CLICK,
 	EVENT_DIJKSTRA,
+	EVENT_A_STAR,
 	EVENT_TOGGLE_EDIT,
 	EVENT_SAVE,
 	EVENT_LOAD,
@@ -21,6 +22,7 @@ const std::string EVENT_NAMES[NUM_EVENT_TYPES] = {
 	"Quit Event",
 	"Mouse Click Event",
 	"Start Dijkstra Event",
+	"Start A* Event",
 	"Toggle Edit Mode Event",
 	"Save Grid Event",
 	"Load Grid Event"

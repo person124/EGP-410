@@ -19,7 +19,7 @@ struct Node
 
 	//Members
 	bool dummy;
-	int cost;
+	int cost, estimatedCost;
 	int x, y;
 	int connectX, connectY;
 };
@@ -41,8 +41,10 @@ class PathList : public Trackable
 
 		int size();
 
+		//TODO reorder
 		Node& find(Node& node);
 		Node& smallest();
+		Node& smallestEstimate();
 		Node* connections(Node& node);
 
 		Node& getNode(int x, int y);

@@ -4,6 +4,7 @@
 #include "events/eventQuit.h"
 #include "events/eventClick.h"
 #include "events/eventDijkstra.h"
+#include "events/eventAStar.h"
 #include "events/eventToggleEdit.h"
 #include "events/eventSave.h"
 #include "events/eventLoad.h"
@@ -13,6 +14,7 @@ InputManager::InputManager()
 	mKeys[KEYS_QUIT] = KeyInput(ALLEGRO_KEY_ESCAPE, new EventQuit());
 
 	mKeys[KEYS_DIJKSTRA] = KeyInput(ALLEGRO_KEY_D, new EventDijkstra());
+	mKeys[KEYS_A_STAR] = KeyInput(ALLEGRO_KEY_A, new EventAStar());
 
 	mKeys[KEYS_TOGGLE_EDIT] = KeyInput(ALLEGRO_KEY_E, new EventToggleEdit());
 

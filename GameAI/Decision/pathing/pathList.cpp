@@ -15,6 +15,7 @@ Node::Node(int xPos, int yPos)
 	x = xPos;
 	y = yPos;
 	cost = 0;
+	estimatedCost = 0;
 }
 
 Node::Node(const Node& node)
@@ -25,6 +26,7 @@ Node::Node(const Node& node)
 	x = node.x;
 	y = node.y;
 	cost = node.cost;
+	estimatedCost = node.estimatedCost;
 	connectX = node.connectX;
 	connectY = node.connectY;
 }
@@ -103,6 +105,23 @@ Node& PathList::smallest()
 		{
 			pos = i;
 			cost = mNodes.at(i).cost;
+		}
+	}
+
+	return mNodes.at(pos);
+}
+
+Node& PathList::smallestEstimate()
+{
+	int pos = -1;
+	int cost = -1;
+
+	for (int i = 0; i < size(); i++)
+	{
+		if (cost == -1 || mNodes.at(i).estimatedCost < cost)
+		{
+			pos = i;
+			cost = mNodes.at(i).estimatedCost;
 		}
 	}
 

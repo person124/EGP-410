@@ -30,6 +30,7 @@ Grid::Grid()
 
 	gpEventSystem->addListener(EVENT_CLICK, this);
 	gpEventSystem->addListener(EVENT_DIJKSTRA, this);
+	gpEventSystem->addListener(EVENT_A_STAR, this);
 	gpEventSystem->addListener(EVENT_TOGGLE_EDIT, this);
 
 	mpStart = new Node(-1, -1);
@@ -74,6 +75,19 @@ void Grid::draw()
 				drawLine(mDijkstraPath[i - 1], mDijkstraPath[i], dijstra);
 
 			drawCircle(mDijkstraPath[i], dijstra);
+		}
+	}
+
+	if (mAStarPath.size() > 0)
+	{
+		drawCircle(mAStarPath[0], aStar);
+
+		for (unsigned int i = 0; i < mAStarPath.size(); i++)
+		{
+			if (i != 0)
+				drawLine(mAStarPath[i - 1], mAStarPath[i], aStar);
+
+			drawCircle(mAStarPath[i], aStar);
 		}
 	}
 
@@ -187,6 +201,12 @@ void Grid::handleEvent(const Event& theEvent)
 			return;
 		mDijkstraPath = pathing::dijkstra(this, mpStart, mpGoal);
 	}
+	else if (theEvent.getType() == EVENT_A_STAR)
+	{
+		if (mpStart->x == -1 || mpGoal->x == -1)
+			return;
+		mAStarPath = pathing::aStar(this, mpStart, mpGoal, pathing::heurDistance);
+	}
 	else if (theEvent.getType() == EVENT_TOGGLE_EDIT)
 	{
 		mEditMode = !mEditMode;
@@ -204,7 +224,7 @@ void Grid::clearPaths()
 void Grid::drawCircle(Node& node, PathUsed type)
 {
 	int x = node.x * TILE_SIZE + TILE_HALF;
-	int y = node.y * TILE_SIZE + TILE_HALF;
+	int y = node.y * TILE_SIZE + TILE_HALF + (type == dijstra ? -5 : 5);
 	
 	Game::pInstance->getGraphics()->drawCircle(x, y, 2, *(type == dijstra ? mpDijkstraColor : mpAStarColor));
 }
@@ -212,10 +232,10 @@ void Grid::drawCircle(Node& node, PathUsed type)
 void Grid::drawLine(Node& start, Node& end, PathUsed type)
 {
 	int x1 = start.x * TILE_SIZE + TILE_HALF;
-	int y1 = start.y * TILE_SIZE + TILE_HALF;
+	int y1 = start.y * TILE_SIZE + TILE_HALF + (type == dijstra ? -5 : 5);
 
 	int x2 = end.x * TILE_SIZE + TILE_HALF;
-	int y2 = end.y * TILE_SIZE + TILE_HALF;
+	int y2 = end.y * TILE_SIZE + TILE_HALF + (type == dijstra ? -5 : 5);
 
 	Game::pInstance->getGraphics()->drawLine(x1, y1, x2, y2, *(type == dijstra ? mpDijkstraColor : mpAStarColor));
 }
