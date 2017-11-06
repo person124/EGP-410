@@ -44,10 +44,10 @@ std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goal
 				endNodeRecord = Node(endNode);
 
 			endNodeRecord.cost = endNodeCost;
-			endNodeRecord.connection = new Node(current);
+			endNodeRecord.connect(current);
 
-			if (!open.contains(endNode))
-				open.add(endNode);
+			if (!open.contains(endNodeRecord))
+				open.add(endNodeRecord);
 		}
 
 		open.remove(current);
@@ -65,7 +65,10 @@ std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goal
 	while (current != startNode)
 	{
 		path.push_back(current);
-		current = *current.connection;
+		current = closed.getNode(current.connectX, current.connectY);
 	}
+
+	//reverse the vector
+	std::reverse(path.begin(), path.end());
 	return path;
 }

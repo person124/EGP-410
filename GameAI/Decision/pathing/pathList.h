@@ -14,11 +14,14 @@ struct Node
 	Node(int xPos, int yPos);
 	Node(const Node& node);
 
+	//Misc Function
+	void connect(Node& node);
+
 	//Members
 	bool dummy;
 	int cost;
 	int x, y;
-	Node* connection;
+	int connectX, connectY;
 };
 
 bool operator==(Node& left, Node& right);
@@ -41,10 +44,11 @@ class PathList : public Trackable
 		Node& find(Node& node);
 		Node& smallest();
 		Node* connections(Node& node);
+
+		Node& getNode(int x, int y);
 	private:
 		int findPos(Node& node);
 
-		//Use a vector for the backend
 		Grid* mGrid;
 		std::vector<Node> mNodes;
 };

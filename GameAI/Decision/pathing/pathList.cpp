@@ -6,7 +6,6 @@
 Node::Node()
 {
 	dummy = true;
-	connection = NULL;
 }
 
 Node::Node(int xPos, int yPos)
@@ -16,7 +15,6 @@ Node::Node(int xPos, int yPos)
 	x = xPos;
 	y = yPos;
 	cost = 0;
-	connection = NULL;
 }
 
 Node::Node(const Node& node)
@@ -27,7 +25,14 @@ Node::Node(const Node& node)
 	x = node.x;
 	y = node.y;
 	cost = node.cost;
-	connection = node.connection;
+	connectX = node.connectX;
+	connectY = node.connectY;
+}
+
+void Node::connect(Node& node)
+{
+	connectX = node.x;
+	connectY = node.y;
 }
 
 bool operator==(Node& left, Node& right)
@@ -125,6 +130,12 @@ Node* PathList::connections(Node& node)
 		nodes[3] = Node(node.x, node.y - 1);
 
 	return nodes;
+}
+
+Node& PathList::getNode(int x, int y)
+{
+	Node n = Node(x, y);
+	return find(n);
 }
 
 int PathList::findPos(Node& node)
