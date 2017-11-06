@@ -10,6 +10,7 @@
 enum Keys
 {
 	KEYS_QUIT, //Quit Game
+	KEYS_DIJKSTRA,
 	KEYS_COUNT
 };
 
@@ -42,6 +43,7 @@ class InputManager : public Trackable
 		ALLEGRO_KEYBOARD_STATE mKeyState;
 
 		ALLEGRO_MOUSE_STATE mMouseState;
+		bool mMousePressed = false;
 
 		KeyInput mKeys[KEYS_COUNT];
 };

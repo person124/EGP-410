@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="events\event.h" />
+    <ClInclude Include="events\eventClick.h" />
+    <ClInclude Include="events\eventDijkstra.h" />
     <ClInclude Include="events\eventListener.h" />
     <ClInclude Include="events\eventQuit.h" />
     <ClInclude Include="events\eventSystem.h" />
@@ -132,7 +134,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\DeanLib;..\..\External Libs\Allegro5\include;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\DeanLib;..\..\External Libs\Allegro5\include;$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies);allegro-5.0.10-monolith-md.lib;DeanLib.lib;</AdditionalDependencies>

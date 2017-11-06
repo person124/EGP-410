@@ -5,12 +5,12 @@
 
 #include <vector>
 
-std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goalX, int goalY)
+std::vector<Node> pathing::dijkstra(Grid* grid, Node* start, Node* goal)
 {
 	PathList open = PathList(grid);
 	PathList closed = PathList(grid);
 
-	Node startNode = Node(startX, startY);
+	Node startNode = Node(start->x, start->y);
 	startNode.cost = 0;
 
 	open.add(startNode);
@@ -19,7 +19,7 @@ std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goal
 	while (open.size() > 0)
 	{
 		current = open.smallest();
-		if (current.x == goalX && current.y == goalY)
+		if (current == *goal)
 			break;
 
 		Node* connections = open.connections(current);
@@ -56,7 +56,7 @@ std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goal
 
 	std::vector<Node> path;
 
-	if (current.x != goalX || current.y != goalY)
+	if (current != *goal)
 	{
 		//path will be empty if this returns
 		return path;
@@ -67,6 +67,9 @@ std::vector<Node> pathing::dijkstra(Grid* grid, int startX, int startY, int goal
 		path.push_back(current);
 		current = closed.getNode(current.connectX, current.connectY);
 	}
+
+	//Add the start node as the program doesn't add it in for some reason
+	path.push_back(startNode);
 
 	//reverse the vector
 	std::reverse(path.begin(), path.end());

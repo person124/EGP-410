@@ -122,6 +122,16 @@ void GraphicsSystem::writeText(GraphicsBuffer* buffer, int x, int y,
     al_set_target_bitmap(al_get_backbuffer(mpDisplay));
 }
 
+void GraphicsSystem::drawCircle(int x, int y, int radius, const Color& color)
+{
+	al_draw_filled_circle(x, y, radius, color.mColor);
+}
+
+void GraphicsSystem::drawLine(int x1, int y1, int x2, int y2, const Color& color)
+{
+	al_draw_line(x1, y1, x2, y2, color.mColor, 2);
+}
+
 void GraphicsSystem::flip()
 {
 	al_flip_display();

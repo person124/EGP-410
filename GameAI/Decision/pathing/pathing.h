@@ -8,7 +8,7 @@
 class Grid;
 
 namespace pathing {
-	std::vector<Node> dijkstra(Grid* grid, int startX, int startY, int goalX, int goalY);
+	std::vector<Node> dijkstra(Grid* grid, Node* start, Node* goal);
 }
 
 #endif

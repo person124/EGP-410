@@ -9,11 +9,15 @@ enum EventType
 {
 	INVALID_EVENT_TYPE = -1,
 	EVENT_QUIT,
+	EVENT_CLICK,
+	EVENT_DIJKSTRA,
 	NUM_EVENT_TYPES
 };
 
 const std::string EVENT_NAMES[NUM_EVENT_TYPES] = {
-	"Quit Event"
+	"Quit Event",
+	"Mouse Click Event",
+	"Start Dijkstra Event"
 };
 
 class Event : public Trackable

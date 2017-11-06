@@ -158,6 +158,12 @@
     <ClInclude Include="pathing\pathing.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
+    <ClInclude Include="events\eventClick.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventDijkstra.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat">

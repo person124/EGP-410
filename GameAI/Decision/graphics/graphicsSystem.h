@@ -38,6 +38,10 @@ class GraphicsSystem : public Trackable
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);
         void writeText(GraphicsBuffer* buffer, int x, int y, const Font& font, const Color& color, const std::string& text);
        
+		//Drawing Primitives
+		void drawCircle(int x, int y, int radius, const Color& color);
+		void drawLine(int x1, int y1, int x2, int y2, const Color& color);
+
 		//Misc
 		void flip();
 	private:
