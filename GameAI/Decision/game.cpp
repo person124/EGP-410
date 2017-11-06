@@ -1,17 +1,18 @@
 #include "game.h"
 #include "ioUtils.h"
 
+#include "inputManager.h"
+#include "globalConst.h"
+
 #include "events/eventSystem.h"
 #include "events/eventQuit.h"
 
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
 #include "graphics/animationManager.h"
-#include "graphics/hud.h"
+#include "graphics/font.h"
 
 #include "pathing/grid.h"
-
-#include "inputManager.h"
 
 #include <ctime>
 
@@ -35,6 +36,8 @@ Game::Game()
 	mpGraphics = NULL;
 
 	gpEventSystem->addListener(EVENT_QUIT, this);
+	gpEventSystem->addListener(EVENT_SAVE, this);
+	gpEventSystem->addListener(EVENT_LOAD, this);
 }
 
 Game::~Game()
@@ -58,11 +61,10 @@ bool Game::initGame(int width, int height)
 	mpBufferManager = new GraphicsBufferManager();
 	mpAnimationManager = new AnimationManager();
 
-	mpHud = new HUD();
-
 	// Game assets
 	IOUtils::loadGraphicsBuffers("assets/graphics_buffers.dat");
 	IOUtils::loadAnimations("assets/animations.dat");
+	mpFont = new Font(40, "assets/cour.ttf");
 
 	mFPS = 0.0f;
 
@@ -85,7 +87,7 @@ void Game::destroy()
 	delete mpBufferManager;
 	delete mpAnimationManager;
 
-	delete mpHud;
+	delete mpFont;
 
 	delete mpGrid;
 
@@ -127,9 +129,6 @@ void Game::mainLoop()
 
 void Game::update(float dt)
 {
-	//TODO
-	//mpHud->update(mLives, mScore, mFPS);
-
 	mpInputManager->update();
 }
 
@@ -138,8 +137,6 @@ void Game::draw()
 	mpGraphics->draw(0, 0, mpBufferManager->get("background"));
 
 	mpGrid->draw();
-
-	mpHud->drawFPS();
 
 	mpGraphics->flip();
 }
@@ -155,6 +152,10 @@ void Game::handleEvent(const Event& theEvent)
 	{
 		mRunning = false;
 	}
+	else if (theEvent.getType() == EVENT_SAVE)
+		IOUtils::saveGrid(SAVE_PATH, mpGrid);
+	else if (theEvent.getType() == EVENT_LOAD)
+		IOUtils::loadGrid(SAVE_PATH, mpGrid);
 }
 
 GraphicsBufferManager* Game::getBufferManager()
@@ -165,4 +166,9 @@ GraphicsBufferManager* Game::getBufferManager()
 AnimationManager* Game::getAnimationManager()
 {
 	return mpAnimationManager;
+}
+
+Font* Game::getFont()
+{
+	return mpFont;
 }

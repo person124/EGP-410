@@ -11,16 +11,20 @@ enum Keys
 {
 	KEYS_QUIT, //Quit Game
 	KEYS_DIJKSTRA,
+	KEYS_TOGGLE_EDIT,
+	KEYS_SAVE,
+	KEYS_LOAD,
 	KEYS_COUNT
 };
 
 struct KeyInput : public Trackable
 {
 	KeyInput() {};
-	KeyInput(int allegroKey, Event* theEvent)
+	KeyInput(int allegroKey, Event* theEvent, bool repeat = false)
 	{
 		mAllegroKey = allegroKey;
 		mEvent = theEvent;
+		mRepeating = repeat;
 
 		mPressed = false;
 	}
@@ -29,6 +33,7 @@ struct KeyInput : public Trackable
 	int mAllegroKey;
 	Event* mEvent;
 	bool mPressed;
+	bool mRepeating;
 };
 
 class InputManager : public Trackable
@@ -43,7 +48,6 @@ class InputManager : public Trackable
 		ALLEGRO_KEYBOARD_STATE mKeyState;
 
 		ALLEGRO_MOUSE_STATE mMouseState;
-		bool mMousePressed = false;
 
 		KeyInput mKeys[KEYS_COUNT];
 };

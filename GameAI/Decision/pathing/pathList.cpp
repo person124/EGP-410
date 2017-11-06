@@ -87,7 +87,7 @@ Node& PathList::find(Node& node)
 	int pos = findPos(node);
 
 	if (pos == -1)
-		return Node();
+		return Node(); //TODO causing warning
 
 	return mNodes.at(pos);
 }

@@ -9,9 +9,8 @@
 
 Tile::Tile(bool solid)
 {
-	mSolid = solid;
 	mpAnimation = Game::pInstance->getAnimationManager()->get("tile");
-	mpAnimation->setFrame(mSolid);
+	setSolid(solid);
 }
 
 Tile::~Tile()
@@ -32,4 +31,5 @@ bool Tile::isSolid()
 void Tile::setSolid(bool value)
 {
 	mSolid = value;
+	mpAnimation->setFrame(mSolid);
 }

@@ -35,9 +35,11 @@ class Grid : public EventListener
 
 		//Setters
 		void setSolid(int pos, bool value);
+		void setSolid(int x, int y, bool value);
 
 		//Misc Functions
 		void handleEvent(const Event& theEvent);
+		void clearPaths();
 	private:
 		//USed for drawing the paths
 		void drawCircle(Node& node, PathUsed type);
@@ -46,21 +48,24 @@ class Grid : public EventListener
 		int mWidth, mHeight;
 		Tile** mpTiles;
 
-		Node* mStart;
-		GraphicsBuffer* mStartBuffer;
-		Node* mGoal;
-		GraphicsBuffer* mGoalBuffer;
+		//Edit mode bool
+		bool mEditMode = false;
+
+		Node* mpStart;
+		GraphicsBuffer* mpStartBuffer;
+		Node* mpGoal;
+		GraphicsBuffer* mpGoalBuffer;
 
 		//Color for draing paths
-		Color* mDijkstraColor;
-		Color* mAStarColor;
+		Color* mpDijkstraColor;
+		Color* mpAStarColor;
 
 		//Path holding variables
 		std::vector<Node> mDijkstraPath;
 		std::vector<Node> mAStarPath;
 
 		//Exists to be able to return NULL
-		Tile* mNullTile;
+		Tile* mpNullTile;
 };
 
 #endif

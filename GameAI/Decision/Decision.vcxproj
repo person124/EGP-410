@@ -29,7 +29,6 @@
     <ClCompile Include="graphics\font.cpp" />
     <ClCompile Include="graphics\graphicsBuffer.cpp" />
     <ClCompile Include="graphics\graphicsSystem.cpp" />
-    <ClCompile Include="graphics\hud.cpp" />
     <ClCompile Include="graphics\sprite.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="ioUtils.cpp" />
@@ -44,8 +43,11 @@
     <ClInclude Include="events\eventClick.h" />
     <ClInclude Include="events\eventDijkstra.h" />
     <ClInclude Include="events\eventListener.h" />
+    <ClInclude Include="events\eventLoad.h" />
     <ClInclude Include="events\eventQuit.h" />
+    <ClInclude Include="events\eventSave.h" />
     <ClInclude Include="events\eventSystem.h" />
+    <ClInclude Include="events\eventToggleEdit.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="globalConst.h" />
     <ClInclude Include="graphics\animation.h" />
@@ -55,7 +57,6 @@
     <ClInclude Include="graphics\graphicsBuffer.h" />
     <ClInclude Include="graphics\graphicsBufferManager.h" />
     <ClInclude Include="graphics\graphicsSystem.h" />
-    <ClInclude Include="graphics\hud.h" />
     <ClInclude Include="graphics\sprite.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />

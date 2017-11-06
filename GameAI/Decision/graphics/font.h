@@ -5,7 +5,7 @@
 
 #include <Trackable.h>
 
-class ALLEGRO_FONT;
+struct ALLEGRO_FONT;
 
 class Font : public Trackable
 {

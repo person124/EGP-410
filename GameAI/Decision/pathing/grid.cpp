@@ -10,6 +10,7 @@
 #include "events/eventSystem.h"
 #include "events/eventClick.h"
 #include "events/eventDijkstra.h"
+#include "events/eventToggleEdit.h"
 
 #include "pathing/pathing.h"
 #include "pathing/tile.h"
@@ -25,19 +26,20 @@ Grid::Grid()
 		mpTiles[i] = new Tile(false);
 	}
 
-	mNullTile = NULL;
+	mpNullTile = NULL;
 
 	gpEventSystem->addListener(EVENT_CLICK, this);
 	gpEventSystem->addListener(EVENT_DIJKSTRA, this);
+	gpEventSystem->addListener(EVENT_TOGGLE_EDIT, this);
 
-	mStart = new Node(-TILE_SIZE, -TILE_SIZE);
-	mGoal = new Node(-TILE_SIZE, -TILE_SIZE);
+	mpStart = new Node(-1, -1);
+	mpGoal = new Node(-1, -1);
 
-	mStartBuffer = Game::pInstance->getBufferManager()->get("start");
-	mGoalBuffer = Game::pInstance->getBufferManager()->get("goal");
+	mpStartBuffer = Game::pInstance->getBufferManager()->get("start");
+	mpGoalBuffer = Game::pInstance->getBufferManager()->get("goal");
 
-	mDijkstraColor = new Color(255, 0, 0);
-	mAStarColor = new Color(0, 119, 255);
+	mpDijkstraColor = new Color(255, 0, 0);
+	mpAStarColor = new Color(0, 119, 255);
 }
 
 Grid::~Grid()
@@ -46,11 +48,11 @@ Grid::~Grid()
 		delete mpTiles[i];
 	delete[] mpTiles;
 
-	delete mStart;
-	delete mGoal;
+	delete mpStart;
+	delete mpGoal;
 
-	delete mDijkstraColor;
-	delete mAStarColor;
+	delete mpDijkstraColor;
+	delete mpAStarColor;
 }
 
 void Grid::draw()
@@ -59,8 +61,8 @@ void Grid::draw()
 		for (int x = 0; x < mWidth; x++)
 			mpTiles[x + y * mWidth]->draw(x, y);
 
-	Game::pInstance->getGraphics()->draw(mStart->x * TILE_SIZE, mStart->y * TILE_SIZE, mStartBuffer);
-	Game::pInstance->getGraphics()->draw(mGoal->x * TILE_SIZE, mGoal->y * TILE_SIZE, mGoalBuffer);
+	Game::pInstance->getGraphics()->draw(mpStart->x * TILE_SIZE, mpStart->y * TILE_SIZE, mpStartBuffer);
+	Game::pInstance->getGraphics()->draw(mpGoal->x * TILE_SIZE, mpGoal->y * TILE_SIZE, mpGoalBuffer);
 
 	if (mDijkstraPath.size() > 0)
 	{
@@ -74,6 +76,9 @@ void Grid::draw()
 			drawCircle(mDijkstraPath[i], dijstra);
 		}
 	}
+
+	if (mEditMode)
+		Game::pInstance->getGraphics()->writeText(0, 0, *Game::pInstance->getFont(), *mpDijkstraColor, "EDIT MODE");
 }
 
 int Grid::getWidth()
@@ -94,7 +99,7 @@ int Grid::getSize()
 Tile* Grid::getTile(int pos)
 {
 	if (pos < 0 || pos >= getSize())
-		return mNullTile;
+		return mpNullTile;
 
 	return mpTiles[pos];
 }
@@ -102,7 +107,7 @@ Tile* Grid::getTile(int pos)
 Tile* Grid::getTile(int x, int y)
 {
 	if (x < 0 || y < 0 || x >= mWidth || y >= mHeight)
-		return mNullTile;
+		return mpNullTile;
 	return getTile(x + y * mWidth);
 }
 
@@ -114,12 +119,22 @@ bool Grid::isSolid(int pos)
 
 bool Grid::isSolid(int x, int y)
 {
-	return isSolid(x + y * mWidth);
+	Tile* t = getTile(x, y);
+	return t == NULL || t->isSolid();
 }
 
 void Grid::setSolid(int pos, bool value)
 {
-	getTile(pos)->setSolid(value);
+	Tile* t = getTile(pos);
+	if (t != NULL)
+		t->setSolid(value);
+}
+
+void Grid::setSolid(int x, int y, bool value)
+{
+	Tile* t = getTile(x, y);
+	if (t != NULL)
+		t->setSolid(value);
 }
 
 void Grid::handleEvent(const Event& theEvent)
@@ -131,25 +146,59 @@ void Grid::handleEvent(const Event& theEvent)
 		int tileX = e.getX() / TILE_SIZE;
 		int tileY = e.getY() / TILE_SIZE;
 
-		if (isSolid(tileX, tileY))
-			return;
-
-		if (e.getButton() == left_mouse_button)
+		//If not in edit mode, place start or end
+		if (!mEditMode)
 		{
-			mStart->x = tileX;
-			mStart->y = tileY;
+			if (isSolid(tileX, tileY))
+				return;
+
+			if (e.getButton() == left_mouse_button)
+			{
+				if (mpGoal->x == tileX && mpGoal->y == tileY)
+					return;
+
+				mpStart->x = tileX;
+				mpStart->y = tileY;
+			}
+			else
+			{
+				if (mpStart->x == tileX && mpStart->y == tileY)
+					return;
+
+				mpGoal->x = tileX;
+				mpGoal->y = tileY;
+			}
 		}
 		else
 		{
-			mGoal->x = tileX;
-			mGoal->y = tileY;
+			//Otherwise, place the tile
+			setSolid(tileX, tileY, e.getButton() == left_mouse_button);
+			clearPaths();
+			
+			if (mpGoal->x == tileX && mpGoal->y == tileY)
+				mpGoal->x = -1;
+			if (mpStart->x == tileX && mpStart->y == tileY)
+				mpStart->x = -1;
 		}
 	}
 	else if (theEvent.getType() == EVENT_DIJKSTRA)
 	{
-		//Do Dijkstra!!!
-		mDijkstraPath = pathing::dijkstra(this, mStart, mGoal);
+		if (mpStart->x == -1 || mpGoal->x == -1)
+			return;
+		mDijkstraPath = pathing::dijkstra(this, mpStart, mpGoal);
 	}
+	else if (theEvent.getType() == EVENT_TOGGLE_EDIT)
+	{
+		mEditMode = !mEditMode;
+		if (mEditMode)
+			clearPaths();
+	}
+}
+
+void Grid::clearPaths()
+{
+	mDijkstraPath.clear();
+	mAStarPath.clear();
 }
 
 void Grid::drawCircle(Node& node, PathUsed type)
@@ -157,7 +206,7 @@ void Grid::drawCircle(Node& node, PathUsed type)
 	int x = node.x * TILE_SIZE + TILE_HALF;
 	int y = node.y * TILE_SIZE + TILE_HALF;
 	
-	Game::pInstance->getGraphics()->drawCircle(x, y, 2, *(type == dijstra ? mDijkstraColor : mAStarColor));
+	Game::pInstance->getGraphics()->drawCircle(x, y, 2, *(type == dijstra ? mpDijkstraColor : mpAStarColor));
 }
 
 void Grid::drawLine(Node& start, Node& end, PathUsed type)
@@ -168,5 +217,5 @@ void Grid::drawLine(Node& start, Node& end, PathUsed type)
 	int x2 = end.x * TILE_SIZE + TILE_HALF;
 	int y2 = end.y * TILE_SIZE + TILE_HALF;
 
-	Game::pInstance->getGraphics()->drawLine(x1, y1, x2, y2, *(type == dijstra ? mDijkstraColor : mAStarColor));
+	Game::pInstance->getGraphics()->drawLine(x1, y1, x2, y2, *(type == dijstra ? mpDijkstraColor : mpAStarColor));
 }

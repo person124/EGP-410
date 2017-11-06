@@ -10,8 +10,8 @@ class GraphicsSystem;
 class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
-class HUD;
 class Grid;
+class Font;
 
 class Game : public EventListener
 {
@@ -33,7 +33,8 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
-	
+
+		Font* getFont();
 	private:
 		void update(float dt);
 		void draw();
@@ -44,11 +45,11 @@ class Game : public EventListener
 		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
-		HUD* mpHud;
 		Grid* mpGrid;
 	
 		//Things to do with the actuall game:
 		float mFPS;
+		Font* mpFont;
 };
 
 #endif

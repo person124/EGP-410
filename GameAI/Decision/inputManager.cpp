@@ -4,12 +4,20 @@
 #include "events/eventQuit.h"
 #include "events/eventClick.h"
 #include "events/eventDijkstra.h"
+#include "events/eventToggleEdit.h"
+#include "events/eventSave.h"
+#include "events/eventLoad.h"
 
 InputManager::InputManager()
 {
 	mKeys[KEYS_QUIT] = KeyInput(ALLEGRO_KEY_ESCAPE, new EventQuit());
 
 	mKeys[KEYS_DIJKSTRA] = KeyInput(ALLEGRO_KEY_D, new EventDijkstra());
+
+	mKeys[KEYS_TOGGLE_EDIT] = KeyInput(ALLEGRO_KEY_E, new EventToggleEdit());
+
+	mKeys[KEYS_SAVE] = KeyInput(ALLEGRO_KEY_Q, new EventSave());
+	mKeys[KEYS_LOAD] = KeyInput(ALLEGRO_KEY_P, new EventLoad());
 }
 
 InputManager::~InputManager()
@@ -40,22 +48,16 @@ void InputManager::update()
 	//When either mouse button is pressed
 	if (mMouseState.buttons & (1 | 2))
 	{
-		if (!mMousePressed)
-		{
-			mMousePressed = true;
-			MouseButton state = (mMouseState.buttons & 1) ? left_mouse_button : right_mouse_button;
-			gpEventSystem->fireEvent(EventClick(mMouseState.x, mMouseState.y, state));
-		}
+		MouseButton state = (mMouseState.buttons & 1) ? left_mouse_button : right_mouse_button;
+		gpEventSystem->fireEvent(EventClick(mMouseState.x, mMouseState.y, state));
 	}
-	else
-		mMousePressed = false;
 
 	//Main Loop for Checking Keys
 	for (int i = 0; i < KEYS_COUNT; i++)
 	{
 		if (al_key_down(&mKeyState, mKeys[i].mAllegroKey))
 		{
-			if (!mKeys[i].mPressed)
+			if (mKeys[i].mRepeating || !mKeys[i].mPressed)
 				gpEventSystem->fireEvent(*mKeys[i].mEvent);
 			mKeys[i].mPressed = true;
 		}

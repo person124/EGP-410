@@ -57,9 +57,6 @@
     <ClCompile Include="graphics\graphicsSystem.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\hud.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\sprite.cpp">
       <Filter>Source Files\graphics</Filter>
     </ClCompile>
@@ -119,9 +116,6 @@
     <ClInclude Include="graphics\graphicsSystem.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\hud.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\sprite.h">
       <Filter>Header Files\graphics</Filter>
     </ClInclude>
@@ -162,6 +156,15 @@
       <Filter>Header Files\events</Filter>
     </ClInclude>
     <ClInclude Include="events\eventDijkstra.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventToggleEdit.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventSave.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventLoad.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
   </ItemGroup>

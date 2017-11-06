@@ -11,7 +11,7 @@ namespace IOUtils
 	void loadAnimations(const std::string& path);
 
 	void saveGrid(const std::string& path, Grid* grid);
-	Grid* loadGrid(const std::string& path);
+	void loadGrid(const std::string& path, Grid* grid);
 
 	void errorReport(const std::string& name);
 }

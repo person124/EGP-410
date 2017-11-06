@@ -91,23 +91,19 @@ void IOUtils::saveGrid(const std::string& path, Grid* grid)
 	}
 
 	for (int i = 0; i < grid->getSize(); i++)
-		file << grid->isSolid(i);
+		file << grid->isSolid(i) << ' ';
 
 	file.close();
 }
 
-Grid* IOUtils::loadGrid(const std::string& path)
+void IOUtils::loadGrid(const std::string& path, Grid* grid)
 {
-	Grid* grid = NULL;
-
 	std::ifstream file;
 	if (!readFile(file, path))
 	{
 		errorReport(path);
-		return grid;
+		return;
 	}
-
-	grid = new Grid();
 
 	bool value;
 	for (int i = 0; i < grid->getSize(); i++)
@@ -117,8 +113,6 @@ Grid* IOUtils::loadGrid(const std::string& path)
 	}
 
 	file.close();
-
-	return grid;
 }
 
 void IOUtils::errorReport(const std::string& name)
