@@ -3,49 +3,7 @@
 #include "pathing/grid.h"
 #include "pathing/tile.h"
 
-Node::Node()
-{
-	dummy = true;
-}
-
-Node::Node(int xPos, int yPos)
-{
-	dummy = false;
-
-	x = xPos;
-	y = yPos;
-	cost = 0;
-	estimatedCost = 0;
-}
-
-Node::Node(const Node& node)
-{
-
-	dummy = node.dummy;
-
-	x = node.x;
-	y = node.y;
-	cost = node.cost;
-	estimatedCost = node.estimatedCost;
-	connectX = node.connectX;
-	connectY = node.connectY;
-}
-
-void Node::connect(Node& node)
-{
-	connectX = node.x;
-	connectY = node.y;
-}
-
-bool operator==(Node& left, Node& right)
-{
-	return left.x == right.x && left.y == right.y;
-}
-
-bool operator!=(Node& left, Node& right)
-{
-	return left.x != right.x || left.y != right.y;
-}
+Node PathList::dummyNode = Node();
 
 PathList::PathList(Grid* grid)
 {
@@ -77,21 +35,6 @@ bool PathList::contains(Node& node)
 			return true;
 	}
 	return false;
-}
-
-int PathList::size()
-{
-	return mNodes.size();
-}
-
-Node& PathList::find(Node& node)
-{
-	int pos = findPos(node);
-
-	if (pos == -1)
-		return Node(); //TODO causing warning
-
-	return mNodes.at(pos);
 }
 
 Node& PathList::smallest()
@@ -128,6 +71,22 @@ Node& PathList::smallestEstimate()
 	return mNodes.at(pos);
 }
 
+Node& PathList::find(Node& node)
+{
+	int pos = findPos(node);
+
+	if (pos == -1)
+		return PathList::dummyNode;
+
+	return mNodes.at(pos);
+}
+
+Node& PathList::getNode(int x, int y)
+{
+	Node n = Node(x, y);
+	return find(n);
+}
+
 Node* PathList::connections(Node& node)
 {
 	Node* nodes = new Node[4];
@@ -151,10 +110,9 @@ Node* PathList::connections(Node& node)
 	return nodes;
 }
 
-Node& PathList::getNode(int x, int y)
+int PathList::size()
 {
-	Node n = Node(x, y);
-	return find(n);
+	return mNodes.size();
 }
 
 int PathList::findPos(Node& node)

@@ -1,7 +1,7 @@
 #ifndef PATHING_H
 #define PATHING_H
 
-#include "pathing/pathList.h"
+#include "pathing/node.h"
 
 #include <vector>
 

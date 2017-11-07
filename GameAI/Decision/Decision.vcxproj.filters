@@ -87,6 +87,9 @@
     <ClCompile Include="pathing\pathing.cpp">
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
+    <ClCompile Include="pathing\node.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="events\eventAStar.h">
       <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="pathing\node.h">
+      <Filter>Header Files\pathing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,53 +1,37 @@
 #ifndef PATH_LIST_H
 #define PATH_LIST_H
 
+#include "pathing/node.h"
+
 #include <vector>
 
 #include <Trackable.h>
 
 class Grid;
 
-struct Node
-{
-	//Constructors
-	Node();
-	Node(int xPos, int yPos);
-	Node(const Node& node);
-
-	//Misc Function
-	void connect(Node& node);
-
-	//Members
-	bool dummy;
-	int cost, estimatedCost;
-	int x, y;
-	int connectX, connectY;
-};
-
-bool operator==(Node& left, Node& right);
-bool operator!=(Node& left, Node& right);
-
 class PathList : public Trackable
 {
+	public:
+		static Node dummyNode;
+
 	public:
 		PathList(Grid* grid);
 		~PathList();
 
+		//Contents Functions
 		void add(Node node);
-
 		void remove(Node node);
-
 		bool contains(Node& node);
 
-		int size();
-
-		//TODO reorder
-		Node& find(Node& node);
+		//Funcs that return a node
 		Node& smallest();
 		Node& smallestEstimate();
+		Node& find(Node& node);
+		Node& getNode(int x, int y);
 		Node* connections(Node& node);
 
-		Node& getNode(int x, int y);
+		//Misc
+		int size();
 	private:
 		int findPos(Node& node);
 

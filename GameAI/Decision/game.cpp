@@ -62,9 +62,9 @@ bool Game::initGame(int width, int height)
 	mpAnimationManager = new AnimationManager();
 
 	// Game assets
-	IOUtils::loadGraphicsBuffers("assets/graphics_buffers.dat");
-	IOUtils::loadAnimations("assets/animations.dat");
-	mpFont = new Font(40, "assets/cour.ttf");
+	IOUtils::loadGraphicsBuffers(PATH_GRAPHICS_BUFFERS);
+	IOUtils::loadAnimations(PATH_ANIMATIONS);
+	mpFont = new Font(40, PATH_FONT);
 
 	mFPS = 0.0f;
 
@@ -83,10 +83,8 @@ void Game::destroy()
 
 	delete mpInputManager;
 
-	//TODO reorganize
 	delete mpBufferManager;
 	delete mpAnimationManager;
-
 	delete mpFont;
 
 	delete mpGrid;
@@ -153,9 +151,9 @@ void Game::handleEvent(const Event& theEvent)
 		mRunning = false;
 	}
 	else if (theEvent.getType() == EVENT_SAVE)
-		IOUtils::saveGrid(SAVE_PATH, mpGrid);
+		IOUtils::saveGrid(PATH_GRID_SAVE, mpGrid);
 	else if (theEvent.getType() == EVENT_LOAD)
-		IOUtils::loadGrid(SAVE_PATH, mpGrid);
+		IOUtils::loadGrid(PATH_GRID_SAVE, mpGrid);
 }
 
 GraphicsBufferManager* Game::getBufferManager()

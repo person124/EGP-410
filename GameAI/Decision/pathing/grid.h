@@ -2,12 +2,13 @@
 #define GRID_H
 
 #include "events/eventListener.h"
-#include "pathing/pathList.h"
+#include "pathing/node.h"
+
+#include <vector>
 
 class Tile;
 class GraphicsBuffer;
 class Color;
-struct Node;
 
 enum PathUsed
 {

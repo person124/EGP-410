@@ -33,7 +33,6 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
-
 		Font* getFont();
 	private:
 		void update(float dt);

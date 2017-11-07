@@ -12,6 +12,8 @@ int pathing::heurDistance(Node* start, Node* goal)
 	return (int) sqrtf(x * x - y * y);
 }
 
+#include <iostream>
+
 std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic heur)
 {
 	PathList open = PathList(grid);
@@ -26,9 +28,6 @@ std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic 
 	while (open.size() > 0)
 	{
 		current = open.smallestEstimate();
-
-		if (current == *goal)
-			break;
 
 		Node* connections = open.connections(current);
 		for (int i = 0; i < 4; i++)
@@ -74,6 +73,8 @@ std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic 
 
 		open.remove(current);
 		closed.add(current);
+		if (current == *goal)
+			break;
 	}
 
 	std::vector<Node> path;
