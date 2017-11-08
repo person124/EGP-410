@@ -9,6 +9,7 @@
 class Tile;
 class GraphicsBuffer;
 class Color;
+class Timer;
 
 enum PathUsed
 {
@@ -64,6 +65,9 @@ class Grid : public EventListener
 		//Path holding variables
 		std::vector<Node> mDijkstraPath;
 		std::vector<Node> mAStarPath;
+
+		//Timer to calculate times
+		Timer* mpTimer;
 
 		//Exists to be able to return NULL
 		Tile* mpNullTile;

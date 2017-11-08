@@ -64,7 +64,7 @@ bool Game::initGame(int width, int height)
 	// Game assets
 	IOUtils::loadGraphicsBuffers(PATH_GRAPHICS_BUFFERS);
 	IOUtils::loadAnimations(PATH_ANIMATIONS);
-	mpFont = new Font(40, PATH_FONT);
+	mpFont = new Font(FONT_SIZE, PATH_FONT);
 
 	mFPS = 0.0f;
 

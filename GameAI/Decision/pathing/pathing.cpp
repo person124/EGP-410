@@ -29,6 +29,9 @@ std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic 
 	{
 		current = open.smallestEstimate();
 
+		if (current == *goal)
+			break;
+
 		Node* connections = open.connections(current);
 		for (int i = 0; i < 4; i++)
 		{
@@ -73,8 +76,6 @@ std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic 
 
 		open.remove(current);
 		closed.add(current);
-		if (current == *goal)
-			break;
 	}
 
 	std::vector<Node> path;
@@ -113,8 +114,6 @@ std::vector<Node> pathing::dijkstra(Grid* grid, Node* start, Node* goal)
 	while (open.size() > 0)
 	{
 		current = open.smallest();
-		if (current == *goal)
-			break;
 
 		Node* connections = open.connections(current);
 		for (int i = 0; i < 4; i++)
@@ -147,6 +146,9 @@ std::vector<Node> pathing::dijkstra(Grid* grid, Node* start, Node* goal)
 
 		open.remove(current);
 		closed.add(current);
+
+		if (current == *goal)
+			break;
 	}
 
 	std::vector<Node> path;

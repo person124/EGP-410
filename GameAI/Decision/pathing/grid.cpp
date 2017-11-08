@@ -15,6 +15,8 @@
 #include "pathing/pathing.h"
 #include "pathing/tile.h"
 
+#include <Timer.h>
+
 Grid::Grid()
 {
 	mWidth = WIDTH / TILE_SIZE;
@@ -41,6 +43,8 @@ Grid::Grid()
 
 	mpDijkstraColor = new Color(255, 0, 0);
 	mpAStarColor = new Color(0, 119, 255);
+
+	mpTimer = new Timer();
 }
 
 Grid::~Grid()
@@ -54,6 +58,8 @@ Grid::~Grid()
 
 	delete mpDijkstraColor;
 	delete mpAStarColor;
+
+	delete mpTimer;
 }
 
 void Grid::draw()
@@ -199,13 +205,23 @@ void Grid::handleEvent(const Event& theEvent)
 	{
 		if (mpStart->x == -1 || mpGoal->x == -1)
 			return;
+
+		mpTimer->start();
 		mDijkstraPath = pathing::dijkstra(this, mpStart, mpGoal);
+		mpTimer->stop();
+
+		printf("Dijkstra took %fms, and %i nodes\n", mpTimer->getElapsedTime(), mDijkstraPath.size());
 	}
 	else if (theEvent.getType() == EVENT_A_STAR)
 	{
 		if (mpStart->x == -1 || mpGoal->x == -1)
 			return;
+
+		mpTimer->start();
 		mAStarPath = pathing::aStar(this, mpStart, mpGoal, pathing::heurDistance);
+		mpTimer->stop();
+
+		printf("A*       took %fms, and %i nodes\n", mpTimer->getElapsedTime(), mAStarPath.size());
 	}
 	else if (theEvent.getType() == EVENT_TOGGLE_EDIT)
 	{
