@@ -109,7 +109,6 @@ void Game::mainLoop()
 
 		double uTime = pTracker->getElapsedTime("UpdateTime");
 		update(uTime);
-		//cout << "Update Time: " << uTime << '\n';
 		pTracker->clearTracker("UpdateTime");
 
 		draw();

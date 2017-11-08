@@ -5,9 +5,9 @@
 
 class EventLoad : public Event
 {
-public:
-	EventLoad() :Event(EVENT_LOAD) {};
-	~EventLoad() {};
+	public:
+		EventLoad() :Event(EVENT_LOAD) {};
+		~EventLoad() {};
 };
 
 #endif

@@ -7,7 +7,7 @@ Node PathList::dummyNode = Node();
 
 PathList::PathList(Grid* grid)
 {
-	mGrid = grid;
+	mpGrid = grid;
 }
 
 PathList::~PathList()
@@ -91,19 +91,19 @@ Node* PathList::connections(Node& node)
 {
 	Node* nodes = new Node[4];
 
-	Tile* t = mGrid->getTile(node.x + 1, node.y); // Right
+	Tile* t = mpGrid->getTile(node.x + 1, node.y); // Right
 	if (t != NULL && !t->isSolid())
 		nodes[0] = Node(node.x + 1, node.y);
 
-	t = mGrid->getTile(node.x - 1, node.y); // Left
+	t = mpGrid->getTile(node.x - 1, node.y); // Left
 	if (t != NULL && !t->isSolid())
 		nodes[1] = Node(node.x - 1, node.y);
 
-	t = mGrid->getTile(node.x, node.y + 1); // Up
+	t = mpGrid->getTile(node.x, node.y + 1); // Up
 	if (t != NULL && !t->isSolid())
 		nodes[2] = Node(node.x, node.y + 1);
 
-	t = mGrid->getTile(node.x, node.y - 1); // Down
+	t = mpGrid->getTile(node.x, node.y - 1); // Down
 	if (t != NULL && !t->isSolid())
 		nodes[3] = Node(node.x, node.y - 1);
 

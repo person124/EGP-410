@@ -2,6 +2,7 @@
 #define ANIMATION_MANAGER_H
 
 #include "stringManager.h"
+
 #include "graphics/animation.h"
 
 #include <string>

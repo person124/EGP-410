@@ -35,7 +35,7 @@ class PathList : public Trackable
 	private:
 		int findPos(Node& node);
 
-		Grid* mGrid;
+		Grid* mpGrid;
 		std::vector<Node> mNodes;
 };
 

@@ -12,7 +12,7 @@ GraphicsBuffer::GraphicsBuffer(int width, int height, Color& color)
 	mFilePath = "";
 
 	al_set_target_bitmap(mpBitmap);
-	al_draw_filled_rectangle(0, 0, width, height, color.mColor);
+	al_draw_filled_rectangle(0, 0, width, height, *color.mColor);
 	al_set_target_bitmap(al_get_backbuffer(al_get_current_display()));
 
 	useDestroy = true;

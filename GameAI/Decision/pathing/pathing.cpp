@@ -7,12 +7,10 @@
 
 int pathing::heurDistance(Node* start, Node* goal)
 {
-	int x = (start->x - goal->x);
-	int y = (start->y - goal->y);
+	float x = (float) (start->x - goal->x);
+	float y = (float) (start->y - goal->y);
 	return (int) sqrtf(x * x - y * y);
 }
-
-#include <iostream>
 
 std::vector<Node> pathing::aStar(Grid* grid, Node* start, Node* goal, Heuristic heur)
 {

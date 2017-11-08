@@ -2,6 +2,7 @@
 #define GRID_H
 
 #include "events/eventListener.h"
+
 #include "pathing/node.h"
 
 #include <vector>

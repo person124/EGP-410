@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_color.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
@@ -111,7 +112,7 @@ void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite& sprite, 
 
 void GraphicsSystem::writeText(int x, int y, const Font& font, const Color& color, const std::string& text)
 {
-    al_draw_text(font.mpFont, color.mColor, x, y, ALLEGRO_ALIGN_LEFT, text.c_str());
+    al_draw_text(font.mpFont, *color.mColor, x, y, ALLEGRO_ALIGN_LEFT, text.c_str());
 }
 
 void GraphicsSystem::writeText(GraphicsBuffer* buffer, int x, int y,
@@ -126,12 +127,12 @@ void GraphicsSystem::writeText(GraphicsBuffer* buffer, int x, int y,
 
 void GraphicsSystem::drawCircle(int x, int y, int radius, const Color& color)
 {
-	al_draw_filled_circle(x, y, radius, color.mColor);
+	al_draw_filled_circle(x, y, radius, *color.mColor);
 }
 
 void GraphicsSystem::drawLine(int x1, int y1, int x2, int y2, const Color& color)
 {
-	al_draw_line(x1, y1, x2, y2, color.mColor, 2);
+	al_draw_line(x1, y1, x2, y2, *color.mColor, 2);
 }
 
 void GraphicsSystem::flip()

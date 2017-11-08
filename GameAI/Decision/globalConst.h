@@ -1,8 +1,8 @@
 #ifndef GLOBAL_CONST_H
 #define GLOBAL_CONST_H
 
-#define WIDTH 800
-#define HEIGHT 800
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 
 #define TILE_SIZE 32
 #define TILE_HALF TILE_SIZE / 2

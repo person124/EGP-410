@@ -1,8 +1,6 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include <allegro5/allegro_color.h>
-
 #include <Trackable.h>
 
 struct ALLEGRO_COLOR;
@@ -19,7 +17,7 @@ class Color : public Trackable
 		void setAlpha(float a);
 		void setAlpha(int a);
 	private:
-		ALLEGRO_COLOR mColor;
+		ALLEGRO_COLOR* mColor;
 };
 
 #endif

@@ -28,7 +28,7 @@ InputManager::~InputManager()
 	al_uninstall_mouse();
 
 	for (int i = 0; i < KEYS_COUNT; i++)
-		delete mKeys[i].mEvent;
+		delete mKeys[i].theEvent;
 }
 
 bool InputManager::init()
@@ -57,13 +57,13 @@ void InputManager::update()
 	//Main Loop for Checking Keys
 	for (int i = 0; i < KEYS_COUNT; i++)
 	{
-		if (al_key_down(&mKeyState, mKeys[i].mAllegroKey))
+		if (al_key_down(&mKeyState, mKeys[i].allegroKey))
 		{
-			if (mKeys[i].mRepeating || !mKeys[i].mPressed)
-				gpEventSystem->fireEvent(*mKeys[i].mEvent);
-			mKeys[i].mPressed = true;
+			if (mKeys[i].repeating || !mKeys[i].pressed)
+				gpEventSystem->fireEvent(*mKeys[i].theEvent);
+			mKeys[i].pressed = true;
 		}
 		else
-			mKeys[i].mPressed = false;
+			mKeys[i].pressed = false;
 	}
 }

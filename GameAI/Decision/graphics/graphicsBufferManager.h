@@ -2,10 +2,9 @@
 #define GRAPHICS_BUFFER_MANAGER_H
 
 #include "stringManager.h"
+
 #include "graphics/graphicsBuffer.h"
 
-class GraphicsBufferManager : public StringManager<GraphicsBuffer>
-{
-};
+class GraphicsBufferManager : public StringManager<GraphicsBuffer> {};
 
 #endif

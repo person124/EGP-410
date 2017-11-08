@@ -20,7 +20,7 @@ class EventSystem:public Trackable
 		void removeListener(EventType type, EventListener* pListener);
 		void removeListenerFromAllEvents(EventListener* pListener);
 	private:
-		static EventSystem* msInstance;
+		static EventSystem* mpsInstance;
 		std::multimap<EventType, EventListener*> mListenerMap;
 
 		void dispatchAllEvents(const Event& theEvent);

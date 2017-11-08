@@ -21,20 +21,20 @@ enum Keys
 struct KeyInput : public Trackable
 {
 	KeyInput() {};
-	KeyInput(int allegroKey, Event* theEvent, bool repeat = false)
+	KeyInput(int allegroKeyCode, Event* e, bool repeat = false)
 	{
-		mAllegroKey = allegroKey;
-		mEvent = theEvent;
-		mRepeating = repeat;
+		allegroKey = allegroKeyCode;
+		theEvent = e;
+		repeating = repeat;
 
-		mPressed = false;
+		pressed = false;
 	}
 	~KeyInput() {};
 
-	int mAllegroKey;
-	Event* mEvent;
-	bool mPressed;
-	bool mRepeating;
+	int allegroKey;
+	Event* theEvent;
+	bool pressed;
+	bool repeating;
 };
 
 class InputManager : public Trackable

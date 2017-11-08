@@ -19,8 +19,8 @@
 
 Grid::Grid()
 {
-	mWidth = WIDTH / TILE_SIZE;
-	mHeight = HEIGHT / TILE_SIZE;
+	mWidth = WINDOW_WIDTH / TILE_SIZE;
+	mHeight = WINDOW_HEIGHT / TILE_SIZE;
 
 	mpTiles = new Tile*[mWidth * mHeight];
 	for (int i = 0; i < getSize(); i++)
