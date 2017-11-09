@@ -1,0 +1,2 @@
+<animation name> <buffer name> <animation time> <should loop, 1 true, 0 false> <width> <height> <x count> <y count> <x offset> <y offset>
+tile tile 0 0 16 16 2 1 0 0
