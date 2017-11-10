@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include <Trackable.h>
+#include "utils/trackable.h"
 
 struct ALLEGRO_COLOR;
 

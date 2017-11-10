@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);..\..\External Libs\Allegro5\include;..\..\DeanLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);..\..\External Libs\Allegro5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>allegro-5.0.10-monolith-md.lib;DeanLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\DeanLib\Debug;..\..\External Libs\Allegro5\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>allegro-5.0.10-monolith-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\External Libs\Allegro5\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -146,6 +146,9 @@
     <ClInclude Include="pathing\pathList.h" />
     <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="stringManager.h" />
+    <ClInclude Include="utils\memoryTracker.h" />
+    <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="utils\trackable.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="events\event.cpp" />
@@ -167,6 +170,9 @@
     <ClCompile Include="pathing\pathing.cpp" />
     <ClCompile Include="pathing\pathList.cpp" />
     <ClCompile Include="pathing\tile.cpp" />
+    <ClCompile Include="utils\memoryTracker.cpp" />
+    <ClCompile Include="utils\timer.cpp" />
+    <ClCompile Include="utils\trackable.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

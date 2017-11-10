@@ -1,7 +1,7 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include <Trackable.h>
+#include "utils/trackable.h"
 
 class GraphicsBuffer;
 

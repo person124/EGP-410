@@ -4,6 +4,8 @@
 #include "inputManager.h"
 #include "globalConst.h"
 
+#include "utils/timer.h"
+
 #include "events/eventSystem.h"
 #include "events/eventQuit.h"
 
@@ -98,30 +100,30 @@ void Game::destroy()
 
 void Game::mainLoop()
 {
-	PerformanceTracker* pTracker = new PerformanceTracker();
-	Timer* pTimer = new Timer();
+	Timer* updateTimer = new Timer();
+	Timer* FPSTimer = new Timer();
 	mRunning = true;
 
-	pTracker->startTracking("UpdateTime");
+	updateTimer->start();
 	while (mRunning)
 	{
-		pTimer->start();
+		FPSTimer->start();
 
-		double uTime = pTracker->getElapsedTime("UpdateTime");
+		double uTime = updateTimer->getElapsedTime();
 		update(uTime);
-		pTracker->clearTracker("UpdateTime");
+		updateTimer->start();
 
 		draw();
 
-		pTimer->sleepUntilElapsed(FPS);
-		pTimer->stop();
-		mFPS = pTimer->getElapsedTime() * UPStoFPS;
+		FPSTimer->sleepUntilElapsed(FPS);
+		FPSTimer->stop();
+		mFPS = FPSTimer->getElapsedTime() * UPStoFPS;
 	}
 
-	pTracker->stopTracking("UpdateTime");
+	updateTimer->stop();
 
-	delete pTracker;
-	delete pTimer;
+	delete updateTimer;
+	delete FPSTimer;
 }
 
 void Game::update(float dt)

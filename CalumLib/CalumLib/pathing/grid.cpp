@@ -3,6 +3,8 @@
 #include "globalConst.h"
 #include "game.h"
 
+#include "utils/timer.h"
+
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
 #include "graphics/color.h"
@@ -14,8 +16,6 @@
 
 #include "pathing/pathing.h"
 #include "pathing/tile.h"
-
-#include <Timer.h>
 
 Grid::Grid()
 {

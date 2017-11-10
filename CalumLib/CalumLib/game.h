@@ -3,8 +3,7 @@
 
 #include "events/eventListener.h"
 
-#include <PerformanceTracker.h>
-#include <Trackable.h>
+#include "utils/trackable.h"
 
 class GraphicsSystem;
 class InputManager;

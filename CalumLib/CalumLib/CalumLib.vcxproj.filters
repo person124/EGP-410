@@ -31,6 +31,12 @@
     <Filter Include="Source Files\pathing">
       <UniqueIdentifier>{7fcffe58-430c-4eb0-8986-df260dd77243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{acf8cafa-04e3-4a89-846a-995b3a0d7f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{239c2187-3042-4293-b8e0-3ec95979e1e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -117,6 +123,15 @@
     <ClInclude Include="pathing\tile.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
+    <ClInclude Include="utils\trackable.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\memoryTracker.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\timer.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -175,6 +190,15 @@
     </ClCompile>
     <ClCompile Include="pathing\tile.cpp">
       <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\trackable.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\memoryTracker.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\timer.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

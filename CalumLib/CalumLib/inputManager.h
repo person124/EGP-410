@@ -5,7 +5,7 @@
 
 #include <allegro5/allegro.h>
 
-#include <Trackable.h>
+#include "utils/trackable.h"
 
 enum Keys
 {

@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include <MemoryTracker.h>
+#include "utils/memoryTracker.h"
 
 int main()
 {
@@ -22,7 +22,7 @@ int main()
 
 	delete gpEventSystem;
 
-	gMemoryTracker.reportAllocations(std::cout);
+	gMemoryTracker.reportPointers(std::cout);
 	system("pause");
 
 	return 0;
