@@ -1,19 +1,19 @@
 #include "game.h"
 
-#include "events/eventSystem.h"
+#include "globalConst.h"
 
-#include <iostream>
+#include "events/eventSystem.h"
 
 #include "utils/memoryTracker.h"
 
+#include <iostream>
+
 int main()
 {
-	const int WIDTH = 800, HEIGHT = 800;
-
 	gpEventSystem = new EventSystem();
 	Game::init();
 
-	if (Game::pInstance->initGame(WIDTH, HEIGHT))
+	if (Game::pInstance->initGame(WINDOW_WIDTH, WINDOW_HEIGHT))
 	{
 		Game::pInstance->mainLoop();
 	}

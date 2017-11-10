@@ -1,95 +1,56 @@
 #include "timer.h"
 
+#include <ctime>
+
 Timer::Timer()
 {
-	mElapsedTime = 0.0;
-	mPaused = true;
-	mFactor = 1.0f;
-	mLastFactor = 1.0f;
+	mpStart = new clock_t;
+	mpEnd = new clock_t;
 
-	mTimerFrequency = new LARGE_INTEGER;
-	QueryPerformanceFrequency(mTimerFrequency);
-
-	mStartTime = new LARGE_INTEGER;
-	mStartTime->QuadPart = 0;
-
-	mEndTime = new LARGE_INTEGER;
-	mEndTime->QuadPart = 0;
+	*mpStart = 0;
+	*mpEnd = 0;
 }
 
 Timer::~Timer()
 {
-	delete mTimerFrequency;
-	delete mStartTime;
-	delete mEndTime;
+	delete mpStart;
+	delete mpEnd;
 }
 
 void Timer::start()
 {
-	QueryPerformanceCounter(mStartTime);
-
-	mEndTime->QuadPart = 0;
-
-	mElapsedTime = 0.0;
-
-	pause(false);
+	*mpStart = clock();
+	*mpEnd = 0;
 }
 
 void Timer::stop()
 {
-	QueryPerformanceCounter(mEndTime);
-	mElapsedTime = calcDifferenceInMS(mStartTime, mEndTime);
-}
-
-void Timer::pause(bool shouldPause)
-{
-	if (shouldPause && !mPaused)
-	{
-		mPaused = true;
-		QueryPerformanceCounter(mEndTime);
-		mElapsedTime += calcDifferenceInMS(mStartTime, mEndTime);
-	}
-	else if (!shouldPause && mPaused)
-	{
-		mPaused = false;
-		QueryPerformanceCounter(mStartTime);
-	}
+	*mpEnd = clock();
 }
 
 double Timer::getElapsedTime() const
 {
-	if (mEndTime->QuadPart != 0)
-		return mElapsedTime;
-	else
-	{
-		LARGE_INTEGER currentTime;
-		QueryPerformanceCounter(&currentTime);
-		return calcDifferenceInMS(mStartTime, &currentTime);
-	}
+	if (mpEnd != 0)
+		return *mpEnd - *mpStart;
+
+	clock_t current;
+	current = clock();
+	return current - *mpStart;
 }
 
 void Timer::sleepUntilElapsed(double ms)
 {
-	LARGE_INTEGER currentTime, lastTime;
-	QueryPerformanceCounter(&currentTime);
+	clock_t current, lastTime;
+	current = clock();
 
-	double timeToSleep = ms - calcDifferenceInMS(&lastTime, &currentTime);
+	double timeToSleep = ms;
 	
 	while (timeToSleep > 0.0)
 	{
-		lastTime = currentTime;
-		QueryPerformanceCounter(&currentTime);
-		double timeElapsed = calcDifferenceInMS(&lastTime, &currentTime);
+		lastTime = current;
+		current = clock();
+
+		double timeElapsed = current - lastTime;
 		timeToSleep -= timeElapsed;
-
-		if (timeToSleep > 10.0)
-			Sleep(10);
 	}
-}
-
-double Timer::calcDifferenceInMS(LARGE_INTEGER* from, LARGE_INTEGER* to) const
-{
-	double difference = (double) (to->QuadPart - from->QuadPart) / (double) mTimerFrequency->QuadPart;
-	difference *= mFactor;
-	return difference * 1000;
 }
