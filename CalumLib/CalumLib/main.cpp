@@ -23,7 +23,6 @@ int main()
 	delete gpEventSystem;
 
 	gMemoryTracker.reportPointers(std::cout);
-	system("pause");
 
 	return 0;
 }

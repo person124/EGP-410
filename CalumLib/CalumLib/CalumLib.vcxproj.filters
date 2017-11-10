@@ -37,6 +37,12 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{239c2187-3042-4293-b8e0-3ec95979e1e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\audio">
+      <UniqueIdentifier>{82c24165-cd7f-4ccb-9b98-78b1f33e149d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\audio">
+      <UniqueIdentifier>{f7a4fc75-dc80-441d-9900-7c5bdccb8796}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -132,6 +138,12 @@
     <ClInclude Include="utils\timer.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="audio\audioSystem.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="audio\audioClip.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -200,5 +212,19 @@
     <ClCompile Include="utils\timer.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="audio\audioSystem.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="audio\audioClip.cpp">
+      <Filter>Source Files\audio</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\animations.dat">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\graphics_buffers.dat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

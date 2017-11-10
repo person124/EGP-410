@@ -15,7 +15,7 @@ class StringManager : public Trackable
 			mItems = std::map<std::string, T*>();
 		}
 
-		~StringManager()
+		virtual ~StringManager()
 		{
 			removeAll();
 		}

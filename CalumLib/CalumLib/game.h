@@ -9,6 +9,7 @@ class GraphicsSystem;
 class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
+class AudioSystem;
 class Grid;
 class Font;
 
@@ -25,10 +26,8 @@ class Game : public EventListener
 		void destroy();
 		void mainLoop();
 		GraphicsSystem* getGraphics();
+		AudioSystem* getAudio();
 		void handleEvent(const Event& theEvent);
-	
-		const double FPS = 1000.0 / 60.0;
-		const double UPStoFPS = 3600.0 / 1000.0;
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
@@ -43,6 +42,7 @@ class Game : public EventListener
 		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
+		AudioSystem* mpAudio;
 		Grid* mpGrid;
 	
 		//Things to do with the actuall game:

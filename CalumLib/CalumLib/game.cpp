@@ -4,6 +4,8 @@
 #include "inputManager.h"
 #include "globalConst.h"
 
+#include "audio/audioSystem.h"
+
 #include "utils/timer.h"
 
 #include "events/eventSystem.h"
@@ -53,6 +55,10 @@ bool Game::initGame(int width, int height)
 	if (!mpGraphics->init())
 		return false;
 
+	mpAudio = new AudioSystem();
+	if (!mpAudio->init())
+		return false;
+
 	mpInputManager = new InputManager();
 	if (!mpInputManager->init())
 	{
@@ -91,11 +97,11 @@ void Game::destroy()
 
 	delete mpGrid;
 
+	delete mpAudio;
+
 	mpGraphics->destroy();
 	delete mpGraphics;
 	mpGraphics = NULL;
-
-	gpEventSystem->removeListenerFromAllEvents(this);
 }
 
 void Game::mainLoop()
@@ -143,6 +149,11 @@ void Game::draw()
 GraphicsSystem* Game::getGraphics()
 {
 	return mpGraphics;
+}
+
+AudioSystem* Game::getAudio()
+{
+	return mpAudio;
 }
 
 void Game::handleEvent(const Event& theEvent)

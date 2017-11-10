@@ -118,6 +118,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="audio\audioClip.h" />
+    <ClInclude Include="audio\audioSystem.h" />
     <ClInclude Include="events\event.h" />
     <ClInclude Include="events\eventAStar.h" />
     <ClInclude Include="events\eventClick.h" />
@@ -151,6 +153,8 @@
     <ClInclude Include="utils\trackable.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="audio\audioClip.cpp" />
+    <ClCompile Include="audio\audioSystem.cpp" />
     <ClCompile Include="events\event.cpp" />
     <ClCompile Include="events\eventListener.cpp" />
     <ClCompile Include="events\eventSystem.cpp" />
@@ -173,6 +177,10 @@
     <ClCompile Include="utils\memoryTracker.cpp" />
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="utils\trackable.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\animations.dat" />
+    <None Include="assets\graphics_buffers.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
