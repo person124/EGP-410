@@ -9,11 +9,13 @@ namespace IOUtils
 {
 	void loadGraphicsBuffers(const std::string& path);
 	void loadAnimations(const std::string& path);
+	void loadAudio(const std::string& path);
 
 	void saveGrid(const std::string& path, Grid* grid);
 	void loadGrid(const std::string& path, Grid* grid);
 
-	void errorReport(const std::string& name);
+	void errorFileReport(const std::string& name);
+	void errorInitReport(const std::string& str);
 }
 
 #endif

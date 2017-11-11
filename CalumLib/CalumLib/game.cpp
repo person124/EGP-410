@@ -1,6 +1,6 @@
 #include "game.h"
-#include "ioUtils.h"
 
+#include "ioUtils.h"
 #include "inputManager.h"
 #include "globalConst.h"
 
@@ -61,10 +61,7 @@ bool Game::initGame(int width, int height)
 
 	mpInputManager = new InputManager();
 	if (!mpInputManager->init())
-	{
-		initError("input system");
 		return false;
-	}
 
 	mpBufferManager = new GraphicsBufferManager();
 	mpAnimationManager = new AnimationManager();
@@ -73,6 +70,7 @@ bool Game::initGame(int width, int height)
 	IOUtils::loadGraphicsBuffers(PATH_GRAPHICS_BUFFERS);
 	IOUtils::loadAnimations(PATH_ANIMATIONS);
 	mpFont = new Font(FONT_SIZE, PATH_FONT);
+	IOUtils::loadAudio(PATH_AUDIO);
 
 	mFPS = 0.0f;
 
@@ -111,6 +109,7 @@ void Game::mainLoop()
 	mRunning = true;
 
 	updateTimer->start();
+	mpAudio->get("temp")->play(false);
 	while (mRunning)
 	{
 		FPSTimer->start();

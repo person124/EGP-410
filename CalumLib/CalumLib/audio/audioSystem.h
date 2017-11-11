@@ -10,8 +10,8 @@ class AudioSystem : public StringManager<AudioClip>
 	public:
 		bool init();
 
-		void registerClip(std::string key, std::string path);
-		void registerStream(std::string key, std::string path);
+		void registerClip(const std::string& key, const std::string& path);
+		void registerStream(const std::string& key, const std::string& path);
 	private:
 };
 

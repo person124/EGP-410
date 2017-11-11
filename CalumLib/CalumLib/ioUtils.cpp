@@ -1,5 +1,8 @@
 #include "ioUtils.h"
+
 #include "game.h"
+
+#include "audio/audioSystem.h"
 
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
@@ -29,7 +32,7 @@ void IOUtils::loadGraphicsBuffers(const std::string& path)
 	std::ifstream file;
 	if (!readFile(file, path))
 	{
-		errorReport(path);
+		errorFileReport(path);
 		return;
 	}
 
@@ -51,7 +54,7 @@ void IOUtils::loadAnimations(const std::string& path)
 	std::ifstream file;
 	if (!readFile(file, path))
 	{
-		errorReport(path);
+		errorFileReport(path);
 		return;
 	}
 
@@ -81,12 +84,37 @@ void IOUtils::loadAnimations(const std::string& path)
 	file.close();
 }
 
+void IOUtils::loadAudio(const std::string& path)
+{
+	std::ifstream file;
+	if (!readFile(file, path))
+	{
+		errorFileReport(path);
+		return;
+	}
+
+	std::string name, filePath, junk;
+	bool isStream;
+	
+	std::getline(file, junk);
+	while (!file.eof())
+	{
+		file >> name >> isStream >> filePath;
+
+		if (isStream)
+			Game::pInstance->getAudio()->registerStream(name, filePath);
+		else
+			Game::pInstance->getAudio()->registerClip(name, filePath);
+	}
+	file.close();
+}
+
 void IOUtils::saveGrid(const std::string& path, Grid* grid)
 {
 	std::ofstream file;
 	if (!writeFile(file, path))
 	{
-		errorReport(path);
+		errorFileReport(path);
 		return;
 	}
 
@@ -101,7 +129,7 @@ void IOUtils::loadGrid(const std::string& path, Grid* grid)
 	std::ifstream file;
 	if (!readFile(file, path))
 	{
-		errorReport(path);
+		errorFileReport(path);
 		return;
 	}
 
@@ -115,7 +143,12 @@ void IOUtils::loadGrid(const std::string& path, Grid* grid)
 	file.close();
 }
 
-void IOUtils::errorReport(const std::string& name)
+void IOUtils::errorFileReport(const std::string& name)
 {
-	std::cout << "Error opening file: " << name << "!\n";
+	std::cout << "ERROR: Opening file: " << name << "!\n";
+}
+
+void IOUtils::errorInitReport(const std::string& str)
+{
+	std::cout << "ERROR: Failed to init " << str << "!\n";
 }

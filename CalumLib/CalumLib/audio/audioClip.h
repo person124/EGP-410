@@ -19,8 +19,8 @@ class AudioClip : public Trackable
 		void play(bool loop);
 		void stop();
 	private:
-		AudioClip(std::string path);
-		AudioClip(std::string path, ALLEGRO_MIXER* mixer);
+		AudioClip(const std::string& path);
+		AudioClip(const std::string& path, ALLEGRO_MIXER* mixer);
 
 		ALLEGRO_SAMPLE* mpClip;
 		ALLEGRO_AUDIO_STREAM* mpStream;

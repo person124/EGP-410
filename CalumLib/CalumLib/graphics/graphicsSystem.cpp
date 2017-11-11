@@ -1,5 +1,7 @@
 #include "graphicsSystem.h"
 
+#include "ioUtils.h"
+
 #include "graphics/graphicsBuffer.h"
 
 #include <iostream>
@@ -28,13 +30,13 @@ bool GraphicsSystem::init()
 {
 	if (!al_init())
 	{
-		initError("Allegro");
+		IOUtils::errorInitReport("Allegro");
 		return false;
 	}
 
 	if (!al_init_image_addon())
 	{
-		initError("image addon");
+		IOUtils::errorInitReport("image addon");
 		return false;
 	}
 
@@ -42,13 +44,13 @@ bool GraphicsSystem::init()
 
 	if (!al_init_ttf_addon())
 	{
-		initError("ttf addon");
+		IOUtils::errorInitReport("ttf addon");
 		return false;
 	}
 
 	if (!al_init_primitives_addon())
 	{
-		initError("primitives addon");
+		IOUtils::errorInitReport("primitives addon");
 		return false;
 	}
 
@@ -138,12 +140,4 @@ void GraphicsSystem::drawLine(int x1, int y1, int x2, int y2, const Color& color
 void GraphicsSystem::flip()
 {
 	al_flip_display();
-}
-
-//==========================================================================
-//General Funtions
-
-void initError(std::string str)
-{
-	std::cout << "ERROR: Failed to init " << str << "!\n";
 }

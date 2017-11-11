@@ -50,6 +50,4 @@ class GraphicsSystem : public Trackable
 		int mWidth, mHeight;
 };
 
-void initError(std::string);
-
 #endif

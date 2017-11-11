@@ -6,14 +6,14 @@ AudioClip::AudioClip()
 {
 }
 
-AudioClip::AudioClip(std::string path)
+AudioClip::AudioClip(const std::string& path)
 {
 	mIsStream = false;
 
 	mpClip = al_load_sample(path.c_str());
 }
 
-AudioClip::AudioClip(std::string path, ALLEGRO_MIXER* mixer)
+AudioClip::AudioClip(const std::string& path, ALLEGRO_MIXER* mixer)
 {
 	mIsStream = true;
 

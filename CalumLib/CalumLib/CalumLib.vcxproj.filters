@@ -226,5 +226,8 @@
     <None Include="assets\graphics_buffers.dat">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="assets\audio_clips.dat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

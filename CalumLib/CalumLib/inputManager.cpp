@@ -1,5 +1,7 @@
 #include "inputManager.h"
 
+#include "ioUtils.h"
+
 #include "events/eventSystem.h"
 #include "events/eventQuit.h"
 #include "events/eventClick.h"
@@ -34,10 +36,16 @@ InputManager::~InputManager()
 bool InputManager::init()
 {
 	if (!al_install_mouse())
+	{
+		IOUtils::errorInitReport("mouse");
 		return false;
+	}
 
 	if (!al_install_keyboard())
+	{
+		IOUtils::errorInitReport("keyboard");
 		return false;
+	}
 
 	return true;
 }
