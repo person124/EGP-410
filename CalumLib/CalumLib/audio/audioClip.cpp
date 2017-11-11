@@ -11,6 +11,7 @@ AudioClip::AudioClip(const std::string& path)
 	mIsStream = false;
 
 	mpClip = al_load_sample(path.c_str());
+	mpStream = NULL;
 }
 
 AudioClip::AudioClip(const std::string& path, ALLEGRO_MIXER* mixer)
@@ -22,6 +23,8 @@ AudioClip::AudioClip(const std::string& path, ALLEGRO_MIXER* mixer)
 	stop();
 	
 	al_attach_audio_stream_to_mixer(mpStream, mixer);
+
+	mpClip = NULL;
 }
 
 AudioClip::~AudioClip()
@@ -37,11 +40,17 @@ void AudioClip::play(bool loop)
 	if (mIsStream)
 		al_set_audio_stream_playing(mpStream, true);
 	else
-		al_play_sample(mpClip, 1.0f, 0.0f, 1.0f, loop ? ALLEGRO_PLAYMODE_ONCE : ALLEGRO_PLAYMODE_LOOP, NULL);
+		al_play_sample(mpClip, 1.0f, 0.0f, 1.0f, loop ? ALLEGRO_PLAYMODE_LOOP : ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 void AudioClip::stop()
 {
 	if (mIsStream)
 		al_set_audio_stream_playing(mpStream, false);
+}
+
+void AudioClip::rewind()
+{
+	if (mIsStream)
+		al_rewind_audio_stream(mpStream);
 }

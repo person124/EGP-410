@@ -18,6 +18,7 @@ class AudioClip : public Trackable
 
 		void play(bool loop);
 		void stop();
+		void rewind();
 	private:
 		AudioClip(const std::string& path);
 		AudioClip(const std::string& path, ALLEGRO_MIXER* mixer);

@@ -1,8 +1,8 @@
 #ifndef GLOBAL_CONST_H
 #define GLOBAL_CONST_H
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
 
 #define FPS 60 //Modify this to change fps
 #define UPS 60 //Modify this to change ups

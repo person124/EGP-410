@@ -1,4 +1,5 @@
 <buffer name> <asset path>
-tile assets/tile.bmp
-start assets/start.bmp
-goal assets/goal.bmp
+tile assets/images/tile.bmp
+start assets/images/start.bmp
+goal assets/images/goal.bmp
+kira_click assets/images/kira_click.bmp

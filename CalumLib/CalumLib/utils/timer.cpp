@@ -30,12 +30,12 @@ void Timer::stop()
 
 double Timer::getElapsedTime() const
 {
-	if (mpEnd != 0)
-		return *mpEnd - *mpStart;
+	if (*mpEnd != 0)
+		return ((double) (*mpEnd - *mpStart)) / CLOCKS_PER_SEC;
 
 	clock_t current;
 	current = clock();
-	return current - *mpStart;
+	return ((double) (current - *mpStart)) / CLOCKS_PER_SEC;
 }
 
 void Timer::sleepUntilElapsed(double ms)

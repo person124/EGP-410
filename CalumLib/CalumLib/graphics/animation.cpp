@@ -46,6 +46,9 @@ void Animation::addSprite(Sprite& sprite)
 	mpSprites->push_back(sprite);
 }
 
+#include "game.h"
+#include "audio/audioSystem.h"
+
 void Animation::update(double dt)
 {
 	if (mDone)
@@ -55,13 +58,17 @@ void Animation::update(double dt)
 	
 	if (mCurrentTime >= mTime)
 	{
-		mCurrentTime -= mTime;
+		mCurrentTime = 0;
 		mCurrent++;
 
 		if (isFinished()) {
-			mCurrent = 0;
 			if (!mLoop)
+			{
 				mDone = true;
+				mCurrent--;
+			}
+			else
+				mCurrent = 0;
 		}
 	}
 }
@@ -95,7 +102,7 @@ Sprite& Animation::getCurrent()
 
 int Animation::getLength()
 {
-	return mpSprites->capacity();
+	return mpSprites->size();
 }
 
 bool Animation::isFinished()
