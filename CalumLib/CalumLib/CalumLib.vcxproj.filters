@@ -150,6 +150,12 @@
     <ClInclude Include="gui\guiText.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiAnimation.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiImage.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -231,6 +237,12 @@
       <Filter>Source Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiText.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiImage.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiAnimation.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

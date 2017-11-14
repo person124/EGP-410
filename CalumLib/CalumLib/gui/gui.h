@@ -11,6 +11,7 @@ class GUI : public Trackable
 		GUI();
 		~GUI();
 
+		void update(double dt);
 		void draw();
 	private:
 		int mElementCount;

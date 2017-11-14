@@ -102,12 +102,8 @@ void Game::destroy()
 	mpGraphics = NULL;
 }
 
-Animation* anim;
-
 void Game::mainLoop()
 {
-	anim = mpAnimationManager->get("kira_click_anim");
-
 	Timer* updateTimer = new Timer();
 	Timer* FPSTimer = new Timer();
 	mRunning = true;
@@ -132,15 +128,13 @@ void Game::mainLoop()
 
 	delete updateTimer;
 	delete FPSTimer;
-
-	delete anim;
 }
 
 void Game::update(float dt)
 {
 	mpInputManager->update();
 
-	anim->update(dt);
+	mpGUI->update(dt);
 }
 
 void Game::draw()
@@ -148,8 +142,6 @@ void Game::draw()
 	mpGraphics->draw(0, 0, mpBufferManager->get("background"));
 
 	mpGrid->draw();
-
-	//mpGraphics->draw(0, 0, anim->getCurrent(), 2.666666666f);
 
 	mpGUI->draw();
 

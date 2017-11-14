@@ -9,6 +9,7 @@ class GUIElement : public Trackable
 		GUIElement() {};
 		virtual ~GUIElement() {};
 
+		virtual void update(double dt) {};
 		virtual void draw() {};
 };
 
