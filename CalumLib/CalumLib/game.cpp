@@ -6,8 +6,6 @@
 
 #include "audio/audioSystem.h"
 
-#include "utils/timer.h"
-
 #include "events/eventSystem.h"
 
 #include "graphics/graphicsSystem.h"
@@ -17,6 +15,8 @@
 #include "gui/gui.h"
 
 #include "pathing/grid.h"
+
+#include "utils/timer.h"
 
 #include <ctime>
 

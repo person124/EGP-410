@@ -12,7 +12,14 @@ class GUIFixedText : public GUIElement
 		~GUIFixedText();
 
 		void draw();
-	private:
+	protected:
+		GUIFixedText()
+		{
+			mX = 0;
+			mY = 0;
+			mText = "";
+		}
+
 		std::string mText;
 		int mX, mY;
 };

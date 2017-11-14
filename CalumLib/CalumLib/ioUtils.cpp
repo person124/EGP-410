@@ -9,6 +9,7 @@
 #include "graphics/graphicsBuffer.h"
 #include "graphics/animation.h"
 #include "graphics/animationManager.h"
+#include "graphics/sprite.h"
 
 #include "pathing/grid.h"
 
@@ -71,10 +72,10 @@ void IOUtils::loadAnimations(const std::string& path)
 		
 		buffer = Game::pInstance->getBufferManager()->get(bufferName);
 		
-		std::vector<Sprite>* sprites = new std::vector<Sprite>();
+		std::vector<Sprite*> sprites = std::vector<Sprite*>();
 		for (int y = 0; y < yCount; y++)
 			for (int x = 0; x < xCount; x++)
-				sprites->push_back(Sprite(buffer, xOffset + (width * x), yOffset + (height * y), width, height));
+				sprites.push_back(new Sprite(buffer, xOffset + (width * x), yOffset + (height * y), width, height));
 
 		ani = new Animation(sprites, speed, loop);
 

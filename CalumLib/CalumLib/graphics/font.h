@@ -1,9 +1,9 @@
 #ifndef FONT_H
 #define FONT_H
 
-#include <string>
-
 #include "utils/trackable.h"
+
+#include <string>
 
 struct ALLEGRO_FONT;
 

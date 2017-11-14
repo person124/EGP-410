@@ -4,6 +4,9 @@
 #include "ioUtils.h"
 
 #include "graphics/graphicsBuffer.h"
+#include "graphics/sprite.h"
+#include "graphics/color.h"
+#include "graphics/font.h"
 
 #include <iostream>
 
@@ -96,10 +99,10 @@ void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale)
 		x, y, buffer->getWidth() * scale, buffer->getHeight() * scale, 0);
 }
 
-void GraphicsSystem::draw(int x, int y, Sprite& sprite, float scale)
+void GraphicsSystem::draw(int x, int y, Sprite* sprite, float scale)
 {
-	al_draw_scaled_bitmap(sprite.getBuffer()->mpBitmap, sprite.startX(), sprite.startY(), sprite.getWidth(),
-		sprite.getHeight(), x, y, sprite.getWidth() * scale, sprite.getHeight() * scale, 0);
+	al_draw_scaled_bitmap(sprite->getBuffer()->mpBitmap, sprite->startX(), sprite->startY(), sprite->getWidth(),
+		sprite->getHeight(), x, y, sprite->getWidth() * scale, sprite->getHeight() * scale, 0);
 }
 
 void GraphicsSystem::draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)
@@ -111,7 +114,7 @@ void GraphicsSystem::draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* 
 	al_set_target_bitmap(al_get_backbuffer(mpDisplay));
 }
 
-void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite& sprite, float scale)
+void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale)
 {
 	al_set_target_bitmap(buffer->mpBitmap);
 

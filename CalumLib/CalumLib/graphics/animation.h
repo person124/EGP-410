@@ -1,24 +1,25 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "graphics/sprite.h"
+#include "utils/trackable.h"
 
 #include <vector>
 
-#include "utils/trackable.h"
+class Sprite;
 
 class Animation : public Trackable
 {
 	public:
 		//Constructors
-		Animation(std::vector<Sprite>* sprites, double time, bool loop = true);
+		Animation(std::vector<Sprite*> sprites, double time, bool loop = true);
 		Animation(double time, bool loop = true);
 		Animation(Animation* ani);
 		~Animation();
 
 		//Misc.
-		void addSprite(Sprite& sprite);
+		void addSprite(Sprite* sprite);
 		void update(double dt);
+		void destroy();
 
 		//Setters
 		void setSpeed(double newSpeed);
@@ -26,12 +27,12 @@ class Animation : public Trackable
 
 		//Getters
 		double getSpeed();
-		Sprite& getCurrent();
+		Sprite* getCurrent();
 		int getLength();
 		bool isFinished();
 		bool isDone();
 	private:
-		std::vector<Sprite>* mpSprites;
+		std::vector<Sprite*> mSprites;
 		bool mLoop, mDone;
 		int mCurrent;
 		double mTime, mCurrentTime;

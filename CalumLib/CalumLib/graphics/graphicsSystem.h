@@ -1,17 +1,14 @@
 #ifndef GRAPHICS_SYSTEM_H
 #define GRAPHICS_SYSTEM_H
 
-#include "graphics/font.h"
-#include "graphics/color.h"
-#include "graphics/sprite.h"
+#include "utils/trackable.h"
 
 #include <string>
-
-#include "utils/trackable.h"
 
 struct ALLEGRO_DISPLAY;
 
 class GraphicsBuffer;
+class Sprite;
 class Color;
 class Font;
 
@@ -33,9 +30,9 @@ class GraphicsSystem : public Trackable
 
 		//drawing buffers
 		void draw(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-		void draw(int x, int y, Sprite& sprite, float scale = 1.0f);
+		void draw(int x, int y, Sprite* sprite, float scale = 1.0f);
 		void draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-        void draw(GraphicsBuffer* buffer, int x, int y, Sprite& sprite, float scale = 1.0f);
+        void draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f);
         
 		//Writing text
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);

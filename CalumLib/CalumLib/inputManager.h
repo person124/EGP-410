@@ -3,9 +3,9 @@
 
 #include "events/eventKeypress.h"
 
-#include <allegro5/allegro.h>
-
 #include "utils/trackable.h"
+
+#include <allegro5/allegro.h>
 
 class Event;
 

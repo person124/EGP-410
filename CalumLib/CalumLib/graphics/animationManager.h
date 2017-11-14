@@ -10,6 +10,8 @@
 class AnimationManager : public StringManager<Animation>
 {
 	public:
+		~AnimationManager();
+
 		Animation* get(const std::string& key);
 };
 

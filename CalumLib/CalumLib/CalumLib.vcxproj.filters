@@ -147,6 +147,9 @@
     <ClInclude Include="gui\guiFixedText.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiText.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -225,6 +228,9 @@
       <Filter>Source Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiFixedText.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiText.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

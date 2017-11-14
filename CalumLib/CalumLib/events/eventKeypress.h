@@ -16,7 +16,7 @@ enum Keys
 class EventKeypress : public Event
 {
 	public:
-		EventKeypress(Keys key) :Event(EVENT_KEYPRESS) { mKey = key; };
+		EventKeypress(Keys key) : Event(EVENT_KEYPRESS) { mKey = key; };
 		~EventKeypress() {};
 
 		Keys getKey() const { return mKey; };

@@ -12,7 +12,7 @@ enum MouseButton
 class EventClick : public Event
 {
 	public:
-		EventClick(int x, int y, MouseButton b) :Event(EVENT_CLICK)
+		EventClick(int x, int y, MouseButton b) : Event(EVENT_CLICK)
 		{
 			mX = x;
 			mY = y;

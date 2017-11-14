@@ -1,7 +1,7 @@
 #include "gui.h"
 
 #include "gui/guiElement.h"
-#include "gui/guiFixedText.h"
+#include "gui/guiText.h"
 
 GUI::GUI()
 {

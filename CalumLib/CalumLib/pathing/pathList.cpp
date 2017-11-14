@@ -3,7 +3,7 @@
 #include "pathing/grid.h"
 #include "pathing/tile.h"
 
-Node PathList::dummyNode = Node();
+Node PathList::sDummyNode = Node();
 
 PathList::PathList(Grid* grid)
 {
@@ -76,7 +76,7 @@ Node& PathList::find(Node& node)
 	int pos = findPos(node);
 
 	if (pos == -1)
-		return PathList::dummyNode;
+		return PathList::sDummyNode;
 
 	return mNodes.at(pos);
 }

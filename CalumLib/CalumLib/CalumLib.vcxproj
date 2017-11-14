@@ -139,6 +139,7 @@
     <ClInclude Include="gui\gui.h" />
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiFixedText.h" />
+    <ClInclude Include="gui\guiText.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />
     <ClInclude Include="pathing\grid.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="graphics\sprite.cpp" />
     <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="gui\guiFixedText.cpp" />
+    <ClCompile Include="gui\guiText.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="ioUtils.cpp" />
     <ClCompile Include="main.cpp" />

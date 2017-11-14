@@ -3,16 +3,16 @@
 
 #include "pathing/node.h"
 
-#include <vector>
-
 #include "utils/trackable.h"
+
+#include <vector>
 
 class Grid;
 
 class PathList : public Trackable
 {
 	public:
-		static Node dummyNode;
+		static Node sDummyNode;
 
 	public:
 		PathList(Grid* grid);

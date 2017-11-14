@@ -7,6 +7,8 @@
 
 #include "pathing/tile.h"
 
+Tile* Grid::sNullTile = NULL;
+
 Grid::Grid()
 {
 	mWidth = 3;
@@ -17,8 +19,6 @@ Grid::Grid()
 	{
 		mpTiles[i] = new Tile(false);
 	}
-
-	mpNullTile = NULL;
 }
 
 Grid::~Grid()
@@ -53,7 +53,7 @@ int Grid::getSize()
 Tile* Grid::getTile(int pos)
 {
 	if (pos < 0 || pos >= getSize())
-		return mpNullTile;
+		return Grid::sNullTile;
 
 	return mpTiles[pos];
 }
@@ -61,7 +61,7 @@ Tile* Grid::getTile(int pos)
 Tile* Grid::getTile(int x, int y)
 {
 	if (x < 0 || y < 0 || x >= mWidth || y >= mHeight)
-		return mpNullTile;
+		return Grid::sNullTile;
 	return getTile(x + y * mWidth);
 }
 

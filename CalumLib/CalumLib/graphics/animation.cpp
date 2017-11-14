@@ -1,13 +1,15 @@
 #include "animation.h"
 
-Animation::Animation(std::vector<Sprite>* sprites, double time, bool loop)
+#include "graphics/sprite.h"
+
+Animation::Animation(std::vector<Sprite*> sprites, double time, bool loop)
 {
 	mCurrentTime = 0;
 	mCurrent = 0;
 	mLoop = loop;
 	setSpeed(time);
 
-	mpSprites = sprites;
+	mSprites = sprites;
 
 	mDone = false;
 }
@@ -19,7 +21,7 @@ Animation::Animation(double time, bool loop)
 	mLoop = loop;
 	setSpeed(time);
 
-	mpSprites = new std::vector<Sprite>();
+	mSprites = std::vector<Sprite*>();
 
 	mDone = false;
 }
@@ -32,7 +34,7 @@ Animation::Animation(Animation* ani)
 	mLoop = ani->mLoop;
 	setSpeed(ani->mTime);
 
-	mpSprites = ani->mpSprites;
+	mSprites = ani->mSprites;
 
 	mDone = false;
 }
@@ -41,9 +43,9 @@ Animation::~Animation()
 {
 }
 
-void Animation::addSprite(Sprite& sprite)
+void Animation::addSprite(Sprite* sprite)
 {
-	mpSprites->push_back(sprite);
+	mSprites.push_back(sprite);
 }
 
 void Animation::update(double dt)
@@ -70,6 +72,12 @@ void Animation::update(double dt)
 	}
 }
 
+void Animation::destroy()
+{
+	for (int i = 0; i < getLength(); i++)
+		delete mSprites.at(i);
+}
+
 void Animation::setSpeed(double newSpeed)
 {
 	mTime = newSpeed;
@@ -92,14 +100,14 @@ double Animation::getSpeed()
 	return mTime;
 }
 
-Sprite& Animation::getCurrent()
+Sprite* Animation::getCurrent()
 {
-	return mpSprites->at(mCurrent);
+	return mSprites.at(mCurrent);
 }
 
 int Animation::getLength()
 {
-	return mpSprites->size();
+	return mSprites.size();
 }
 
 bool Animation::isFinished()

@@ -6,7 +6,7 @@
 class EventQuit : public Event
 {
 public:
-	EventQuit() :Event(EVENT_QUIT) {};
+	EventQuit() : Event(EVENT_QUIT) {};
 	~EventQuit() {};
 };
 

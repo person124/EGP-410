@@ -1,15 +1,15 @@
 #ifndef EVENT_SYSTEM_H
 #define EVENT_SYSTEM_H
 
-#include <map>
-
 #include "utils/trackable.h"
+
+#include <map>
 
 class Event;
 class EventListener;
 enum EventType;
 
-class EventSystem:public Trackable
+class EventSystem : public Trackable
 {
 	public:
 		EventSystem();

@@ -1,10 +1,10 @@
 #ifndef STRING_MANAGER_H
 #define STRING_MANAGER_H
 
+#include "utils/trackable.h"
+
 #include <string>
 #include <map>
-
-#include "utils/trackable.h"
 
 template <class T>
 class StringManager : public Trackable

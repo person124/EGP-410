@@ -3,14 +3,17 @@
 
 #include "pathing/node.h"
 
-#include <vector>
-
 #include "utils/trackable.h"
+
+#include <vector>
 
 class Tile;
 
 class Grid : public Trackable
 {
+	public:
+		static Tile* sNullTile;
+
 	public:
 		Grid();
 		~Grid();
@@ -33,9 +36,6 @@ class Grid : public Trackable
 	private:
 		int mWidth, mHeight;
 		Tile** mpTiles;
-
-		//Exists to be able to return NULL
-		Tile* mpNullTile;
 };
 
 #endif

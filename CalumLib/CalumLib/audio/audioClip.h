@@ -1,9 +1,9 @@
 #ifndef AUDIO_CLIP_H
 #define AUDIO_CLIP_H
 
-#include <string>
-
 #include "utils/trackable.h"
+
+#include <string>
 
 struct ALLEGRO_MIXER;
 struct ALLEGRO_SAMPLE;

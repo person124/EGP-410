@@ -3,9 +3,9 @@
 
 #include "graphics/color.h"
 
-#include <string>
-
 #include "utils/trackable.h"
+
+#include <string>
 
 struct ALLEGRO_BITMAP;
 
