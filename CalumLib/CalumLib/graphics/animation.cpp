@@ -46,9 +46,6 @@ void Animation::addSprite(Sprite& sprite)
 	mpSprites->push_back(sprite);
 }
 
-#include "game.h"
-#include "audio/audioSystem.h"
-
 void Animation::update(double dt)
 {
 	if (mDone)

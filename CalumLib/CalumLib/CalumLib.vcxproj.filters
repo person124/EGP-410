@@ -43,6 +43,12 @@
     <Filter Include="Source Files\audio">
       <UniqueIdentifier>{f7a4fc75-dc80-441d-9900-7c5bdccb8796}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{a0935be4-553c-42a0-a39a-47ccdb50c853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui">
+      <UniqueIdentifier>{9a886bef-cb94-4da9-8fd0-ca584e4d792e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -57,37 +63,16 @@
     <ClInclude Include="ioUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stringManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="events\event.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
-    <ClInclude Include="events\eventAStar.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
     <ClInclude Include="events\eventClick.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
-    <ClInclude Include="events\eventDijkstra.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
     <ClInclude Include="events\eventListener.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
-    <ClInclude Include="events\eventLoad.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
-    <ClInclude Include="events\eventQuit.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
-    <ClInclude Include="events\eventSave.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
     <ClInclude Include="events\eventSystem.h">
-      <Filter>Header Files\events</Filter>
-    </ClInclude>
-    <ClInclude Include="events\eventToggleEdit.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
     <ClInclude Include="graphics\animation.h">
@@ -143,6 +128,24 @@
     </ClInclude>
     <ClInclude Include="audio\audioClip.h">
       <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\stringManager.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventKeypress.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventQuit.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\gui.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiElement.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiFixedText.h">
+      <Filter>Header Files\gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +220,12 @@
     </ClCompile>
     <ClCompile Include="audio\audioClip.cpp">
       <Filter>Source Files\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\gui.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiFixedText.cpp">
+      <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

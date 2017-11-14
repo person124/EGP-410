@@ -15,7 +15,7 @@
 #define TILE_HALF (TILE_SIZE / 2)
 #define TILE_SCALE 2
 
-#define FONT_SIZE 40
+#define FONT_SIZE 20
 
 #define PATH_GRAPHICS_BUFFERS "assets/graphics_buffers.dat"
 #define PATH_ANIMATIONS "assets/animations.dat"

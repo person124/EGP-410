@@ -3,25 +3,17 @@
 #include "ioUtils.h"
 
 #include "events/eventSystem.h"
-#include "events/eventQuit.h"
 #include "events/eventClick.h"
-#include "events/eventDijkstra.h"
-#include "events/eventAStar.h"
-#include "events/eventToggleEdit.h"
-#include "events/eventSave.h"
-#include "events/eventLoad.h"
+#include "events/eventQuit.h"
 
 InputManager::InputManager()
 {
 	mKeys[KEYS_QUIT] = KeyInput(ALLEGRO_KEY_ESCAPE, new EventQuit());
 
-	mKeys[KEYS_DIJKSTRA] = KeyInput(ALLEGRO_KEY_D, new EventDijkstra());
-	mKeys[KEYS_A_STAR] = KeyInput(ALLEGRO_KEY_A, new EventAStar());
-
-	mKeys[KEYS_TOGGLE_EDIT] = KeyInput(ALLEGRO_KEY_E, new EventToggleEdit());
-
-	mKeys[KEYS_SAVE] = KeyInput(ALLEGRO_KEY_Q, new EventSave());
-	mKeys[KEYS_LOAD] = KeyInput(ALLEGRO_KEY_P, new EventLoad());
+	mKeys[KEYS_UP] = KeyInput(ALLEGRO_KEY_W, new EventKeypress(KEYS_UP));
+	mKeys[KEYS_DOWN] = KeyInput(ALLEGRO_KEY_S, new EventKeypress(KEYS_DOWN));
+	mKeys[KEYS_LEFT] = KeyInput(ALLEGRO_KEY_A, new EventKeypress(KEYS_LEFT));
+	mKeys[KEYS_RIGHT] = KeyInput(ALLEGRO_KEY_D, new EventKeypress(KEYS_RIGHT));
 }
 
 InputManager::~InputManager()

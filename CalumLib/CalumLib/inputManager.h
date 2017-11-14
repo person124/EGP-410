@@ -1,22 +1,13 @@
 #ifndef INPUT_SYSTEM_H
 #define INPUT_SYSTEM_H
 
-#include "events/event.h"
+#include "events/eventKeypress.h"
 
 #include <allegro5/allegro.h>
 
 #include "utils/trackable.h"
 
-enum Keys
-{
-	KEYS_QUIT, //Quit Game
-	KEYS_DIJKSTRA,
-	KEYS_A_STAR,
-	KEYS_TOGGLE_EDIT,
-	KEYS_SAVE,
-	KEYS_LOAD,
-	KEYS_COUNT
-};
+class Event;
 
 struct KeyInput : public Trackable
 {

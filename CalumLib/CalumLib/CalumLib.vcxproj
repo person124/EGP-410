@@ -121,15 +121,11 @@
     <ClInclude Include="audio\audioClip.h" />
     <ClInclude Include="audio\audioSystem.h" />
     <ClInclude Include="events\event.h" />
-    <ClInclude Include="events\eventAStar.h" />
     <ClInclude Include="events\eventClick.h" />
-    <ClInclude Include="events\eventDijkstra.h" />
+    <ClInclude Include="events\eventKeypress.h" />
     <ClInclude Include="events\eventListener.h" />
-    <ClInclude Include="events\eventLoad.h" />
     <ClInclude Include="events\eventQuit.h" />
-    <ClInclude Include="events\eventSave.h" />
     <ClInclude Include="events\eventSystem.h" />
-    <ClInclude Include="events\eventToggleEdit.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="globalConst.h" />
     <ClInclude Include="graphics\animation.h" />
@@ -140,6 +136,9 @@
     <ClInclude Include="graphics\graphicsBufferManager.h" />
     <ClInclude Include="graphics\graphicsSystem.h" />
     <ClInclude Include="graphics\sprite.h" />
+    <ClInclude Include="gui\gui.h" />
+    <ClInclude Include="gui\guiElement.h" />
+    <ClInclude Include="gui\guiFixedText.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />
     <ClInclude Include="pathing\grid.h" />
@@ -147,8 +146,8 @@
     <ClInclude Include="pathing\pathing.h" />
     <ClInclude Include="pathing\pathList.h" />
     <ClInclude Include="pathing\tile.h" />
-    <ClInclude Include="stringManager.h" />
     <ClInclude Include="utils\memoryTracker.h" />
+    <ClInclude Include="utils\stringManager.h" />
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="utils\trackable.h" />
   </ItemGroup>
@@ -166,6 +165,8 @@
     <ClCompile Include="graphics\graphicsBuffer.cpp" />
     <ClCompile Include="graphics\graphicsSystem.cpp" />
     <ClCompile Include="graphics\sprite.cpp" />
+    <ClCompile Include="gui\gui.cpp" />
+    <ClCompile Include="gui\guiFixedText.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="ioUtils.cpp" />
     <ClCompile Include="main.cpp" />

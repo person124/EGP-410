@@ -5,9 +5,9 @@
 
 class EventQuit : public Event
 {
-	public:
-		EventQuit() :Event(EVENT_QUIT) {};
-		~EventQuit() {};
+public:
+	EventQuit() :Event(EVENT_QUIT) {};
+	~EventQuit() {};
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include "graphicsSystem.h"
 
+#include "globalConst.h"
 #include "ioUtils.h"
 
 #include "graphics/graphicsBuffer.h"
@@ -55,11 +56,18 @@ bool GraphicsSystem::init()
 	}
 
 	mpDisplay = al_create_display(mWidth, mHeight);
+
+	mpDefaultColor = new Color(255, 255, 255);
+	mpDefaultFont = new Font(FONT_SIZE, PATH_FONT);
+
 	return true;
 }
 
 void GraphicsSystem::destroy()
 {
+	delete mpDefaultColor;
+	delete mpDefaultFont;
+
 	al_destroy_display(mpDisplay);
 	mpDisplay = NULL;
 }
@@ -125,6 +133,11 @@ void GraphicsSystem::writeText(GraphicsBuffer* buffer, int x, int y,
 	writeText(x, y, font, color, text);
 
     al_set_target_bitmap(al_get_backbuffer(mpDisplay));
+}
+
+void GraphicsSystem::writeText(int x, int y, const std::string& text)
+{
+	writeText(x, y, *mpDefaultFont, *mpDefaultColor, text);
 }
 
 void GraphicsSystem::drawCircle(int x, int y, int radius, const Color& color)

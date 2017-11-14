@@ -1,9 +1,9 @@
 #ifndef AUDIO_SYSTEM_H
 #define AUDIO_SYSTEM_H
 
-#include "stringManager.h"
-
 #include "audio/audioClip.h"
+
+#include "utils/stringManager.h"
 
 class AudioSystem : public StringManager<AudioClip>
 {

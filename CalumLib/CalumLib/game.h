@@ -11,7 +11,7 @@ class GraphicsBufferManager;
 class AnimationManager;
 class AudioSystem;
 class Grid;
-class Font;
+class GUI;
 
 class Game : public EventListener
 {
@@ -31,7 +31,6 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
-		Font* getFont();
 	private:
 		void update(float dt);
 		void draw();
@@ -44,10 +43,9 @@ class Game : public EventListener
 		AnimationManager* mpAnimationManager;
 		AudioSystem* mpAudio;
 		Grid* mpGrid;
+		GUI* mpGUI;
 	
-		//Things to do with the actuall game:
 		float mFPS;
-		Font* mpFont;
 };
 
 #endif

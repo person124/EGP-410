@@ -12,6 +12,8 @@
 struct ALLEGRO_DISPLAY;
 
 class GraphicsBuffer;
+class Color;
+class Font;
 
 class GraphicsSystem : public Trackable
 {
@@ -38,7 +40,9 @@ class GraphicsSystem : public Trackable
 		//Writing text
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);
         void writeText(GraphicsBuffer* buffer, int x, int y, const Font& font, const Color& color, const std::string& text);
-       
+		//Writes text using the default font and color
+		void writeText(int x, int y, const std::string& text);
+
 		//Drawing Primitives
 		void drawCircle(int x, int y, int radius, const Color& color);
 		void drawLine(int x1, int y1, int x2, int y2, const Color& color);
@@ -48,6 +52,9 @@ class GraphicsSystem : public Trackable
 	private:
 		ALLEGRO_DISPLAY* mpDisplay;
 		int mWidth, mHeight;
+
+		Color* mpDefaultColor;
+		Font* mpDefaultFont;
 };
 
 #endif

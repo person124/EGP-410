@@ -11,6 +11,7 @@ namespace IOUtils
 	void loadAnimations(const std::string& path);
 	void loadAudio(const std::string& path);
 
+	//TODO Change grid saving and loading
 	void saveGrid(const std::string& path, Grid* grid);
 	void loadGrid(const std::string& path, Grid* grid);
 

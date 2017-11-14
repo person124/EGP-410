@@ -1,9 +1,9 @@
 #ifndef ANIMATION_MANAGER_H
 #define ANIMATION_MANAGER_H
 
-#include "stringManager.h"
-
 #include "graphics/animation.h"
+
+#include "utils/stringManager.h"
 
 #include <string>
 
