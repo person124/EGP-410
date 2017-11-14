@@ -9,11 +9,11 @@ class GUI : public Trackable
 {
 	public:
 		GUI();
-		~GUI();
+		virtual ~GUI();
 
-		void update(double dt);
-		void draw();
-	private:
+		virtual void update(double dt);
+		virtual void draw();
+	protected:
 		int mElementCount;
 		GUIElement** mpElements;
 };

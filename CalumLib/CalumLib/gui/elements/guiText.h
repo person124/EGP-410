@@ -1,7 +1,7 @@
 #ifndef GUI_TEXT_H
 #define GUI_TEXT_H
 
-#include "gui/guiFixedText.h"
+#include "gui/elements/guiFixedText.h"
 
 #include <string>
 
@@ -19,9 +19,6 @@ class GUIText : public GUIFixedText
 		{
 			updateText(std::to_string(number));
 		}
-
-		void setX(int x);
-		void setY(int y);
 };
 
 #endif

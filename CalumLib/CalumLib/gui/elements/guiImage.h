@@ -15,7 +15,6 @@ class GUIImage : public GUIElement
 		void draw();
 	private:
 		GraphicsBuffer* mpBuffer;
-		int mX, mY;
 		float mScale;
 };
 

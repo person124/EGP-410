@@ -25,13 +25,3 @@ void GUIText::updateText(const char* text)
 {
 	mText = text;
 }
-
-void GUIText::setX(int x)
-{
-	mX = x;
-}
-
-void GUIText::setY(int y)
-{
-	mY = y;
-}

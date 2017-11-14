@@ -49,6 +49,12 @@
     <Filter Include="Source Files\gui">
       <UniqueIdentifier>{9a886bef-cb94-4da9-8fd0-ca584e4d792e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\gui\elements">
+      <UniqueIdentifier>{6bd6b798-9b06-4d82-9a16-5e78bf11f10a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\elements">
+      <UniqueIdentifier>{fa6c6005-a38d-4373-843f-073d290eb199}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -144,16 +150,22 @@
     <ClInclude Include="gui\guiElement.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
-    <ClInclude Include="gui\guiFixedText.h">
+    <ClInclude Include="gui\guiListener.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
-    <ClInclude Include="gui\guiText.h">
-      <Filter>Header Files\gui</Filter>
+    <ClInclude Include="gui\elements\guiAnimation.h">
+      <Filter>Header Files\gui\elements</Filter>
     </ClInclude>
-    <ClInclude Include="gui\guiAnimation.h">
-      <Filter>Header Files\gui</Filter>
+    <ClInclude Include="gui\elements\guiFixedText.h">
+      <Filter>Header Files\gui\elements</Filter>
     </ClInclude>
-    <ClInclude Include="gui\guiImage.h">
+    <ClInclude Include="gui\elements\guiImage.h">
+      <Filter>Header Files\gui\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\elements\guiText.h">
+      <Filter>Header Files\gui\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiSelectable.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
   </ItemGroup>
@@ -233,16 +245,22 @@
     <ClCompile Include="gui\gui.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="gui\guiFixedText.cpp">
+    <ClCompile Include="gui\guiListener.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="gui\guiText.cpp">
-      <Filter>Source Files\gui</Filter>
+    <ClCompile Include="gui\elements\guiAnimation.cpp">
+      <Filter>Source Files\gui\elements</Filter>
     </ClCompile>
-    <ClCompile Include="gui\guiImage.cpp">
-      <Filter>Source Files\gui</Filter>
+    <ClCompile Include="gui\elements\guiFixedText.cpp">
+      <Filter>Source Files\gui\elements</Filter>
     </ClCompile>
-    <ClCompile Include="gui\guiAnimation.cpp">
+    <ClCompile Include="gui\elements\guiImage.cpp">
+      <Filter>Source Files\gui\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\elements\guiText.cpp">
+      <Filter>Source Files\gui\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiSelectable.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

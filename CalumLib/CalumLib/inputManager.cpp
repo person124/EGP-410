@@ -14,6 +14,8 @@ InputManager::InputManager()
 	mKeys[KEYS_DOWN] = KeyInput(ALLEGRO_KEY_S, new EventKeypress(KEYS_DOWN));
 	mKeys[KEYS_LEFT] = KeyInput(ALLEGRO_KEY_A, new EventKeypress(KEYS_LEFT));
 	mKeys[KEYS_RIGHT] = KeyInput(ALLEGRO_KEY_D, new EventKeypress(KEYS_RIGHT));
+
+	mKeys[KEYS_CONFIRM] = KeyInput(ALLEGRO_KEY_ENTER, new EventKeypress(KEYS_CONFIRM));
 }
 
 InputManager::~InputManager()

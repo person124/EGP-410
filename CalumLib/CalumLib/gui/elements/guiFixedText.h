@@ -21,7 +21,6 @@ class GUIFixedText : public GUIElement
 		}
 
 		std::string mText;
-		int mX, mY;
 };
 
 #endif

@@ -16,7 +16,6 @@ class GUIAnimation : public GUIElement
 		void draw();
 	private:
 		Animation* mpAni;
-		int mX, mY;
 		float mScale;
 };
 

@@ -11,6 +11,14 @@ class GUIElement : public Trackable
 
 		virtual void update(double dt) {};
 		virtual void draw() {};
+
+		void setX(int x) { mX = x; };
+		void setY(int y) { mY = y; };
+
+		int getX() { return mX; };
+		int getY() { return mY; };
+	protected:
+		int mX, mY;
 };
 
 #endif
