@@ -16,13 +16,15 @@ class GUISelectable : public GUIListener
 		void registerEvents();
 
 		void handleEvent(const Event& theEvent);
+
+		void refreshSelector();
 	protected:
 		void setMax(int max);
 		void addSelectable(int pos, Event* theEvent);
 	private:
 		int mCurrent, mSize;
 		int* mpSelections;
-		Event* mpEvents;
+		Event** mpEvents;
 
 		GUIText* mpSelectorText;
 };

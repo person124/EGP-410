@@ -7,6 +7,8 @@
 
 #include "gui/elements/guiText.h"
 
+#include <assert.h>
+
 GUISelectable::GUISelectable()
 {
 	registerEvents();
@@ -22,6 +24,8 @@ GUISelectable::GUISelectable()
 GUISelectable::~GUISelectable()
 {
 	delete[] mpSelections;
+	for (int i = 0; i < mSize; i++)
+		delete mpEvents[i];
 	delete[] mpEvents;
 
 	delete mpSelectorText;
@@ -29,6 +33,7 @@ GUISelectable::~GUISelectable()
 
 void GUISelectable::draw()
 {
+	GUI::draw();
 	mpSelectorText->draw();
 }
 
@@ -52,7 +57,8 @@ void GUISelectable::handleEvent(const Event& theEvent)
 				mCurrent++;
 				break;
 			case KEYS_CONFIRM:
-				gpEventSystem->fireEvent(mpEvents[mCurrent]);
+				if (mCurrent != -1)
+					gpEventSystem->fireEvent(*mpEvents[mCurrent]);
 				break;
 			default:
 				break;
@@ -63,8 +69,36 @@ void GUISelectable::handleEvent(const Event& theEvent)
 		else if (mCurrent >= mSize)
 			mCurrent = 0;
 
-		GUIElement* ele = mpElements[mpSelections[mCurrent]];
-		mpSelectorText->setX(ele->getX() - FONT_SIZE);
-		mpSelectorText->setY(ele->getY());
+		refreshSelector();
 	}
+}
+
+void GUISelectable::refreshSelector()
+{
+	GUIElement* ele = mpElements[mpSelections[mCurrent]];
+	mpSelectorText->setX(ele->getX() - FONT_SIZE);
+	mpSelectorText->setY(ele->getY());
+}
+
+void GUISelectable::setMax(int max)
+{
+	mSize = max;
+	mpSelections = new int[mSize];
+
+	mpEvents = new Event*[mSize];
+	for (int i = 0; i < mSize; i++)
+		mpEvents[i] = NULL;
+}
+
+void GUISelectable::addSelectable(int pos, Event* theEvent)
+{
+	int slot;
+	for (slot = 0; slot < mSize; slot++)
+		if (mpEvents[slot] == NULL)
+			break;
+
+	assert(slot < mSize);
+
+	mpSelections[slot] = pos;
+	mpEvents[slot] = theEvent;
 }

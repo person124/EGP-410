@@ -45,10 +45,13 @@ class GraphicsSystem : public Trackable
 		void drawLine(int x1, int y1, int x2, int y2, const Color& color);
 
 		//Misc
+		void clear();
 		void flip();
 	private:
 		ALLEGRO_DISPLAY* mpDisplay;
 		int mWidth, mHeight;
+
+		Color* mpColorBlack;
 
 		Color* mpDefaultColor;
 		Font* mpDefaultFont;

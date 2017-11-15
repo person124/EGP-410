@@ -168,6 +168,9 @@
     <ClInclude Include="gui\guiSelectable.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiMainMenu.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -261,6 +264,9 @@
       <Filter>Source Files\gui\elements</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiSelectable.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiMainMenu.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

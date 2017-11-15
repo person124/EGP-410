@@ -47,6 +47,8 @@ Game::~Game()
 	destroy();
 }
 
+#include "gui/guiMainMenu.h"
+
 bool Game::initGame(int width, int height)
 {
 	mpGraphics = new GraphicsSystem(width, height);
@@ -71,12 +73,9 @@ bool Game::initGame(int width, int height)
 
 	mFPS = 0.0f;
 
-	GraphicsBuffer* bg = new GraphicsBuffer(800, 600, Color(0, 0, 0));
-	mpBufferManager->add("background", bg);
-
 	mpGrid = new Grid();
 
-	mpGUI = new GUI();
+	mpGUI = new GUIMainMenu();
 
 	return true;
 }
@@ -139,7 +138,7 @@ void Game::update(float dt)
 
 void Game::draw()
 {
-	mpGraphics->draw(0, 0, mpBufferManager->get("background"));
+	mpGraphics->clear();
 
 	mpGrid->draw();
 

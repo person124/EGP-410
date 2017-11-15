@@ -143,6 +143,7 @@
     <ClInclude Include="gui\gui.h" />
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiListener.h" />
+    <ClInclude Include="gui\guiMainMenu.h" />
     <ClInclude Include="gui\guiSelectable.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="ioUtils.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="gui\elements\guiText.cpp" />
     <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />
+    <ClCompile Include="gui\guiMainMenu.cpp" />
     <ClCompile Include="gui\guiSelectable.cpp" />
     <ClCompile Include="inputManager.cpp" />
     <ClCompile Include="ioUtils.cpp" />

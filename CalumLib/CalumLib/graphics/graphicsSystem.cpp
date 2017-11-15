@@ -60,6 +60,8 @@ bool GraphicsSystem::init()
 
 	mpDisplay = al_create_display(mWidth, mHeight);
 
+	mpColorBlack = new Color(0, 0, 0);
+
 	mpDefaultColor = new Color(255, 255, 255);
 	mpDefaultFont = new Font(FONT_SIZE, PATH_FONT);
 
@@ -68,6 +70,8 @@ bool GraphicsSystem::init()
 
 void GraphicsSystem::destroy()
 {
+	delete mpColorBlack;
+
 	delete mpDefaultColor;
 	delete mpDefaultFont;
 
@@ -151,6 +155,11 @@ void GraphicsSystem::drawCircle(int x, int y, int radius, const Color& color)
 void GraphicsSystem::drawLine(int x1, int y1, int x2, int y2, const Color& color)
 {
 	al_draw_line(x1, y1, x2, y2, *color.mColor, 2);
+}
+
+void GraphicsSystem::clear()
+{
+	al_draw_filled_rectangle(0, 0, mWidth, mHeight, *mpColorBlack->mColor);
 }
 
 void GraphicsSystem::flip()

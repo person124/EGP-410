@@ -1,4 +1,5 @@
 <buffer name> <asset path>
+background assets/images/background.bmp
 tile assets/images/tile.bmp
 start assets/images/start.bmp
 goal assets/images/goal.bmp
