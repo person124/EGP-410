@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{614D5243-2E63-43B6-B4EF-DF992C5193D3}</ProjectGuid>
     <RootNamespace>CalumLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -152,6 +152,10 @@
     <ClInclude Include="pathing\pathing.h" />
     <ClInclude Include="pathing\pathList.h" />
     <ClInclude Include="pathing\tile.h" />
+    <ClInclude Include="physics\steeringOutput.h" />
+    <ClInclude Include="physics\vector2.h" />
+    <ClInclude Include="units\unit.h" />
+    <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="utils\memoryTracker.h" />
     <ClInclude Include="utils\stringManager.h" />
     <ClInclude Include="utils\timer.h" />
@@ -187,6 +191,9 @@
     <ClCompile Include="pathing\pathing.cpp" />
     <ClCompile Include="pathing\pathList.cpp" />
     <ClCompile Include="pathing\tile.cpp" />
+    <ClCompile Include="physics\vector2.cpp" />
+    <ClCompile Include="units\unit.cpp" />
+    <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="utils\memoryTracker.cpp" />
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="utils\trackable.cpp" />

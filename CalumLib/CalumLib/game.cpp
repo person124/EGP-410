@@ -16,6 +16,8 @@
 
 #include "pathing/grid.h"
 
+#include "units/unitManager.h"
+
 #include "utils/timer.h"
 
 #include <ctime>
@@ -47,10 +49,12 @@ Game::~Game()
 	destroy();
 }
 
+//TODO Move
 #include "gui/guiMainMenu.h"
 
 bool Game::initGame(int width, int height)
 {
+	//TODO reorder
 	mpGraphics = new GraphicsSystem(width, height);
 	if (!mpGraphics->init())
 		return false;
@@ -77,11 +81,14 @@ bool Game::initGame(int width, int height)
 
 	mpGUI = new GUIMainMenu();
 
+	mpUnitManager = new UnitManager();
+
 	return true;
 }
 
 void Game::destroy()
 {
+	//TODO reorder
 	if (mpGraphics == NULL)
 		return;
 
@@ -95,6 +102,8 @@ void Game::destroy()
 	delete mpGUI;
 
 	delete mpAudio;
+
+	delete mpUnitManager;
 
 	mpGraphics->destroy();
 	delete mpGraphics;
@@ -133,6 +142,8 @@ void Game::update(float dt)
 {
 	mpInputManager->update();
 
+	mpUnitManager->update(dt);
+
 	mpGUI->update(dt);
 }
 
@@ -141,6 +152,8 @@ void Game::draw()
 	mpGraphics->clear();
 
 	mpGrid->draw();
+
+	mpUnitManager->draw();
 
 	mpGUI->draw();
 
@@ -173,4 +186,9 @@ GraphicsBufferManager* Game::getBufferManager()
 AnimationManager* Game::getAnimationManager()
 {
 	return mpAnimationManager;
+}
+
+UnitManager* Game::getUnits()
+{
+	return mpUnitManager;
 }

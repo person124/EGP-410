@@ -55,6 +55,18 @@
     <Filter Include="Header Files\gui\elements">
       <UniqueIdentifier>{fa6c6005-a38d-4373-843f-073d290eb199}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\units">
+      <UniqueIdentifier>{2fe39553-081f-4ebd-8f78-d57c96b7766a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\units">
+      <UniqueIdentifier>{d6f815eb-cfaa-4264-98e9-cf6e6125676c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\physics">
+      <UniqueIdentifier>{ff086bcb-1423-42ee-8a96-0687de4c9971}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\physics">
+      <UniqueIdentifier>{71bf0720-4c30-47c7-910b-62c439fe6afc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -171,6 +183,18 @@
     <ClInclude Include="gui\guiMainMenu.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="units\unitManager.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
+    <ClInclude Include="units\unit.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\vector2.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\steeringOutput.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -268,6 +292,15 @@
     </ClCompile>
     <ClCompile Include="gui\guiMainMenu.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unitManager.cpp">
+      <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unit.cpp">
+      <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\vector2.cpp">
+      <Filter>Source Files\physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

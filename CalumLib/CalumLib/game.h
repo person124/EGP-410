@@ -5,6 +5,7 @@
 
 #include "utils/trackable.h"
 
+//TODO Reorder
 class GraphicsSystem;
 class InputManager;
 class GraphicsBufferManager;
@@ -12,6 +13,7 @@ class AnimationManager;
 class AudioSystem;
 class Grid;
 class GUI;
+class UnitManager;
 
 class Game : public EventListener
 {
@@ -31,12 +33,14 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
+		UnitManager* getUnits();
 	private:
 		void update(float dt);
 		void draw();
 
 		bool mRunning;
 	
+		//TODO Reorder
 		GraphicsSystem* mpGraphics;
 		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
@@ -44,6 +48,7 @@ class Game : public EventListener
 		AudioSystem* mpAudio;
 		Grid* mpGrid;
 		GUI* mpGUI;
+		UnitManager* mpUnitManager;
 	
 		float mFPS;
 };
