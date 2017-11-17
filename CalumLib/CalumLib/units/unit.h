@@ -42,8 +42,10 @@ class Unit : public Trackable
 		bool isPointInsideUnit(Vector2& point);
 	protected:
 		Animation* mpAnim;
+		float mAniScale;
+
 		Vector2 mPos, mVel;
-		SteeringOutput* mSteer;
+		SteeringOutput* mpSteer;
 		float mAngle, mRotation;
 	
 		float mMaxSpeed;

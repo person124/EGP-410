@@ -12,15 +12,18 @@
 Unit::Unit(const char* animString)
 {
 	mpAnim = Game::pInstance->getAnimationManager()->get(animString);
+	mAniScale = 1.0f;
+
 	mPos = Vector2();
 	mVel = Vector2();
 
-	mSteer = new SteeringOutput();
+	mpSteer = new SteeringOutput();
 }
 
 Unit::~Unit()
 {
-	delete mSteer;
+	delete mpSteer;
+	delete mpAnim;
 }
 
 void Unit::update(double dt)
@@ -31,7 +34,7 @@ void Unit::update(double dt)
 
 void Unit::draw()
 {
-	Game::pInstance->getGraphics()->draw((int) mPos.x, (int) mPos.y, mpAnim->getCurrent());
+	Game::pInstance->getGraphics()->draw((int) mPos.x, (int) mPos.y, mpAnim->getCurrent(), mAniScale);
 }
 
 Vector2 Unit::getAngleAsVector()
@@ -50,8 +53,8 @@ void Unit::stop()
 	mVel = Vector2(0,0);
 	mRotation = 0;
 
-	mSteer->linear = Vector2(0, 0);
-	mSteer->angular = 0;
+	mpSteer->linear = Vector2(0, 0);
+	mpSteer->angular = 0;
 }
 
 bool Unit::isPointInsideUnit(Vector2& point)

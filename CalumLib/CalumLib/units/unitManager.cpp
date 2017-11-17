@@ -13,7 +13,7 @@ UnitManager::~UnitManager()
 	removeAll();
 }
 
-void UnitManager::addUnit(Unit*& unit)
+void UnitManager::addUnit(Unit* unit)
 {
 	mUnits.push_back(unit);
 }
@@ -26,7 +26,7 @@ void UnitManager::removeUnit(unsigned int pos)
 	mUnits.erase(mUnits.begin() + pos);
 }
 
-void UnitManager::removeUnit(Unit*& unit)
+void UnitManager::removeUnit(Unit* unit)
 {
 	for (unsigned int i = 0; i < mUnits.size(); i++)
 		if (mUnits.at(i) == unit)

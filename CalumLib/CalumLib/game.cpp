@@ -51,6 +51,7 @@ Game::~Game()
 
 //TODO Move
 #include "gui/guiMainMenu.h"
+#include "units/unitSHA.h"
 
 bool Game::initGame(int width, int height)
 {
@@ -82,6 +83,7 @@ bool Game::initGame(int width, int height)
 	mpGUI = new GUIMainMenu();
 
 	mpUnitManager = new UnitManager();
+	mpUnitManager->addUnit(new UnitSHA(yellow));
 
 	return true;
 }
@@ -155,7 +157,7 @@ void Game::draw()
 
 	mpUnitManager->draw();
 
-	mpGUI->draw();
+	//mpGUI->draw();
 
 	mpGraphics->flip();
 }

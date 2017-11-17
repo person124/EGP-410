@@ -15,9 +15,9 @@ public:
 	~UnitManager();
 
 	// Adding/Removing
-	void addUnit(Unit*& unit);
+	void addUnit(Unit* unit);
 	void removeUnit(unsigned int pos);
-	void removeUnit(Unit*& unit);
+	void removeUnit(Unit* unit);
 	void removeAll();
 
 	// Getters
