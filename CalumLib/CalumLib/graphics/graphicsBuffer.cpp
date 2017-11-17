@@ -26,6 +26,8 @@ GraphicsBuffer::GraphicsBuffer(const std::string& path)
 	mWidth = al_get_bitmap_width(mpBitmap);
 	mHeight = al_get_bitmap_height(mpBitmap);
 
+	al_convert_mask_to_alpha(mpBitmap, al_map_rgb(255, 0, 255));
+
 	useDestroy = true;
 }
 

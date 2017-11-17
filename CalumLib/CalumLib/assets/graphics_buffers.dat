@@ -4,3 +4,5 @@ tile assets/images/tile.bmp
 start assets/images/start.bmp
 goal assets/images/goal.bmp
 kira_click assets/images/kira_click.bmp
+sha assets/images/sha.bmp
+sha_colors assets/images/sha_colors.bmp
