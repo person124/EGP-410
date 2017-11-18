@@ -1,6 +1,6 @@
 <animation name> <buffer name> <animation time> <should loop, 1 true, 0 false> <width> <height> <x count> <y count> <x offset> <y offset>
 tiles tile 0 0 16 16 2 1 0 0
-tiles_solid tile 0 0 16 1 2 1 16 0
+tiles_solid tile 0 0 16 16 2 1 0 16
 kira_click_anim kira_click 0.065 0 480 270 1 11 0 0
 sha_front sha 0.45 1 16 16 4 1 0 0
 sha_back sha 0 0 16 16 1 1 0 16

@@ -105,6 +105,15 @@ Sprite* Animation::getCurrent()
 	return mSprites.at(mCurrent);
 }
 
+Sprite* Animation::getSprite(int frame)
+{
+	if (frame < 0)
+		frame = 0;
+	else if (frame > getLength())
+		frame = getLength() - 1;
+	return mSprites.at(frame);
+}
+
 int Animation::getLength()
 {
 	return mSprites.size();

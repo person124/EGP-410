@@ -213,6 +213,9 @@
     <ClInclude Include="gui\guiEditor.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="pathing\spawnLocation.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">

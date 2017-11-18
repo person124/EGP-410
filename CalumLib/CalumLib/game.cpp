@@ -83,7 +83,7 @@ bool Game::initGame(int width, int height)
 
 	mFPS = 0.0f;
 
-	mpGrid = new Grid();
+	mpGrid = NULL;
 
 	mCurrentState = STATE_MAIN_MENU;
 	mpGUI = new GUIMainMenu();
@@ -108,7 +108,8 @@ void Game::destroy()
 	delete mpBufferManager;
 	delete mpAnimationManager;
 
-	delete mpGrid;
+	if (mpGrid != NULL)
+		delete mpGrid;
 
 	delete mpGUI;
 

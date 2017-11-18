@@ -37,6 +37,8 @@ Editor::Editor(GUIEditor* gui)
 	ani = Game::pInstance->getAnimationManager()->get("editor_spawns");
 	mMax[1] = ani->getLength();
 	delete ani;
+
+	mDrawSolid = false;
 }
 
 Editor::~Editor()
@@ -51,7 +53,11 @@ void Editor::update(double dt)
 
 void Editor::draw()
 {
-	mpGrid->draw();
+	if (!mDrawSolid)
+		mpGrid->draw();
+	else
+		mpGrid->drawSolidity();
+	mpGrid->drawSpawnLocations();
 }
 
 void Editor::handleEvent(const Event& theEvent)
@@ -62,6 +68,10 @@ void Editor::handleEvent(const Event& theEvent)
 
 		switch (e.getKey())
 		{
+			case KEYS_TOGGLE_SOLIDITY:
+				mDrawSolid = !mDrawSolid;
+				return;
+
 			//Keys to move camera
 			case KEYS_CAMERA_UP:
 				mpGraphics->offsetOffset(0, -15);
@@ -111,7 +121,15 @@ void Editor::handleEvent(const Event& theEvent)
 		int tileX = (e.getX() + mpGraphics->getXOffset()) / TILE_SIZE;
 		int tileY = (e.getY() + mpGraphics->getYOffset()) / TILE_SIZE;
 
-		mpGrid->setID(tileX, tileY, mCurrent[TILE]);
+		if (mCurrentType == TILE)
+			mpGrid->setID(tileX, tileY, mCurrent[TILE]);
+		else if (mCurrentType == SPAWNS)
+		{
+			if (e.getButton() == left_mouse_button)
+				mpGrid->addSpawnLocation((SpawnType)mCurrent[SPAWNS], tileX, tileY);
+			else
+				mpGrid->removeSpawnLocation(tileX, tileY);
+		}
 	}
 }
 

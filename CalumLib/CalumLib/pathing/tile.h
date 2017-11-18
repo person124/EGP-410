@@ -16,6 +16,7 @@ class Tile : public Trackable
 		~Tile();
 
 		void draw(int x, int y);
+		void drawSolidity(int x, int y);
 
 		bool isSolid();
 		int getID();

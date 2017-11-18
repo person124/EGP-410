@@ -28,6 +28,8 @@ class Editor : public EventListener
 		GUIEditor* mpGUI;
 		GraphicsSystem* mpGraphics;
 
+		bool mDrawSolid;
+
 		Grid* mpGrid;
 		EditorSelections mCurrentType;
 		int mCurrent[EDITOR_SELECTIONS_COUNT];

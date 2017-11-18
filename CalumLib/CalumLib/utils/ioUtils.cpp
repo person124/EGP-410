@@ -124,6 +124,13 @@ void IOUtils::saveGrid(const std::string& path, Grid* grid)
 	for (int i = 0; i < grid->getSize(); i++)
 		file << grid->getID(i) << ' ';
 
+	std::vector<SpawnLocation> locs = grid->getSpawnLocations();
+	for (unsigned int i = 0; i < locs.size(); i++)
+	{
+		SpawnLocation sl = locs.at(i);
+		file << ((int) sl.type) << ' ' << sl.x << ' ' << sl.y << ' ';
+	}
+
 	file.close();
 }
 
@@ -148,6 +155,13 @@ void IOUtils::loadGrid(const std::string& path, Grid* grid)
 	{
 		file >> value;
 		grid->setID(i, value);
+	}
+
+	int type, x, y;
+	while (!file.eof())
+	{
+		file >> type >> x >> y;
+		grid->addSpawnLocation((SpawnType) type, x, y);
 	}
 
 	file.close();

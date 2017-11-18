@@ -42,6 +42,11 @@ void Tile::draw(int x, int y)
 	Game::pInstance->getGraphics()->drawOffset(x * TILE_SIZE, y * TILE_SIZE, mpSprite, TILE_SCALE);
 }
 
+void Tile::drawSolidity(int x, int y)
+{
+	Game::pInstance->getGraphics()->drawOffset(x * TILE_SIZE, y * TILE_SIZE, Tile::mspSolidAnimation->getSprite(mID), TILE_SCALE);
+}
+
 bool Tile::isSolid()
 {
 	return mSolid;
@@ -55,10 +60,6 @@ int Tile::getID()
 void Tile::setID(int id)
 {
 	mID = id;
-
-	Tile::mspTileAnimation->setFrame(id);
-	Tile::mspSolidAnimation->setFrame(0);
-
-	mpSprite = Tile::mspTileAnimation->getCurrent();
-	mSolid = Tile::mspSolidAnimation->getCurrent()->getBlackOrWhite();
+	mpSprite = Tile::mspTileAnimation->getSprite(mID);
+	mSolid = Tile::mspSolidAnimation->getSprite(mID)->getBlackOrWhite();
 }

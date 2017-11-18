@@ -28,6 +28,7 @@ class Animation : public Trackable
 		//Getters
 		double getSpeed();
 		Sprite* getCurrent();
+		Sprite* getSprite(int frame);
 		int getLength();
 		bool isFinished();
 		bool isDone();
