@@ -22,6 +22,9 @@ GraphicsSystem::GraphicsSystem(int width, int height)
 	mWidth = width;
 	mHeight = height;
 	mpDisplay = NULL;
+
+	mXOffset = 0;
+	mYOffset = 1;
 }
 
 GraphicsSystem::~GraphicsSystem()
@@ -127,6 +130,26 @@ void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, 
 	al_set_target_bitmap(al_get_backbuffer(mpDisplay));
 }
 
+void GraphicsSystem::drawOffset(int x, int y, GraphicsBuffer* buffer, float scale)
+{
+	draw(x + mXOffset, y + mYOffset, buffer, scale);
+}
+
+void GraphicsSystem::drawOffset(int x, int y, Sprite* sprite, float scale)
+{
+	draw(x + mXOffset, y + mYOffset, sprite, scale);
+}
+
+void GraphicsSystem::drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)
+{
+	draw(toDraw, x + mXOffset, y + mYOffset, buffer, scale);
+}
+
+void GraphicsSystem::drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale)
+{
+	draw(buffer, x + mXOffset, y + mYOffset, sprite, scale);
+}
+
 void GraphicsSystem::writeText(int x, int y, const Font& font, const Color& color, const std::string& text)
 {
     al_draw_text(font.mpFont, *color.mColor, x, y, ALLEGRO_ALIGN_LEFT, text.c_str());
@@ -165,4 +188,10 @@ void GraphicsSystem::clear()
 void GraphicsSystem::flip()
 {
 	al_flip_display();
+}
+
+void GraphicsSystem::setOffset(int x, int y)
+{
+	mXOffset = x;
+	mYOffset = y;
 }

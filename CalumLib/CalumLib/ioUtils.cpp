@@ -119,8 +119,10 @@ void IOUtils::saveGrid(const std::string& path, Grid* grid)
 		return;
 	}
 
+	file << grid->getWidth() << ' ' << grid->getHeight() << ' ';
+
 	for (int i = 0; i < grid->getSize(); i++)
-		file << grid->isSolid(i) << ' ';
+		file << grid->getID(i) << ' ';
 
 	file.close();
 }
@@ -134,11 +136,18 @@ void IOUtils::loadGrid(const std::string& path, Grid* grid)
 		return;
 	}
 
-	bool value;
+	int width, height;
+	file >> width >> height;
+
+	if (grid != NULL)
+		delete grid;
+	grid = new Grid(width, height);
+
+	int value;
 	for (int i = 0; i < grid->getSize(); i++)
 	{
 		file >> value;
-		grid->setSolid(i, value);
+		grid->setID(i, value);
 	}
 
 	file.close();

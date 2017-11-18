@@ -1,6 +1,7 @@
 #include "sprite.h"
 
 #include "graphics/graphicsBuffer.h"
+#include "graphics/color.h"
 
 Sprite::Sprite()
 {
@@ -10,6 +11,8 @@ Sprite::Sprite()
 	mStartY = 0;
 	mWidth = 0;
 	mHeight = 0;
+
+	mIsBlack = true;
 }
 
 Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height)
@@ -20,6 +23,10 @@ Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height)
 	mStartY = sY;
 	mWidth = width;
 	mHeight = height;
+
+	Color* tempColor = mpBuffer->getPixel();
+	mIsBlack = tempColor->isBlack();
+	delete tempColor;
 }
 
 GraphicsBuffer* Sprite::getBuffer()
@@ -45,4 +52,9 @@ int Sprite::startX()
 int Sprite::startY()
 {
 	return mStartY;
+}
+
+bool Sprite::getBlackOrWhite()
+{
+	return mIsBlack;
 }

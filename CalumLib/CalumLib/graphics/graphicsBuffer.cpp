@@ -1,5 +1,7 @@
 #include "graphicsBuffer.h"
 
+#include "graphics/color.h"
+
 #include <allegro5/allegro.h>
 #include <allegro5/bitmap.h>
 #include <allegro5/allegro_primitives.h>
@@ -56,4 +58,10 @@ int GraphicsBuffer::getWidth()
 int GraphicsBuffer::getHeight()
 {
 	return mHeight;
+}
+
+Color* GraphicsBuffer::getPixel(int x, int y)
+{
+	ALLEGRO_COLOR c = al_get_pixel(mpBitmap, x, y);
+	return new Color(c.r, c.a, c.b);
 }

@@ -16,6 +16,8 @@ class Color : public Trackable
 
 		void setAlpha(float a);
 		void setAlpha(int a);
+
+		bool isBlack();
 	private:
 		ALLEGRO_COLOR* mColor;
 };

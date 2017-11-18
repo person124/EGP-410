@@ -6,15 +6,27 @@
 #include "graphics/graphicsSystem.h"
 #include "graphics/animationManager.h"
 #include "graphics/animation.h"
+#include "graphics/sprite.h"
 
-Tile::Tile(bool solid)
+Animation* Tile::mspSolidAnimation = NULL;
+
+Tile::Tile(int id)
 {
-	mpAnimation = Game::pInstance->getAnimationManager()->get("tile");
-	setSolid(solid);
+	if (Tile::mspSolidAnimation == NULL)
+		Tile::mspSolidAnimation = Game::pInstance->getAnimationManager()->get("tiles_solid");
+
+	mpAnimation = Game::pInstance->getAnimationManager()->get("tiles");
+	setID(id);
 }
 
 Tile::~Tile()
 {
+	if (Tile::mspSolidAnimation != NULL)
+	{
+		delete Tile::mspSolidAnimation;
+		Tile::mspSolidAnimation = NULL;
+	}
+
 	delete mpAnimation;
 }
 
@@ -28,8 +40,16 @@ bool Tile::isSolid()
 	return mSolid;
 }
 
-void Tile::setSolid(bool value)
+int Tile::getID()
 {
-	mSolid = value;
-	mpAnimation->setFrame(mSolid);
+	return mID;
+}
+
+void Tile::setID(int id)
+{
+	mID = id;
+
+	mpAnimation->setFrame(id);
+	Tile::mspSolidAnimation->setFrame(0);
+	mSolid = Tile::mspSolidAnimation->getCurrent()->getBlackOrWhite();
 }

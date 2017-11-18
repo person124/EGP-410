@@ -17,8 +17,18 @@ Grid::Grid()
 	mpTiles = new Tile*[mWidth * mHeight];
 	for (int i = 0; i < getSize(); i++)
 	{
-		mpTiles[i] = new Tile(false);
+		mpTiles[i] = new Tile(i % 2);
 	}
+}
+
+Grid::Grid(int width, int height)
+{
+	mWidth = width;
+	mHeight = height;
+
+	mpTiles = new Tile*[mWidth * mHeight];
+	for (int i = 0; i < getSize(); i++)
+		mpTiles[i] = new Tile(i % 2);
 }
 
 Grid::~Grid()
@@ -65,6 +75,20 @@ Tile* Grid::getTile(int x, int y)
 	return getTile(x + y * mWidth);
 }
 
+int Grid::getID(int pos)
+{
+	if (pos < 0 || pos >= getSize())
+		return 0;
+	return mpTiles[pos]->getID();
+}
+
+int Grid::getID(int x, int y)
+{
+	if (x < 0 || y < 0 || x >= mWidth || y >= mHeight)
+		return 0;
+	return getID(x + y * mWidth);
+}
+
 bool Grid::isSolid(int pos)
 {
 	Tile* t = getTile(pos);
@@ -77,16 +101,16 @@ bool Grid::isSolid(int x, int y)
 	return t == NULL || t->isSolid();
 }
 
-void Grid::setSolid(int pos, bool value)
+void Grid::setID(int pos, int value)
 {
 	Tile* t = getTile(pos);
 	if (t != NULL)
-		t->setSolid(value);
+		t->setID(value);
 }
 
-void Grid::setSolid(int x, int y, bool value)
+void Grid::setID(int x, int y, int value)
 {
 	Tile* t = getTile(x, y);
 	if (t != NULL)
-		t->setSolid(value);
+		t->setID(value);
 }

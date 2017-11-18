@@ -22,6 +22,14 @@
 
 #include <ctime>
 
+enum GameState
+{
+	MAIN_MENU,
+	IN_GAME,
+	OPTIONS,
+	EDITOR
+};
+
 Game* Game::pInstance = NULL;
 
 void Game::init()
@@ -80,6 +88,7 @@ bool Game::initGame(int width, int height)
 
 	mpGrid = new Grid();
 
+	mCurrentState = MAIN_MENU;
 	mpGUI = new GUIMainMenu();
 
 	mpUnitManager = new UnitManager();
@@ -157,7 +166,7 @@ void Game::draw()
 
 	mpUnitManager->draw();
 
-	//mpGUI->draw();
+	mpGUI->draw();
 
 	mpGraphics->flip();
 }

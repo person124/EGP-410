@@ -33,7 +33,12 @@ class GraphicsSystem : public Trackable
 		void draw(int x, int y, Sprite* sprite, float scale = 1.0f);
 		void draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
         void draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f);
-        
+        //Drawing buffers w/ offset
+		void drawOffset(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
+		void drawOffset(int x, int y, Sprite* sprite, float scale = 1.0f);
+		void drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
+		void drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f);
+
 		//Writing text
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);
         void writeText(GraphicsBuffer* buffer, int x, int y, const Font& font, const Color& color, const std::string& text);
@@ -47,9 +52,12 @@ class GraphicsSystem : public Trackable
 		//Misc
 		void clear();
 		void flip();
+		void setOffset(int x, int y);
 	private:
 		ALLEGRO_DISPLAY* mpDisplay;
 		int mWidth, mHeight;
+
+		int mXOffset, mYOffset;
 
 		Color* mpColorBlack;
 

@@ -18,9 +18,14 @@ class Sprite : public Trackable
 		GraphicsBuffer* getBuffer();
 		int startX();
 		int startY();
+
+		// Specifically for tile solidity
+		bool getBlackOrWhite();
     private:
         GraphicsBuffer* mpBuffer;
 		int mStartX, mStartY, mWidth, mHeight;
+
+		bool mIsBlack;
 };
 
 #endif

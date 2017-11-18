@@ -7,16 +7,21 @@ class Animation;
 
 class Tile : public Trackable
 {
+	private:
+		static Animation* mspSolidAnimation;
 	public:
-		Tile(bool solid = false);
+		Tile(int id = 0);
 		~Tile();
 
 		void draw(int x, int y);
 
 		bool isSolid();
-		void setSolid(bool value);
+		int getID();
+
+		void setID(int id);
 	private:
 		Animation* mpAnimation;
+		int mID;
 		bool mSolid;
 };
 

@@ -26,3 +26,8 @@ void Color::setAlpha(float a)
 {
 	mColor->a = a;
 }
+
+bool Color::isBlack()
+{
+	return mColor->r == 0 && mColor->g == 0 && mColor->b == 0;
+}

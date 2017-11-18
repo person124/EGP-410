@@ -15,6 +15,8 @@ class Grid;
 class GUI;
 class UnitManager;
 
+enum GameState;
+
 class Game : public EventListener
 {
 	public:
@@ -51,6 +53,7 @@ class Game : public EventListener
 		UnitManager* mpUnitManager;
 	
 		float mFPS;
+		GameState mCurrentState;
 };
 
 #endif

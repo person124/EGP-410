@@ -35,6 +35,6 @@ void UnitSHA::update(double dt)
 
 void UnitSHA::draw()
 {
-	Game::pInstance->getGraphics()->draw(mPos.x, mPos.y, mpAniBase->getCurrent(), mAniScale);
+	Game::pInstance->getGraphics()->drawOffset(mPos.x, mPos.y, mpAniBase->getCurrent(), mAniScale);
 	Unit::draw();
 }

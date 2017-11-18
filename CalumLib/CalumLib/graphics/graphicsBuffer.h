@@ -8,6 +8,7 @@
 #include <string>
 
 struct ALLEGRO_BITMAP;
+class Color;
 
 class GraphicsBuffer : public Trackable
 {
@@ -18,6 +19,8 @@ class GraphicsBuffer : public Trackable
 		~GraphicsBuffer();
 		int getWidth();
 		int getHeight();
+
+		Color* getPixel(int x = 0, int y = 0);
 	private:
 		GraphicsBuffer(ALLEGRO_BITMAP* map);
 		ALLEGRO_BITMAP* mpBitmap;
