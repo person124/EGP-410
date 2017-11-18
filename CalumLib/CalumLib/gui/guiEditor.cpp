@@ -1,5 +1,7 @@
 #include "guiEditor.h"
 
+#include "globalConst.h"
+
 #include "editor/editor.h"
 
 #include "gui/elements/guiAnimation.h"
@@ -12,10 +14,12 @@ const int CURRENT_TILE_ANIM = 2;
 const int CURRENT_SPAWN = 3;
 const int CURRENT_SPAWN_ANIM = 4;
 const int ARROW = 5;
+const int SAVE_TEXT = 6;
+const int LOAD_TEXT = 7;
 
 GUIEditor::GUIEditor()
 {
-	setElementCount(6);
+	setElementCount(8);
 	mpElements[HEADER_TEXT] = new GUIFixedText(600, 0, "Edit Mode");
 
 	mpElements[CURRENT_TILE] = new GUIFixedText(0, 5, "Current Tile:");
@@ -25,6 +29,9 @@ GUIEditor::GUIEditor()
 	mpElements[CURRENT_SPAWN_ANIM] = new GUIAnimation(170, 40, "editor_spawns", 2);
 
 	mpElements[ARROW] = new GUIImage(0, 0, "editor_arrow", 2);
+
+	mpElements[SAVE_TEXT] = new GUIFixedText(0, WINDOW_HEIGHT, "Saved to editor.JO");
+	mpElements[LOAD_TEXT] = new GUIFixedText(0, WINDOW_HEIGHT, "Loaded from editor.JO");
 }
 
 void GUIEditor::changeSelected(int selected)
@@ -50,4 +57,14 @@ void GUIEditor::setTileFrame(int frame)
 void GUIEditor::setSpawnFrame(int frame)
 {
 	((GUIAnimation*)mpElements[CURRENT_SPAWN_ANIM])->setFrame(frame);
+}
+
+void GUIEditor::renderSaveMessage(bool val)
+{
+	mpElements[SAVE_TEXT]->setY(WINDOW_HEIGHT - (val * FONT_SIZE));
+}
+
+void GUIEditor::renderLoadMessage(bool val)
+{
+	mpElements[LOAD_TEXT]->setY(WINDOW_HEIGHT - (val * FONT_SIZE));
 }

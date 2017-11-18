@@ -6,6 +6,7 @@
 class Grid;
 class GUIEditor;
 class GraphicsSystem;
+class Timer;
 
 enum EditorSelections
 {
@@ -34,6 +35,8 @@ class Editor : public EventListener
 		EditorSelections mCurrentType;
 		int mCurrent[EDITOR_SELECTIONS_COUNT];
 		int mMax[EDITOR_SELECTIONS_COUNT];
+
+		Timer* mpTimer;
 };
 
 EditorSelections operator++(EditorSelections& sel, int);

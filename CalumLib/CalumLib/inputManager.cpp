@@ -23,6 +23,9 @@ InputManager::InputManager()
 	mKeys[KEYS_CAMERA_RIGHT] = KeyInput(ALLEGRO_KEY_RIGHT, new EventKeypress(KEYS_CAMERA_RIGHT), true);
 
 	mKeys[KEYS_TOGGLE_SOLIDITY] = KeyInput(ALLEGRO_KEY_TAB, new EventKeypress(KEYS_TOGGLE_SOLIDITY));
+
+	mKeys[KEYS_SAVE_MAP] = KeyInput(ALLEGRO_KEY_P, new EventKeypress(KEYS_SAVE_MAP));
+	mKeys[KEYS_LOAD_MAP] = KeyInput(ALLEGRO_KEY_FULLSTOP, new EventKeypress(KEYS_LOAD_MAP));
 }
 
 InputManager::~InputManager()

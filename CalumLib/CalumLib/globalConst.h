@@ -21,7 +21,7 @@
 #define PATH_ANIMATIONS "assets/animations.dat"
 #define PATH_AUDIO "assets/audio_clips.dat"
 #define PATH_FONT "assets/cour.ttf"
-#define PATH_GRID_SAVE "assets/grid_info.dat"
+#define PATH_EDITOR_SAVE "maps/editor.JO"
 
 #define AUDIO_SAMPLES 5
 

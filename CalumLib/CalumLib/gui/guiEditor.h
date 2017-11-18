@@ -12,7 +12,9 @@ class GUIEditor : public GUI
 
 		void setTileFrame(int frame);
 		void setSpawnFrame(int frame);
-	private:
+
+		void renderSaveMessage(bool val);
+		void renderLoadMessage(bool val);
 };
 
 #endif

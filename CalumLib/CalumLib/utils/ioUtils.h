@@ -13,7 +13,7 @@ namespace IOUtils
 
 	//TODO Change grid saving and loading
 	void saveGrid(const std::string& path, Grid* grid);
-	void loadGrid(const std::string& path, Grid* grid);
+	void loadGrid(const std::string& path, Grid*& grid);
 
 	void errorFileReport(const std::string& name);
 	void errorInitReport(const std::string& str);

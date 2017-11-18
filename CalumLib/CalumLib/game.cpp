@@ -85,9 +85,8 @@ bool Game::initGame(int width, int height)
 
 	mpGrid = NULL;
 
-	mCurrentState = STATE_MAIN_MENU;
-	mpGUI = new GUIMainMenu();
 	mToDelete = NULL;
+	handleEvent(EventSwitchState(STATE_MAIN_MENU));
 
 	mpUnitManager = new UnitManager();
 	mpUnitManager->addUnit(new UnitSHA(yellow));
@@ -155,10 +154,21 @@ void Game::mainLoop()
 
 void Game::update(float dt)
 {
+	if (mToDelete != NULL)
+	{
+		delete mToDelete;
+		mToDelete = NULL;
+	}
+
 	mpInputManager->update();
 
 	if (mCurrentState == STATE_EDITOR)
 	{
+		if (mpEditor == NULL)
+		{
+			mpEditor = new Editor((GUIEditor*)mpGUI);
+		}
+
 		mpEditor->update(dt);
 	}
 	else
@@ -166,12 +176,6 @@ void Game::update(float dt)
 		mpUnitManager->update(dt);
 
 		mpGUI->update(dt);
-	}
-
-	if (mToDelete != NULL)
-	{
-		delete mToDelete;
-		mToDelete = NULL;
 	}
 }
 
@@ -213,13 +217,25 @@ void Game::handleEvent(const Event& theEvent)
 
 		switch (e.getState())
 		{
+			case STATE_MAIN_MENU:
+				if (mpGUI != NULL)
+					mToDelete = mpGUI;
+				mpGUI = new GUIMainMenu();
+
+				if (mpEditor != NULL)
+				{
+					delete mpEditor;
+					mpEditor = NULL;
+				}
+
+				mCurrentState = e.getState();
+				break;
 			case STATE_EDITOR:
-				mToDelete = mpGUI;
+				if (mpGUI != NULL)
+					mToDelete = mpGUI;
 				mpGUI = new GUIEditor();
 
-				mpEditor = new Editor((GUIEditor*)mpGUI);
-
-				mCurrentState = STATE_EDITOR;
+				mCurrentState = e.getState();
 				break;
 			default:
 				break;

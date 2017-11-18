@@ -6,6 +6,7 @@
 #include "events/eventSystem.h"
 #include "events/eventClick.h"
 #include "events/eventKeypress.h"
+#include "events/eventSwitchState.h"
 
 #include "graphics/animationManager.h"
 #include "graphics/graphicsSystem.h"
@@ -13,6 +14,9 @@
 #include "gui/guiEditor.h"
 
 #include "pathing/grid.h"
+
+#include "utils/timer.h"
+#include "utils/ioUtils.h"
 
 Editor::Editor(GUIEditor* gui)
 {
@@ -39,16 +43,26 @@ Editor::Editor(GUIEditor* gui)
 	delete ani;
 
 	mDrawSolid = false;
+
+	mpTimer = new Timer();
 }
 
 Editor::~Editor()
 {
 	gpEventSystem->removeListenerFromAllEvents(this);
 	delete mpGrid;
+
+	delete mpTimer;
 }
 
 void Editor::update(double dt)
 {
+	if (mpTimer->getElapsedTime() > 2)
+	{
+		mpTimer->stop();
+		mpGUI->renderSaveMessage(false);
+		mpGUI->renderLoadMessage(false);
+	}
 }
 
 void Editor::draw()
@@ -68,6 +82,29 @@ void Editor::handleEvent(const Event& theEvent)
 
 		switch (e.getKey())
 		{
+			case KEYS_CONFIRM:
+				gpEventSystem->fireEvent(EventSwitchState(STATE_MAIN_MENU));
+				return;
+
+			case KEYS_SAVE_MAP:
+				IOUtils::saveGrid(PATH_EDITOR_SAVE, mpGrid);
+				mpGUI->renderSaveMessage(true);
+
+				if (mpTimer->getElapsedTime() > 0)
+					mpGUI->renderLoadMessage(false);
+				mpTimer->start();
+
+				return;
+			case KEYS_LOAD_MAP:
+				IOUtils::loadGrid(PATH_EDITOR_SAVE, mpGrid);
+				mpGUI->renderLoadMessage(true);
+
+				if (mpTimer->getElapsedTime() > 0)
+					mpGUI->renderSaveMessage(false);
+				mpTimer->start();
+
+				return;
+
 			case KEYS_TOGGLE_SOLIDITY:
 				mDrawSolid = !mDrawSolid;
 				return;
@@ -99,6 +136,7 @@ void Editor::handleEvent(const Event& theEvent)
 			case KEYS_RIGHT:
 				mCurrent[mCurrentType]++;
 				break;
+
 			default:
 				break;
 		}

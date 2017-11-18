@@ -134,7 +134,7 @@ void IOUtils::saveGrid(const std::string& path, Grid* grid)
 	file.close();
 }
 
-void IOUtils::loadGrid(const std::string& path, Grid* grid)
+void IOUtils::loadGrid(const std::string& path, Grid*& grid)
 {
 	std::ifstream file;
 	if (!readFile(file, path))
