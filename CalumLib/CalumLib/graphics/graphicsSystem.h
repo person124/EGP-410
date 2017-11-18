@@ -27,6 +27,8 @@ class GraphicsSystem : public Trackable
         void getBackBuffer(GraphicsBuffer* mBuffer);
 		int getWidth();
 		int getHeight();
+		int getXOffset();
+		int getYOffset();
 
 		//drawing buffers
 		void draw(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
@@ -53,6 +55,7 @@ class GraphicsSystem : public Trackable
 		void clear();
 		void flip();
 		void setOffset(int x, int y);
+		void offsetOffset(int xOff, int yOff);
 	private:
 		ALLEGRO_DISPLAY* mpDisplay;
 		int mWidth, mHeight;

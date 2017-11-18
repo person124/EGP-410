@@ -101,6 +101,16 @@ int GraphicsSystem::getHeight()
 	return mHeight;
 }
 
+int GraphicsSystem::getXOffset()
+{
+	return mXOffset;
+}
+
+int GraphicsSystem::getYOffset()
+{
+	return mYOffset;
+}
+
 void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale)
 {
 	al_draw_scaled_bitmap(buffer->mpBitmap, 0, 0, buffer->getWidth(), buffer->getHeight(),
@@ -133,22 +143,22 @@ void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, 
 
 void GraphicsSystem::drawOffset(int x, int y, GraphicsBuffer* buffer, float scale)
 {
-	draw(x + mXOffset, y + mYOffset, buffer, scale);
+	draw(x - mXOffset, y - mYOffset, buffer, scale);
 }
 
 void GraphicsSystem::drawOffset(int x, int y, Sprite* sprite, float scale)
 {
-	draw(x + mXOffset, y + mYOffset, sprite, scale);
+	draw(x - mXOffset, y - mYOffset, sprite, scale);
 }
 
 void GraphicsSystem::drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)
 {
-	draw(toDraw, x + mXOffset, y + mYOffset, buffer, scale);
+	draw(toDraw, x - mXOffset, y - mYOffset, buffer, scale);
 }
 
 void GraphicsSystem::drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale)
 {
-	draw(buffer, x + mXOffset, y + mYOffset, sprite, scale);
+	draw(buffer, x - mXOffset, y - mYOffset, sprite, scale);
 }
 
 void GraphicsSystem::writeText(int x, int y, const Font& font, const Color& color, const std::string& text)
@@ -195,4 +205,10 @@ void GraphicsSystem::setOffset(int x, int y)
 {
 	mXOffset = x;
 	mYOffset = y;
+}
+
+void GraphicsSystem::offsetOffset(int xOff, int yOff)
+{
+	mXOffset += xOff;
+	mYOffset += yOff;
 }

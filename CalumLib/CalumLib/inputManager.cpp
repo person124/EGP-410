@@ -16,6 +16,11 @@ InputManager::InputManager()
 	mKeys[KEYS_RIGHT] = KeyInput(ALLEGRO_KEY_D, new EventKeypress(KEYS_RIGHT));
 
 	mKeys[KEYS_CONFIRM] = KeyInput(ALLEGRO_KEY_ENTER, new EventKeypress(KEYS_CONFIRM));
+
+	mKeys[KEYS_CAMERA_UP] = KeyInput(ALLEGRO_KEY_UP, new EventKeypress(KEYS_CAMERA_UP), true);
+	mKeys[KEYS_CAMERA_DOWN] = KeyInput(ALLEGRO_KEY_DOWN, new EventKeypress(KEYS_CAMERA_DOWN), true);
+	mKeys[KEYS_CAMERA_LEFT] = KeyInput(ALLEGRO_KEY_LEFT, new EventKeypress(KEYS_CAMERA_LEFT), true);
+	mKeys[KEYS_CAMERA_RIGHT] = KeyInput(ALLEGRO_KEY_RIGHT, new EventKeypress(KEYS_CAMERA_RIGHT), true);
 }
 
 InputManager::~InputManager()

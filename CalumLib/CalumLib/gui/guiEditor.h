@@ -7,6 +7,11 @@ class GUIEditor : public GUI
 {
 	public:
 		GUIEditor();
+
+		void changeSelected(int select);
+
+		void setTileFrame(int frame);
+		void setSpawnFrame(int frame);
 	private:
 };
 

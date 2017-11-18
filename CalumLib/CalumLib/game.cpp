@@ -184,6 +184,8 @@ void Game::draw()
 
 		mpUnitManager->draw();
 	}
+	else if (mCurrentState == STATE_EDITOR)
+		mpEditor->draw();
 
 	mpGUI->draw();
 
@@ -211,10 +213,10 @@ void Game::handleEvent(const Event& theEvent)
 		switch (e.getState())
 		{
 			case STATE_EDITOR:
-				mpEditor = new Editor();
-
 				mToDelete = mpGUI;
 				mpGUI = new GUIEditor();
+
+				mpEditor = new Editor((GUIEditor*)mpGUI);
 
 				mCurrentState = STATE_EDITOR;
 				break;

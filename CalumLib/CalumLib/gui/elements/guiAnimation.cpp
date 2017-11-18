@@ -24,6 +24,7 @@ GUIAnimation::GUIAnimation(int x, int y, const char* animString, float scale)
 
 GUIAnimation::~GUIAnimation()
 {
+	delete mpAni;
 }
 
 void GUIAnimation::update(double dt)
@@ -34,4 +35,9 @@ void GUIAnimation::update(double dt)
 void GUIAnimation::draw()
 {
 	Game::pInstance->getGraphics()->draw(mX, mY, mpAni->getCurrent(), mScale);
+}
+
+void GUIAnimation::setFrame(int frame)
+{
+	mpAni->setFrame(frame);
 }

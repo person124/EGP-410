@@ -9,3 +9,4 @@ sha_fear sha 4 1 16 16 2 1 32 32
 sha_color_blue sha_colors 0 0 16 16 1 1 0 0
 sha_color_red sha_colors 0 0 16 16 1 1 16 0
 sha_color_yellow sha_colors 0 0 16 16 1 1 32 0
+editor_spawns editor_spawns 0 0 16 16 5 1 0 0

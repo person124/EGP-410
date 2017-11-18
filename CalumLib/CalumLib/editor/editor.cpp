@@ -1,13 +1,24 @@
 #include "editor.h"
 
+#include "game.h"
+#include "globalConst.h"
+
 #include "events/eventSystem.h"
 #include "events/eventClick.h"
 #include "events/eventKeypress.h"
 
+#include "graphics/animationManager.h"
+#include "graphics/graphicsSystem.h"
+
+#include "gui/guiEditor.h"
+
 #include "pathing/grid.h"
 
-Editor::Editor()
+Editor::Editor(GUIEditor* gui)
 {
+	mpGUI = gui;
+	mpGraphics = Game::pInstance->getGraphics();
+
 	mpGrid = new Grid(30, 30);
 
 	gpEventSystem->addListener(EVENT_KEYPRESS, this);
@@ -17,8 +28,15 @@ Editor::Editor()
 	for (int i = 0; i < EDITOR_SELECTIONS_COUNT; i++)
 		mCurrent[i] = 0;
 	
-	mMax[0] = 2; //Number of tiles
-	mMax[1] = 5; //Number of different spawns (1 player, 3 baddies, candy)
+	//Gets the number of tiles
+	Animation* ani = Game::pInstance->getAnimationManager()->get("tiles");
+	mMax[0] = ani->getLength();
+	delete ani;
+
+	//Total number of different spawns (0 player, 1-3 baddies, 4 candy)
+	ani = Game::pInstance->getAnimationManager()->get("editor_spawns");
+	mMax[1] = ani->getLength();
+	delete ani;
 }
 
 Editor::~Editor()
@@ -42,20 +60,58 @@ void Editor::handleEvent(const Event& theEvent)
 	{
 		const EventKeypress& e = static_cast<const EventKeypress&>(theEvent);
 
-		if (e.getKey() == KEYS_DOWN)
-			mCurrentType--;
-		else if (e.getKey() == KEYS_UP)
-			mCurrentType++;
-		else if (e.getKey() == KEYS_LEFT)
-			mCurrent[mCurrentType]--;
-		else if (e.getKey() == KEYS_RIGHT)
-			mCurrent[mCurrentType]++;
+		switch (e.getKey())
+		{
+			//Keys to move camera
+			case KEYS_CAMERA_UP:
+				mpGraphics->offsetOffset(0, -15);
+				return;
+			case KEYS_CAMERA_DOWN:
+				mpGraphics->offsetOffset(0, 15);
+				return;
+			case KEYS_CAMERA_LEFT:
+				mpGraphics->offsetOffset(-15, 0);
+				return;
+			case KEYS_CAMERA_RIGHT:
+				mpGraphics->offsetOffset(15, 0);
+				return;
+
+			//Keys to change currently selected
+			case KEYS_DOWN:
+				mCurrentType--;
+				break;
+			case KEYS_UP:
+				mCurrentType++;
+				break;
+			case KEYS_LEFT:
+				mCurrent[mCurrentType]--;
+				break;
+			case KEYS_RIGHT:
+				mCurrent[mCurrentType]++;
+				break;
+			default:
+				break;
+		}
+
+		if (mCurrent[mCurrentType] < 0)
+			mCurrent[mCurrentType] = mMax[mCurrentType] - 1;
+		else if (mCurrent[mCurrentType] >= mMax[mCurrentType])
+			mCurrent[mCurrentType] = 0;
+
+		mpGUI->changeSelected(mCurrentType);
+
+		mpGUI->setTileFrame(mCurrent[TILE]);
+		mpGUI->setSpawnFrame(mCurrent[SPAWNS]);
 	}
 	else if (theEvent.getType() == EVENT_CLICK)
 	{
 		const EventClick& e = static_cast<const EventClick&>(theEvent);
 
 		//Place a tile / spawn at click
+		int tileX = (e.getX() + mpGraphics->getXOffset()) / TILE_SIZE;
+		int tileY = (e.getY() + mpGraphics->getYOffset()) / TILE_SIZE;
+
+		mpGrid->setID(tileX, tileY, mCurrent[TILE]);
 	}
 }
 

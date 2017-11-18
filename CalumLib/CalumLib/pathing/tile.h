@@ -4,10 +4,12 @@
 #include "utils/trackable.h"
 
 class Animation;
+class Sprite;
 
 class Tile : public Trackable
 {
 	private:
+		static Animation* mspTileAnimation;
 		static Animation* mspSolidAnimation;
 	public:
 		Tile(int id = 0);
@@ -20,7 +22,7 @@ class Tile : public Trackable
 
 		void setID(int id);
 	private:
-		Animation* mpAnimation;
+		Sprite* mpSprite;
 		int mID;
 		bool mSolid;
 };

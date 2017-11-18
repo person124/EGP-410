@@ -4,6 +4,8 @@
 #include "events/eventListener.h"
 
 class Grid;
+class GUIEditor;
+class GraphicsSystem;
 
 enum EditorSelections
 {
@@ -15,7 +17,7 @@ enum EditorSelections
 class Editor : public EventListener
 {
 	public:
-		Editor();
+		Editor(GUIEditor* gui);
 		~Editor();
 
 		void update(double dt);
@@ -23,6 +25,9 @@ class Editor : public EventListener
 
 		void handleEvent(const Event& theEvent);
 	private:
+		GUIEditor* mpGUI;
+		GraphicsSystem* mpGraphics;
+
 		Grid* mpGrid;
 		EditorSelections mCurrentType;
 		int mCurrent[EDITOR_SELECTIONS_COUNT];

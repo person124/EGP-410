@@ -14,6 +14,8 @@ class GUIAnimation : public GUIElement
 
 		void update(double dt);
 		void draw();
+
+		void setFrame(int frame);
 	private:
 		Animation* mpAni;
 		float mScale;
