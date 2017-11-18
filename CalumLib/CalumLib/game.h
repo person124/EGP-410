@@ -14,6 +14,7 @@ class AudioSystem;
 class Grid;
 class GUI;
 class UnitManager;
+class Editor;
 
 enum GameState;
 
@@ -51,9 +52,12 @@ class Game : public EventListener
 		Grid* mpGrid;
 		GUI* mpGUI;
 		UnitManager* mpUnitManager;
+		Editor* mpEditor;
 	
 		float mFPS;
 		GameState mCurrentState;
+
+		GUI* mToDelete;
 };
 
 #endif

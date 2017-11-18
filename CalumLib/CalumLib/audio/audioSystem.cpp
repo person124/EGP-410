@@ -1,9 +1,10 @@
 #include "audioSystem.h"
 
 #include "globalConst.h"
-#include "ioUtils.h"
 
 #include "graphics/graphicsSystem.h"
+
+#include "utils/ioUtils.h"
 
 #include <allegro5/allegro_audio.h>
 #include <allegro5/allegro_acodec.h>

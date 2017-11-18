@@ -1,12 +1,13 @@
 #include "graphicsSystem.h"
 
 #include "globalConst.h"
-#include "ioUtils.h"
 
 #include "graphics/graphicsBuffer.h"
 #include "graphics/sprite.h"
 #include "graphics/color.h"
 #include "graphics/font.h"
+
+#include "utils/ioUtils.h"
 
 #include <iostream>
 

@@ -1,34 +1,31 @@
 #include "game.h"
 
-#include "ioUtils.h"
 #include "inputManager.h"
 #include "globalConst.h"
 
 #include "audio/audioSystem.h"
 
+#include "editor/editor.h"
+
 #include "events/eventSystem.h"
+#include "events/eventSwitchState.h"
 
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
 #include "graphics/animationManager.h"
 
 #include "gui/gui.h"
+#include "gui/guiMainMenu.h"
+#include "gui/guiEditor.h"
 
 #include "pathing/grid.h"
 
 #include "units/unitManager.h"
 
 #include "utils/timer.h"
+#include "utils/ioUtils.h"
 
 #include <ctime>
-
-enum GameState
-{
-	MAIN_MENU,
-	IN_GAME,
-	OPTIONS,
-	EDITOR
-};
 
 Game* Game::pInstance = NULL;
 
@@ -50,6 +47,7 @@ Game::Game()
 	mpGraphics = NULL;
 
 	gpEventSystem->addListener(EVENT_QUIT, this);
+	gpEventSystem->addListener(EVENT_SWITCH_STATE, this);
 }
 
 Game::~Game()
@@ -58,7 +56,6 @@ Game::~Game()
 }
 
 //TODO Move
-#include "gui/guiMainMenu.h"
 #include "units/unitSHA.h"
 
 bool Game::initGame(int width, int height)
@@ -88,11 +85,14 @@ bool Game::initGame(int width, int height)
 
 	mpGrid = new Grid();
 
-	mCurrentState = MAIN_MENU;
+	mCurrentState = STATE_MAIN_MENU;
 	mpGUI = new GUIMainMenu();
+	mToDelete = NULL;
 
 	mpUnitManager = new UnitManager();
 	mpUnitManager->addUnit(new UnitSHA(yellow));
+
+	mpEditor = NULL;
 
 	return true;
 }
@@ -115,6 +115,9 @@ void Game::destroy()
 	delete mpAudio;
 
 	delete mpUnitManager;
+
+	if (mpEditor != NULL)
+		delete mpEditor;
 
 	mpGraphics->destroy();
 	delete mpGraphics;
@@ -153,18 +156,34 @@ void Game::update(float dt)
 {
 	mpInputManager->update();
 
-	mpUnitManager->update(dt);
+	if (mCurrentState == STATE_EDITOR)
+	{
+		mpEditor->update(dt);
+	}
+	else
+	{
+		mpUnitManager->update(dt);
 
-	mpGUI->update(dt);
+		mpGUI->update(dt);
+	}
+
+	if (mToDelete != NULL)
+	{
+		delete mToDelete;
+		mToDelete = NULL;
+	}
 }
 
 void Game::draw()
 {
 	mpGraphics->clear();
 
-	mpGrid->draw();
+	if (mCurrentState == STATE_IN_GAME)
+	{
+		mpGrid->draw();
 
-	mpUnitManager->draw();
+		mpUnitManager->draw();
+	}
 
 	mpGUI->draw();
 
@@ -184,8 +203,24 @@ AudioSystem* Game::getAudio()
 void Game::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_QUIT)
-	{
 		mRunning = false;
+	else if (theEvent.getType() == EVENT_SWITCH_STATE)
+	{
+		const EventSwitchState& e = static_cast<const EventSwitchState&>(theEvent);
+
+		switch (e.getState())
+		{
+			case STATE_EDITOR:
+				mpEditor = new Editor();
+
+				mToDelete = mpGUI;
+				mpGUI = new GUIEditor();
+
+				mCurrentState = STATE_EDITOR;
+				break;
+			default:
+				break;
+		}
 	}
 }
 

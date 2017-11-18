@@ -11,13 +11,15 @@ enum EventType
 	EVENT_QUIT,
 	EVENT_CLICK,
 	EVENT_KEYPRESS,
+	EVENT_SWITCH_STATE,
 	NUM_EVENT_TYPES
 };
 
 const std::string EVENT_NAMES[NUM_EVENT_TYPES] = {
 	"Quit Event",
 	"Mouse Click Event",
-	"Keypress Event"
+	"Keypress Event",
+	"Switch Game State Event"
 };
 
 class Event : public Trackable

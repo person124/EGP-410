@@ -29,6 +29,8 @@ GUISelectable::~GUISelectable()
 	delete[] mpEvents;
 
 	delete mpSelectorText;
+
+	gpEventSystem->removeListener(EVENT_KEYPRESS, this);
 }
 
 void GUISelectable::draw()
@@ -59,7 +61,7 @@ void GUISelectable::handleEvent(const Event& theEvent)
 			case KEYS_CONFIRM:
 				if (mCurrent != -1)
 					gpEventSystem->fireEvent(*mpEvents[mCurrent]);
-				break;
+				return;
 			default:
 				break;
 		}
@@ -80,9 +82,9 @@ void GUISelectable::refreshSelector()
 	mpSelectorText->setY(ele->getY());
 }
 
-void GUISelectable::setMax(int max)
+void GUISelectable::setSelectableCount(int count)
 {
-	mSize = max;
+	mSize = count;
 	mpSelections = new int[mSize];
 
 	mpEvents = new Event*[mSize];

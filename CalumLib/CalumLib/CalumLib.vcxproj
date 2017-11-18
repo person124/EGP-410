@@ -120,11 +120,13 @@
   <ItemGroup>
     <ClInclude Include="audio\audioClip.h" />
     <ClInclude Include="audio\audioSystem.h" />
+    <ClInclude Include="editor\editor.h" />
     <ClInclude Include="events\event.h" />
     <ClInclude Include="events\eventClick.h" />
     <ClInclude Include="events\eventKeypress.h" />
     <ClInclude Include="events\eventListener.h" />
     <ClInclude Include="events\eventQuit.h" />
+    <ClInclude Include="events\eventSwitchState.h" />
     <ClInclude Include="events\eventSystem.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="globalConst.h" />
@@ -141,12 +143,12 @@
     <ClInclude Include="gui\elements\guiImage.h" />
     <ClInclude Include="gui\elements\guiText.h" />
     <ClInclude Include="gui\gui.h" />
+    <ClInclude Include="gui\guiEditor.h" />
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiListener.h" />
     <ClInclude Include="gui\guiMainMenu.h" />
     <ClInclude Include="gui\guiSelectable.h" />
     <ClInclude Include="inputManager.h" />
-    <ClInclude Include="ioUtils.h" />
     <ClInclude Include="pathing\grid.h" />
     <ClInclude Include="pathing\node.h" />
     <ClInclude Include="pathing\pathing.h" />
@@ -157,6 +159,7 @@
     <ClInclude Include="units\unit.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitSHA.h" />
+    <ClInclude Include="utils\ioUtils.h" />
     <ClInclude Include="utils\memoryTracker.h" />
     <ClInclude Include="utils\stringManager.h" />
     <ClInclude Include="utils\timer.h" />
@@ -165,6 +168,7 @@
   <ItemGroup>
     <ClCompile Include="audio\audioClip.cpp" />
     <ClCompile Include="audio\audioSystem.cpp" />
+    <ClCompile Include="editor\editor.cpp" />
     <ClCompile Include="events\event.cpp" />
     <ClCompile Include="events\eventListener.cpp" />
     <ClCompile Include="events\eventSystem.cpp" />
@@ -181,11 +185,11 @@
     <ClCompile Include="gui\elements\guiImage.cpp" />
     <ClCompile Include="gui\elements\guiText.cpp" />
     <ClCompile Include="gui\gui.cpp" />
+    <ClCompile Include="gui\guiEditor.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />
     <ClCompile Include="gui\guiMainMenu.cpp" />
     <ClCompile Include="gui\guiSelectable.cpp" />
     <ClCompile Include="inputManager.cpp" />
-    <ClCompile Include="ioUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pathing\grid.cpp" />
     <ClCompile Include="pathing\node.cpp" />
@@ -196,6 +200,7 @@
     <ClCompile Include="units\unit.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitSHA.cpp" />
+    <ClCompile Include="utils\ioUtils.cpp" />
     <ClCompile Include="utils\memoryTracker.cpp" />
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="utils\trackable.cpp" />

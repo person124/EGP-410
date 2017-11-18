@@ -1,10 +1,10 @@
 #include "inputManager.h"
 
-#include "ioUtils.h"
-
 #include "events/eventSystem.h"
 #include "events/eventClick.h"
 #include "events/eventQuit.h"
+
+#include "utils/ioUtils.h"
 
 InputManager::InputManager()
 {

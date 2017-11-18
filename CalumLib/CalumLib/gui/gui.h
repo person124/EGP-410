@@ -14,6 +14,8 @@ class GUI : public Trackable
 		virtual void update(double dt);
 		virtual void draw();
 	protected:
+		void setElementCount(int count);
+
 		int mElementCount;
 		GUIElement** mpElements;
 };

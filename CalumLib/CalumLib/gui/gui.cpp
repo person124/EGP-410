@@ -26,3 +26,9 @@ void GUI::draw()
 	for (int i = 0; i < mElementCount; i++)
 		mpElements[i]->draw();
 }
+
+void GUI::setElementCount(int count)
+{
+	mElementCount = count;
+	mpElements = new GUIElement*[mElementCount];
+}

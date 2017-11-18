@@ -19,7 +19,7 @@ class GUISelectable : public GUIListener
 
 		void refreshSelector();
 	protected:
-		void setMax(int max);
+		void setSelectableCount(int count);
 		void addSelectable(int pos, Event* theEvent);
 	private:
 		int mCurrent, mSize;
