@@ -85,7 +85,7 @@ bool Game::initGame(int width, int height)
 
 	mpGrid = NULL;
 
-	mToDelete = NULL;
+	mNextState = STATE_COUNT;
 	handleEvent(EventSwitchState(STATE_MAIN_MENU));
 
 	mpUnitManager = new UnitManager();
@@ -154,21 +154,13 @@ void Game::mainLoop()
 
 void Game::update(float dt)
 {
-	if (mToDelete != NULL)
-	{
-		delete mToDelete;
-		mToDelete = NULL;
-	}
-
 	mpInputManager->update();
+
+	if (mNextState != STATE_COUNT)
+		switchState();
 
 	if (mCurrentState == STATE_EDITOR)
 	{
-		if (mpEditor == NULL)
-		{
-			mpEditor = new Editor((GUIEditor*)mpGUI);
-		}
-
 		mpEditor->update(dt);
 	}
 	else
@@ -214,7 +206,8 @@ void Game::handleEvent(const Event& theEvent)
 	else if (theEvent.getType() == EVENT_SWITCH_STATE)
 	{
 		const EventSwitchState& e = static_cast<const EventSwitchState&>(theEvent);
-
+		mNextState = e.getState();
+		/*
 		switch (e.getState())
 		{
 			case STATE_MAIN_MENU:
@@ -223,10 +216,7 @@ void Game::handleEvent(const Event& theEvent)
 				mpGUI = new GUIMainMenu();
 
 				if (mpEditor != NULL)
-				{
-					delete mpEditor;
-					mpEditor = NULL;
-				}
+					mDeleteEditor = true;
 
 				mCurrentState = e.getState();
 				break;
@@ -240,6 +230,7 @@ void Game::handleEvent(const Event& theEvent)
 			default:
 				break;
 		}
+		*/
 	}
 }
 
@@ -256,4 +247,36 @@ AnimationManager* Game::getAnimationManager()
 UnitManager* Game::getUnits()
 {
 	return mpUnitManager;
+}
+
+void Game::switchState()
+{
+	switch (mNextState)
+	{
+		case STATE_MAIN_MENU:
+			if (mpGUI != NULL)
+				delete mpGUI;
+			mpGUI = new GUIMainMenu();
+
+			if (mpEditor != NULL)
+			{
+				delete mpEditor;
+				mpEditor = NULL;
+			}
+
+			break;
+		case STATE_EDITOR:
+			if (mpGUI != NULL)
+				delete mpGUI;
+			mpGUI = new GUIEditor();
+
+			mpEditor = new Editor((GUIEditor*)mpGUI);
+
+			break;
+		default:
+			return;
+	}
+
+	mCurrentState = mNextState;
+	mNextState = STATE_COUNT;
 }

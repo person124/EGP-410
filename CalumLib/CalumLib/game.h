@@ -41,6 +41,8 @@ class Game : public EventListener
 		void update(float dt);
 		void draw();
 
+		void switchState();
+
 		bool mRunning;
 	
 		//TODO Reorder
@@ -55,9 +57,7 @@ class Game : public EventListener
 		Editor* mpEditor;
 	
 		float mFPS;
-		GameState mCurrentState;
-
-		GUI* mToDelete;
+		GameState mCurrentState, mNextState;
 };
 
 #endif

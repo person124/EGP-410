@@ -8,7 +8,8 @@ enum GameState
 	STATE_MAIN_MENU,
 	STATE_IN_GAME,
 	STATE_OPTIONS,
-	STATE_EDITOR
+	STATE_EDITOR,
+	STATE_COUNT
 };
 
 class EventSwitchState : public Event
