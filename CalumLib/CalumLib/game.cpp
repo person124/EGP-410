@@ -16,6 +16,7 @@
 
 #include "gui/gui.h"
 #include "gui/guiMainMenu.h"
+#include "gui/guiSelectLevel.h"
 #include "gui/guiEditor.h"
 
 #include "pathing/grid.h"
@@ -55,9 +56,6 @@ Game::~Game()
 	destroy();
 }
 
-//TODO Move
-#include "units/unitSHA.h"
-
 bool Game::initGame(int width, int height)
 {
 	//TODO reorder
@@ -89,7 +87,6 @@ bool Game::initGame(int width, int height)
 	handleEvent(EventSwitchState(STATE_MAIN_MENU));
 
 	mpUnitManager = new UnitManager();
-	mpUnitManager->addUnit(new UnitSHA(yellow));
 
 	mpEditor = NULL;
 
@@ -207,30 +204,6 @@ void Game::handleEvent(const Event& theEvent)
 	{
 		const EventSwitchState& e = static_cast<const EventSwitchState&>(theEvent);
 		mNextState = e.getState();
-		/*
-		switch (e.getState())
-		{
-			case STATE_MAIN_MENU:
-				if (mpGUI != NULL)
-					mToDelete = mpGUI;
-				mpGUI = new GUIMainMenu();
-
-				if (mpEditor != NULL)
-					mDeleteEditor = true;
-
-				mCurrentState = e.getState();
-				break;
-			case STATE_EDITOR:
-				if (mpGUI != NULL)
-					mToDelete = mpGUI;
-				mpGUI = new GUIEditor();
-
-				mCurrentState = e.getState();
-				break;
-			default:
-				break;
-		}
-		*/
 	}
 }
 
@@ -263,6 +236,12 @@ void Game::switchState()
 				delete mpEditor;
 				mpEditor = NULL;
 			}
+
+			break;
+		case STATE_SELECT_LEVEL:
+			if (mpGUI != NULL)
+				delete mpGUI;
+			mpGUI = new GUISelectLevel(PATH_LEVELS);
 
 			break;
 		case STATE_EDITOR:

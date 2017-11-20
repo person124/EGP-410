@@ -216,6 +216,9 @@
     <ClInclude Include="pathing\spawnLocation.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiSelectLevel.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -330,6 +333,9 @@
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiEditor.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiSelectLevel.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

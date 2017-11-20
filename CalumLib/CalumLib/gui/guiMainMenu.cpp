@@ -20,7 +20,7 @@ GUIMainMenu::GUIMainMenu()
 
 	//Selectable items
 	setSelectableCount(4);
-	addSelectable(1, new EventQuit());
+	addSelectable(1, new EventSwitchState(STATE_SELECT_LEVEL));
 	addSelectable(2, new EventQuit());
 	addSelectable(3, new EventSwitchState(STATE_EDITOR));
 	addSelectable(4, new EventQuit());

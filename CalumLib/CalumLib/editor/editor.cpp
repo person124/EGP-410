@@ -45,6 +45,8 @@ Editor::Editor(GUIEditor* gui)
 	mDrawSolid = false;
 
 	mpTimer = new Timer();
+
+	mpGUI->changeSelected(mCurrentType);
 }
 
 Editor::~Editor()

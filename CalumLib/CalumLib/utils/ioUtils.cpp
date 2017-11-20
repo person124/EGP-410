@@ -1,6 +1,7 @@
 #include "ioUtils.h"
 
 #include "game.h"
+#include "globalConst.h"
 
 #include "audio/audioSystem.h"
 
@@ -15,6 +16,8 @@
 
 #include <iostream>
 #include <fstream>
+
+#include <allegro5/allegro.h>
 
 bool readFile(std::ifstream& file, const std::string& path)
 {
@@ -165,6 +168,51 @@ void IOUtils::loadGrid(const std::string& path, Grid*& grid)
 	}
 
 	file.close();
+}
+
+void IOUtils::getLevels(const std::string& dirPath, std::string*& levels, unsigned int& count)
+{
+	if (levels != NULL)
+		delete[] levels;
+	levels = NULL;
+	count = 0;
+
+	std::vector<std::string> output;
+
+	char* currentPath = al_get_current_directory();
+	std::string path = std::string(currentPath);
+	al_free(currentPath);
+
+	path += '/';
+	path += PATH_LEVELS;
+
+	ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(path.c_str());
+	if (!al_open_directory(dir))
+	{
+		errorFileReport(path);
+		return;
+	}
+
+	ALLEGRO_FS_ENTRY* file = al_read_directory(dir);
+	while (file != NULL)
+	{
+		std::string filePath = al_get_fs_entry_name(file);
+		size_t pos = filePath.find_last_of("/\\") + 1;
+
+		//trims to just filename
+		filePath = filePath.substr(pos);
+		output.push_back(filePath);
+
+		al_destroy_fs_entry(file);
+		file = al_read_directory(dir);
+	}
+
+	al_destroy_fs_entry(dir);
+
+	count = output.size();
+	levels = new std::string[count];
+	for (unsigned int i = 0; i < output.size(); i++)
+		levels[i] = output.at(i);
 }
 
 void IOUtils::errorFileReport(const std::string& name)

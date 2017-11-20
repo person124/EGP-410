@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{614D5243-2E63-43B6-B4EF-DF992C5193D3}</ProjectGuid>
     <RootNamespace>CalumLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -149,6 +149,7 @@
     <ClInclude Include="gui\gui.h" />
     <ClInclude Include="gui\guiEditor.h" />
     <ClInclude Include="gui\guiElement.h" />
+    <ClInclude Include="gui\guiSelectLevel.h" />
     <ClInclude Include="gui\guiListener.h" />
     <ClInclude Include="gui\guiMainMenu.h" />
     <ClInclude Include="gui\guiSelectable.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="gui\elements\guiText.cpp" />
     <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="gui\guiEditor.cpp" />
+    <ClCompile Include="gui\guiSelectLevel.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />
     <ClCompile Include="gui\guiMainMenu.cpp" />
     <ClCompile Include="gui\guiSelectable.cpp" />
