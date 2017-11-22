@@ -5,8 +5,6 @@
 
 #include "audio/audioSystem.h"
 
-#include "editor/editor.h"
-
 #include "events/eventSystem.h"
 #include "events/eventSwitchState.h"
 
@@ -14,19 +12,14 @@
 #include "graphics/graphicsBufferManager.h"
 #include "graphics/animationManager.h"
 
-#include "gui/gui.h"
-#include "gui/guiMainMenu.h"
-#include "gui/guiSelectLevel.h"
-#include "gui/guiEditor.h"
-
-#include "pathing/grid.h"
-
-#include "units/unitManager.h"
+#include "gameMode/gameMode.h"
+#include "gameMode/mainMenu.h"
+#include "gameMode/editor.h"
+#include "gameMode/level.h"
+#include "gameMode/levelSelect.h"
 
 #include "utils/timer.h"
 #include "utils/ioUtils.h"
-
-#include <ctime>
 
 Game* Game::pInstance = NULL;
 
@@ -81,14 +74,10 @@ bool Game::initGame(int width, int height)
 
 	mFPS = 0.0f;
 
-	mpGrid = NULL;
-
 	mNextState = STATE_COUNT;
 	handleEvent(EventSwitchState(STATE_MAIN_MENU));
 
-	mpUnitManager = new UnitManager();
-
-	mpEditor = NULL;
+	mpGameMode = NULL;
 
 	return true;
 }
@@ -104,17 +93,10 @@ void Game::destroy()
 	delete mpBufferManager;
 	delete mpAnimationManager;
 
-	if (mpGrid != NULL)
-		delete mpGrid;
-
-	delete mpGUI;
-
 	delete mpAudio;
 
-	delete mpUnitManager;
-
-	if (mpEditor != NULL)
-		delete mpEditor;
+	if (mpGameMode != NULL)
+		delete mpGameMode;
 
 	mpGraphics->destroy();
 	delete mpGraphics;
@@ -156,32 +138,14 @@ void Game::update(float dt)
 	if (mNextState != STATE_COUNT)
 		switchState();
 
-	if (mCurrentState == STATE_EDITOR)
-	{
-		mpEditor->update(dt);
-	}
-	else
-	{
-		mpUnitManager->update(dt);
-
-		mpGUI->update(dt);
-	}
+	mpGameMode->update(dt);
 }
 
 void Game::draw()
 {
 	mpGraphics->clear();
 
-	if (mCurrentState == STATE_IN_GAME)
-	{
-		mpGrid->draw();
-
-		mpUnitManager->draw();
-	}
-	else if (mCurrentState == STATE_EDITOR)
-		mpEditor->draw();
-
-	mpGUI->draw();
+	mpGameMode->draw();
 
 	mpGraphics->flip();
 }
@@ -217,43 +181,23 @@ AnimationManager* Game::getAnimationManager()
 	return mpAnimationManager;
 }
 
-UnitManager* Game::getUnits()
-{
-	return mpUnitManager;
-}
-
 void Game::switchState()
 {
+	if (mpGameMode != NULL)
+		delete mpGameMode;
+
 	switch (mNextState)
 	{
+		default:
 		case STATE_MAIN_MENU:
-			if (mpGUI != NULL)
-				delete mpGUI;
-			mpGUI = new GUIMainMenu();
-
-			if (mpEditor != NULL)
-			{
-				delete mpEditor;
-				mpEditor = NULL;
-			}
-
+			mpGameMode = new MainMenu();
 			break;
 		case STATE_SELECT_LEVEL:
-			if (mpGUI != NULL)
-				delete mpGUI;
-			mpGUI = new GUISelectLevel(PATH_LEVELS);
-
+			mpGameMode = new LevelSelect(PATH_LEVELS);
 			break;
 		case STATE_EDITOR:
-			if (mpGUI != NULL)
-				delete mpGUI;
-			mpGUI = new GUIEditor();
-
-			mpEditor = new Editor((GUIEditor*)mpGUI);
-
+			mpGameMode = new Editor();
 			break;
-		default:
-			return;
 	}
 
 	mCurrentState = mNextState;

@@ -11,10 +11,7 @@ class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
 class AudioSystem;
-class Grid;
-class GUI;
-class UnitManager;
-class Editor;
+class GameMode;
 
 enum GameState;
 
@@ -36,7 +33,6 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
-		UnitManager* getUnits();
 	private:
 		void update(float dt);
 		void draw();
@@ -51,10 +47,7 @@ class Game : public EventListener
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
 		AudioSystem* mpAudio;
-		Grid* mpGrid;
-		GUI* mpGUI;
-		UnitManager* mpUnitManager;
-		Editor* mpEditor;
+		GameMode* mpGameMode;
 	
 		float mFPS;
 		GameState mCurrentState, mNextState;

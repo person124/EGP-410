@@ -3,6 +3,8 @@
 
 #include "events/eventListener.h"
 
+#include "gameMode/gameMode.h"
+
 class Grid;
 class GUIEditor;
 class GraphicsSystem;
@@ -15,10 +17,10 @@ enum EditorSelections
 	EDITOR_SELECTIONS_COUNT
 };
 
-class Editor : public EventListener
+class Editor : public GameMode, public EventListener
 {
 	public:
-		Editor(GUIEditor* gui);
+		Editor();
 		~Editor();
 
 		void update(double dt);
@@ -26,12 +28,11 @@ class Editor : public EventListener
 
 		void handleEvent(const Event& theEvent);
 	private:
-		GUIEditor* mpGUI;
+		GUIEditor* mpGEdit;
 		GraphicsSystem* mpGraphics;
 
 		bool mDrawSolid;
 
-		Grid* mpGrid;
 		EditorSelections mCurrentType;
 		int mCurrent[EDITOR_SELECTIONS_COUNT];
 		int mMax[EDITOR_SELECTIONS_COUNT];

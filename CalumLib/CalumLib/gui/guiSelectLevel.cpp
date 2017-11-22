@@ -25,7 +25,7 @@ GUISelectLevel::GUISelectLevel(const char* levelPath)
 	addSelectable(1, new EventSwitchState(STATE_MAIN_MENU));
 
 
-	for (int i = 0; i < size; i++)
+	for (unsigned int i = 0; i < size; i++)
 	{
 		mpElements[2 + i] = new GUIFixedText(50, 20 * (i + 1), *(levels + i));
 		addSelectable(2 + i, new EventSwitchState(STATE_MAIN_MENU));

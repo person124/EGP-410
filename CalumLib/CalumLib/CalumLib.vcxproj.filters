@@ -67,11 +67,11 @@
     <Filter Include="Source Files\physics">
       <UniqueIdentifier>{71bf0720-4c30-47c7-910b-62c439fe6afc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\editor">
-      <UniqueIdentifier>{527dff43-a8f8-45b1-ba20-ac9d99d437a9}</UniqueIdentifier>
+    <Filter Include="Header Files\gameMode">
+      <UniqueIdentifier>{54cf1653-5918-43b7-9275-3d556f21445c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\editor">
-      <UniqueIdentifier>{47a487a0-40ac-4eeb-8a31-53f88dbbe627}</UniqueIdentifier>
+    <Filter Include="Source Files\gameMode">
+      <UniqueIdentifier>{f6cdecc2-6cf7-4bd1-80d0-e55bf3d32a28}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +201,6 @@
     <ClInclude Include="units\unitSHA.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
-    <ClInclude Include="editor\editor.h">
-      <Filter>Header Files\editor</Filter>
-    </ClInclude>
     <ClInclude Include="events\eventSwitchState.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
@@ -218,6 +215,21 @@
     </ClInclude>
     <ClInclude Include="gui\guiSelectLevel.h">
       <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\editor.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\gameMode.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\level.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\mainMenu.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\levelSelect.h">
+      <Filter>Header Files\gameMode</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +338,6 @@
     <ClCompile Include="units\unitSHA.cpp">
       <Filter>Source Files\units</Filter>
     </ClCompile>
-    <ClCompile Include="editor\editor.cpp">
-      <Filter>Source Files\editor</Filter>
-    </ClCompile>
     <ClCompile Include="utils\ioUtils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -337,6 +346,18 @@
     </ClCompile>
     <ClCompile Include="gui\guiSelectLevel.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\gameMode.cpp">
+      <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\editor.cpp">
+      <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\mainMenu.cpp">
+      <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\levelSelect.cpp">
+      <Filter>Source Files\gameMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

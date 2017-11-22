@@ -2,11 +2,11 @@
 
 #include "globalConst.h"
 
-#include "editor/editor.h"
-
 #include "gui/elements/guiAnimation.h"
 #include "gui/elements/guiFixedText.h"
 #include "gui/elements/guiImage.h"
+
+#include "gameMode/editor.h"
 
 const int HEADER_TEXT = 0;
 const int CURRENT_TILE = 1;

@@ -18,9 +18,13 @@
 #include "utils/timer.h"
 #include "utils/ioUtils.h"
 
-Editor::Editor(GUIEditor* gui)
+Editor::Editor()
 {
+	GUIEditor* gui = new GUIEditor();
+
 	mpGUI = gui;
+	mpGEdit = gui;
+
 	mpGraphics = Game::pInstance->getGraphics();
 
 	mpGrid = new Grid(30, 30);
@@ -46,13 +50,12 @@ Editor::Editor(GUIEditor* gui)
 
 	mpTimer = new Timer();
 
-	mpGUI->changeSelected(mCurrentType);
+	mpGEdit->changeSelected(mCurrentType);
 }
 
 Editor::~Editor()
 {
 	gpEventSystem->removeListenerFromAllEvents(this);
-	delete mpGrid;
 
 	delete mpTimer;
 }
@@ -62,8 +65,8 @@ void Editor::update(double dt)
 	if (mpTimer->getElapsedTime() > 2)
 	{
 		mpTimer->stop();
-		mpGUI->renderSaveMessage(false);
-		mpGUI->renderLoadMessage(false);
+		mpGEdit->renderSaveMessage(false);
+		mpGEdit->renderLoadMessage(false);
 	}
 }
 
@@ -74,6 +77,8 @@ void Editor::draw()
 	else
 		mpGrid->drawSolidity();
 	mpGrid->drawSpawnLocations();
+
+	mpGUI->draw();
 }
 
 void Editor::handleEvent(const Event& theEvent)
@@ -90,19 +95,19 @@ void Editor::handleEvent(const Event& theEvent)
 
 			case KEYS_SAVE_MAP:
 				IOUtils::saveGrid(PATH_EDITOR_SAVE, mpGrid);
-				mpGUI->renderSaveMessage(true);
+				mpGEdit->renderSaveMessage(true);
 
 				if (mpTimer->getElapsedTime() > 0)
-					mpGUI->renderLoadMessage(false);
+					mpGEdit->renderLoadMessage(false);
 				mpTimer->start();
 
 				return;
 			case KEYS_LOAD_MAP:
 				IOUtils::loadGrid(PATH_EDITOR_SAVE, mpGrid);
-				mpGUI->renderLoadMessage(true);
+				mpGEdit->renderLoadMessage(true);
 
 				if (mpTimer->getElapsedTime() > 0)
-					mpGUI->renderSaveMessage(false);
+					mpGEdit->renderSaveMessage(false);
 				mpTimer->start();
 
 				return;
@@ -148,10 +153,10 @@ void Editor::handleEvent(const Event& theEvent)
 		else if (mCurrent[mCurrentType] >= mMax[mCurrentType])
 			mCurrent[mCurrentType] = 0;
 
-		mpGUI->changeSelected(mCurrentType);
+		mpGEdit->changeSelected(mCurrentType);
 
-		mpGUI->setTileFrame(mCurrent[TILE]);
-		mpGUI->setSpawnFrame(mCurrent[SPAWNS]);
+		mpGEdit->setTileFrame(mCurrent[TILE]);
+		mpGEdit->setSpawnFrame(mCurrent[SPAWNS]);
 	}
 	else if (theEvent.getType() == EVENT_CLICK)
 	{
@@ -198,13 +203,3 @@ EditorSelections operator--(EditorSelections& sel, int)
 
 	return sel;
 }
-
-/*
-	Press left and right to change tile
-	Up and down to change type
-	Starts off as a massive grid that is trimmed down when save?
-	Enter to save
-	Types are:
-		-Tiles
-		-Spawns
-*/

@@ -124,7 +124,6 @@
   <ItemGroup>
     <ClInclude Include="audio\audioClip.h" />
     <ClInclude Include="audio\audioSystem.h" />
-    <ClInclude Include="editor\editor.h" />
     <ClInclude Include="events\event.h" />
     <ClInclude Include="events\eventClick.h" />
     <ClInclude Include="events\eventKeypress.h" />
@@ -133,6 +132,11 @@
     <ClInclude Include="events\eventSwitchState.h" />
     <ClInclude Include="events\eventSystem.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gameMode\editor.h" />
+    <ClInclude Include="gameMode\gameMode.h" />
+    <ClInclude Include="gameMode\level.h" />
+    <ClInclude Include="gameMode\levelSelect.h" />
+    <ClInclude Include="gameMode\mainMenu.h" />
     <ClInclude Include="globalConst.h" />
     <ClInclude Include="graphics\animation.h" />
     <ClInclude Include="graphics\animationManager.h" />
@@ -174,11 +178,14 @@
   <ItemGroup>
     <ClCompile Include="audio\audioClip.cpp" />
     <ClCompile Include="audio\audioSystem.cpp" />
-    <ClCompile Include="editor\editor.cpp" />
     <ClCompile Include="events\event.cpp" />
     <ClCompile Include="events\eventListener.cpp" />
     <ClCompile Include="events\eventSystem.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gameMode\editor.cpp" />
+    <ClCompile Include="gameMode\gameMode.cpp" />
+    <ClCompile Include="gameMode\levelSelect.cpp" />
+    <ClCompile Include="gameMode\mainMenu.cpp" />
     <ClCompile Include="graphics\animation.cpp" />
     <ClCompile Include="graphics\animationManager.cpp" />
     <ClCompile Include="graphics\color.cpp" />
