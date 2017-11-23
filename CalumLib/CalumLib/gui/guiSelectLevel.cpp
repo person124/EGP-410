@@ -3,6 +3,7 @@
 #include "globalConst.h"
 
 #include "events/eventSwitchState.h"
+#include "events/eventLoadLevel.h"
 
 #include "gui/elements/guiFixedText.h"
 
@@ -27,8 +28,10 @@ GUISelectLevel::GUISelectLevel(const char* levelPath)
 
 	for (unsigned int i = 0; i < size; i++)
 	{
-		mpElements[2 + i] = new GUIFixedText(50, 20 * (i + 1), *(levels + i));
-		addSelectable(2 + i, new EventSwitchState(STATE_MAIN_MENU));
+		const char* lName = levels[i].c_str();
+
+		mpElements[2 + i] = new GUIFixedText(50, 20 * (i + 1), lName);
+		addSelectable(2 + i, new EventLoadLevel(lName));
 	}
 
 	delete[] levels;

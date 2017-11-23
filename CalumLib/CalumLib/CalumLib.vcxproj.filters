@@ -231,6 +231,9 @@
     <ClInclude Include="gameMode\levelSelect.h">
       <Filter>Header Files\gameMode</Filter>
     </ClInclude>
+    <ClInclude Include="events\eventLoadLevel.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
