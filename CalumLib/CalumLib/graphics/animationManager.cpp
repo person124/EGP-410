@@ -11,5 +11,8 @@ AnimationManager::~AnimationManager()
 
 Animation* AnimationManager::get(const std::string& key)
 {
+	if (key == "")
+		return NULL;
+
 	return new Animation(mItems.at(key));
 }

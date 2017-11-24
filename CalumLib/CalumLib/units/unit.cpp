@@ -23,7 +23,8 @@ Unit::Unit(const char* animString)
 Unit::~Unit()
 {
 	delete mpSteer;
-	delete mpAnim;
+	if (mpAnim != NULL)
+		delete mpAnim;
 }
 
 void Unit::update(double dt)

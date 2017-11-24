@@ -1,7 +1,7 @@
 #ifndef UNIT_SHA_H
 #define UNIT_SHA_H
 
-#include "units/unit.h"
+#include "units/unitDirectional.h"
 
 enum SHAColor
 {
@@ -11,7 +11,7 @@ enum SHAColor
 	SHA_COLOR_COUNT
 };
 
-class UnitSHA : public Unit
+class UnitSHA : public UnitDirectional
 {
 	public:
 		UnitSHA(SHAColor color);

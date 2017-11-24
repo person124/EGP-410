@@ -234,6 +234,9 @@
     <ClInclude Include="events\eventLoadLevel.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
+    <ClInclude Include="units\unitDirectional.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -364,6 +367,9 @@
     </ClCompile>
     <ClCompile Include="gameMode\level.cpp">
       <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unitDirectional.cpp">
+      <Filter>Source Files\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

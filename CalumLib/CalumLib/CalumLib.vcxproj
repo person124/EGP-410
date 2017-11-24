@@ -168,6 +168,7 @@
     <ClInclude Include="physics\steeringOutput.h" />
     <ClInclude Include="physics\vector2.h" />
     <ClInclude Include="units\unit.h" />
+    <ClInclude Include="units\unitDirectional.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitSHA.h" />
     <ClInclude Include="utils\ioUtils.h" />
@@ -214,6 +215,7 @@
     <ClCompile Include="pathing\tile.cpp" />
     <ClCompile Include="physics\vector2.cpp" />
     <ClCompile Include="units\unit.cpp" />
+    <ClCompile Include="units\unitDirectional.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitSHA.cpp" />
     <ClCompile Include="utils\ioUtils.cpp" />

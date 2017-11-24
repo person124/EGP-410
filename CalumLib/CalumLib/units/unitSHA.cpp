@@ -12,8 +12,14 @@ const std::string COLOR_NAME[SHA_COLOR_COUNT] =
 	"yellow"
 };
 
-UnitSHA::UnitSHA(SHAColor color) : Unit("sha_front")
+UnitSHA::UnitSHA(SHAColor color) : UnitDirectional()
 {
+	mpAnimFacing[UP] = Game::pInstance->getAnimationManager()->get("sha_back");
+	mpAnimFacing[DOWN] = Game::pInstance->getAnimationManager()->get("sha_front");
+	mpAnimFacing[LEFT] = Game::pInstance->getAnimationManager()->get("sha_side");
+	mpAnimFacing[RIGHT] = Game::pInstance->getAnimationManager()->get("sha_side");
+	setAnim(UP);
+
 	mpAniBase = Game::pInstance->getAnimationManager()->get("sha_color_" + COLOR_NAME[color]);
 
 	mpAniFear = Game::pInstance->getAnimationManager()->get("sha_fear");
