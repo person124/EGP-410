@@ -7,6 +7,7 @@
 
 #include "events/eventSystem.h"
 #include "events/eventSwitchState.h"
+#include "events/eventLoadLevel.h"
 
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
@@ -42,6 +43,7 @@ Game::Game()
 
 	gpEventSystem->addListener(EVENT_QUIT, this);
 	gpEventSystem->addListener(EVENT_SWITCH_STATE, this);
+	gpEventSystem->addListener(EVENT_LOAD_LEVEL, this);
 }
 
 Game::~Game()
@@ -74,10 +76,8 @@ bool Game::initGame(int width, int height)
 
 	mFPS = 0.0f;
 
-	mNextState = STATE_COUNT;
-	handleEvent(EventSwitchState(STATE_MAIN_MENU));
-
-	mpGameMode = NULL;
+	mNextState = STATE_MAIN_MENU;
+	switchState();
 
 	return true;
 }
@@ -135,10 +135,10 @@ void Game::update(float dt)
 {
 	mpInputManager->update();
 
+	mpGameMode->update(dt);
+
 	if (mNextState != STATE_COUNT)
 		switchState();
-
-	mpGameMode->update(dt);
 }
 
 void Game::draw()
@@ -169,6 +169,13 @@ void Game::handleEvent(const Event& theEvent)
 		const EventSwitchState& e = static_cast<const EventSwitchState&>(theEvent);
 		mNextState = e.getState();
 	}
+	else if (theEvent.getType() == EVENT_LOAD_LEVEL)
+	{
+		const EventLoadLevel& e = static_cast<const EventLoadLevel&>(theEvent);
+
+		mNextState = STATE_IN_GAME;
+		e.getLevelName(mLevelToLoad);
+	}
 }
 
 GraphicsBufferManager* Game::getBufferManager()
@@ -197,6 +204,9 @@ void Game::switchState()
 			break;
 		case STATE_EDITOR:
 			mpGameMode = new Editor();
+			break;
+		case STATE_IN_GAME:
+			mpGameMode = new Level(mLevelToLoad);
 			break;
 	}
 

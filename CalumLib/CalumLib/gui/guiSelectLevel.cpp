@@ -33,9 +33,6 @@ GUISelectLevel::GUISelectLevel(const char* levelPath)
 		mpElements[2 + i] = new GUIFixedText(50, 20 * (i + 1), lName);
 		addSelectable(2 + i, new EventLoadLevel(lName));
 	}
-
-	delete[] levels;
-
 	
 	refreshSelector();
 }

@@ -9,7 +9,7 @@ class UnitManager;
 class Level : public GameMode
 {
 	public:
-		Level();
+		Level(const char* levelName);
 		~Level();
 
 		void update(double dt);

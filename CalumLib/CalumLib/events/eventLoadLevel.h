@@ -6,10 +6,10 @@
 class EventLoadLevel : public Event
 {
 	public:
-		EventLoadLevel(const char* levelName) : Event(EVENT_LOAD_LEVEL) { mLevelName = levelName; }
+		EventLoadLevel(const char* levelName) : Event(EVENT_LOAD_LEVEL) { mLevelName = levelName; };
 		~EventLoadLevel() {};
 
-		const char* getLevelName() { return mLevelName; };
+		void getLevelName(const char*& levelName) const { levelName = mLevelName; };
 	private:
 		const char* mLevelName;
 };

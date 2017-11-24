@@ -51,6 +51,7 @@ class Game : public EventListener
 	
 		float mFPS;
 		GameState mCurrentState, mNextState;
+		const char* mLevelToLoad;
 };
 
 #endif
