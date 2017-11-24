@@ -1,8 +1,11 @@
 #include "UnitManager.h"
 
+#include "globalConst.h"
+
 #include "physics/vector2.h"
 
 #include "units/unit.h"
+#include "units/unitSHA.h"
 
 UnitManager::UnitManager()
 {
@@ -79,4 +82,12 @@ void UnitManager::draw()
 {
 	for each (Unit* unit in mUnits)
 		unit->draw();
+}
+
+void UnitManager::addSheerHeartAttack(int x, int y, int color)
+{
+	UnitSHA* sha = new UnitSHA((SHAColor) color);
+	sha->setPosition(x * TILE_SIZE, y * TILE_SIZE);
+
+	addUnit(sha);
 }

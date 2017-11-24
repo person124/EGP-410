@@ -18,7 +18,7 @@ UnitSHA::UnitSHA(SHAColor color) : Unit("sha_front")
 
 	mpAniFear = Game::pInstance->getAnimationManager()->get("sha_fear");
 
-	mAniScale = 3;
+	mAniScale = 2;
 }
 
 UnitSHA::~UnitSHA()

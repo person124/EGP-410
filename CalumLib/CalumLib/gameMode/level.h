@@ -15,6 +15,10 @@ class Level : public GameMode
 		void update(double dt);
 		void draw();
 	private:
+		void createGraph();
+		void initSpawns();
+		void populateCoins();
+
 		UnitManager* mpUnits;
 };
 

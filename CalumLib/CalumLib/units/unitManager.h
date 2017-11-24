@@ -28,6 +28,9 @@ public:
 	// Update Functions
 	void update(double dt);
 	void draw();
+
+	// Special Unit Adders
+	void addSheerHeartAttack(int x, int y, int color);
 private:
 	std::vector<Unit*> mUnits;
 };

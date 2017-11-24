@@ -19,6 +19,10 @@ Level::Level(const char* levelName)
 	IOUtils::loadGrid(path, mpGrid);
 
 	mpUnits = new UnitManager();
+
+	createGraph();
+	initSpawns();
+	populateCoins();
 }
 
 Level::~Level()
@@ -36,4 +40,34 @@ void Level::draw()
 	mpGrid->draw();
 
 	mpUnits->draw();
+}
+
+void Level::createGraph()
+{
+}
+
+void Level::initSpawns()
+{
+	std::vector<SpawnLocation> spawns = mpGrid->getSpawnLocations();
+
+	for (unsigned int i = 0; i < spawns.size(); i++)
+	{
+		SpawnLocation* s = &spawns.at(i);
+		switch (s->type)
+		{
+			case PLAYER:
+				break;
+			case ENEMY_BLUE:
+			case ENEMY_RED:
+			case ENEMY_YELLOW:
+				mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
+				break;
+			case CANDY:
+				break;
+		}
+	}
+}
+
+void Level::populateCoins()
+{
 }
