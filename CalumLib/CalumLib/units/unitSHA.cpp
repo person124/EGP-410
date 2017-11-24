@@ -23,7 +23,6 @@ UnitSHA::UnitSHA(SHAColor color) : Unit("sha_front")
 
 UnitSHA::~UnitSHA()
 {
-	//Unit::~Unit();
 	delete mpAniBase;
 	delete mpAniFear;
 }
@@ -35,6 +34,6 @@ void UnitSHA::update(double dt)
 
 void UnitSHA::draw()
 {
-	Game::pInstance->getGraphics()->drawOffset(mPos.x, mPos.y, mpAniBase->getCurrent(), mAniScale);
+	Game::pInstance->getGraphics()->drawOffset((int) mPos.x, (int) mPos.y, mpAniBase->getCurrent(), mAniScale);
 	Unit::draw();
 }

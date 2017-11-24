@@ -24,6 +24,8 @@ class Unit : public Trackable
 	
 		void setPosition(Vector2& pos) { mPos = pos; };
 		void setPosition(float x, float y) { mPos.x = x; mPos.y = y; };
+		void setPosition(int x, int y) { mPos.x = (float)x; mPos.y = (float)y; };
+
 		Vector2& getPosition() { return mPos; };
 		float getX() { return mPos.x; };
 		float getY() { return mPos.y; };
