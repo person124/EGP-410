@@ -190,7 +190,7 @@ AnimationManager* Game::getAnimationManager()
 
 void Game::switchState()
 {
-	if (mpGameMode != NULL)
+	if (mpGameMode != NULL && mNextState != STATE_IN_GAME)
 		delete mpGameMode;
 
 	switch (mNextState)
@@ -206,7 +206,11 @@ void Game::switchState()
 			mpGameMode = new Editor();
 			break;
 		case STATE_IN_GAME:
+			GameMode* old = mpGameMode;
+
 			mpGameMode = new Level(mLevelToLoad);
+
+			delete old;
 			break;
 	}
 

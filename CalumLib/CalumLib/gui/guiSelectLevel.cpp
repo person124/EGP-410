@@ -9,13 +9,12 @@
 
 #include "utils/ioUtils.h"
 
-#include <string>
-
 GUISelectLevel::GUISelectLevel(const char* levelPath)
 {
 	unsigned int size;
-	std::string* levels = NULL;
-	IOUtils::getLevels(levelPath, levels, size);
+	mpLevels = NULL;
+	//std::string* levels = NULL;
+	IOUtils::getLevels(levelPath, mpLevels, size);
 
 	//Then chart them out
 	setElementCount(2 + size);
@@ -28,11 +27,16 @@ GUISelectLevel::GUISelectLevel(const char* levelPath)
 
 	for (unsigned int i = 0; i < size; i++)
 	{
-		const char* lName = levels[i].c_str();
+		const char* lName = mpLevels[i].c_str();
 
 		mpElements[2 + i] = new GUIFixedText(50, 20 * (i + 1), lName);
 		addSelectable(2 + i, new EventLoadLevel(lName));
 	}
 	
 	refreshSelector();
+}
+
+GUISelectLevel::~GUISelectLevel()
+{
+	delete[] mpLevels;
 }
