@@ -15,14 +15,10 @@ Unit::Unit(const char* animString)
 	mAniScale = 1.0f;
 
 	mPos = Vector2();
-	mVel = Vector2();
-
-	mpSteer = new SteeringOutput();
 }
 
 Unit::~Unit()
 {
-	delete mpSteer;
 	if (mpAnim != NULL)
 		delete mpAnim;
 }
@@ -30,32 +26,11 @@ Unit::~Unit()
 void Unit::update(double dt)
 {
 	mpAnim->update(dt);
-	//TODO movement update loop
 }
 
 void Unit::draw()
 {
 	Game::pInstance->getGraphics()->drawOffset((int) mPos.x, (int) mPos.y, mpAnim->getCurrent(), mAniScale);
-}
-
-Vector2 Unit::getAngleAsVector()
-{
-	return Vector2::toVector(mAngle);
-}
-
-void Unit::setAngle(Vector2& vel)
-{
-	if (vel.length() != 0)
-		mAngle = atan2f(vel.y, vel.x);
-}
-
-void Unit::stop()
-{
-	mVel = Vector2(0,0);
-	mRotation = 0;
-
-	mpSteer->linear = Vector2(0, 0);
-	mpSteer->angular = 0;
 }
 
 bool Unit::isPointInsideUnit(Vector2& point)

@@ -2,7 +2,7 @@
 
 #include "graphics/animation.h"
 
-UnitDirectional::UnitDirectional() : Unit("")
+UnitDirectional::UnitDirectional() : UnitPhys("")
 {
 	mpAnimFacing = new Animation*[DIRECTION_COUNT];
 }

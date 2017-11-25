@@ -1,7 +1,7 @@
 #ifndef UNIT_DIRECTIONAL_H
 #define UNIT_DIRECTIONAL_H
 
-#include "units/unit.h"
+#include "units/unitPhys.h"
 
 enum Direction
 {
@@ -12,7 +12,7 @@ enum Direction
 	DIRECTION_COUNT
 };
 
-class UnitDirectional : public Unit
+class UnitDirectional : public UnitPhys
 {
 	public:
 		UnitDirectional();

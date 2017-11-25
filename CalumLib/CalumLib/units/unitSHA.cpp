@@ -18,7 +18,7 @@ UnitSHA::UnitSHA(SHAColor color) : UnitDirectional()
 	mpAnimFacing[DOWN] = Game::pInstance->getAnimationManager()->get("sha_front");
 	mpAnimFacing[LEFT] = Game::pInstance->getAnimationManager()->get("sha_side_flipped");
 	mpAnimFacing[RIGHT] = Game::pInstance->getAnimationManager()->get("sha_side");
-	setAnim(RIGHT);
+	setAnim(DOWN);
 
 	mpAniBase = Game::pInstance->getAnimationManager()->get("sha_color_" + COLOR_NAME[color]);
 
@@ -35,11 +35,11 @@ UnitSHA::~UnitSHA()
 
 void UnitSHA::update(double dt)
 {
-	Unit::update(dt);
+	UnitDirectional::update(dt);
 }
 
 void UnitSHA::draw()
 {
 	Game::pInstance->getGraphics()->drawOffset((int) mPos.x, (int) mPos.y, mpAniBase->getCurrent(), mAniScale);
-	Unit::draw();
+	UnitDirectional::draw();
 }

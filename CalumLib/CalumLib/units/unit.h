@@ -6,7 +6,6 @@
 #include "utils/trackable.h"
 
 class Animation;
-struct SteeringOutput;
 
 class Unit : public Trackable
 {
@@ -19,9 +18,6 @@ class Unit : public Trackable
 		virtual void draw();
 	
 		// Getters and Setters
-		void setMaxSpeed(float speed) { mMaxSpeed = speed; };
-		float getMaxSpeed() { return mMaxSpeed; };
-	
 		void setPosition(Vector2& pos) { mPos = pos; };
 		void setPosition(float x, float y) { mPos.x = x; mPos.y = y; };
 		void setPosition(int x, int y) { mPos.x = (float)x; mPos.y = (float)y; };
@@ -29,28 +25,14 @@ class Unit : public Trackable
 		Vector2& getPosition() { return mPos; };
 		float getX() { return mPos.x; };
 		float getY() { return mPos.y; };
-		Vector2& getVelocity() { return mVel; };
-		float getAngle() { return mAngle; };
-		float getRotation() { return mRotation; };
-	
-		Vector2 getAngleAsVector();
-	
-		void setAngle(Vector2& vel);
-		void setAngle(float angle) { mAngle = angle; };
-		void setRotation(float angle) { mRotation = angle; };
 	
 		//Misc Functions
-		virtual void stop();
 		bool isPointInsideUnit(Vector2& point);
 	protected:
 		Animation* mpAnim;
 		float mAniScale;
 
-		Vector2 mPos, mVel;
-		SteeringOutput* mpSteer;
-		float mAngle, mRotation;
-	
-		float mMaxSpeed;
+		Vector2 mPos;
 };
 
 #endif
