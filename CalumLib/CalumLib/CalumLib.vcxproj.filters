@@ -240,6 +240,12 @@
     <ClInclude Include="units\unitPhys.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
+    <ClInclude Include="physics\weightedBehaviourDefine.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\weightedBehaviour.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">

@@ -1,6 +1,7 @@
 #include "unitPhys.h"
 
 #include "physics/steeringOutput.h"
+#include "physics/weightedBehaviour.h"
 
 #include <cmath>
 
@@ -9,6 +10,8 @@ UnitPhys::UnitPhys(const char* animString) : Unit(animString)
 	mVel = Vector2();
 
 	mpSteer = new SteeringOutput();
+
+	mpBehaviourArray = NULL;
 }
 
 UnitPhys::~UnitPhys()
@@ -46,4 +49,22 @@ void UnitPhys::stop()
 
 	mpSteer->linear = Vector2(0, 0);
 	mpSteer->angular = 0;
+}
+
+void UnitPhys::runBehaviours(SteeringOutput*& out)
+{
+	//Zero out SteeringOutput
+	out->linear.x = 0;
+	out->linear.y = 0;
+	out->angular = 0;
+
+	//Go through the bahviours
+	for (int i = 0; i < mBehaviourSize; i++)
+	{
+		WeightB behav = mpBehaviourArray[i](this);
+		out->linear += behav.weight * behav.steering.linear;
+		out->angular += behav.weight * behav.steering.angular;
+	}
+
+	out->linear.y = 10;
 }

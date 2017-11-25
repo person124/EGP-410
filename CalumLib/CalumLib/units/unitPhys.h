@@ -2,6 +2,7 @@
 #define UNIT_PHYS_H
 
 #include "physics/vector2.h"
+#include "physics/weightedBehaviourDefine.h"
 
 #include "units/unit.h"
 
@@ -31,12 +32,16 @@ class UnitPhys : public Unit
 
 		//Misc Functions
 		virtual void stop();
-	private:
+		void runBehaviours(SteeringOutput*& out);
+	protected:
 		Vector2 mVel;
 		SteeringOutput* mpSteer;
 		float mAngle, mRotation;
 
 		float mMaxSpeed;
+
+		int mBehaviourSize;
+		SteeringFunc* mpBehaviourArray;
 };
 
 #endif
