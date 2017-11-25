@@ -74,3 +74,26 @@ void UnitPhys::runBehaviours(SteeringOutput*& out)
 		out->angular += behav.weight * behav.steering.angular;
 	}
 }
+
+void UnitPhys::setMaxBehaviours(int max)
+{
+	mBehaviourSize = max;
+	mpBehaviourArray = new SteeringFunc[max];
+	for (int i = 0; i < max; i++)
+		mpBehaviourArray[i] = NULL;
+}
+
+void UnitPhys::addBehaviour(SteeringFunc func)
+{
+	int pos = 0;
+	for (pos = 0; pos < mBehaviourSize; pos++)
+	{
+		if (mpBehaviourArray[pos] != NULL)
+			break;
+	}
+
+	if (pos == mBehaviourSize)
+		return;
+
+	mpBehaviourArray[pos] = func;
+}

@@ -34,6 +34,9 @@ class UnitPhys : public Unit
 		virtual void stop();
 		void runBehaviours(SteeringOutput*& out);
 	protected:
+		void setMaxBehaviours(int max);
+		void addBehaviour(SteeringFunc func);
+
 		Vector2 mVel;
 		SteeringOutput* mpSteer;
 		float mAngle, mRotation;
