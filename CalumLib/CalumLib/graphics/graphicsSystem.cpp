@@ -120,7 +120,7 @@ void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale)
 void GraphicsSystem::draw(int x, int y, Sprite* sprite, float scale)
 {
 	al_draw_scaled_bitmap(sprite->getBuffer()->mpBitmap, sprite->startX(), sprite->startY(), sprite->getWidth(),
-		sprite->getHeight(), x, y, sprite->getWidth() * scale, sprite->getHeight() * scale, 0);
+		sprite->getHeight(), x, y, sprite->getWidth() * scale, sprite->getHeight() * scale, sprite->isFlipped());
 }
 
 void GraphicsSystem::draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)

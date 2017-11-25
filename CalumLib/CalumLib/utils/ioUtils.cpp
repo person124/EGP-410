@@ -64,21 +64,21 @@ void IOUtils::loadAnimations(const std::string& path)
 
 	std::string name, bufferName, junk;
 	double speed;
-	int loop, width, height, xCount, yCount, xOffset, yOffset;
+	int loop, width, height, xCount, yCount, xOffset, yOffset, flipped;
 	Animation* ani;
 	GraphicsBuffer* buffer;
 
 	std::getline(file, junk);
 	while (!file.eof())
 	{
-		file >> name >> bufferName >> speed >> loop >> width >> height >> xCount >> yCount >> xOffset >> yOffset;
+		file >> name >> bufferName >> speed >> loop >> width >> height >> xCount >> yCount >> xOffset >> yOffset >> flipped;
 		
 		buffer = Game::pInstance->getBufferManager()->get(bufferName);
 		
 		std::vector<Sprite*> sprites = std::vector<Sprite*>();
 		for (int y = 0; y < yCount; y++)
 			for (int x = 0; x < xCount; x++)
-				sprites.push_back(new Sprite(buffer, xOffset + (width * x), yOffset + (height * y), width, height));
+				sprites.push_back(new Sprite(buffer, xOffset + (width * x), yOffset + (height * y), width, height, (bool) flipped));
 
 		ani = new Animation(sprites, speed, loop);
 

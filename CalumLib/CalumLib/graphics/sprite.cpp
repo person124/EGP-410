@@ -12,10 +12,12 @@ Sprite::Sprite()
 	mWidth = 0;
 	mHeight = 0;
 
+	mIsFlipped = false;
+
 	mIsBlack = true;
 }
 
-Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height)
+Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height, bool flipped)
 {
 	mpBuffer = buffer;
 
@@ -23,6 +25,8 @@ Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height)
 	mStartY = sY;
 	mWidth = width;
 	mHeight = height;
+
+	mIsFlipped = flipped;
 
 	Color* tempColor = mpBuffer->getPixel();
 	mIsBlack = tempColor->isBlack();
@@ -52,6 +56,11 @@ int Sprite::startX()
 int Sprite::startY()
 {
 	return mStartY;
+}
+
+bool Sprite::isFlipped()
+{
+	return mIsFlipped;
 }
 
 bool Sprite::getBlackOrWhite()

@@ -16,9 +16,9 @@ UnitSHA::UnitSHA(SHAColor color) : UnitDirectional()
 {
 	mpAnimFacing[UP] = Game::pInstance->getAnimationManager()->get("sha_back");
 	mpAnimFacing[DOWN] = Game::pInstance->getAnimationManager()->get("sha_front");
-	mpAnimFacing[LEFT] = Game::pInstance->getAnimationManager()->get("sha_side");
+	mpAnimFacing[LEFT] = Game::pInstance->getAnimationManager()->get("sha_side_flipped");
 	mpAnimFacing[RIGHT] = Game::pInstance->getAnimationManager()->get("sha_side");
-	setAnim(UP);
+	setAnim(RIGHT);
 
 	mpAniBase = Game::pInstance->getAnimationManager()->get("sha_color_" + COLOR_NAME[color]);
 
