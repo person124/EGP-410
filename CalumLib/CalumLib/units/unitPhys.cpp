@@ -3,7 +3,10 @@
 #include "physics/steeringOutput.h"
 #include "physics/weightedBehaviour.h"
 
+#define _USE_MATH_DEFINES
 #include <cmath>
+
+const float PI2 = (float)M_PI * 2.0f;
 
 UnitPhys::UnitPhys(const char* animString) : Unit(animString)
 {
@@ -29,6 +32,11 @@ void UnitPhys::update(double dt)
 
 	mVel += mpSteer->linear * t;
 	mRotation += mpSteer->angular * t;
+
+	while (mAngle < 0)
+		mAngle += PI2;
+	while (mAngle > PI2)
+		mAngle -= PI2;
 }
 
 Vector2 UnitPhys::getAngleAsVector()
@@ -65,6 +73,4 @@ void UnitPhys::runBehaviours(SteeringOutput*& out)
 		out->linear += behav.weight * behav.steering.linear;
 		out->angular += behav.weight * behav.steering.angular;
 	}
-
-	out->linear.y = 10;
 }

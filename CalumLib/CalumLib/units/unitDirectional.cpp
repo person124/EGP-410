@@ -2,6 +2,9 @@
 
 #include "graphics/animation.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 UnitDirectional::UnitDirectional() : UnitPhys("")
 {
 	mpAnimFacing = new Animation*[DIRECTION_COUNT];
@@ -19,4 +22,8 @@ UnitDirectional::~UnitDirectional()
 void UnitDirectional::setAnim(Direction dir)
 {
 	mpAnim = mpAnimFacing[(int)dir];
+}
+
+void UnitDirectional::setAnimFromAngle()
+{
 }

@@ -36,6 +36,7 @@ UnitSHA::~UnitSHA()
 void UnitSHA::update(double dt)
 {
 	runBehaviours(mpSteer);
+
 	UnitDirectional::update(dt);
 }
 

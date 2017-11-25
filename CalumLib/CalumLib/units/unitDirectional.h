@@ -19,6 +19,7 @@ class UnitDirectional : public UnitPhys
 		~UnitDirectional();
 
 		void setAnim(Direction dir);
+		void setAnimFromAngle();
 	protected:
 		Animation** mpAnimFacing;
 };
