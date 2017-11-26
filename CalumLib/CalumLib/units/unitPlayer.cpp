@@ -7,6 +7,8 @@
 
 #include "graphics/animationManager.h"
 
+const int INSTANT_SPEED = 100;
+
 UnitPlayer::UnitPlayer(int x, int y) : UnitDirectional()
 {
 	mPos.x = (float)x;
@@ -41,16 +43,24 @@ void UnitPlayer::handleEvent(const Event& theEvent)
 		switch (e.getKey())
 		{
 			case KEYS_UP:
-				mVel.y -= 5;
+				mVel.y = -INSTANT_SPEED;
+				mVel.x = 0;
+				setAnim(UP);
 				break;
 			case KEYS_DOWN:
-				mVel.y += 5;
+				mVel.y = INSTANT_SPEED;
+				mVel.x = 0;
+				setAnim(DOWN);
 				break;
 			case KEYS_LEFT:
-				mVel.x -= 5;
+				mVel.x = -INSTANT_SPEED;
+				mVel.y = 0;
+				setAnim(LEFT);
 				break;
 			case KEYS_RIGHT:
-				mVel.x += 5;
+				mVel.x = INSTANT_SPEED;
+				mVel.y = 0;
+				setAnim(RIGHT);
 				break;
 			default:
 				break;

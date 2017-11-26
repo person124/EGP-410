@@ -61,7 +61,7 @@ void Level::initSpawns()
 			case ENEMY_BLUE:
 			case ENEMY_RED:
 			case ENEMY_YELLOW:
-				//mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
+				mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
 				break;
 			case CANDY:
 				break;
