@@ -173,6 +173,7 @@
     <ClInclude Include="units\unitDirectional.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitPhys.h" />
+    <ClInclude Include="units\unitPlayer.h" />
     <ClInclude Include="units\unitSHA.h" />
     <ClInclude Include="utils\ioUtils.h" />
     <ClInclude Include="utils\memoryTracker.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="units\unitDirectional.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitPhys.cpp" />
+    <ClCompile Include="units\unitPlayer.cpp" />
     <ClCompile Include="units\unitSHA.cpp" />
     <ClCompile Include="utils\ioUtils.cpp" />
     <ClCompile Include="utils\memoryTracker.cpp" />

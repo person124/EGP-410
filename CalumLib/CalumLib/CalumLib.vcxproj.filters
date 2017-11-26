@@ -246,6 +246,9 @@
     <ClInclude Include="physics\weightedBehaviour.h">
       <Filter>Header Files\physics</Filter>
     </ClInclude>
+    <ClInclude Include="units\unitPlayer.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -381,6 +384,9 @@
       <Filter>Source Files\units</Filter>
     </ClCompile>
     <ClCompile Include="units\unitPhys.cpp">
+      <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unitPlayer.cpp">
       <Filter>Source Files\units</Filter>
     </ClCompile>
   </ItemGroup>

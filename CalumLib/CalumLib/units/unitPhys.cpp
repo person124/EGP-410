@@ -1,10 +1,15 @@
 #include "unitPhys.h"
 
+#include "game.h"
+#include "globalConst.h"
+
+#include "pathing/grid.h"
+
 #include "physics/steeringOutput.h"
 #include "physics/weightedBehaviour.h"
 
 #define _USE_MATH_DEFINES
-#include <cmath>
+#include <math.h>
 
 const float PI2 = (float)M_PI * 2.0f;
 
@@ -27,7 +32,12 @@ void UnitPhys::update(double dt)
 	Unit::update(dt);
 
 	float t = (float)dt;
-	mPos += mVel * t + 0.5f * mpSteer->linear * (t * t);
+
+	Vector2 tempPos = mPos;
+	tempPos += mVel * t + 0.5f * mpSteer->linear * (t * t);
+	if (!checkForWalls(tempPos))
+		mPos = tempPos;
+
 	mAngle += mRotation * t + 0.5f * mpSteer->angular * (t * t);
 
 	mVel += mpSteer->linear * t;
@@ -96,4 +106,20 @@ void UnitPhys::addBehaviour(SteeringFunc func)
 		return;
 
 	mpBehaviourArray[pos] = func;
+}
+
+bool UnitPhys::checkForWalls(const Vector2& pos)
+{
+	float scale = 1.0f / TILE_SIZE;
+
+	if (Game::pInstance->getCurrentGrid()->isSolid(pos.x * scale, pos.y * scale))
+		return true;
+	if (Game::pInstance->getCurrentGrid()->isSolid((pos.x + TILE_SIZE) * scale, pos.y * scale))
+		return true;
+	if (Game::pInstance->getCurrentGrid()->isSolid(pos.x * scale, (pos.y + TILE_SIZE) * scale))
+		return true;
+	if (Game::pInstance->getCurrentGrid()->isSolid((pos.x + TILE_SIZE) * scale, (pos.y + TILE_SIZE) * scale))
+		return true;
+
+	return false;
 }

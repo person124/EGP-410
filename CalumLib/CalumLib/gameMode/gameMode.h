@@ -14,6 +14,8 @@ class GameMode : public Trackable
 
 		virtual void update(double dt) {};
 		virtual void draw() {};
+
+		Grid* getGrid() { return mpGrid; };
 	protected:
 		GUI* mpGUI;
 		Grid* mpGrid;

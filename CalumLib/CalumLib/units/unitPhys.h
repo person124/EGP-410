@@ -36,6 +36,9 @@ class UnitPhys : public Unit
 	protected:
 		void setMaxBehaviours(int max);
 		void addBehaviour(SteeringFunc func);
+		
+		//Wall Checker function
+		bool checkForWalls(const Vector2& pos);
 
 		Vector2 mVel;
 		SteeringOutput* mpSteer;

@@ -56,11 +56,12 @@ void Level::initSpawns()
 		switch (s->type)
 		{
 			case PLAYER:
+				mpUnits->addPlayer(s->x, s->y);
 				break;
 			case ENEMY_BLUE:
 			case ENEMY_RED:
 			case ENEMY_YELLOW:
-				mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
+				//mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
 				break;
 			case CANDY:
 				break;

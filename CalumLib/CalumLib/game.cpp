@@ -188,6 +188,13 @@ AnimationManager* Game::getAnimationManager()
 	return mpAnimationManager;
 }
 
+Grid* Game::getCurrentGrid()
+{
+	if (mpGameMode == NULL)
+		return NULL;
+	return mpGameMode->getGrid();
+}
+
 void Game::switchState()
 {
 	if (mpGameMode != NULL && mNextState != STATE_IN_GAME)

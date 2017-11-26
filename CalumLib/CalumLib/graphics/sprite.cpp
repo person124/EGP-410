@@ -28,7 +28,7 @@ Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height, bo
 
 	mIsFlipped = flipped;
 
-	Color* tempColor = mpBuffer->getPixel();
+	Color* tempColor = mpBuffer->getPixel(sX + 1, sY + 1);
 	mIsBlack = tempColor->isBlack();
 	delete tempColor;
 }

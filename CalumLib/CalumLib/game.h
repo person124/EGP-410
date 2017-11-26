@@ -12,6 +12,7 @@ class GraphicsBufferManager;
 class AnimationManager;
 class AudioSystem;
 class GameMode;
+class Grid;
 
 enum GameState;
 
@@ -33,6 +34,8 @@ class Game : public EventListener
 	
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
+
+		Grid* getCurrentGrid();
 	private:
 		void update(float dt);
 		void draw();

@@ -5,15 +5,20 @@
 #include "physics/vector2.h"
 
 #include "units/unit.h"
+#include "units/unitPlayer.h"
 #include "units/unitSHA.h"
 
 UnitManager::UnitManager()
 {
+	mpPlayer = NULL;
 }
 
 UnitManager::~UnitManager()
 {
 	removeAll();
+
+	if (mpPlayer != NULL)
+		delete mpPlayer;
 }
 
 void UnitManager::addUnit(Unit* unit)
@@ -76,12 +81,27 @@ void UnitManager::update(double dt)
 {
 	for each (Unit* unit in mUnits)
 		unit->update(dt);
+
+	mpPlayer->update(dt);
 }
 
 void UnitManager::draw()
 {
 	for each (Unit* unit in mUnits)
 		unit->draw();
+
+	mpPlayer->draw();
+}
+
+void UnitManager::addPlayer(int x, int y)
+{
+	if (mpPlayer != NULL)
+	{
+		//TODO output error, player alreay exists
+		return;
+	}
+
+	mpPlayer = new UnitPlayer(x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void UnitManager::addSheerHeartAttack(int x, int y, int color)

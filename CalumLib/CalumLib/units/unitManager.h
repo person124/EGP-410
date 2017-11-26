@@ -6,6 +6,7 @@
 #include <vector>
 
 class Unit;
+class UnitPlayer;
 struct Vector2;
 
 class UnitManager : public Trackable
@@ -30,9 +31,11 @@ public:
 	void draw();
 
 	// Special Unit Adders
+	void addPlayer(int x, int y);
 	void addSheerHeartAttack(int x, int y, int color);
 private:
 	std::vector<Unit*> mUnits;
+	UnitPlayer* mpPlayer;
 };
 
 #endif
