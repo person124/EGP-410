@@ -3,6 +3,9 @@
 #include "game.h"
 #include "globalConst.h"
 
+#include "graphics/animation.h"
+#include "graphics/sprite.h"
+
 #include "pathing/grid.h"
 
 #include "physics/steeringOutput.h"
@@ -110,15 +113,26 @@ void UnitPhys::addBehaviour(SteeringFunc func)
 
 bool UnitPhys::checkForWalls(const Vector2& pos)
 {
-	float scale = 1.0f / TILE_SIZE;
+	static Grid* grid;
+	if (grid == NULL)
+		grid = Game::pInstance->getCurrentGrid();
+	const static float scale = 1.0f / TILE_SIZE;
 
-	if (Game::pInstance->getCurrentGrid()->isSolid(pos.x * scale, pos.y * scale))
+	int width = mpAnim->getCurrent()->getWidth();
+	int height = mpAnim->getCurrent()->getHeight();
+
+	int x1 = pos.x * scale;
+	int x2 = (pos.x + width) * scale;
+	int y1 = pos.y * scale;
+	int y2 = (pos.y + height) * scale;
+
+	if (grid->isSolid(x1, y1))
 		return true;
-	if (Game::pInstance->getCurrentGrid()->isSolid((pos.x + TILE_SIZE) * scale, pos.y * scale))
+	if (grid->isSolid(x2, y1))
 		return true;
-	if (Game::pInstance->getCurrentGrid()->isSolid(pos.x * scale, (pos.y + TILE_SIZE) * scale))
+	if (grid->isSolid(x2, y2))
 		return true;
-	if (Game::pInstance->getCurrentGrid()->isSolid((pos.x + TILE_SIZE) * scale, (pos.y + TILE_SIZE) * scale))
+	if (grid->isSolid(x1, y2))
 		return true;
 
 	return false;
