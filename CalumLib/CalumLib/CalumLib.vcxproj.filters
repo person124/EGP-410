@@ -249,6 +249,9 @@
     <ClInclude Include="units\unitPlayer.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
+    <ClInclude Include="physics\movementFunctions.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="units\unitPlayer.cpp">
       <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\movementFunctions.cpp">
+      <Filter>Source Files\physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

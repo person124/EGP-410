@@ -123,6 +123,7 @@ void Game::mainLoop()
 		FPSTimer->sleepUntilElapsed(FPS);
 		FPSTimer->stop();
 		mFPS = FPSTimer->getElapsedTime() * UPStoFPS;
+		printf("%f\n", mFPS);
 	}
 
 	updateTimer->stop();

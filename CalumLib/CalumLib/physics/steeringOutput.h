@@ -5,6 +5,12 @@
 
 struct SteeringOutput
 {
+	SteeringOutput()
+	{
+		linear.x = 0;
+		linear.y = 0;
+		angular = 0;
+	}
 	Vector2 linear;
 	float angular;
 };

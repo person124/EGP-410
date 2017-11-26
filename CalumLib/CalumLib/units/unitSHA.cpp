@@ -5,6 +5,8 @@
 #include "graphics/animationManager.h"
 #include "graphics/graphicsSystem.h"
 
+#include "physics/movementFunctions.h"
+
 const std::string COLOR_NAME[SHA_COLOR_COUNT] = 
 {
 	"blue",
@@ -25,6 +27,11 @@ UnitSHA::UnitSHA(SHAColor color) : UnitDirectional()
 	mpAniFear = Game::pInstance->getAnimationManager()->get("sha_fear");
 
 	mAniScale = 2;
+
+	setMaxBehaviours(3);
+	addBehaviour(move::face);
+	addBehaviour(move::seek);
+	addBehaviour(move::friction);
 }
 
 UnitSHA::~UnitSHA()

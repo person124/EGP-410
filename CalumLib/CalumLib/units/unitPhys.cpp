@@ -101,7 +101,7 @@ void UnitPhys::addBehaviour(SteeringFunc func)
 	int pos = 0;
 	for (pos = 0; pos < mBehaviourSize; pos++)
 	{
-		if (mpBehaviourArray[pos] != NULL)
+		if (mpBehaviourArray[pos] == NULL)
 			break;
 	}
 
@@ -118,21 +118,21 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 		grid = Game::pInstance->getCurrentGrid();
 	const static float scale = 1.0f / TILE_SIZE;
 
-	int width = mpAnim->getCurrent()->getWidth();
-	int height = mpAnim->getCurrent()->getHeight();
+	int width = mpAnim->getCurrent()->getWidth() * mAniScale;
+	int height = mpAnim->getCurrent()->getHeight() * mAniScale;
 
 	int x1 = pos.x * scale;
 	int x2 = (pos.x + width) * scale;
 	int y1 = pos.y * scale;
 	int y2 = (pos.y + height) * scale;
 
-	if (grid->isSolid(x1, y1))
+	if ((mVel.x < 0 || mVel.y > 0) && grid->isSolid(x1, y1))
 		return true;
-	if (grid->isSolid(x2, y1))
+	if ((mVel.x > 0 || mVel.y < 0) && grid->isSolid(x2, y1))
 		return true;
-	if (grid->isSolid(x2, y2))
+	if ((mVel.x > 0 || mVel.y > 0) && grid->isSolid(x2, y2))
 		return true;
-	if (grid->isSolid(x1, y2))
+	if ((mVel.x < 0 || mVel.y > 0) && grid->isSolid(x1, y2))
 		return true;
 
 	return false;
