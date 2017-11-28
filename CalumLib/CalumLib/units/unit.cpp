@@ -6,7 +6,6 @@
 #include "graphics/graphicsSystem.h"
 #include "graphics/sprite.h"
 
-#include "physics/steeringOutput.h"
 #include "physics/vector2.h"
 
 Unit::Unit(const char* animString)

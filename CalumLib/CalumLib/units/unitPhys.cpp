@@ -8,9 +8,6 @@
 
 #include "pathing/grid.h"
 
-#include "physics/steeringOutput.h"
-#include "physics/weightedBehaviour.h"
-
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -19,15 +16,10 @@ const float PI2 = (float)M_PI * 2.0f;
 UnitPhys::UnitPhys(const char* animString) : Unit(animString)
 {
 	mVel = Vector2();
-
-	mpSteer = new SteeringOutput();
-
-	mpBehaviourArray = NULL;
 }
 
 UnitPhys::~UnitPhys()
 {
-	delete mpSteer;
 }
 
 void UnitPhys::update(double dt)
@@ -37,14 +29,13 @@ void UnitPhys::update(double dt)
 	float t = (float)dt;
 
 	Vector2 tempPos = mPos;
-	tempPos += mVel * t + 0.5f * mpSteer->linear * (t * t);
+	tempPos += mVel * t;
 	if (!checkForWalls(tempPos))
 		mPos = tempPos;
 
-	mAngle += mRotation * t + 0.5f * mpSteer->angular * (t * t);
+	mAngle += mRotation * t;
 
-	mVel += mpSteer->linear * t;
-	mRotation += mpSteer->angular * t;
+	//TODO clamp velocity?
 
 	while (mAngle < 0)
 		mAngle += PI2;
@@ -67,52 +58,12 @@ void UnitPhys::stop()
 {
 	mVel = Vector2(0, 0);
 	mRotation = 0;
-
-	mpSteer->linear = Vector2(0, 0);
-	mpSteer->angular = 0;
-}
-
-void UnitPhys::runBehaviours(SteeringOutput*& out)
-{
-	//Zero out SteeringOutput
-	out->linear.x = 0;
-	out->linear.y = 0;
-	out->angular = 0;
-
-	//Go through the bahviours
-	for (int i = 0; i < mBehaviourSize; i++)
-	{
-		WeightB behav = mpBehaviourArray[i](this);
-		out->linear += behav.weight * behav.steering.linear;
-		out->angular += behav.weight * behav.steering.angular;
-	}
-}
-
-void UnitPhys::setMaxBehaviours(int max)
-{
-	mBehaviourSize = max;
-	mpBehaviourArray = new SteeringFunc[max];
-	for (int i = 0; i < max; i++)
-		mpBehaviourArray[i] = NULL;
-}
-
-void UnitPhys::addBehaviour(SteeringFunc func)
-{
-	int pos = 0;
-	for (pos = 0; pos < mBehaviourSize; pos++)
-	{
-		if (mpBehaviourArray[pos] == NULL)
-			break;
-	}
-
-	if (pos == mBehaviourSize)
-		return;
-
-	mpBehaviourArray[pos] = func;
 }
 
 bool UnitPhys::checkForWalls(const Vector2& pos)
 {
+	//TODO
+	//Fix wal collisions for going down and up
 	static Grid* grid;
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();

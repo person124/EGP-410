@@ -195,9 +195,6 @@
     <ClInclude Include="physics\vector2.h">
       <Filter>Header Files\physics</Filter>
     </ClInclude>
-    <ClInclude Include="physics\steeringOutput.h">
-      <Filter>Header Files\physics</Filter>
-    </ClInclude>
     <ClInclude Include="units\unitSHA.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
@@ -240,16 +237,10 @@
     <ClInclude Include="units\unitPhys.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
-    <ClInclude Include="physics\weightedBehaviourDefine.h">
-      <Filter>Header Files\physics</Filter>
-    </ClInclude>
-    <ClInclude Include="physics\weightedBehaviour.h">
-      <Filter>Header Files\physics</Filter>
-    </ClInclude>
     <ClInclude Include="units\unitPlayer.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
-    <ClInclude Include="physics\movementFunctions.h">
+    <ClInclude Include="physics\movementSHA.h">
       <Filter>Header Files\physics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -392,7 +383,7 @@
     <ClCompile Include="units\unitPlayer.cpp">
       <Filter>Source Files\units</Filter>
     </ClCompile>
-    <ClCompile Include="physics\movementFunctions.cpp">
+    <ClCompile Include="physics\movementSHA.cpp">
       <Filter>Source Files\physics</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,11 +2,8 @@
 #define UNIT_PHYS_H
 
 #include "physics/vector2.h"
-#include "physics/weightedBehaviourDefine.h"
 
 #include "units/unit.h"
-
-struct SteeringOutput;
 
 class UnitPhys : public Unit
 {
@@ -30,24 +27,18 @@ class UnitPhys : public Unit
 		void setAngle(float angle) { mAngle = angle; };
 		void setRotation(float angle) { mRotation = angle; };
 
+		void setVelocity(float x, float y) { mVel.x = x; mVel.y = y; };
+
 		//Misc Functions
 		virtual void stop();
-		void runBehaviours(SteeringOutput*& out);
 	protected:
-		void setMaxBehaviours(int max);
-		void addBehaviour(SteeringFunc func);
-		
 		//Wall Checker function
 		bool checkForWalls(const Vector2& pos);
 
 		Vector2 mVel;
-		SteeringOutput* mpSteer;
 		float mAngle, mRotation;
 
 		float mMaxSpeed;
-
-		int mBehaviourSize;
-		SteeringFunc* mpBehaviourArray;
 };
 
 #endif
