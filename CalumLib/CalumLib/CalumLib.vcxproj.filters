@@ -73,6 +73,12 @@
     <Filter Include="Source Files\gameMode">
       <UniqueIdentifier>{f6cdecc2-6cf7-4bd1-80d0-e55bf3d32a28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\stateTree">
+      <UniqueIdentifier>{115ffcd8-dd99-4d41-9a2f-050c4b81b59b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stateTree">
+      <UniqueIdentifier>{ac3b3c71-a9cf-48e5-85c5-8be2cf5500ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -231,9 +237,6 @@
     <ClInclude Include="events\eventLoadLevel.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
-    <ClInclude Include="units\unitDirectional.h">
-      <Filter>Header Files\units</Filter>
-    </ClInclude>
     <ClInclude Include="units\unitPhys.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
@@ -242,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="physics\movementSHA.h">
       <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="stateTree\stateTree.h">
+      <Filter>Header Files\stateTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -374,9 +380,6 @@
     <ClCompile Include="gameMode\level.cpp">
       <Filter>Source Files\gameMode</Filter>
     </ClCompile>
-    <ClCompile Include="units\unitDirectional.cpp">
-      <Filter>Source Files\units</Filter>
-    </ClCompile>
     <ClCompile Include="units\unitPhys.cpp">
       <Filter>Source Files\units</Filter>
     </ClCompile>
@@ -385,6 +388,9 @@
     </ClCompile>
     <ClCompile Include="physics\movementSHA.cpp">
       <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="stateTree\stateTree.cpp">
+      <Filter>Source Files\stateTree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

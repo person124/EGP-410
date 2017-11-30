@@ -3,9 +3,9 @@
 
 #include "events/eventListener.h"
 
-#include "units/unitDirectional.h"
+#include "units/unitPhys.h"
 
-class UnitPlayer : public UnitDirectional, public EventListener
+class UnitPlayer : public UnitPhys, public EventListener
 {
 	public:
 		UnitPlayer(int x, int y);

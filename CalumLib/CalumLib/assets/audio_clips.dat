@@ -1,3 +1,4 @@
 <clip name> <1=is stream && 0=clip> <clip path>
 ora 0 assets/audio/ora.ogg
 detonate 0 assets/audio/detonate.ogg
+sha_cry 0 assets/audio/sha_look_over_here.ogg

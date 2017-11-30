@@ -3,6 +3,8 @@
 
 class UnitSHA;
 
+typedef void(*moveSHAFunc)(UnitSHA*);
+
 namespace moveSHA
 {
 	void calculateMovement(UnitSHA* unit);

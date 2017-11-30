@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{614D5243-2E63-43B6-B4EF-DF992C5193D3}</ProjectGuid>
     <RootNamespace>CalumLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -167,8 +167,8 @@
     <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="physics\movementSHA.h" />
     <ClInclude Include="physics\vector2.h" />
+    <ClInclude Include="stateTree\stateTree.h" />
     <ClInclude Include="units\unit.h" />
-    <ClInclude Include="units\unitDirectional.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitPhys.h" />
     <ClInclude Include="units\unitPlayer.h" />
@@ -217,8 +217,8 @@
     <ClCompile Include="pathing\tile.cpp" />
     <ClCompile Include="physics\movementSHA.cpp" />
     <ClCompile Include="physics\vector2.cpp" />
+    <ClCompile Include="stateTree\stateTree.cpp" />
     <ClCompile Include="units\unit.cpp" />
-    <ClCompile Include="units\unitDirectional.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitPhys.cpp" />
     <ClCompile Include="units\unitPlayer.cpp" />
