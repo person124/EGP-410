@@ -111,54 +111,67 @@ int GraphicsSystem::getYOffset()
 	return mYOffset;
 }
 
-void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale)
+void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale, float angle)
 {
-	al_draw_scaled_bitmap(buffer->mpBitmap, 0, 0, buffer->getWidth(), buffer->getHeight(),
-		x, y, buffer->getWidth() * scale, buffer->getHeight() * scale, 0);
+	float width = buffer->getWidth() / 2.0f;
+	float height = buffer->getHeight() / 2.0f;
+
+	al_draw_scaled_rotated_bitmap
+	(
+		buffer->mpBitmap,
+		width,
+		height,
+		x + width * scale,
+		y + height * scale,
+		scale,
+		scale,
+		-angle,
+		0
+	);
 }
 
-void GraphicsSystem::draw(int x, int y, Sprite* sprite, float scale)
+void GraphicsSystem::draw(int x, int y, Sprite* sprite, float scale, float angle)
 {
-	al_draw_scaled_bitmap(sprite->getBuffer()->mpBitmap, sprite->startX(), sprite->startY(), sprite->getWidth(),
-		sprite->getHeight(), x, y, sprite->getWidth() * scale, sprite->getHeight() * scale, sprite->isFlipped());
+	//al_draw_scaled_rotated_bitmap(sprite->getBuffer()->mpBitmap, sprite->getWidth() / 2, sprite->getHeight() / 2, x + 50, y, scale, scale, angle, sprite->isFlipped());
+	draw(x, y, sprite->getBuffer(), scale, angle);
 }
 
-void GraphicsSystem::draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)
+void GraphicsSystem::draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale, float angle)
 {
 	al_set_target_bitmap(buffer->mpBitmap);
 
-	draw(x, y, buffer, scale);
+	draw(x, y, buffer, scale, angle);
 
 	al_set_target_bitmap(al_get_backbuffer(mpDisplay));
 }
 
-void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale)
+void GraphicsSystem::draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale, float angle)
 {
 	al_set_target_bitmap(buffer->mpBitmap);
 
-	draw(x, y, sprite, scale);
+	draw(x, y, sprite, scale, angle);
 
 	al_set_target_bitmap(al_get_backbuffer(mpDisplay));
 }
 
-void GraphicsSystem::drawOffset(int x, int y, GraphicsBuffer* buffer, float scale)
+void GraphicsSystem::drawOffset(int x, int y, GraphicsBuffer* buffer, float scale, float angle)
 {
-	draw(x - mXOffset, y - mYOffset, buffer, scale);
+	draw(x - mXOffset, y - mYOffset, buffer, scale, angle);
 }
 
-void GraphicsSystem::drawOffset(int x, int y, Sprite* sprite, float scale)
+void GraphicsSystem::drawOffset(int x, int y, Sprite* sprite, float scale, float angle)
 {
-	draw(x - mXOffset, y - mYOffset, sprite, scale);
+	draw(x - mXOffset, y - mYOffset, sprite, scale, angle);
 }
 
-void GraphicsSystem::drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale)
+void GraphicsSystem::drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale, float angle)
 {
-	draw(toDraw, x - mXOffset, y - mYOffset, buffer, scale);
+	draw(toDraw, x - mXOffset, y - mYOffset, buffer, scale, angle);
 }
 
-void GraphicsSystem::drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale)
+void GraphicsSystem::drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale, float angle)
 {
-	draw(buffer, x - mXOffset, y - mYOffset, sprite, scale);
+	draw(buffer, x - mXOffset, y - mYOffset, sprite, scale, angle);
 }
 
 void GraphicsSystem::writeText(int x, int y, const Font& font, const Color& color, const std::string& text)

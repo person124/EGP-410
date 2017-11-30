@@ -7,10 +7,11 @@ class GraphicsBuffer;
 
 class Sprite : public Trackable
 {
-    //friend class GraphicsSystem;
-    public:
+	//friend class GraphicsSystem;
+	public:
 		Sprite();
 		Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height, bool flipped = false);
+		~Sprite();
 
 		//Getters
         int getWidth();

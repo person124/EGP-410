@@ -13,6 +13,7 @@ class Color;
 class GraphicsBuffer : public Trackable
 {
 	friend class GraphicsSystem;
+	friend class Sprite;
 	public:
 		GraphicsBuffer(const std::string& path);
 		GraphicsBuffer(int width, int height, Color& color);

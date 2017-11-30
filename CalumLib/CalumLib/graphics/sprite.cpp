@@ -3,6 +3,8 @@
 #include "graphics/graphicsBuffer.h"
 #include "graphics/color.h"
 
+#include <allegro5/bitmap.h>
+
 Sprite::Sprite()
 {
 	mpBuffer = NULL;
@@ -19,7 +21,9 @@ Sprite::Sprite()
 
 Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height, bool flipped)
 {
-	mpBuffer = buffer;
+	ALLEGRO_BITMAP* subMap = al_create_sub_bitmap(buffer->mpBitmap, sX, sY, width, height);
+
+	mpBuffer = new GraphicsBuffer(subMap);
 
 	mStartX = sX;
 	mStartY = sY;
@@ -28,9 +32,15 @@ Sprite::Sprite(GraphicsBuffer* buffer, int sX, int sY, int width, int height, bo
 
 	mIsFlipped = flipped;
 
-	Color* tempColor = mpBuffer->getPixel(sX + 1, sY + 1);
+	Color* tempColor = buffer->getPixel(sX + 1, sY + 1);
 	mIsBlack = tempColor->isBlack();
 	delete tempColor;
+}
+
+Sprite::~Sprite()
+{
+	//delete mpBuffer->mpBitmap;
+	delete mpBuffer;
 }
 
 GraphicsBuffer* Sprite::getBuffer()

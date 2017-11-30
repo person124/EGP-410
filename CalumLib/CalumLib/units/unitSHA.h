@@ -22,6 +22,7 @@ class UnitSHA : public UnitPhys
 	private:
 		Animation* mpAniBase;
 		Animation* mpAniFear;
+		Animation* mpAniEnraged;
 };
 
 #endif

@@ -20,6 +20,8 @@ UnitSHA::UnitSHA(SHAColor color) : UnitPhys("sha")
 
 	mpAniFear = Game::pInstance->getAnimationManager()->get("sha_broken");
 
+	mpAniEnraged = Game::pInstance->getAnimationManager()->get("sha_enraged");
+
 	mAniScale = 2;
 }
 
@@ -27,6 +29,7 @@ UnitSHA::~UnitSHA()
 {
 	delete mpAniBase;
 	delete mpAniFear;
+	delete mpAniEnraged;
 }
 
 void UnitSHA::update(double dt)

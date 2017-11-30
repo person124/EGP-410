@@ -31,15 +31,15 @@ class GraphicsSystem : public Trackable
 		int getYOffset();
 
 		//drawing buffers
-		void draw(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-		void draw(int x, int y, Sprite* sprite, float scale = 1.0f);
-		void draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-        void draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f);
+		void draw(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void draw(int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+        void draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
         //Drawing buffers w/ offset
-		void drawOffset(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-		void drawOffset(int x, int y, Sprite* sprite, float scale = 1.0f);
-		void drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f);
-		void drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f);
+		void drawOffset(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void drawOffset(int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
 
 		//Writing text
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);

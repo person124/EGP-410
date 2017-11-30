@@ -63,7 +63,7 @@ void UnitPhys::stop()
 bool UnitPhys::checkForWalls(const Vector2& pos)
 {
 	//TODO
-	//Fix wal collisions for going down and up
+	//Fix wal collisions for going up
 	static Grid* grid;
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();

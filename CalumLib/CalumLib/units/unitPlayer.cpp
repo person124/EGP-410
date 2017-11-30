@@ -33,7 +33,6 @@ void UnitPlayer::handleEvent(const Event& theEvent)
 	if (theEvent.getType() == EVENT_KEYPRESS)
 	{
 		const EventKeypress& e = static_cast<const EventKeypress&>(theEvent);
-
 		switch (e.getKey())
 		{
 			case KEYS_UP:
