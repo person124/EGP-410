@@ -68,9 +68,13 @@ void GameOver::update(double dt)
 	{
 		mpGUI->update(dt);
 	}
-	else if (time >= 8.7)
+	else if (time >= 6.9)
 	{
 		mpTimer->stop();
+		delete mpGUI;
+		//TODO
+		//Set to the Final Score GUI
+		mpGUI = NULL;
 	}
 }
 
@@ -91,14 +95,14 @@ void GameOver::draw()
 		{
 			mpGUI->draw();
 			if (time >= 3.7)
-				Game::pInstance->getGraphics()->drawCircle(mWMid, mHMid, WINDOW_WIDTH * ((time - 3.7) / 3.0), *mpColor);
+				Game::pInstance->getGraphics()->drawCircle(mWMid, mHMid, (int)(WINDOW_WIDTH * ((time - 3.7) / 3.0)), *mpColor);
 		}
 	}
 
 	double scale = (time < 4.9) ? 0 : ((time - 4.9) / (6.3 - 4.9));
 	if (time > 6.3)
 		scale = 1;
-	Game::pInstance->getGraphics()->draw(mWMid * scale, mHMid * scale, mpPlayer->getCurrent(), TILE_SCALE);
+	Game::pInstance->getGraphics()->draw((int)(mWMid * scale), (int)(mHMid * scale), mpPlayer->getCurrent(), TILE_SCALE);
 
 	if (time >= 4.5)
 		Game::pInstance->getGraphics()->drawCircle(mWMid + 5, mHMid + 5, 50, *mpColor);

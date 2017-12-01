@@ -62,7 +62,7 @@ void UnitSHA::draw()
 			(int)mPos.x,
 			(int)mPos.y,
 			mpAniRespawn->getCurrent(),
-			mAniScale * (mpStateTree->getTimer()->getElapsedTime() / 10),
+			(float) (mAniScale * (mpStateTree->getTimer()->getElapsedTime() / 10.0)),
 			mAngle
 		);
 	else
