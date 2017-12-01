@@ -264,6 +264,12 @@
     <ClInclude Include="stateTree\states\statesSHA.h">
       <Filter>Header Files\stateTree\states</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiGameOver.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="gameMode\gameOver.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -415,6 +421,12 @@
     </ClCompile>
     <ClCompile Include="stateTree\states\statesSHA.cpp">
       <Filter>Source Files\stateTree\states</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiGameOver.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\gameOver.cpp">
+      <Filter>Source Files\gameMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

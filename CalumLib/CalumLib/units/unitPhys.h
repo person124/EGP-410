@@ -31,10 +31,8 @@ class UnitPhys : public Unit
 
 		//Misc Functions
 		virtual void stop();
-	protected:
-		//Wall Checker function
 		bool checkForWalls(const Vector2& pos);
-
+	protected:
 		Vector2 mVel;
 		float mAngle, mRotation;
 

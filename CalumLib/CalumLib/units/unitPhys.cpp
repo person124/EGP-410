@@ -69,13 +69,13 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 		grid = Game::pInstance->getCurrentGrid();
 	const static float scale = 1.0f / TILE_SIZE;
 
-	int width = mpAnim->getCurrent()->getWidth() * mAniScale;
-	int height = mpAnim->getCurrent()->getHeight() * mAniScale;
+	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
+	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
 
-	int x1 = pos.x * scale;
-	int x2 = (pos.x + width) * scale;
-	int y1 = pos.y * scale;
-	int y2 = (pos.y + height) * scale;
+	int x1 = (int)(pos.x * scale);
+	int x2 = (int)((pos.x + width) * scale);
+	int y1 = (int)(pos.y * scale);
+	int y2 = (int)((pos.y + height) * scale);
 
 	if ((mVel.x < 0 || mVel.y > 0) && grid->isSolid(x1, y1))
 		return true;

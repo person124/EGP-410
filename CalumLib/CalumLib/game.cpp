@@ -18,6 +18,7 @@
 #include "gameMode/editor.h"
 #include "gameMode/level.h"
 #include "gameMode/levelSelect.h"
+#include "gameMode/gameOver.h"
 
 #include "utils/timer.h"
 #include "utils/ioUtils.h"
@@ -211,6 +212,9 @@ void Game::switchState()
 			break;
 		case STATE_EDITOR:
 			mpGameMode = new Editor();
+			break;
+		case STATE_GAME_OVER:
+			mpGameMode = new GameOver();
 			break;
 		case STATE_IN_GAME:
 			GameMode* old = mpGameMode;

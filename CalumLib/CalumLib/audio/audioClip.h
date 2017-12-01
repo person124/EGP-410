@@ -7,6 +7,7 @@
 
 struct ALLEGRO_MIXER;
 struct ALLEGRO_SAMPLE;
+struct ALLEGRO_SAMPLE_ID;
 struct ALLEGRO_AUDIO_STREAM;
 
 class AudioClip : public Trackable
@@ -24,6 +25,7 @@ class AudioClip : public Trackable
 		AudioClip(const std::string& path, ALLEGRO_MIXER* mixer);
 
 		ALLEGRO_SAMPLE* mpClip;
+		ALLEGRO_SAMPLE_ID* mpID;
 		ALLEGRO_AUDIO_STREAM* mpStream;
 		bool mIsStream;
 };
