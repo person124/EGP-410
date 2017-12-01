@@ -13,8 +13,9 @@ StateTree::~StateTree()
 
 void StateTree::update(double dt)
 {
-	int newState = mpCurrentState->update(dt);
-	mpCurrentState = &mpStates[newState];
+	int newState = mpCurrentState->update(this, dt);
+	if (newState != mpCurrentState->getID())
+		transfer(newState);
 }
 
 int StateTree::getID()

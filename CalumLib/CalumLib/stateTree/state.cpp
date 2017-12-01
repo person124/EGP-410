@@ -16,7 +16,7 @@ State::~State()
 {
 }
 
-int State::update(double dt)
+int State::update(StateTree* tree, double dt)
 {
-	return mUpdate(dt);
+	return mUpdate(tree, dt);
 }

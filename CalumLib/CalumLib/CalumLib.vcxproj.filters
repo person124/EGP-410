@@ -414,7 +414,7 @@
       <Filter>Source Files\stateTree</Filter>
     </ClCompile>
     <ClCompile Include="stateTree\states\statesSHA.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\stateTree\states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

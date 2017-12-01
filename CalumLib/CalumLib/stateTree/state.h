@@ -1,7 +1,9 @@
 #ifndef STATE_H
 #define STATE_H
 
-typedef int(UpdateFunc)(double dt);
+class StateTree;
+
+typedef int(UpdateFunc)(StateTree* tree, double dt);
 
 class State
 {
@@ -10,7 +12,7 @@ class State
 		State(int id, UpdateFunc func);
 		~State();
 
-		int update(double dt);
+		int update(StateTree* tree, double dt);
 
 		int getID() { return mID; };
 	private:

@@ -11,7 +11,7 @@ enum SHAColor
 	SHA_COLOR_COUNT
 };
 
-class StateTree;
+class StateTreeSHA;
 
 class UnitSHA : public UnitPhys
 {
@@ -27,8 +27,9 @@ class UnitSHA : public UnitPhys
 		Animation* mpAniBase;
 		Animation* mpAniFear;
 		Animation* mpAniEnraged;
+		Animation* mpAniRespawn;
 
-		StateTree* mpStateTree;
+		StateTreeSHA* mpStateTree;
 };
 
 #endif

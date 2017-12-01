@@ -9,9 +9,10 @@ class StateTree : public Trackable
 {
 	public:
 		StateTree();
-		~StateTree();
+		virtual ~StateTree();
 
 		void update(double dt);
+		virtual void transfer(int state) {};
 
 		int getID();
 	protected:
