@@ -79,6 +79,12 @@
     <Filter Include="Source Files\stateTree">
       <UniqueIdentifier>{ac3b3c71-a9cf-48e5-85c5-8be2cf5500ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\stateTree\states">
+      <UniqueIdentifier>{5f405201-4e78-4df8-ad20-377d1bf5cf90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\stateTree\states">
+      <UniqueIdentifier>{809e8703-6853-443d-a894-1648dea001dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -249,6 +255,15 @@
     <ClInclude Include="stateTree\stateTree.h">
       <Filter>Header Files\stateTree</Filter>
     </ClInclude>
+    <ClInclude Include="stateTree\state.h">
+      <Filter>Header Files\stateTree</Filter>
+    </ClInclude>
+    <ClInclude Include="stateTree\StateTreeSHA.h">
+      <Filter>Header Files\stateTree</Filter>
+    </ClInclude>
+    <ClInclude Include="stateTree\states\statesSHA.h">
+      <Filter>Header Files\stateTree\states</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -391,6 +406,15 @@
     </ClCompile>
     <ClCompile Include="stateTree\stateTree.cpp">
       <Filter>Source Files\stateTree</Filter>
+    </ClCompile>
+    <ClCompile Include="stateTree\state.cpp">
+      <Filter>Source Files\stateTree</Filter>
+    </ClCompile>
+    <ClCompile Include="stateTree\StateTreeSHA.cpp">
+      <Filter>Source Files\stateTree</Filter>
+    </ClCompile>
+    <ClCompile Include="stateTree\states\statesSHA.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

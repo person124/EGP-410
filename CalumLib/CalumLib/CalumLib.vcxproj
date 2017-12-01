@@ -167,7 +167,10 @@
     <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="physics\movementSHA.h" />
     <ClInclude Include="physics\vector2.h" />
+    <ClInclude Include="stateTree\state.h" />
+    <ClInclude Include="stateTree\states\statesSHA.h" />
     <ClInclude Include="stateTree\stateTree.h" />
+    <ClInclude Include="stateTree\StateTreeSHA.h" />
     <ClInclude Include="units\unit.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitPhys.h" />
@@ -217,7 +220,10 @@
     <ClCompile Include="pathing\tile.cpp" />
     <ClCompile Include="physics\movementSHA.cpp" />
     <ClCompile Include="physics\vector2.cpp" />
+    <ClCompile Include="stateTree\state.cpp" />
+    <ClCompile Include="stateTree\states\statesSHA.cpp" />
     <ClCompile Include="stateTree\stateTree.cpp" />
+    <ClCompile Include="stateTree\StateTreeSHA.cpp" />
     <ClCompile Include="units\unit.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitPhys.cpp" />

@@ -11,6 +11,8 @@ enum SHAColor
 	SHA_COLOR_COUNT
 };
 
+class StateTree;
+
 class UnitSHA : public UnitPhys
 {
 	public:
@@ -19,10 +21,14 @@ class UnitSHA : public UnitPhys
 
 		void update(double dt);
 		void draw();
+
+		int getCurrentState();
 	private:
 		Animation* mpAniBase;
 		Animation* mpAniFear;
 		Animation* mpAniEnraged;
+
+		StateTree* mpStateTree;
 };
 
 #endif

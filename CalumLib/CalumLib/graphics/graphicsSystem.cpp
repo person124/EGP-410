@@ -132,7 +132,6 @@ void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale, flo
 
 void GraphicsSystem::draw(int x, int y, Sprite* sprite, float scale, float angle)
 {
-	//al_draw_scaled_rotated_bitmap(sprite->getBuffer()->mpBitmap, sprite->getWidth() / 2, sprite->getHeight() / 2, x + 50, y, scale, scale, angle, sprite->isFlipped());
 	draw(x, y, sprite->getBuffer(), scale, angle);
 }
 

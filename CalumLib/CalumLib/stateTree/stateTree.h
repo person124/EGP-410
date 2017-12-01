@@ -2,19 +2,22 @@
 #define STATE_TREE_H
 
 #include "utils/trackable.h"
-/*
-	States:
-	Searching
-	Fleeing
-	Tracking
-	Dead
-*/
+
+class State;
 
 class StateTree : public Trackable
 {
 	public:
 		StateTree();
 		~StateTree();
+
+		void update(double dt);
+
+		int getID();
+	protected:
+		State* mpCurrentState;
+		int mSize;
+		State* mpStates;
 };
 
 #endif
