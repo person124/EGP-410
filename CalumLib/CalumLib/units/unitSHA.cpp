@@ -34,6 +34,8 @@ UnitSHA::UnitSHA(SHAColor color) : UnitPhys("sha")
 
 	//The rest of the data
 	mpStateTree = new StateTreeSHA();
+
+	mpMovement = new MovementSHA(this);
 }
 
 UnitSHA::~UnitSHA()
@@ -44,13 +46,15 @@ UnitSHA::~UnitSHA()
 	delete mpAniRespawn;
 
 	delete mpStateTree;
+
+	delete mpMovement;
 }
 
 void UnitSHA::update(double dt)
 {
 	mpStateTree->update(dt);
 
-	moveSHA::calculateMovement(this);
+	mpMovement->calculateMovement();
 	UnitPhys::update(dt);
 }
 
@@ -67,7 +71,14 @@ void UnitSHA::draw()
 		);
 	else
 	{
-		Game::pInstance->getGraphics()->drawOffset((int)mPos.x, (int)mPos.y, mpAniBase->getCurrent(), mAniScale, mAngle);
+		Game::pInstance->getGraphics()->drawOffset
+		(
+			(int)mPos.x,
+			(int)mPos.y,
+			mpAniBase->getCurrent(),
+			mAniScale,
+			mAngle
+		);
 		UnitPhys::draw();
 	}
 }

@@ -17,7 +17,7 @@ StateTreeSHA::StateTreeSHA()
 
 	mpTimer = new Timer();
 
-	transfer(shaDead);
+	transfer(shaSearching);
 }
 
 StateTreeSHA::~StateTreeSHA()

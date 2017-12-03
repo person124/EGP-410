@@ -8,7 +8,7 @@
 
 int StatesSHA::searching(StateTree* tree, double dt)
 {
-	//Look for player
+	//Look for player, until then just wander
 	return shaSearching;
 }
 

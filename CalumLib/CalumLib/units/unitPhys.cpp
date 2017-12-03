@@ -5,6 +5,7 @@
 
 #include "graphics/animation.h"
 #include "graphics/sprite.h"
+#include "graphics/graphicsSystem.h"
 
 #include "pathing/grid.h"
 
@@ -41,6 +42,18 @@ void UnitPhys::update(double dt)
 		mAngle += PI2;
 	while (mAngle > PI2)
 		mAngle -= PI2;
+}
+
+void UnitPhys::draw()
+{
+	Game::pInstance->getGraphics()->drawOffset
+	(
+		(int)mPos.x,
+		(int)mPos.y,
+		mpAnim->getCurrent(),
+		mAniScale,
+		mAngle
+	);
 }
 
 Vector2 UnitPhys::getAngleAsVector()

@@ -12,6 +12,7 @@ class UnitPhys : public Unit
 		~UnitPhys();
 
 		void update(double dt);
+		void draw();
 
 		//Getters and Setters
 		void setMaxSpeed(float speed) { mMaxSpeed = speed; };
@@ -27,6 +28,7 @@ class UnitPhys : public Unit
 		void setAngle(float angle) { mAngle = angle; };
 		void setRotation(float angle) { mRotation = angle; };
 
+		void setVelocity(Vector2& vel) { mVel = vel; };
 		void setVelocity(float x, float y) { mVel.x = x; mVel.y = y; };
 
 		//Misc Functions

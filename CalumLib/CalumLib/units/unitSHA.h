@@ -12,6 +12,7 @@ enum SHAColor
 };
 
 class StateTreeSHA;
+struct MovementSHA;
 
 class UnitSHA : public UnitPhys
 {
@@ -30,6 +31,8 @@ class UnitSHA : public UnitPhys
 		Animation* mpAniRespawn;
 
 		StateTreeSHA* mpStateTree;
+
+		MovementSHA* mpMovement;
 };
 
 #endif
