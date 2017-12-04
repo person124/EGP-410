@@ -95,6 +95,7 @@ void MovementSHA::calculateSearching()
 	//Set a direction if we don't have one
 	if (mCurrentDir == NONE)
 		mCurrentDir = MovementSHA::getNewDirection();
+	mCurrentDir = UP;
 	
 	moveInDirection();
 }

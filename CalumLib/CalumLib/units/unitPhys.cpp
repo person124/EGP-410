@@ -14,6 +14,8 @@
 
 const float PI2 = (float)M_PI * 2.0f;
 
+const int COLLISION_BUFFER = 3;
+
 UnitPhys::UnitPhys(const char* animString) : Unit(animString)
 {
 	mVel = Vector2();
@@ -77,7 +79,6 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 {
 	//TODO
 	//Fix wal collisions for going up
-	//Also fix wall collisions so SHA fits
 	static Grid* grid;
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();
@@ -86,12 +87,12 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
 	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
 
-	int x1 = (int)(pos.x * scale);
-	int x2 = (int)((pos.x + width) * scale);
-	int y1 = (int)(pos.y * scale);
-	int y2 = (int)((pos.y + height) * scale);
+	int x1 = (int)((pos.x + COLLISION_BUFFER) * scale);
+	int x2 = (int)((pos.x + width - COLLISION_BUFFER) * scale);
+	int y1 = (int)((pos.y + COLLISION_BUFFER) * scale);
+	int y2 = (int)((pos.y + height - COLLISION_BUFFER) * scale);
 
-	if ((mVel.x < 0 || mVel.y > 0) && grid->isSolid(x1, y1))
+	if ((mVel.x < 0 || mVel.y < 0) && grid->isSolid(x1, y1))
 		return true;
 	if ((mVel.x > 0 || mVel.y < 0) && grid->isSolid(x2, y1))
 		return true;
