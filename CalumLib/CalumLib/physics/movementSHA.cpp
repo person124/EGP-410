@@ -18,17 +18,7 @@ const float DIR_ANGLES[4] =
 };
 const float TURN_SPEED = DIR_ANGLES[1];
 const float TWO_PI = 6.28318530718f;
-
-MovementSHA::MovementSHA(UnitSHA* unit)
-{
-	mCurrentDir = NONE;
-
-	mpUnit = unit;
-}
-
-MovementSHA::~MovementSHA()
-{
-}
+const float PI_2 = DIR_ANGLES[1];
 
 /*
 * Returns a new direction that's not the old one
@@ -50,22 +40,33 @@ Vector2 MovementSHA::directionToVelocity(Direction dir)
 {
 	switch (dir)
 	{
-		case UP:
-			return Vector2(0, -1);
-		case DOWN:
-			return Vector2(0, 1);
-		case LEFT:
-			return Vector2(-1, 0);
-		case RIGHT:
-			return Vector2(1, 0);
-		default:
-			return Vector2(0, 0);
+	case UP:
+		return Vector2(0, -1);
+	case DOWN:
+		return Vector2(0, 1);
+	case LEFT:
+		return Vector2(-1, 0);
+	case RIGHT:
+		return Vector2(1, 0);
+	default:
+		return Vector2(0, 0);
 	}
 }
 
 float MovementSHA::directionToAngle(Direction dir)
 {
 	return DIR_ANGLES[(int)dir];
+}
+
+MovementSHA::MovementSHA(UnitSHA* unit)
+{
+	mCurrentDir = NONE;
+
+	mpUnit = unit;
+}
+
+MovementSHA::~MovementSHA()
+{
 }
 
 void MovementSHA::calculateMovement()
@@ -88,8 +89,6 @@ void MovementSHA::calculateMovement()
 		break;
 	}
 }
-
-#include <iostream>
 
 void MovementSHA::calculateSearching()
 {
@@ -124,16 +123,26 @@ void MovementSHA::turnToFace(float dest)
 	 * positive or negative direction.
 	 * If both distances are the same then it will go
 	 * in the degative direction as it doesn't matter.
+	 *
+	 * Got pseudo-code from:
+	 * https://stackoverflow.com/questions/25506470/how-to-get-to-an-angle-choosing-the-shortest-rotation-direction
 	 */
 	float angle = mpUnit->getAngle();
-	if (abs(dest - angle) < ((TWO_PI - dest) + angle))
+	float sign = 1;
+
+	if (angle < dest)
 	{
-		//Positive is less, so go positively
-		mpUnit->setRotation(TURN_SPEED / 10);
+		if (abs(angle - dest) < PI_2)
+			sign = 1;
+		else
+			sign = -1;
 	}
 	else
 	{
-		//Otherwise go negatively
-		mpUnit->setRotation(-TURN_SPEED / 10);
+		if (abs(angle - dest) < PI_2)
+			sign = -1;
+		else sign = 1;
 	}
+
+	mpUnit->setRotation(copysignf(TURN_SPEED / 3, sign));
 }

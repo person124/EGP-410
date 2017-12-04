@@ -131,7 +131,9 @@ void IOUtils::saveGrid(const std::string& path, Grid* grid)
 	for (unsigned int i = 0; i < locs.size(); i++)
 	{
 		SpawnLocation sl = locs.at(i);
-		file << ((int) sl.type) << ' ' << sl.x << ' ' << sl.y << ' ';
+		file << ((int)sl.type) << ' ' << sl.x << ' ' << sl.y;
+		if (i + 1 < locs.size())
+			file << ' ';
 	}
 
 	file.close();

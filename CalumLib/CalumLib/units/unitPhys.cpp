@@ -77,6 +77,7 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 {
 	//TODO
 	//Fix wal collisions for going up
+	//Also fix wall collisions so SHA fits
 	static Grid* grid;
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();
