@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+const float TWO_PI = 6.28318530718f;
+
 Vector2 Vector2::toVector(float angle)
 {
 	return Vector2(cosf(angle), sinf(angle));
@@ -10,6 +12,24 @@ Vector2 Vector2::toVector(float angle)
 float Vector2::dot(Vector2& v1, Vector2& v2)
 {
 	return v1.x * v2.x + v1.y * v2.y;
+}
+
+#include <iostream>
+float Vector2::toAngle(Vector2& v)
+{
+	if (v.length() != 0)
+	{
+		float angle = atan2f(v.y, v.x);
+
+		while (angle < 0)
+			angle += TWO_PI;
+		while (angle > TWO_PI)
+			angle -= TWO_PI;
+
+		return angle;
+	}
+
+	return 0.0f;
 }
 
 Vector2::Vector2()
@@ -34,6 +54,11 @@ void Vector2::normalize()
 	float len = length();
 	x /= len;
 	y /= len;
+}
+
+float Vector2::asAngle()
+{
+	return Vector2::toAngle(*this);
 }
 
 float Vector2::length()

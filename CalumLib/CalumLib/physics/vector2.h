@@ -5,12 +5,14 @@ struct Vector2
 {
 	static Vector2 toVector(float angle);
 	static float dot(Vector2& v1, Vector2& v2);
+	static float toAngle(Vector2& v);
 
 	Vector2();
 	Vector2(float xVal, float yVal);
 
 	Vector2 normal();
 	void normalize();
+	float asAngle();
 
 	float length();
 

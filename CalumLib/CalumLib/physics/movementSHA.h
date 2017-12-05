@@ -1,7 +1,11 @@
 #ifndef MOVEMENT_SHA_H
 #define MOVEMENT_SHA_H
 
+#include "pathing/node.h"
+
 #include "physics/vector2.h"
+
+#include <vector>
 
 class UnitSHA;
 
@@ -21,6 +25,7 @@ struct MovementSHA
 	public:
 		static Vector2 directionToVelocity(Direction dir);
 		static float directionToAngle(Direction dir);
+		static Vector2 getPointInPath(std::vector<Node> path, const Node& start);
 
 	public:
 		MovementSHA(UnitSHA* unit);

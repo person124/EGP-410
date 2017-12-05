@@ -1,5 +1,12 @@
 #include "movementSHA.h"
 
+#include "game.h"
+#include "globalConst.h"
+
+#include "pathing/pathing.h"
+
+#include "physics/raycast.h"
+
 #include "stateTree/states/statesSHA.h"
 
 #include "units/unitSHA.h"
@@ -16,7 +23,7 @@ const float DIR_ANGLES[4] =
 	3.14159265359f,
 	0
 };
-const float TURN_SPEED = DIR_ANGLES[1];
+const float TURN_SPEED = DIR_ANGLES[1] / 3;
 const float TWO_PI = 6.28318530718f;
 const float PI_2 = DIR_ANGLES[1];
 
@@ -40,6 +47,27 @@ Vector2 MovementSHA::directionToVelocity(Direction dir)
 float MovementSHA::directionToAngle(Direction dir)
 {
 	return DIR_ANGLES[(int)dir];
+}
+
+Vector2 MovementSHA::getPointInPath(std::vector<Node> path, const Node& start)
+{
+	Vector2 goal = Vector2();
+
+	Vector2 startVect = Vector2((float)start.x, (float)start.y);
+
+	for (unsigned int i = 0; i < path.size(); i++)
+	{
+		Vector2 nodeVect = Vector2(path.at(i).x, path.at(i).y);
+
+		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
+		{
+			goal.x = (float)path.at(i - 1).x;
+			goal.y = (float)path.at(i - 1).y;
+			break;
+		}
+	}
+
+	return goal;
 }
 
 MovementSHA::MovementSHA(UnitSHA* unit)
@@ -86,6 +114,28 @@ void MovementSHA::calculateSearching()
 
 void MovementSHA::calculateTracking()
 {
+	Vector2 pos = mpUnit->getPosition();
+	Vector2 track = mpUnit->getTargetLocation();
+
+	Node start = Node(pos.x / TILE_SIZE, pos.y / TILE_SIZE);
+	Node goal = Node(track.x / TILE_SIZE, track.y / TILE_SIZE);
+
+	std::vector<Node> path = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
+
+	Vector2 target = getPointInPath(path, start);
+
+	//Then turn to face and the like
+	Vector2 targetVect = target - pos;
+
+	//TODO Normalize the angle
+	float targetAngle = targetVect.asAngle();
+	float angleInBetween = abs(targetAngle - mpUnit->getAngle());
+	if (angleInBetween <= DEGREES_5)
+	{
+		//Dash forward
+	}
+	else
+		turnToFace(targetAngle);
 }
 
 void MovementSHA::moveInDirection()
@@ -139,7 +189,7 @@ void MovementSHA::turnToFace(float dest)
 		else sign = 1;
 	}
 
-	mpUnit->setRotation(copysignf(TURN_SPEED / 3, sign));
+	mpUnit->setRotation(copysignf(TURN_SPEED, sign));
 }
 
 void MovementSHA::getNewDirection()

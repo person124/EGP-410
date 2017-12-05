@@ -6,7 +6,7 @@
 
 //Uses this method
 //https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
-//TODO FIX!
+//Returns true if the cast succeeded
 bool RayCast(Grid* grid, const Vector2& begin, const Vector2& end)
 {
 	int tileStartX = (int)(begin.x / TILE_SIZE);
