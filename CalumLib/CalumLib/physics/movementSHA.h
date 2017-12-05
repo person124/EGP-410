@@ -11,14 +11,15 @@ enum Direction
 	UP = 0,
 	DOWN = 1,
 	LEFT = 2,
-	RIGHT = 3
+	RIGHT = 3,
+	DIRECTION_COUNT
 };
 
 struct MovementSHA
 {
 	//Static things
 	public:
-		static Direction getNewDirection(Direction oldDirection = NONE);
+		//static Direction genRandomDirection(Direction oldDirection);
 		static Vector2 directionToVelocity(Direction dir);
 		static float directionToAngle(Direction dir);
 
@@ -32,6 +33,8 @@ struct MovementSHA
 
 		void moveInDirection();
 		void turnToFace(float dest);
+		void getNewDirection();
+		bool checkForWall(Direction dir);
 
 		//Members
 		UnitSHA* mpUnit;

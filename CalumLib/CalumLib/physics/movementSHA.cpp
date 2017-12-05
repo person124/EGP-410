@@ -20,22 +20,6 @@ const float TURN_SPEED = DIR_ANGLES[1];
 const float TWO_PI = 6.28318530718f;
 const float PI_2 = DIR_ANGLES[1];
 
-/*
-* Returns a new direction that's not the old one
-*/
-Direction MovementSHA::getNewDirection(Direction oldDirection)
-{
-	if (oldDirection == NONE)
-		return (Direction)(rand() % 4);
-
-	int num = rand() % 3;
-
-	if (num == oldDirection)
-		return RIGHT;
-
-	return (Direction)num;
-}
-
 Vector2 MovementSHA::directionToVelocity(Direction dir)
 {
 	switch (dir)
@@ -94,14 +78,19 @@ void MovementSHA::calculateSearching()
 {
 	//Set a direction if we don't have one
 	if (mCurrentDir == NONE)
-		mCurrentDir = MovementSHA::getNewDirection();
-	mCurrentDir = UP;
+		getNewDirection();
 	
 	moveInDirection();
 }
 
 void MovementSHA::moveInDirection()
 {
+	if (checkForWall(mCurrentDir))
+	{
+		getNewDirection();
+		return;
+	}
+
 	float angleToBe = directionToAngle(mCurrentDir);
 
 	//No division as both vectorDirection and unitAngle have lengths of 1
@@ -146,4 +135,47 @@ void MovementSHA::turnToFace(float dest)
 	}
 
 	mpUnit->setRotation(copysignf(TURN_SPEED / 3, sign));
+}
+
+void MovementSHA::getNewDirection()
+{
+	bool noWall[DIRECTION_COUNT];
+	int sum = 0;
+
+	for (int i = 0; i < DIRECTION_COUNT; i++)
+	{
+		noWall[i] = !checkForWall((Direction)i);
+		sum += noWall[i];
+	}
+
+	if (sum == 0)
+		return;
+
+	int selection = rand() % sum;
+	for (int i = 0; i < DIRECTION_COUNT; i++)
+	{
+		if (selection == i)
+		{
+			if (noWall[i] && (i != mCurrentDir || sum == 1))
+			{
+				mCurrentDir = (Direction)i;
+				return;
+			}
+			
+			selection++;
+
+			if (selection >= DIRECTION_COUNT)
+			{
+				selection -= DIRECTION_COUNT;
+				i = 0;
+			}
+		}
+	}
+}
+
+bool MovementSHA::checkForWall(Direction dir)
+{
+	Vector2 movement = directionToVelocity(dir) * 5;
+
+	return mpUnit->checkForWallsOffset(movement);
 }

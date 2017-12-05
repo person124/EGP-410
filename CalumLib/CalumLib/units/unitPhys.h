@@ -34,6 +34,7 @@ class UnitPhys : public Unit
 		//Misc Functions
 		virtual void stop();
 		bool checkForWalls(const Vector2& pos);
+		bool checkForWallsOffset(const Vector2& offset);
 	protected:
 		Vector2 mVel;
 		float mAngle, mRotation;
