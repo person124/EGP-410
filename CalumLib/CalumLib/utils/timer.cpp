@@ -28,6 +28,13 @@ void Timer::stop()
 	*mpEnd = clock();
 }
 
+void Timer::reset()
+{
+	clock_t time = clock();
+	*mpStart = time;
+	*mpEnd = time;
+}
+
 double Timer::getElapsedTime() const
 {
 	if (*mpEnd != 0)

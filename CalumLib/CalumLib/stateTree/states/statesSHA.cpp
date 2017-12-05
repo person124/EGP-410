@@ -42,6 +42,23 @@ int StatesSHA::fleeing(StateTree* tree, double dt)
 int StatesSHA::tracking(StateTree* tree, double dt)
 {
 	//Wait until line of sight is lost for a few seconds
+	StateTreeSHA* shaTree = (StateTreeSHA*)tree;
+
+	Vector2 unit = shaTree->getUnit()->getPosition();
+	Vector2 player = shaTree->getPlayer()->getPosition();
+
+	if (RayCast(Game::pInstance->getCurrentGrid(), unit, player))
+	{
+		((UnitSHA*)shaTree->getUnit())->setTargetLocation(player);
+		shaTree->getTimer()->reset();
+	}
+	else
+	{
+		if (shaTree->getTimer()->getElapsedTime() == 0)
+			shaTree->getTimer()->start();
+		else if (shaTree->getTimer()->getElapsedTime() > 1.5)
+			return shaSearching;
+	}
 	return shaTracking;
 }
 

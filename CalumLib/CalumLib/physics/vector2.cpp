@@ -14,7 +14,6 @@ float Vector2::dot(Vector2& v1, Vector2& v2)
 	return v1.x * v2.x + v1.y * v2.y;
 }
 
-#include <iostream>
 float Vector2::toAngle(Vector2& v)
 {
 	if (v.length() != 0)

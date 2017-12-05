@@ -16,6 +16,7 @@
 
 const float SPEED = 30;
 const float DEGREES_5 = 0.08726646259f;
+const float DEGREE = 0.01745329251f;
 const float DIR_ANGLES[4] = 
 {
 	1.57079632679f,
@@ -26,6 +27,7 @@ const float DIR_ANGLES[4] =
 const float TURN_SPEED = DIR_ANGLES[1] / 3;
 const float TWO_PI = 6.28318530718f;
 const float PI_2 = DIR_ANGLES[1];
+const float DASH_SPEED = 300;
 
 Vector2 MovementSHA::directionToVelocity(Direction dir)
 {
@@ -61,11 +63,14 @@ Vector2 MovementSHA::getPointInPath(std::vector<Node> path, const Node& start)
 
 		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
 		{
-			goal.x = (float)path.at(i - 1).x;
-			goal.y = (float)path.at(i - 1).y;
+			goal.x = (float)path.at(i - 1).x * TILE_SIZE;
+			goal.y = (float)path.at(i - 1).y * TILE_SIZE;
 			break;
 		}
 	}
+
+	goal.x = (float)path.at(path.size() - 1).x * TILE_SIZE;
+	goal.y = (float)path.at(path.size() - 1).y * TILE_SIZE;
 
 	return goal;
 }
@@ -75,6 +80,8 @@ MovementSHA::MovementSHA(UnitSHA* unit)
 	mCurrentDir = NONE;
 
 	mpUnit = unit;
+
+	mDashing = false;
 }
 
 MovementSHA::~MovementSHA()
@@ -114,6 +121,12 @@ void MovementSHA::calculateSearching()
 
 void MovementSHA::calculateTracking()
 {
+	if (mDashing)
+	{
+		dash();
+		return;
+	}
+
 	Vector2 pos = mpUnit->getPosition();
 	Vector2 track = mpUnit->getTargetLocation();
 
@@ -133,9 +146,22 @@ void MovementSHA::calculateTracking()
 	if (angleInBetween <= DEGREES_5)
 	{
 		//Dash forward
+		mDashing = true;
+		dash();
 	}
 	else
 		turnToFace(targetAngle);
+}
+
+void MovementSHA::dash()
+{
+	Vector2 vel = Vector2::toVector(mpUnit->getAngle());
+	vel *= DASH_SPEED;
+
+	mpUnit->setVelocity(vel);
+
+	if (mpUnit->checkForWallsOffset(vel.normal() * 15))
+		mDashing = false;
 }
 
 void MovementSHA::moveInDirection()

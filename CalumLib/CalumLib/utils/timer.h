@@ -13,10 +13,11 @@ class Timer : public Trackable
 
 		void start();
 		void stop();
+		void reset();
 
 		double getElapsedTime() const;
 		void sleepUntilElapsed(double ms);
-	public:
+	private:
 		clock_t* mpStart;
 		clock_t* mpEnd;
 };

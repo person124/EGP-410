@@ -36,6 +36,8 @@ struct MovementSHA
 		void calculateSearching();
 		void calculateTracking();
 
+		void dash();
+
 		void moveInDirection();
 		void turnToFace(float dest);
 		void getNewDirection();
@@ -44,6 +46,7 @@ struct MovementSHA
 		//Members
 		UnitSHA* mpUnit;
 		Direction mCurrentDir;
+		bool mDashing = false;
 };
 
 #endif
