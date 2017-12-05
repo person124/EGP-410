@@ -84,6 +84,10 @@ void MovementSHA::calculateSearching()
 	moveInDirection();
 }
 
+void MovementSHA::calculateTracking()
+{
+}
+
 void MovementSHA::moveInDirection()
 {
 	if (checkForWall(mCurrentDir))
