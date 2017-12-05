@@ -29,6 +29,7 @@ struct MovementSHA
 		void calculateMovement();
 	private:
 		void calculateSearching();
+		void calculateTracking();
 
 		void moveInDirection();
 		void turnToFace(float dest);

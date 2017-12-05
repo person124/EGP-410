@@ -24,7 +24,12 @@ class UnitSHA : public UnitPhys
 		void draw();
 
 		int getCurrentState();
+
+		void setTargetLocation(Vector2 pos) { mTarget = pos; };
+		Vector2 getTargetLocation() { return mTarget; };
 	private:
+		Vector2 mTarget;
+
 		Animation* mpAniBase;
 		Animation* mpAniFear;
 		Animation* mpAniEnraged;

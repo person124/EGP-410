@@ -12,6 +12,8 @@ class AudioSystem : public StringManager<AudioClip>
 
 		void registerClip(const std::string& key, const std::string& path);
 		void registerStream(const std::string& key, const std::string& path);
+
+		void play(const std::string& key, bool loop);
 	private:
 };
 

@@ -22,11 +22,13 @@ bool RayCast(Grid* grid, const Vector2& begin, const Vector2& end)
 	if (tileStartX == tileEndX) //Vertical Line
 	{
 		int x = tileStartX;
-		for (int y = tileStartX; y != tileEndX; (dY > 0) ? y++ : y--)
+		for (int y = tileStartY; y != tileEndY; (dY > 0) ? y++ : y--)
 		{
 			if (grid->isSolid(x, y))
 				return false;
 		}
+
+		return true;
 	}
 	else if (tileStartY == tileEndY) //Horizontal line
 	{
@@ -36,6 +38,8 @@ bool RayCast(Grid* grid, const Vector2& begin, const Vector2& end)
 			if (grid->isSolid(x, y))
 				return false;
 		}
+
+		return true;
 	}
 
 	//Otherwise
@@ -52,6 +56,10 @@ bool RayCast(Grid* grid, const Vector2& begin, const Vector2& end)
 		while (error >= 0.5)
 		{
 			y += (int) copysign(1, dY);
+
+			if (grid->isSolid(x, y))
+				return false;
+
 			error -= 1.0;
 		}
 	}

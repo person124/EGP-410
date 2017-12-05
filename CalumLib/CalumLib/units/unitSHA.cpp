@@ -19,10 +19,10 @@ const std::string COLOR_NAME[SHA_COLOR_COUNT] =
 	"yellow"
 };
 
-UnitSHA::UnitSHA(SHAColor color) : UnitPhys("sha")
+UnitSHA::UnitSHA(SHAColor color) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c_str())
 {
 	//Animations
-	mpAniBase = Game::pInstance->getAnimationManager()->get("sha_color_" + COLOR_NAME[color]);
+	mpAniBase = Game::pInstance->getAnimationManager()->get("sha");
 
 	mpAniFear = Game::pInstance->getAnimationManager()->get("sha_broken");
 
@@ -51,6 +51,9 @@ UnitSHA::~UnitSHA()
 
 void UnitSHA::update(double dt)
 {
+	mpAniBase->update(dt);
+	mpAniEnraged->update(dt);
+
 	mpStateTree->update(dt);
 
 	mpMovement->calculateMovement();
@@ -70,15 +73,20 @@ void UnitSHA::draw()
 		);
 	else
 	{
+		UnitPhys::draw();
+
+		Animation* toRender = mpAniBase;
+		if (mpStateTree->getID() == shaTracking)
+			toRender = mpAniEnraged;
+
 		Game::pInstance->getGraphics()->drawOffset
 		(
 			(int)mPos.x,
 			(int)mPos.y,
-			mpAniBase->getCurrent(),
+			toRender->getCurrent(),
 			mAniScale,
 			mAngle
 		);
-		UnitPhys::draw();
 	}
 }
 

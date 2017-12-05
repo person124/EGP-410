@@ -2,10 +2,13 @@
 
 #include "game.h"
 
+#include "audio/audioSystem.h"
+
 #include "physics/raycast.h"
 
 #include "stateTree/stateTreeSHA.h"
 
+#include "units/unitSHA.h"
 #include "units/unitPlayer.h"
 
 #include "utils/timer.h"
@@ -22,7 +25,10 @@ int StatesSHA::searching(StateTree* tree, double dt)
 
 	if (RayCast(Game::pInstance->getCurrentGrid(), unit, player))
 	{
-		printf("%i\n", player.x);
+		//Play "found you" sound, set sha target to player, and switch to tracking
+		Game::pInstance->getAudio()->play("sha_cry", false);
+		((UnitSHA*)shaTree->getUnit())->setTargetLocation(player);
+		return shaTracking;
 	}
 	return shaSearching;
 }

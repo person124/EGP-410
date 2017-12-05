@@ -43,3 +43,8 @@ void AudioSystem::registerStream(const std::string& key, const std::string& path
 	AudioClip* clip = new AudioClip(path, al_get_default_mixer());
 	add(key, clip);
 }
+
+void AudioSystem::play(const std::string& key, bool loop)
+{
+	get(key)->play(loop);
+}
