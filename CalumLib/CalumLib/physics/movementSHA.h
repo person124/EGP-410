@@ -19,7 +19,6 @@ struct MovementSHA
 {
 	//Static things
 	public:
-		//static Direction genRandomDirection(Direction oldDirection);
 		static Vector2 directionToVelocity(Direction dir);
 		static float directionToAngle(Direction dir);
 

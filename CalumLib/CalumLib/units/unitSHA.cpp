@@ -7,7 +7,7 @@
 
 #include "physics/movementSHA.h"
 
-#include "stateTree/StateTreeSHA.h"
+#include "stateTree/stateTreeSHA.h"
 #include "stateTree/states/statesSHA.h"
 
 #include "utils/timer.h"
@@ -33,8 +33,7 @@ UnitSHA::UnitSHA(SHAColor color) : UnitPhys("sha")
 	mAniScale = 2;
 
 	//The rest of the data
-	mpStateTree = new StateTreeSHA();
-
+	mpStateTree = new StateTreeSHA(this);
 	mpMovement = new MovementSHA(this);
 }
 

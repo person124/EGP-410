@@ -258,9 +258,6 @@
     <ClInclude Include="stateTree\state.h">
       <Filter>Header Files\stateTree</Filter>
     </ClInclude>
-    <ClInclude Include="stateTree\StateTreeSHA.h">
-      <Filter>Header Files\stateTree</Filter>
-    </ClInclude>
     <ClInclude Include="stateTree\states\statesSHA.h">
       <Filter>Header Files\stateTree\states</Filter>
     </ClInclude>
@@ -269,6 +266,12 @@
     </ClInclude>
     <ClInclude Include="gameMode\gameOver.h">
       <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\raycast.h">
+      <Filter>Header Files\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="stateTree\stateTreeSHA.h">
+      <Filter>Header Files\stateTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -416,9 +419,6 @@
     <ClCompile Include="stateTree\state.cpp">
       <Filter>Source Files\stateTree</Filter>
     </ClCompile>
-    <ClCompile Include="stateTree\StateTreeSHA.cpp">
-      <Filter>Source Files\stateTree</Filter>
-    </ClCompile>
     <ClCompile Include="stateTree\states\statesSHA.cpp">
       <Filter>Source Files\stateTree\states</Filter>
     </ClCompile>
@@ -427,6 +427,12 @@
     </ClCompile>
     <ClCompile Include="gameMode\gameOver.cpp">
       <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\raycast.cpp">
+      <Filter>Source Files\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="stateTree\stateTreeSHA.cpp">
+      <Filter>Source Files\stateTree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

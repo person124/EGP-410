@@ -35,6 +35,7 @@ class Game : public EventListener
 		GraphicsBufferManager* getBufferManager();
 		AnimationManager* getAnimationManager();
 
+		GameMode* getCurrentMode();
 		Grid* getCurrentGrid();
 	private:
 		void update(float dt);

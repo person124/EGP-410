@@ -1,6 +1,12 @@
 #include "statesSHA.h"
 
-#include "stateTree/StateTreeSHA.h"
+#include "game.h"
+
+#include "physics/raycast.h"
+
+#include "stateTree/stateTreeSHA.h"
+
+#include "units/unitPlayer.h"
 
 #include "utils/timer.h"
 
@@ -8,7 +14,16 @@
 
 int StatesSHA::searching(StateTree* tree, double dt)
 {
+	StateTreeSHA* shaTree = (StateTreeSHA*)tree;
+
 	//Look for player, until then just wander
+	Vector2 unit = shaTree->getUnit()->getPosition();
+	Vector2 player = shaTree->getPlayer()->getPosition();
+
+	if (RayCast(Game::pInstance->getCurrentGrid(), unit, player))
+	{
+		printf("%i\n", player.x);
+	}
 	return shaSearching;
 }
 

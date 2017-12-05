@@ -102,6 +102,9 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 	return false;
 }
 
+//TODO
+//Make this function and checkForWalls not use so much of the same code
+//Maybe make another function
 bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 {
 	static Grid* grid;

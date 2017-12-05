@@ -14,6 +14,8 @@ class Level : public GameMode
 
 		void update(double dt);
 		void draw();
+
+		UnitManager* getUnits() { return mpUnits; };
 	private:
 		void createGraph();
 		void initSpawns();

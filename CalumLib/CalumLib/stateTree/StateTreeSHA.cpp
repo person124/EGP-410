@@ -1,11 +1,17 @@
-#include "StateTreeSHA.h"
+#include "stateTreeSHA.h"
+
+#include "game.h"
+
+#include "gameMode/level.h"
 
 #include "stateTree/state.h"
-#include "stateTree/states/StatesSHA.h"
+#include "stateTree/states/statesSHA.h"
+
+#include "units/unitManager.h"
 
 #include "utils/timer.h"
 
-StateTreeSHA::StateTreeSHA()
+StateTreeSHA::StateTreeSHA(Unit* unit) : StateTree(unit)
 {
 	mSize = 5;
 	mpStates = new State[sha_STATE_COUNT];
@@ -42,4 +48,9 @@ void StateTreeSHA::transfer(int state)
 	if (state < 0 || state >= sha_STATE_COUNT)
 		return;
 	mpCurrentState = &mpStates[state];
+}
+
+UnitPlayer* StateTreeSHA::getPlayer()
+{
+	return ((Level*)Game::pInstance->getCurrentMode())->getUnits()->getPlayer();
 }

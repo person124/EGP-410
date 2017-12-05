@@ -25,6 +25,7 @@ public:
 	Unit* getUnit(unsigned int pos);
 	Unit* getUnitAtPos(Vector2* pos);
 	int getSize();
+	UnitPlayer* getPlayer() { return mpPlayer; };
 
 	// Update Functions
 	void update(double dt);

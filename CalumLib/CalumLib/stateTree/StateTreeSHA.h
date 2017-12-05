@@ -5,17 +5,22 @@
 
 class Timer;
 
+class UnitPlayer;
+
 class StateTreeSHA : public StateTree
 {
 	public:
-		StateTreeSHA();
+		StateTreeSHA(Unit* unit);
 		~StateTreeSHA();
 
 		void transfer(int state);
 
 		Timer* getTimer() { return mpTimer; };
-	protected:
+
+		UnitPlayer* getPlayer();
+	private:
 		Timer* mpTimer;
+
 };
 
 #endif

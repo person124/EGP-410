@@ -2,8 +2,9 @@
 
 #include "stateTree/state.h"
 
-StateTree::StateTree()
+StateTree::StateTree(Unit* unit)
 {
+	mpUnit = unit;
 }
 
 StateTree::~StateTree()

@@ -189,6 +189,11 @@ AnimationManager* Game::getAnimationManager()
 	return mpAnimationManager;
 }
 
+GameMode* Game::getCurrentMode()
+{
+	return mpGameMode;
+}
+
 Grid* Game::getCurrentGrid()
 {
 	if (mpGameMode == NULL)
