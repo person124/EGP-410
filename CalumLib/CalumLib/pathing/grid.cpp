@@ -143,6 +143,98 @@ void Grid::setID(int x, int y, int value)
 		t->setID(value);
 }
 
+void Grid::setSize(int newWidth, int newHeight)
+{
+	changeHeight(newHeight);
+	changeWidth(newWidth);
+}
+
+void Grid::changeHeight(int newHeight)
+{
+	//Check height first
+	if (newHeight != mHeight)
+	{
+		int oldSize = mWidth * mHeight;
+		int newSize = mWidth * newHeight;
+		Tile** tempSet = new Tile*[newSize];
+
+		//Make height bigger
+		if (newHeight > mHeight)
+		{
+			//Get old data
+			for (int i = 0; i < oldSize; i++)
+				tempSet[i] = mpTiles[i];
+
+			//Make new data
+			for (int i = oldSize; i < newSize; i++)
+				tempSet[i] = new Tile(0);
+		}
+		//Make height smaller
+		else if (newHeight < mHeight)
+		{
+			//Get some of the old data
+			for (int i = 0; i < newSize; i++)
+				tempSet[i] = mpTiles[i];
+			//Delete the rest of the old data
+			for (int i = newSize; i < oldSize; i++)
+				delete mpTiles[i];
+		}
+
+		//Transfer data
+		mpTiles = tempSet;
+		//Change the height
+		mHeight = newHeight;
+	}
+}
+
+void Grid::changeWidth(int newWidth)
+{
+	//Check width first
+	if (newWidth != mWidth)
+	{
+		int oldSize = mWidth * mHeight;
+		int newSize = newWidth * mHeight;
+		Tile** tempSet = new Tile*[newSize];
+
+		//Make it bigger
+		if (newWidth > mWidth)
+		{
+			int tracker = 0;
+			for (int i = 0; i < newSize; i++)
+			{
+				if (i % newWidth == newWidth - 1)
+					tempSet[i] = new Tile(0);
+				else
+				{
+					tempSet[i] = mpTiles[tracker];
+					tracker++;
+				}
+			}
+		}
+		//Make it smaller
+		else if (newWidth < mWidth)
+		{
+			//Tracker is used to keep track of if we've skipped a tile or not
+			int tracker = 0;
+			for (int i = 0; i < oldSize; i++)
+			{
+				if (i % mWidth == mWidth - 1)
+					delete mpTiles[i];
+				else
+				{
+					tempSet[tracker] = mpTiles[i];
+					tracker++;
+				}
+			}
+		}
+
+		//Transfer data
+		mpTiles = tempSet;
+		//Change the width
+		mWidth = newWidth;
+	}
+}
+
 void Grid::addSpawnLocation(SpawnType type, int x, int y)
 {
 	mSpawnLocations.push_back(SpawnLocation(type, x, y));

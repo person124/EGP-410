@@ -12,8 +12,10 @@ class Timer;
 
 enum EditorSelections
 {
-	TILE,
+	TILE = 0,
 	SPAWNS,
+	MODIFY_WIDTH,
+	MODIFY_HEIGHT,
 	EDITOR_SELECTIONS_COUNT
 };
 
@@ -31,6 +33,8 @@ class Editor : public GameMode, public EventListener
 
 		void handleEvent(const Event& theEvent);
 	private:
+		void updateGridSize();
+
 		GUIEditor* mpGEdit;
 		GraphicsSystem* mpGraphics;
 

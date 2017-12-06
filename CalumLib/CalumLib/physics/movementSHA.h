@@ -5,6 +5,8 @@
 
 #include "physics/vector2.h"
 
+#include "utils/trackable.h"
+
 #include <vector>
 
 class UnitSHA;
@@ -19,7 +21,7 @@ enum Direction
 	DIRECTION_COUNT
 };
 
-struct MovementSHA
+class MovementSHA : public Trackable
 {
 	//Static things
 	public:
@@ -47,6 +49,8 @@ struct MovementSHA
 		UnitSHA* mpUnit;
 		Direction mCurrentDir;
 		bool mDashing = false;
+		//To be used to detect when should stop dashing
+		Vector2* mpLastPos;
 };
 
 #endif

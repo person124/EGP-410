@@ -3,6 +3,8 @@
 #include "game.h"
 #include "globalConst.h"
 
+#include "audio/audioSystem.h"
+
 #include "pathing/pathing.h"
 
 #include "physics/raycast.h"
@@ -82,10 +84,13 @@ MovementSHA::MovementSHA(UnitSHA* unit)
 	mpUnit = unit;
 
 	mDashing = false;
+	mpLastPos = NULL;
 }
 
 MovementSHA::~MovementSHA()
 {
+	if (mpLastPos != NULL)
+		delete mpLastPos;
 }
 
 void MovementSHA::calculateMovement()
@@ -140,7 +145,6 @@ void MovementSHA::calculateTracking()
 	//Then turn to face and the like
 	Vector2 targetVect = target - pos;
 
-	//TODO Normalize the angle
 	float targetAngle = targetVect.asAngle();
 	float angleInBetween = abs(targetAngle - mpUnit->getAngle());
 
@@ -148,6 +152,7 @@ void MovementSHA::calculateTracking()
 	{
 		//Dash forward
 		mDashing = true;
+		Game::pInstance->getAudio()->play("sha_dash", false);
 		dash();
 	}
 	else
@@ -156,13 +161,23 @@ void MovementSHA::calculateTracking()
 
 void MovementSHA::dash()
 {
+	if (mpLastPos != NULL && *mpLastPos == mpUnit->getPosition())
+	{
+		delete mpLastPos;
+		mpLastPos = NULL;
+
+		mDashing = false;
+		return;
+	}
+
 	Vector2 vel = Vector2::toVector(mpUnit->getAngle());
 	vel *= DASH_SPEED;
 
 	mpUnit->setVelocity(vel);
 
-	if (mpUnit->checkForWallsOffset(vel.normal() * 15))
-		mDashing = false;
+	if (mpLastPos == NULL)
+		mpLastPos = new Vector2();
+	*mpLastPos = mpUnit->getPosition();
 }
 
 void MovementSHA::moveInDirection()

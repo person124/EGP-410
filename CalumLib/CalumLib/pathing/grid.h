@@ -43,6 +43,10 @@ class Grid : public Trackable
 		void setID(int pos, int value);
 		void setID(int x, int y, int value);
 
+		void setSize(int newWidth, int newHeight);
+		void changeHeight(int newHeight);
+		void changeWidth(int newWidth);
+
 		void addSpawnLocation(SpawnType type, int x, int y);
 		void removeSpawnLocation(int x, int y);
 	private:

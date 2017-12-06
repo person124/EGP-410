@@ -38,13 +38,19 @@ Editor::Editor()
 	
 	//Gets the number of tiles
 	Animation* ani = Game::pInstance->getAnimationManager()->get("tiles");
-	mMax[0] = ani->getLength();
+	mMax[TILE] = ani->getLength();
 	delete ani;
 
 	//Total number of different spawns (0 player, 1-3 baddies, 4 candy)
 	ani = Game::pInstance->getAnimationManager()->get("editor_spawns");
-	mMax[1] = ani->getLength();
+	mMax[SPAWNS] = ani->getLength();
 	delete ani;
+
+	mCurrent[MODIFY_WIDTH] = mpGrid->getWidth();
+	mCurrent[MODIFY_HEIGHT] = mpGrid->getHeight();
+
+	mMax[MODIFY_WIDTH] = 500;
+	mMax[MODIFY_HEIGHT] = 500;
 
 	mDrawSolid = false;
 
@@ -104,6 +110,8 @@ void Editor::handleEvent(const Event& theEvent)
 				return;
 			case KEYS_LOAD_MAP:
 				IOUtils::loadGrid(GC::PATH_EDITOR_SAVE, mpGrid);
+				mCurrent[MODIFY_WIDTH] = mpGrid->getWidth();
+				mCurrent[MODIFY_HEIGHT] = mpGrid->getHeight();
 				mpGEdit->renderLoadMessage(true);
 
 				if (mpTimer->getElapsedTime() > 0)
@@ -131,10 +139,10 @@ void Editor::handleEvent(const Event& theEvent)
 				return;
 
 			//Keys to change currently selected
-			case KEYS_DOWN:
+			case KEYS_UP:
 				mCurrentType--;
 				break;
-			case KEYS_UP:
+			case KEYS_DOWN:
 				mCurrentType++;
 				break;
 			case KEYS_LEFT:
@@ -157,6 +165,7 @@ void Editor::handleEvent(const Event& theEvent)
 
 		mpGEdit->setTileFrame(mCurrent[TILE]);
 		mpGEdit->setSpawnFrame(mCurrent[SPAWNS]);
+		updateGridSize();
 	}
 	else if (theEvent.getType() == EVENT_CLICK)
 	{
@@ -176,6 +185,13 @@ void Editor::handleEvent(const Event& theEvent)
 				mpGrid->removeSpawnLocation(tileX, tileY);
 		}
 	}
+}
+
+void Editor::updateGridSize()
+{
+	mpGrid->setSize(mCurrent[MODIFY_WIDTH], mCurrent[MODIFY_HEIGHT]);
+	mpGEdit->setSize(MODIFY_WIDTH, mCurrent[MODIFY_WIDTH]);
+	mpGEdit->setSize(MODIFY_HEIGHT, mCurrent[MODIFY_HEIGHT]);
 }
 
 EditorSelections operator++(EditorSelections& sel, int)

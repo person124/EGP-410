@@ -15,6 +15,8 @@ class GUIEditor : public GUI
 
 		void renderSaveMessage(bool val);
 		void renderLoadMessage(bool val);
+
+		void setSize(int type, int size);
 };
 
 #endif

@@ -13,12 +13,6 @@ Animation* Tile::mspSolidAnimation = NULL;
 
 Tile::Tile(int id)
 {
-	if (Tile::mspTileAnimation == NULL)
-		Tile::mspTileAnimation = Game::pInstance->getAnimationManager()->get("tiles");
-
-	if (Tile::mspSolidAnimation == NULL)
-		Tile::mspSolidAnimation = Game::pInstance->getAnimationManager()->get("tiles_solid");
-
 	setID(id);
 }
 
@@ -59,6 +53,12 @@ int Tile::getID()
 
 void Tile::setID(int id)
 {
+	if (Tile::mspTileAnimation == NULL)
+		Tile::mspTileAnimation = Game::pInstance->getAnimationManager()->get("tiles");
+
+	if (Tile::mspSolidAnimation == NULL)
+		Tile::mspSolidAnimation = Game::pInstance->getAnimationManager()->get("tiles_solid");
+
 	mID = id;
 	mpSprite = Tile::mspTileAnimation->getSprite(mID);
 	mSolid = Tile::mspSolidAnimation->getSprite(mID)->getBlackOrWhite();
