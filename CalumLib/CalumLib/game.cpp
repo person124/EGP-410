@@ -71,9 +71,9 @@ bool Game::initGame(int width, int height)
 	mpAnimationManager = new AnimationManager();
 
 	// Game assets
-	IOUtils::loadGraphicsBuffers(PATH_GRAPHICS_BUFFERS);
-	IOUtils::loadAnimations(PATH_ANIMATIONS);
-	IOUtils::loadAudio(PATH_AUDIO);
+	IOUtils::loadGraphicsBuffers(GC::PATH_GRAPHICS_BUFFERS);
+	IOUtils::loadAnimations(GC::PATH_ANIMATIONS);
+	IOUtils::loadAudio(GC::PATH_AUDIO);
 
 	mFPS = 0.0f;
 
@@ -121,9 +121,9 @@ void Game::mainLoop()
 
 		draw();
 
-		FPSTimer->sleepUntilElapsed(FPS);
+		FPSTimer->sleepUntilElapsed(GC::FPS);
 		FPSTimer->stop();
-		mFPS = FPSTimer->getElapsedTime() * UPStoFPS;
+		mFPS = FPSTimer->getElapsedTime() * GC::UPStoFPS;
 	}
 
 	updateTimer->stop();
@@ -213,7 +213,7 @@ void Game::switchState()
 			mpGameMode = new MainMenu();
 			break;
 		case STATE_SELECT_LEVEL:
-			mpGameMode = new LevelSelect(PATH_LEVELS);
+			mpGameMode = new LevelSelect(GC::PATH_LEVELS);
 			break;
 		case STATE_EDITOR:
 			mpGameMode = new Editor();

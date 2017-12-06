@@ -63,14 +63,14 @@ Vector2 MovementSHA::getPointInPath(std::vector<Node> path, const Node& start)
 
 		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
 		{
-			goal.x = (float)path.at(i - 1).x * TILE_SIZE;
-			goal.y = (float)path.at(i - 1).y * TILE_SIZE;
+			goal.x = (float)path.at(i - 1).x * GC::TILE_SIZE;
+			goal.y = (float)path.at(i - 1).y * GC::TILE_SIZE;
 			break;
 		}
 	}
 
-	goal.x = (float)path.at(path.size() - 1).x * TILE_SIZE;
-	goal.y = (float)path.at(path.size() - 1).y * TILE_SIZE;
+	goal.x = (float)path.at(path.size() - 1).x * GC::TILE_SIZE;
+	goal.y = (float)path.at(path.size() - 1).y * GC::TILE_SIZE;
 
 	return goal;
 }
@@ -130,8 +130,8 @@ void MovementSHA::calculateTracking()
 	Vector2 pos = mpUnit->getPosition();
 	Vector2 track = mpUnit->getTargetLocation();
 
-	Node start = Node(pos.x / TILE_SIZE, pos.y / TILE_SIZE);
-	Node goal = Node(track.x / TILE_SIZE, track.y / TILE_SIZE);
+	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
+	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
 
 	std::vector<Node> path = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
 
@@ -143,6 +143,7 @@ void MovementSHA::calculateTracking()
 	//TODO Normalize the angle
 	float targetAngle = targetVect.asAngle();
 	float angleInBetween = abs(targetAngle - mpUnit->getAngle());
+
 	if (angleInBetween <= DEGREES_5)
 	{
 		//Dash forward

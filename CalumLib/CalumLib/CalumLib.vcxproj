@@ -198,6 +198,7 @@
     <ClCompile Include="gameMode\level.cpp" />
     <ClCompile Include="gameMode\levelSelect.cpp" />
     <ClCompile Include="gameMode\mainMenu.cpp" />
+    <ClCompile Include="globalConst.cpp" />
     <ClCompile Include="graphics\animation.cpp" />
     <ClCompile Include="graphics\animationManager.cpp" />
     <ClCompile Include="graphics\color.cpp" />

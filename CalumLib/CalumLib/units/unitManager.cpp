@@ -101,13 +101,13 @@ void UnitManager::addPlayer(int x, int y)
 		return;
 	}
 
-	mpPlayer = new UnitPlayer(x * TILE_SIZE, y * TILE_SIZE);
+	mpPlayer = new UnitPlayer(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
 }
 
 void UnitManager::addSheerHeartAttack(int x, int y, int color)
 {
 	UnitSHA* sha = new UnitSHA((SHAColor) color);
-	sha->setPosition(x * TILE_SIZE, y * TILE_SIZE);
+	sha->setPosition(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
 
 	addUnit(sha);
 }

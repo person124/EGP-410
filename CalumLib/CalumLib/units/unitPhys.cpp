@@ -79,16 +79,15 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 {
 	static Grid* grid;
 	if (grid == NULL)
-		grid = Game::pInstance->getCurrentGrid();
-	const static float scale = 1.0f / TILE_SIZE;
+		grid = Game::pInstance->getCurrentGrid();;
 
 	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
 	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
 
-	int x1 = (int)((pos.x + COLLISION_BUFFER) * scale);
-	int x2 = (int)((pos.x + width - COLLISION_BUFFER) * scale);
-	int y1 = (int)((pos.y + COLLISION_BUFFER) * scale);
-	int y2 = (int)((pos.y + height - COLLISION_BUFFER) * scale);
+	int x1 = (int)((pos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
+	int x2 = (int)((pos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
+	int y1 = (int)((pos.y + COLLISION_BUFFER) * GC::GRID_SCALE);
+	int y2 = (int)((pos.y + height - COLLISION_BUFFER) * GC::GRID_SCALE);
 
 	if ((mVel.x < 0 || mVel.y < 0) && grid->isSolid(x1, y1))
 		return true;
@@ -110,15 +109,14 @@ bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 	static Grid* grid;
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();
-	const static float scale = 1.0f / TILE_SIZE;
 
 	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
 	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
 
-	int x1 = (int)((offset.x + mPos.x + COLLISION_BUFFER) * scale);
-	int x2 = (int)((offset.x + mPos.x + width - COLLISION_BUFFER) * scale);
-	int y1 = (int)((offset.y + mPos.y + COLLISION_BUFFER) * scale);
-	int y2 = (int)((offset.y + mPos.y + height - COLLISION_BUFFER) * scale);
+	int x1 = (int)((offset.x + mPos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
+	int x2 = (int)((offset.x + mPos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
+	int y1 = (int)((offset.y + mPos.y + COLLISION_BUFFER) * GC::GRID_SCALE);
+	int y2 = (int)((offset.y + mPos.y + height - COLLISION_BUFFER) * GC::GRID_SCALE);
 
 	if ((offset.x < 0 || offset.y < 0) && grid->isSolid(x1, y1))
 		return true;

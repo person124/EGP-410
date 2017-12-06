@@ -30,8 +30,8 @@ GUIEditor::GUIEditor()
 
 	mpElements[ARROW] = new GUIImage(0, 0, "editor_arrow", 2);
 
-	mpElements[SAVE_TEXT] = new GUIFixedText(0, WINDOW_HEIGHT, "Saved to editor.JO");
-	mpElements[LOAD_TEXT] = new GUIFixedText(0, WINDOW_HEIGHT, "Loaded from editor.JO");
+	mpElements[SAVE_TEXT] = new GUIFixedText(0, GC::WINDOW_HEIGHT, "Saved to editor.JO");
+	mpElements[LOAD_TEXT] = new GUIFixedText(0, GC::WINDOW_HEIGHT, "Loaded from editor.JO");
 }
 
 void GUIEditor::changeSelected(int selected)
@@ -61,10 +61,10 @@ void GUIEditor::setSpawnFrame(int frame)
 
 void GUIEditor::renderSaveMessage(bool val)
 {
-	mpElements[SAVE_TEXT]->setY(WINDOW_HEIGHT - (val * FONT_SIZE));
+	mpElements[SAVE_TEXT]->setY(GC::WINDOW_HEIGHT - (val * GC::FONT_SIZE));
 }
 
 void GUIEditor::renderLoadMessage(bool val)
 {
-	mpElements[LOAD_TEXT]->setY(WINDOW_HEIGHT - (val * FONT_SIZE));
+	mpElements[LOAD_TEXT]->setY(GC::WINDOW_HEIGHT - (val * GC::FONT_SIZE));
 }

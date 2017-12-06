@@ -434,6 +434,9 @@
     <ClCompile Include="stateTree\stateTreeSHA.cpp">
       <Filter>Source Files\stateTree</Filter>
     </ClCompile>
+    <ClCompile Include="globalConst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat">

@@ -94,7 +94,7 @@ void Editor::handleEvent(const Event& theEvent)
 				return;
 
 			case KEYS_SAVE_MAP:
-				IOUtils::saveGrid(PATH_EDITOR_SAVE, mpGrid);
+				IOUtils::saveGrid(GC::PATH_EDITOR_SAVE, mpGrid);
 				mpGEdit->renderSaveMessage(true);
 
 				if (mpTimer->getElapsedTime() > 0)
@@ -103,7 +103,7 @@ void Editor::handleEvent(const Event& theEvent)
 
 				return;
 			case KEYS_LOAD_MAP:
-				IOUtils::loadGrid(PATH_EDITOR_SAVE, mpGrid);
+				IOUtils::loadGrid(GC::PATH_EDITOR_SAVE, mpGrid);
 				mpGEdit->renderLoadMessage(true);
 
 				if (mpTimer->getElapsedTime() > 0)
@@ -163,8 +163,8 @@ void Editor::handleEvent(const Event& theEvent)
 		const EventClick& e = static_cast<const EventClick&>(theEvent);
 
 		//Place a tile / spawn at click
-		int tileX = (e.getX() + mpGraphics->getXOffset()) / TILE_SIZE;
-		int tileY = (e.getY() + mpGraphics->getYOffset()) / TILE_SIZE;
+		int tileX = (e.getX() + mpGraphics->getXOffset()) * GC::GRID_SCALE;
+		int tileY = (e.getY() + mpGraphics->getYOffset()) * GC::GRID_SCALE;
 
 		if (mCurrentType == TILE)
 			mpGrid->setID(tileX, tileY, mCurrent[TILE]);

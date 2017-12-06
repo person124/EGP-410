@@ -67,7 +67,7 @@ bool GraphicsSystem::init()
 	mpColorBlack = new Color(0, 0, 0);
 
 	mpDefaultColor = new Color(255, 255, 255);
-	mpDefaultFont = new Font(FONT_SIZE, PATH_FONT);
+	mpDefaultFont = new Font(GC::FONT_SIZE, GC::PATH_FONT);
 
 	return true;
 }
@@ -125,7 +125,7 @@ void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale, flo
 		y + height * scale,
 		scale,
 		scale,
-		-angle,
+		angle,
 		0
 	);
 }

@@ -26,8 +26,8 @@ GameOver::GameOver()
 
 	mpPlayer = Game::pInstance->getAnimationManager()->get("player_front");
 
-	mWMid = WINDOW_WIDTH / 2;
-	mHMid = WINDOW_HEIGHT / 2;
+	mWMid = GC::WINDOW_WIDTH / 2;
+	mHMid = GC::WINDOW_HEIGHT / 2;
 	mpColor = new Color(0, 0, 0);
 
 	mAnimationDone = false;
@@ -95,14 +95,14 @@ void GameOver::draw()
 		{
 			mpGUI->draw();
 			if (time >= 3.7)
-				Game::pInstance->getGraphics()->drawCircle(mWMid, mHMid, (int)(WINDOW_WIDTH * ((time - 3.7) / 3.0)), *mpColor);
+				Game::pInstance->getGraphics()->drawCircle(mWMid, mHMid, (int)(GC::WINDOW_WIDTH * ((time - 3.7) / 3.0)), *mpColor);
 		}
 	}
 
 	double scale = (time < 4.9) ? 0 : ((time - 4.9) / (6.3 - 4.9));
 	if (time > 6.3)
 		scale = 1;
-	Game::pInstance->getGraphics()->draw((int)(mWMid * scale), (int)(mHMid * scale), mpPlayer->getCurrent(), TILE_SCALE);
+	Game::pInstance->getGraphics()->draw((int)(mWMid * scale), (int)(mHMid * scale), mpPlayer->getCurrent(), GC::TILE_SCALE);
 
 	if (time >= 4.5)
 		Game::pInstance->getGraphics()->drawCircle(mWMid + 5, mHMid + 5, 50, *mpColor);

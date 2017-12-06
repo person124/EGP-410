@@ -19,7 +19,7 @@ GUISelectLevel::GUISelectLevel(const char* levelPath)
 	//Then chart them out
 	setElementCount(2 + size);
 	mpElements[0] = new GUIFixedText(0, 0, "Select Level");
-	mpElements[1] = new GUIFixedText(50, WINDOW_HEIGHT - 20, "Back to Main Menu");
+	mpElements[1] = new GUIFixedText(50, GC::WINDOW_HEIGHT - 20, "Back to Main Menu");
 
 	setSelectableCount(1 + size);
 	addSelectable(1, new EventSwitchState(STATE_MAIN_MENU));

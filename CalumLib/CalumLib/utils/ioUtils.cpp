@@ -186,7 +186,7 @@ void IOUtils::getLevels(const std::string& dirPath, std::string*& levels, unsign
 	al_free(currentPath);
 
 	path += '/';
-	path += PATH_LEVELS;
+	path += GC::PATH_LEVELS;
 
 	ALLEGRO_FS_ENTRY* dir = al_create_fs_entry(path.c_str());
 	if (!al_open_directory(dir))

@@ -1,30 +1,36 @@
 #ifndef GLOBAL_CONST_H
 #define GLOBAL_CONST_H
 
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+struct GlobalConst
+{
+	const static int WINDOW_WIDTH;
+	const static int WINDOW_HEIGHT;
 
-#define FPS 60 //Modify this to change fps
-#define UPS 60 //Modify this to change ups
+	const static int FPS;
+	const static int UPS;
 
-#define MILLISECONDS 1000.0
-#define tFPS (MILLISECONDS / FPS)
-#define UPStoFPS ((FPS * UPS) / MILLISECONDS)
+	const static float MILLISECONDS;
+	const static float tFPS;
+	const static float UPStoFPS;
 
-#define TILE_SIZE 32
-#define TILE_HALF (TILE_SIZE / 2)
-#define TILE_SCALE 2
+	const static int TILE_SIZE;
+	const static int TILE_HALF;
+	const static int TILE_SCALE;
+	const static float GRID_SCALE;
 
-#define FONT_SIZE 20
+	const static int FONT_SIZE;
 
-#define PATH_GRAPHICS_BUFFERS "assets/graphics_buffers.dat"
-#define PATH_ANIMATIONS "assets/animations.dat"
-#define PATH_AUDIO "assets/audio_clips.dat"
-#define PATH_FONT "assets/cour.ttf"
-#define PATH_EXTENSION ".JO"
-#define PATH_LEVELS "maps"
-#define PATH_EDITOR_SAVE "maps/editor.JO"
+	static const char* PATH_GRAPHICS_BUFFERS;
+	static const char* PATH_ANIMATIONS;
+	static const char* PATH_AUDIO;
+	static const char* PATH_FONT;
+	static const char* PATH_EXTENSION;
+	static const char* PATH_LEVELS;
+	static const char* PATH_EDITOR_SAVE;
 
-#define AUDIO_SAMPLES 5
+	const static int AUDIO_COUNT;
+};
+
+typedef GlobalConst GC;
 
 #endif

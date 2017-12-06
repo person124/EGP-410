@@ -78,7 +78,7 @@ void GUISelectable::handleEvent(const Event& theEvent)
 void GUISelectable::refreshSelector()
 {
 	GUIElement* ele = mpElements[mpSelections[mCurrent]];
-	mpSelectorText->setX(ele->getX() - FONT_SIZE);
+	mpSelectorText->setX(ele->getX() - GC::FONT_SIZE);
 	mpSelectorText->setY(ele->getY());
 }
 

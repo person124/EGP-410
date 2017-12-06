@@ -15,7 +15,7 @@ int main()
 	gpEventSystem = new EventSystem();
 	Game::init();
 
-	if (Game::pInstance->initGame(WINDOW_WIDTH, WINDOW_HEIGHT))
+	if (Game::pInstance->initGame(GC::WINDOW_WIDTH, GC::WINDOW_HEIGHT))
 	{
 		//TODO Move this to inside Game
 		srand(unsigned(time(NULL)));

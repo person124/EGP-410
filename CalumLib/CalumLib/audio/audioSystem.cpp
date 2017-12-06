@@ -17,7 +17,7 @@ bool AudioSystem::init()
 		return false;
 	}
 
-	if (!al_reserve_samples(AUDIO_SAMPLES))
+	if (!al_reserve_samples(GC::AUDIO_COUNT))
 	{
 		IOUtils::errorInitReport("audio samples allocation");
 		return false;

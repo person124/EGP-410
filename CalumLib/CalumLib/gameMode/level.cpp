@@ -12,7 +12,7 @@
 
 Level::Level(const char* levelName)
 {
-	std::string path = PATH_LEVELS;
+	std::string path = GC::PATH_LEVELS;
 	path += '/';
 	path += levelName;
 

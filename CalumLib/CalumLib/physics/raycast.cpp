@@ -9,11 +9,11 @@
 //Returns true if the cast succeeded
 bool RayCast(Grid* grid, const Vector2& begin, const Vector2& end)
 {
-	int tileStartX = (int)(begin.x / TILE_SIZE);
-	int tileStartY = (int)(begin.y / TILE_SIZE);
+	int tileStartX = (int)(begin.x * GC::GRID_SCALE);
+	int tileStartY = (int)(begin.y * GC::GRID_SCALE);
 
-	int tileEndX = (int)(end.x / TILE_SIZE);
-	int tileEndY = (int)(end.y / TILE_SIZE);
+	int tileEndX = (int)(end.x * GC::GRID_SCALE);
+	int tileEndY = (int)(end.y * GC::GRID_SCALE);
 
 	int dX = tileEndX - tileStartX;
 	int dY = tileEndY - tileStartY;
