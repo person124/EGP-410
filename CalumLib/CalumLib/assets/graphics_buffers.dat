@@ -7,3 +7,4 @@ sha_colors assets/images/sha_colors.bmp
 editor_spawns assets/images/spawn_tiles.bmp
 editor_arrow assets/images/arrow.bmp
 player assets/images/lucas.bmp
+photo assets/images/photo.bmp

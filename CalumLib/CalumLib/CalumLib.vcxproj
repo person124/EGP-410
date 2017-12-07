@@ -175,6 +175,7 @@
     <ClInclude Include="stateTree\stateTree.h" />
     <ClInclude Include="stateTree\stateTreeSHA.h" />
     <ClInclude Include="units\unit.h" />
+    <ClInclude Include="units\unitCoin.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitPhys.h" />
     <ClInclude Include="units\unitPlayer.h" />
@@ -232,6 +233,7 @@
     <ClCompile Include="stateTree\stateTree.cpp" />
     <ClCompile Include="stateTree\stateTreeSHA.cpp" />
     <ClCompile Include="units\unit.cpp" />
+    <ClCompile Include="units\unitCoin.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitPhys.cpp" />
     <ClCompile Include="units\unitPlayer.cpp" />

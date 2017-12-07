@@ -5,6 +5,7 @@
 #include "pathing/grid.h"
 
 #include "units/unitManager.h"
+#include "units/unitCoin.h"
 
 #include "utils/ioUtils.h"
 
@@ -71,4 +72,22 @@ void Level::initSpawns()
 
 void Level::populateCoins()
 {
+	std::vector<SpawnLocation> spawns = mpGrid->getSpawnLocations();
+	int total = 0;
+	int width = mpGrid->getWidth();
+	int height = mpGrid->getHeight();
+
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
+		{
+			bool even = (x % 2 == 0) && (y % 2 == 1);
+
+			if (even && !mpGrid->isSolid(x, y))
+			{
+				UnitCoin* c;
+				c = new UnitCoin(x * GC::TILE_SIZE + 8, y * GC::TILE_SIZE);
+				mpUnits->addUnit(c);
+				total++;
+			}
+		}
 }

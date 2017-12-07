@@ -140,6 +140,10 @@ void MovementSHA::calculateTracking()
 
 	std::vector<Node> path = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
 
+	//Don't calculate the path if the path is 0 length
+	if (path.size() == 0)
+		return;
+
 	Vector2 target = getPointInPath(path, start);
 
 	//Then turn to face and the like

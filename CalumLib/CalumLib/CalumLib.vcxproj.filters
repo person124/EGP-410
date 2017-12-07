@@ -273,6 +273,9 @@
     <ClInclude Include="stateTree\stateTreeSHA.h">
       <Filter>Header Files\stateTree</Filter>
     </ClInclude>
+    <ClInclude Include="units\unitCoin.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -436,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="globalConst.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unitCoin.cpp">
+      <Filter>Source Files\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
