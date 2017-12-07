@@ -18,6 +18,9 @@ class Unit : public Trackable
 		virtual void draw();
 	
 		// Getters and Setters
+		bool shouldDelete() { return mShouldDelete; };
+		void markForDeletion() { mShouldDelete = true; };
+
 		void setPosition(Vector2& pos) { mPos = pos; };
 		void setPosition(float x, float y) { mPos.x = x; mPos.y = y; };
 		void setPosition(int x, int y) { mPos.x = (float)x; mPos.y = (float)y; };
@@ -28,7 +31,10 @@ class Unit : public Trackable
 	
 		//Misc Functions
 		bool isPointInsideUnit(Vector2& point);
+		bool isUnitTouching(Unit* otherUnit);
 	protected:
+		bool mShouldDelete;
+
 		Animation* mpAnim;
 		float mAniScale;
 

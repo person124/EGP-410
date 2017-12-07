@@ -12,7 +12,7 @@ enum SHAColor
 };
 
 class StateTreeSHA;
-struct MovementSHA;
+class MovementSHA;
 
 class UnitSHA : public UnitPhys
 {

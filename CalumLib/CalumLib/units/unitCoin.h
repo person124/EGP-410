@@ -6,8 +6,12 @@
 class UnitCoin : public Unit
 {
 	public:
-		UnitCoin(int x, int y);
+		UnitCoin(int x, int y, Unit* player);
 		~UnitCoin();
+
+		void update(double dt);
+	private:
+		Unit* mpPlayerRef;
 };
 
 #endif

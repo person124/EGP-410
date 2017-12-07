@@ -14,6 +14,8 @@ class UnitPlayer : public UnitPhys, public EventListener
 		void update(double dt);
 
 		void handleEvent(const Event& theEvent);
+
+		void markForDeletion() {};
 };
 
 #endif

@@ -7,6 +7,7 @@
 #include "units/unit.h"
 #include "units/unitPlayer.h"
 #include "units/unitSHA.h"
+#include "units/unitCoin.h"
 
 UnitManager::UnitManager()
 {
@@ -16,6 +17,7 @@ UnitManager::UnitManager()
 UnitManager::~UnitManager()
 {
 	removeAll();
+	deleteLoop();
 
 	if (mpPlayer != NULL)
 		delete mpPlayer;
@@ -30,8 +32,7 @@ void UnitManager::removeUnit(unsigned int pos)
 {
 	if (pos < 0 || pos >= mUnits.size())
 		return;
-	delete mUnits.at(pos);
-	mUnits.erase(mUnits.begin() + pos);
+	mUnits.at(pos)->markForDeletion();
 }
 
 void UnitManager::removeUnit(Unit* unit)
@@ -39,7 +40,7 @@ void UnitManager::removeUnit(Unit* unit)
 	for (unsigned int i = 0; i < mUnits.size(); i++)
 		if (mUnits.at(i) == unit)
 		{
-			removeUnit(i);
+			mUnits.at(i)->markForDeletion();
 			return;
 		}
 }
@@ -47,8 +48,7 @@ void UnitManager::removeUnit(Unit* unit)
 void UnitManager::removeAll()
 {
 	for each (Unit* unit in mUnits)
-		delete unit;
-	mUnits.clear();
+		unit->markForDeletion();
 }
 
 Unit* UnitManager::getUnit(unsigned int pos)
@@ -79,8 +79,17 @@ int UnitManager::getSize()
 
 void UnitManager::update(double dt)
 {
+	bool doDeletions = false;
+
 	for each (Unit* unit in mUnits)
+	{
 		unit->update(dt);
+		if (unit->shouldDelete())
+			doDeletions = true;
+	}
+
+	if (doDeletions)
+		deleteLoop();
 
 	mpPlayer->update(dt);
 }
@@ -110,4 +119,38 @@ void UnitManager::addSheerHeartAttack(int x, int y, int color)
 	sha->setPosition(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
 
 	addUnit(sha);
+}
+
+void UnitManager::addCoin(int x, int y)
+{
+	UnitCoin* coin = new UnitCoin(x * GC::TILE_SIZE + 8, y * GC::TILE_SIZE + 8, mpPlayer);
+
+	addUnit(coin);
+}
+
+void UnitManager::deleteLoop()
+{
+	bool repeat;
+
+	do {
+		repeat = false;
+
+		for (unsigned int i = 0; i < mUnits.size(); i++)
+		{
+			if (mUnits.at(i)->shouldDelete())
+			{
+				repeat = true;
+				deleteUnit(i);
+				break;
+			}
+		}
+	} while (repeat);
+}
+
+void UnitManager::deleteUnit(unsigned int pos)
+{
+	if (pos < 0 || pos >= mUnits.size())
+		return;
+	delete mUnits.at(pos);
+	mUnits.erase(mUnits.begin() + pos);
 }

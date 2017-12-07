@@ -84,9 +84,7 @@ void Level::populateCoins()
 
 			if (even && !mpGrid->isSolid(x, y))
 			{
-				UnitCoin* c;
-				c = new UnitCoin(x * GC::TILE_SIZE + 8, y * GC::TILE_SIZE);
-				mpUnits->addUnit(c);
+				mpUnits->addCoin(x, y);
 				total++;
 			}
 		}
