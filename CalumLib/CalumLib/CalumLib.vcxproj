@@ -129,6 +129,7 @@
     <ClInclude Include="events\eventKeypress.h" />
     <ClInclude Include="events\eventListener.h" />
     <ClInclude Include="events\eventLoadLevel.h" />
+    <ClInclude Include="events\eventPickupCoin.h" />
     <ClInclude Include="events\eventQuit.h" />
     <ClInclude Include="events\eventSwitchState.h" />
     <ClInclude Include="events\eventSystem.h" />

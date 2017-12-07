@@ -276,6 +276,9 @@
     <ClInclude Include="units\unitCoin.h">
       <Filter>Header Files\units</Filter>
     </ClInclude>
+    <ClInclude Include="events\eventPickupCoin.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">

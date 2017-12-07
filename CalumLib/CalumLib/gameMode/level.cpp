@@ -2,6 +2,9 @@
 
 #include "globalConst.h"
 
+#include "events/eventSystem.h"
+#include "events/eventPickupCoin.h"
+
 #include "pathing/grid.h"
 
 #include "units/unitManager.h"
@@ -21,6 +24,8 @@ Level::Level(const char* levelName)
 
 	mpUnits = new UnitManager();
 
+	gpEventSystem->addListener(EVENT_PICKUP_COIN, this);
+
 	createGraph();
 	initSpawns();
 	populateCoins();
@@ -29,6 +34,8 @@ Level::Level(const char* levelName)
 Level::~Level()
 {
 	delete mpUnits;
+
+	gpEventSystem->removeListener(EVENT_PICKUP_COIN, this);
 }
 
 void Level::update(double dt)
@@ -41,6 +48,15 @@ void Level::draw()
 	mpGrid->draw();
 
 	mpUnits->draw();
+}
+
+void Level::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == EVENT_PICKUP_COIN)
+	{
+		mCurrentCoins--;
+		//adjust GUI
+	}
 }
 
 void Level::createGraph()
@@ -77,6 +93,7 @@ void Level::populateCoins()
 	int width = mpGrid->getWidth();
 	int height = mpGrid->getHeight();
 
+	//Change to be random placement
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++)
 		{
@@ -88,4 +105,7 @@ void Level::populateCoins()
 				total++;
 			}
 		}
+
+	mTotalCoins = total;
+	mCurrentCoins = total;
 }
