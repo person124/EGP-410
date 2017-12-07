@@ -5,6 +5,8 @@
 #include "events/eventSystem.h"
 #include "events/eventPickupCoin.h"
 
+#include "gui/guiLevel.h"
+
 #include "pathing/grid.h"
 
 #include "units/unitManager.h"
@@ -29,6 +31,10 @@ Level::Level(const char* levelName)
 	createGraph();
 	initSpawns();
 	populateCoins();
+
+	mpGUI = new GUILevel();
+
+	mScore = 0;
 }
 
 Level::~Level()
@@ -48,6 +54,15 @@ void Level::draw()
 	mpGrid->draw();
 
 	mpUnits->draw();
+
+	mpGUI->draw();
+}
+
+void Level::addScore(int s)
+{
+	mScore += s;
+
+	((GUILevel*)mpGUI)->setScore(mScore);
 }
 
 void Level::handleEvent(const Event& theEvent)
@@ -55,6 +70,7 @@ void Level::handleEvent(const Event& theEvent)
 	if (theEvent.getType() == EVENT_PICKUP_COIN)
 	{
 		mCurrentCoins--;
+		addScore(25);
 		//adjust GUI
 	}
 }

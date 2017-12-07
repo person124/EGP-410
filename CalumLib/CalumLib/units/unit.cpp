@@ -36,14 +36,16 @@ void Unit::draw()
 
 bool Unit::isPointInsideUnit(Vector2& point)
 {
-	float size = (float) mpAnim->getCurrent()->getWidth();
+	float width = (float) mpAnim->getCurrent()->getWidth();
+	float height = (float)mpAnim->getCurrent()->getHeight();
 
 	float x = point.x;
 	float y = point.y;
 
-	if (x >= mPos.x - size && x <= mPos.x + size)
-		if (y >= mPos.y - size && y <= mPos.y + size)
+	if (x >= mPos.x && x <= mPos.x + width)
+		if (y >= mPos.y && y <= mPos.y + height)
 			return true;
+
 	return false;
 }
 

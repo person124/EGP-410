@@ -157,6 +157,7 @@
     <ClInclude Include="gui\guiEditor.h" />
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiGameOver.h" />
+    <ClInclude Include="gui\guiLevel.h" />
     <ClInclude Include="gui\guiSelectLevel.h" />
     <ClInclude Include="gui\guiListener.h" />
     <ClInclude Include="gui\guiMainMenu.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="gui\guiEditor.cpp" />
     <ClCompile Include="gui\guiGameOver.cpp" />
+    <ClCompile Include="gui\guiLevel.cpp" />
     <ClCompile Include="gui\guiSelectLevel.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />
     <ClCompile Include="gui\guiMainMenu.cpp" />

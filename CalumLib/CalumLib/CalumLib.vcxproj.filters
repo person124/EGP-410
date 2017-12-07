@@ -279,6 +279,9 @@
     <ClInclude Include="events\eventPickupCoin.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
+    <ClInclude Include="gui\guiLevel.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -445,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="units\unitCoin.cpp">
       <Filter>Source Files\units</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiLevel.cpp">
+      <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

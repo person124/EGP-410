@@ -105,7 +105,7 @@ void MovementSHA::calculateMovement()
 	case shaFleeing:
 		break;
 	case shaTracking:
-		calculateTracking();
+		//calculateTracking();
 		break;
 	case shaDead:
 		mpUnit->setRotation(DIR_ANGLES[0]);

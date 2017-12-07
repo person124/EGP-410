@@ -17,6 +17,8 @@ class Level : public GameMode, public EventListener
 		void update(double dt);
 		void draw();
 
+		void addScore(int s);
+
 		UnitManager* getUnits() { return mpUnits; };
 
 		void handleEvent(const Event& theEvent);
@@ -26,6 +28,7 @@ class Level : public GameMode, public EventListener
 		void populateCoins();
 
 		UnitManager* mpUnits;
+		int mScore;
 
 		int mTotalCoins, mCurrentCoins;
 };
