@@ -15,3 +15,4 @@ player_back player 0.45 1 15 25 3 1 0 25 0
 player_side player 0.45 1 15 25 3 1 0 50 0
 player_side_flipped player 0.45 1 15 25 3 1 0 50 1
 coin photo 0 0 16 16 1 1 0 0 0
+candy stand_arrow 0 0 16 16 1 1 0 0 0

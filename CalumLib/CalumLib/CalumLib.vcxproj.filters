@@ -282,6 +282,15 @@
     <ClInclude Include="gui\guiLevel.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="units\unitCandy.h">
+      <Filter>Header Files\units</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventCandyStart.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="events\eventCandyEnd.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -451,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="gui\guiLevel.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="units\unitCandy.cpp">
+      <Filter>Source Files\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

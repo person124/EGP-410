@@ -34,6 +34,7 @@ class UnitManager : public Trackable
 		// Special Unit Adders
 		void addPlayer(int x, int y);
 		void addSheerHeartAttack(int x, int y, int color);
+		void addCandy(int x, int y);
 		void addCoin(int x, int y);
 	private:
 		//This private function removes a unit completely

@@ -5,6 +5,9 @@
 
 #include "units/unitPhys.h"
 
+class Timer;
+class AudioClip;
+
 class UnitPlayer : public UnitPhys, public EventListener
 {
 	public:
@@ -15,7 +18,12 @@ class UnitPlayer : public UnitPhys, public EventListener
 
 		void handleEvent(const Event& theEvent);
 
-		void markForDeletion() {};
+		bool isInvincible() { return mCandyStage > 0; };
+	private:
+		Timer* mpTimer;
+		AudioClip* mpORA;
+
+		int mCandyStage;
 };
 
 #endif

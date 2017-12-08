@@ -2,12 +2,25 @@
 
 #include "game.h"
 
+#include "audio/audioSystem.h"
+
 #include "events/eventSystem.h"
 #include "events/eventKeypress.h"
+#include "events/eventCandyStart.h"
+#include "events/eventCandyEnd.h"
 
 #include "graphics/animationManager.h"
 
+#include "utils/timer.h"
+
 const int INSTANT_SPEED = 100;
+
+enum CandyStage
+{
+	NONE,
+	STARTING,
+	IN_PROGRESS
+};
 
 UnitPlayer::UnitPlayer(int x, int y) : UnitPhys("player_front")
 {
@@ -17,20 +30,53 @@ UnitPlayer::UnitPlayer(int x, int y) : UnitPhys("player_front")
 	mAniScale = 1.28f;
 
 	gpEventSystem->addListener(EVENT_KEYPRESS, this);
+	gpEventSystem->addListener(EVENT_CANDY_START, this);
+
+	mpTimer = new Timer();
+
+	mpORA = Game::pInstance->getAudio()->get("ora");
 }
 
 UnitPlayer::~UnitPlayer()
 {
+	mpORA->stop();
+	delete mpTimer;
 }
 
 void UnitPlayer::update(double dt)
 {
+	if (mCandyStage == STARTING)
+	{
+		if (mpTimer->getElapsedTime() >= 1)
+		{
+			mpTimer->start();
+			mCandyStage = IN_PROGRESS;
+		}
+		return; //Returns so player cannot move during this time
+	}
+	else if (mCandyStage == IN_PROGRESS)
+	{
+		if (mpTimer->getElapsedTime() >= 10)
+		{
+			mCandyStage = NONE;
+			gpEventSystem->fireEvent(EventCandyEnd());
+		}
+	}
+
 	UnitPhys::update(dt);
 }
 
 void UnitPlayer::handleEvent(const Event& theEvent)
 {
-	if (theEvent.getType() == EVENT_KEYPRESS)
+	if (theEvent.getType() == EVENT_CANDY_START)
+	{
+		mpORA->stop();
+		mpORA->play(false);
+
+		mCandyStage = STARTING;
+		mpTimer->start();
+	}
+	else if (theEvent.getType() == EVENT_KEYPRESS)
 	{
 		const EventKeypress& e = static_cast<const EventKeypress&>(theEvent);
 		switch (e.getKey())

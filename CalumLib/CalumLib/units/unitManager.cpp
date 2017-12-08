@@ -8,6 +8,7 @@
 #include "units/unitPlayer.h"
 #include "units/unitSHA.h"
 #include "units/unitCoin.h"
+#include "units/unitCandy.h"
 
 UnitManager::UnitManager()
 {
@@ -119,6 +120,13 @@ void UnitManager::addSheerHeartAttack(int x, int y, int color)
 	sha->setPosition(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
 
 	addUnit(sha);
+}
+
+void UnitManager::addCandy(int x, int y)
+{
+	UnitCandy* candy = new UnitCandy(x * GC::TILE_SIZE, y * GC::TILE_SIZE, mpPlayer);
+	
+	addUnit(candy);
 }
 
 void UnitManager::addCoin(int x, int y)

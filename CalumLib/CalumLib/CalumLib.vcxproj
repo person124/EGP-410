@@ -125,10 +125,12 @@
     <ClInclude Include="audio\audioClip.h" />
     <ClInclude Include="audio\audioSystem.h" />
     <ClInclude Include="events\event.h" />
+    <ClInclude Include="events\eventCandyEnd.h" />
     <ClInclude Include="events\eventClick.h" />
     <ClInclude Include="events\eventKeypress.h" />
     <ClInclude Include="events\eventListener.h" />
     <ClInclude Include="events\eventLoadLevel.h" />
+    <ClInclude Include="events\eventCandyStart.h" />
     <ClInclude Include="events\eventPickupCoin.h" />
     <ClInclude Include="events\eventQuit.h" />
     <ClInclude Include="events\eventSwitchState.h" />
@@ -177,6 +179,7 @@
     <ClInclude Include="stateTree\stateTree.h" />
     <ClInclude Include="stateTree\stateTreeSHA.h" />
     <ClInclude Include="units\unit.h" />
+    <ClInclude Include="units\unitCandy.h" />
     <ClInclude Include="units\unitCoin.h" />
     <ClInclude Include="units\unitManager.h" />
     <ClInclude Include="units\unitPhys.h" />
@@ -236,6 +239,7 @@
     <ClCompile Include="stateTree\stateTree.cpp" />
     <ClCompile Include="stateTree\stateTreeSHA.cpp" />
     <ClCompile Include="units\unit.cpp" />
+    <ClCompile Include="units\unitCandy.cpp" />
     <ClCompile Include="units\unitCoin.cpp" />
     <ClCompile Include="units\unitManager.cpp" />
     <ClCompile Include="units\unitPhys.cpp" />

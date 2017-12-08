@@ -97,6 +97,7 @@ void Level::initSpawns()
 				mpUnits->addSheerHeartAttack(s->x, s->y, s->type - 1);
 				break;
 			case CANDY:
+				mpUnits->addCandy(s->x, s->y);
 				break;
 		}
 	}
