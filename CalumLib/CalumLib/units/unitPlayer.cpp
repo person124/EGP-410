@@ -40,15 +40,12 @@ UnitPlayer::UnitPlayer(int x, int y) : UnitPhys("player_front")
 	mpTimer = new Timer();
 
 	mpORA = Game::pInstance->getAudio()->get("ora");
-	mpAniORA = Game::pInstance->getAnimationManager()->get("ora");
 }
 
 UnitPlayer::~UnitPlayer()
 {
 	mpORA->stop();
 	delete mpTimer;
-
-	delete mpAniORA;
 }
 
 void UnitPlayer::update(double dt)
@@ -61,14 +58,11 @@ void UnitPlayer::update(double dt)
 		{
 			mpTimer->start();
 			mCandyStage = IN_PROGRESS;
-			mpAniORA->setFrame(0);
 		}
 		return; //Returns so player cannot move during this time
 	}
 	else if (mCandyStage == IN_PROGRESS)
 	{
-		mpAniORA->update(dt);
-
 		if (mpTimer->getElapsedTime() >= 10)
 		{
 			mCandyStage = NONE;
@@ -77,21 +71,6 @@ void UnitPlayer::update(double dt)
 	}
 
 	UnitPhys::update(dt);
-}
-
-void UnitPlayer::draw()
-{
-	UnitPhys::draw();
-	//Draw punch barrage
-	if (mCandyStage == IN_PROGRESS)
-	{
-		Game::pInstance->getGraphics()->drawOffset(
-			mPos.x - 8,
-			mPos.y - 8,
-			mpAniORA->getCurrent(),
-			3
-		);
-	}
 }
 
 void UnitPlayer::handleEvent(const Event& theEvent)

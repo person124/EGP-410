@@ -15,7 +15,6 @@ class UnitPlayer : public UnitPhys, public EventListener
 		~UnitPlayer();
 
 		void update(double dt);
-		void draw();
 
 		void handleEvent(const Event& theEvent);
 
@@ -25,7 +24,6 @@ class UnitPlayer : public UnitPhys, public EventListener
 
 		Timer* mpTimer;
 		AudioClip* mpORA;
-		Animation* mpAniORA;
 
 		int mCandyStage;
 };

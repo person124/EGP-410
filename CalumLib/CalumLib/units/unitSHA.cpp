@@ -37,6 +37,8 @@ UnitSHA::UnitSHA(SHAColor color, Unit* player) : UnitPhys(("sha_color_" + COLOR_
 
 	mpAniRespawn = Game::pInstance->getAnimationManager()->get("sha_respawn");
 
+	mpAniORA = Game::pInstance->getAnimationManager()->get("ora");
+
 	mAniScale = 2;
 
 	//The rest of the data
@@ -54,6 +56,7 @@ UnitSHA::~UnitSHA()
 	delete mpAniFear;
 	delete mpAniEnraged;
 	delete mpAniRespawn;
+	delete mpAniORA;
 
 	delete mpStateTree;
 
@@ -66,6 +69,9 @@ void UnitSHA::update(double dt)
 	mpAniEnraged->update(dt);
 
 	mpStateTree->update(dt);
+
+	if (mpStateTree->getID() == shaFleeing)
+		mpAniORA->update(dt);
 
 	if (isUnitTouching(mpPlayerRef))
 	{
@@ -110,6 +116,17 @@ void UnitSHA::draw()
 			toRender->getCurrent(),
 			mAniScale,
 			mAngle
+		);
+	}
+
+	if (mpStateTree->getID() == shaFleeing)
+	{
+		Game::pInstance->getGraphics()->drawOffset
+		(
+			(int)(mPos.x - 8),
+			(int)(mPos.y - 8),
+			mpAniORA->getCurrent(),
+			(float)3
 		);
 	}
 }

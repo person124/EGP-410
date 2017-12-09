@@ -39,6 +39,7 @@ class UnitSHA : public UnitPhys, public EventListener
 		Animation* mpAniFear;
 		Animation* mpAniEnraged;
 		Animation* mpAniRespawn;
+		Animation* mpAniORA;
 
 		StateTreeSHA* mpStateTree;
 
