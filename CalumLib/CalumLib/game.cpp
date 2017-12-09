@@ -94,10 +94,10 @@ void Game::destroy()
 	delete mpBufferManager;
 	delete mpAnimationManager;
 
-	delete mpAudio;
-
 	if (mpGameMode != NULL)
 		delete mpGameMode;
+
+	delete mpAudio;
 
 	mpGraphics->destroy();
 	delete mpGraphics;

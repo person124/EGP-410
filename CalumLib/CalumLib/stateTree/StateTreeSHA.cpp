@@ -36,10 +36,10 @@ void StateTreeSHA::transfer(int state)
 	switch (state)
 	{
 		case shaDead:
-			mpTimer->start();
+			mpTimer->reset();
 			break;
 		case shaSearching:
-			mpTimer->stop();
+			mpTimer->reset();
 			break;
 		default:
 			break;

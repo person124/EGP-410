@@ -2,6 +2,9 @@
 
 #include "game.h"
 
+#include "events/event.h"
+#include "events/eventSystem.h"
+
 #include "graphics/animationManager.h"
 #include "graphics/graphicsSystem.h"
 
@@ -9,6 +12,8 @@
 
 #include "stateTree/stateTreeSHA.h"
 #include "stateTree/states/statesSHA.h"
+
+#include "units/unitPlayer.h"
 
 #include "utils/timer.h"
 
@@ -19,8 +24,10 @@ const std::string COLOR_NAME[SHA_COLOR_COUNT] =
 	"yellow"
 };
 
-UnitSHA::UnitSHA(SHAColor color) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c_str())
+UnitSHA::UnitSHA(SHAColor color, Unit* player) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c_str())
 {
+	mpPlayerRef = (UnitPlayer*)player;
+
 	//Animations
 	mpAniBase = Game::pInstance->getAnimationManager()->get("sha");
 
@@ -34,7 +41,11 @@ UnitSHA::UnitSHA(SHAColor color) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c
 
 	//The rest of the data
 	mpStateTree = new StateTreeSHA(this);
+
 	mpMovement = new MovementSHA(this);
+
+	gpEventSystem->addListener(EVENT_CANDY_START, this);
+	gpEventSystem->addListener(EVENT_CANDY_END, this);
 }
 
 UnitSHA::~UnitSHA()
@@ -55,6 +66,17 @@ void UnitSHA::update(double dt)
 	mpAniEnraged->update(dt);
 
 	mpStateTree->update(dt);
+
+	if (isUnitTouching(mpPlayerRef))
+	{
+		if (mpStateTree->getID() != shaDead)
+		{
+			if (mpPlayerRef->isInvincible())
+				mpStateTree->transfer(shaDead);
+			else;
+			//Deaded
+		}
+	}
 
 	mpMovement->calculateMovement();
 	UnitPhys::update(dt);
@@ -78,6 +100,8 @@ void UnitSHA::draw()
 		Animation* toRender = mpAniBase;
 		if (mpStateTree->getID() == shaTracking)
 			toRender = mpAniEnraged;
+		else if (mpStateTree->getID() == shaFleeing)
+			toRender = mpAniFear;
 
 		Game::pInstance->getGraphics()->drawOffset
 		(
@@ -87,6 +111,21 @@ void UnitSHA::draw()
 			mAniScale,
 			mAngle
 		);
+	}
+}
+
+void UnitSHA::handleEvent(const Event& theEvent)
+{
+	if (theEvent.getType() == EVENT_CANDY_START)
+	{
+		mpStateTree->transfer(shaFleeing);
+	}
+	else if (theEvent.getType() == EVENT_CANDY_END)
+	{
+		if (mpStateTree->getID() != shaDead)
+			mpStateTree->transfer(shaSearching);
+		else
+			mpStateTree->getTimer()->start();
 	}
 }
 

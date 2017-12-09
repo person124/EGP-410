@@ -1,6 +1,8 @@
 #ifndef UNIT_SHA_H
 #define UNIT_SHA_H
 
+#include "events/eventListener.h"
+
 #include "units/unitPhys.h"
 
 enum SHAColor
@@ -13,15 +15,18 @@ enum SHAColor
 
 class StateTreeSHA;
 class MovementSHA;
+class UnitPlayer;
 
-class UnitSHA : public UnitPhys
+class UnitSHA : public UnitPhys, public EventListener
 {
 	public:
-		UnitSHA(SHAColor color);
+		UnitSHA(SHAColor color, Unit* player);
 		~UnitSHA();
 
 		void update(double dt);
 		void draw();
+
+		void handleEvent(const Event& theEvent);
 
 		int getCurrentState();
 
@@ -38,6 +43,8 @@ class UnitSHA : public UnitPhys
 		StateTreeSHA* mpStateTree;
 
 		MovementSHA* mpMovement;
+
+		UnitPlayer* mpPlayerRef;
 };
 
 #endif

@@ -116,7 +116,7 @@ void UnitManager::addPlayer(int x, int y)
 
 void UnitManager::addSheerHeartAttack(int x, int y, int color)
 {
-	UnitSHA* sha = new UnitSHA((SHAColor) color);
+	UnitSHA* sha = new UnitSHA((SHAColor) color, mpPlayer);
 	sha->setPosition(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
 
 	addUnit(sha);
