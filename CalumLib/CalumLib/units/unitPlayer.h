@@ -21,6 +21,8 @@ class UnitPlayer : public UnitPhys, public EventListener
 
 		bool isInvincible() { return mCandyStage > 0; };
 	private:
+		int mXOffset, mYOffset;
+
 		Timer* mpTimer;
 		AudioClip* mpORA;
 		Animation* mpAniORA;

@@ -1,6 +1,7 @@
 #include "unitPlayer.h"
 
 #include "game.h"
+#include "globalConst.h"
 
 #include "audio/audioSystem.h"
 
@@ -28,6 +29,9 @@ UnitPlayer::UnitPlayer(int x, int y) : UnitPhys("player_front")
 	mPos.x = (float)x;
 	mPos.y = (float)y;
 
+	mXOffset = GC::TILE_SIZE - GC::WINDOW_WIDTH / 2;
+	mYOffset = GC::TILE_SIZE - GC::WINDOW_HEIGHT / 2;
+
 	mAniScale = 1.28f;
 
 	gpEventSystem->addListener(EVENT_KEYPRESS, this);
@@ -49,6 +53,8 @@ UnitPlayer::~UnitPlayer()
 
 void UnitPlayer::update(double dt)
 {
+	Game::pInstance->getGraphics()->setOffset(mPos.x + mXOffset, mPos.y + mYOffset);
+
 	if (mCandyStage == STARTING)
 	{
 		if (mpTimer->getElapsedTime() >= 1)

@@ -6,6 +6,7 @@
 #include "gui/gui.h"
 
 class Animation;
+class GraphicsBuffer;
 
 class GUILevel : public GUI, public EventListener
 {
@@ -21,8 +22,10 @@ class GUILevel : public GUI, public EventListener
 		void handleEvent(const Event& theEvent);
 	private:
 		Animation* mpOraSpawn;
-		bool mRenderSpawn;
+		bool mRenderSpawn, mRenderBorder;
 		int mOraX, mOraY;
+
+		GraphicsBuffer* mpBorder;
 };
 
 #endif

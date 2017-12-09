@@ -9,6 +9,7 @@
 #include "graphics/animationManager.h"
 #include "graphics/graphicsSystem.h"
 #include "graphics/sprite.h"
+#include "graphics/graphicsBufferManager.h"
 
 #include "gui/elements/guiFixedText.h"
 #include "gui/elements/guiText.h"
@@ -32,7 +33,11 @@ GUILevel::GUILevel()
 	mOraX = GC::WINDOW_WIDTH / 2 - mpOraSpawn->getCurrent()->getWidth() / 2;
 	mOraY = GC::WINDOW_HEIGHT / 2 - mpOraSpawn->getCurrent()->getHeight() / 2;
 
+	mpBorder = Game::pInstance->getBufferManager()->get("ora_border");
+	mRenderBorder = false;
+
 	gpEventSystem->addListener(EVENT_CANDY_START, this);
+	gpEventSystem->addListener(EVENT_CANDY_END, this);
 }
 
 GUILevel::~GUILevel()
@@ -40,6 +45,7 @@ GUILevel::~GUILevel()
 	delete mpOraSpawn;
 
 	gpEventSystem->removeListener(EVENT_CANDY_START, this);
+	gpEventSystem->removeListener(EVENT_CANDY_END, this);
 }
 
 void GUILevel::update(double dt)
@@ -55,6 +61,16 @@ void GUILevel::update(double dt)
 
 void GUILevel::draw()
 {
+	if (mRenderBorder)
+	{
+		Game::pInstance->getGraphics()->draw(
+			0,
+			0,
+			mpBorder,
+			5.33333f
+		);
+	}
+
 	GUI::draw();
 	if (mRenderSpawn)
 	{
@@ -78,5 +94,10 @@ void GUILevel::handleEvent(const Event& theEvent)
 	{
 		mpOraSpawn->setFrame(0);
 		mRenderSpawn = true;
+		mRenderBorder = true;
+	}
+	else if (theEvent.getType() == EVENT_CANDY_END)
+	{
+		mRenderBorder = false;
 	}
 }
