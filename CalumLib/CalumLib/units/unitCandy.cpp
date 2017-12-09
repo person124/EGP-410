@@ -19,6 +19,7 @@ UnitCandy::UnitCandy(int x, int y, Unit* player) : Unit("candy")
 	mPauseAnim = false;
 
 	mpTimer = new Timer;
+	mEnabled = true;
 }
 
 UnitCandy::~UnitCandy()
@@ -28,25 +29,44 @@ UnitCandy::~UnitCandy()
 
 void UnitCandy::update(double dt)
 {
-	if (!mPauseAnim && !mpAnim->isFinished())
-		mpAnim->update(dt);
-	else
+	if (mEnabled)
 	{
-		if (!mPauseAnim)
+		if (!mPauseAnim && !mpAnim->isFinished())
+			mpAnim->update(dt);
+		else
+		{
+			if (!mPauseAnim)
+				mpTimer->start();
+
+			mPauseAnim = true;
+			mpAnim->setFrame(0);
+
+			if (mpTimer->getElapsedTime() >= 2)
+				mPauseAnim = false;
+		}
+
+		if (isUnitTouching(mpPlayerRef))
+		{
+			mEnabled = false;
 			mpTimer->start();
 
-		mPauseAnim = true;
-		mpAnim->setFrame(0);
-
-		if (mpTimer->getElapsedTime() >= 2)
-			mPauseAnim = false;
+			gpEventSystem->fireEvent(EventCandyStart());
+		}
 	}
-
-	if (isUnitTouching(mpPlayerRef))
+	else
 	{
-		//TODO just disable for a bit
-		markForDeletion();
-
-		gpEventSystem->fireEvent(EventCandyStart());
+		if (mpTimer->getElapsedTime() >= 60)
+		{
+			mpTimer->stop();
+			mPauseAnim = false;
+			mpAnim->setFrame(0);
+			mEnabled = true;
+		}
 	}
+}
+
+void UnitCandy::draw()
+{
+	if (mEnabled)
+		Unit::draw();
 }

@@ -12,11 +12,13 @@ class UnitCandy : public Unit
 		~UnitCandy();
 
 		void update(double dt);
+		void draw();
 	private:
 		Unit* mpPlayerRef;
 		bool mPauseAnim;
 
 		Timer* mpTimer;
+		bool mEnabled;
 };
 
 #endif
