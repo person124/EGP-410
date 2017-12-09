@@ -29,6 +29,8 @@ struct GlobalConst
 	static const char* PATH_EDITOR_SAVE;
 
 	const static int AUDIO_COUNT;
+
+	const static int TOP_MAP_RESOLUTION;
 };
 
 typedef GlobalConst GC;

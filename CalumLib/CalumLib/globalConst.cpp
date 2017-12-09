@@ -28,3 +28,5 @@ const char* GC::PATH_LEVELS = "maps";
 const char* GC::PATH_EDITOR_SAVE = "maps/editor.JO";
 
 const int GC::AUDIO_COUNT = 5;
+
+const int GC::TOP_MAP_RESOLUTION = 5;

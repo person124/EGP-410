@@ -5,8 +5,8 @@
 
 #include "gameMode/gameMode.h"
 
-class Grid;
 class UnitManager;
+class TopMap;
 
 class Level : public GameMode, public EventListener
 {
@@ -31,6 +31,8 @@ class Level : public GameMode, public EventListener
 		int mScore;
 
 		int mTotalCoins, mCurrentCoins;
+
+		TopMap* mpMap;
 };
 
 #endif

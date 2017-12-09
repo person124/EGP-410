@@ -291,6 +291,9 @@
     <ClInclude Include="events\eventCandyEnd.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
+    <ClInclude Include="pathing\topNode.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -464,6 +467,12 @@
     <ClCompile Include="units\unitCandy.cpp">
       <Filter>Source Files\units</Filter>
     </ClCompile>
+    <ClCompile Include="pathing\topMap.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\topNode.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\animations.dat">
@@ -474,6 +483,9 @@
     </None>
     <None Include="assets\audio_clips.dat">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="pathing\topMap.h">
+      <Filter>Header Files\pathing</Filter>
     </None>
   </ItemGroup>
 </Project>

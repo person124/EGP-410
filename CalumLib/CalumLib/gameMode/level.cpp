@@ -8,6 +8,7 @@
 #include "gui/guiLevel.h"
 
 #include "pathing/grid.h"
+#include "pathing/topMap.h"
 
 #include "units/unitManager.h"
 #include "units/unitCoin.h"
@@ -40,6 +41,7 @@ Level::Level(const char* levelName)
 Level::~Level()
 {
 	delete mpUnits;
+	delete mpMap;
 
 	gpEventSystem->removeListener(EVENT_PICKUP_COIN, this);
 }
@@ -73,12 +75,13 @@ void Level::handleEvent(const Event& theEvent)
 	{
 		mCurrentCoins--;
 		addScore(25);
-		//adjust GUI
 	}
 }
 
 void Level::createGraph()
 {
+	mpMap = new TopMap(mpGrid);
+	mpMap->generateNodes();
 }
 
 void Level::initSpawns()
