@@ -31,7 +31,6 @@ class Animation : public Trackable
 		Sprite* getSprite(int frame);
 		int getLength();
 		bool isFinished();
-		bool isDone();
 	private:
 		std::vector<Sprite*> mSprites;
 		bool mLoop, mDone;

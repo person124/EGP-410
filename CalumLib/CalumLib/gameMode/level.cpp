@@ -47,6 +47,8 @@ Level::~Level()
 void Level::update(double dt)
 {
 	mpUnits->update(dt);
+
+	mpGUI->update(dt);
 }
 
 void Level::draw()

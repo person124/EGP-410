@@ -121,10 +121,5 @@ int Animation::getLength()
 
 bool Animation::isFinished()
 {
-	return mCurrent >= getLength();
-}
-
-bool Animation::isDone()
-{
-	return mDone;
+	return mDone || mCurrent >= getLength();
 }
