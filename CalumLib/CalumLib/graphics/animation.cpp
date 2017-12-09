@@ -93,6 +93,7 @@ void Animation::setFrame(int frame)
 		frame = getLength() - 1;
 
 	mCurrent = frame;
+	mDone = false;
 }
 
 double Animation::getSpeed()

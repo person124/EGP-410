@@ -8,7 +8,7 @@ editor_spawns assets/images/spawn_tiles.bmp
 editor_arrow assets/images/arrow.bmp
 player assets/images/lucas.bmp
 photo assets/images/photo.bmp
-stand_arrow stand_arrow.bmp
+stand_arrow_shine assets/images/stand_arrow_shine.bmp
 ora assets/images/ora.bmp
 ora_spawn assets/images/ora_spawn.bmp
 ora_border assets/images/ora_border.bmp

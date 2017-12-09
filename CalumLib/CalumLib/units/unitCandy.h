@@ -3,6 +3,8 @@
 
 #include "units/unit.h"
 
+class Timer;
+
 class UnitCandy : public Unit
 {
 	public:
@@ -12,6 +14,9 @@ class UnitCandy : public Unit
 		void update(double dt);
 	private:
 		Unit* mpPlayerRef;
+		bool mPauseAnim;
+
+		Timer* mpTimer;
 };
 
 #endif
