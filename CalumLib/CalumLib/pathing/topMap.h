@@ -29,11 +29,13 @@ class TopMap : public Trackable
 		TopNode* find(const std::vector<TopNode*>& list, int x, int y);
 		void remove(std::vector<TopNode*>&, TopNode* node);
 
-		Node pathStartNode(int startX, int startY, TopNode* top, const std::vector<Node*>& path);
-		Node pathNode(const Node& start, TopNode* top, const std::vector<Node*>& path);
+		Node pathStartNode(int startX, int startY, TopNode* top, std::vector<Node*>& path);
+		Node pathNode(const Node& start, TopNode* top, std::vector<Node*>& path);
 		int nodeToDirection(const TopNode* top);
-		Node breadthFirstNode(int startX, int startY, int direction, const std::vector<Node*>& path);
-		void breadthFirst(int startX, int startY, int endX, int endY, const std::vector<Node*>& path);
+		Node breadthFirstNode(int startX, int startY, int direction, std::vector<Node*>& path);
+		void breadthFirst(int startX, int startY, int endX, int endY, std::vector<Node*>& path);
+		Node* dijGet(const std::vector<Node*>& list, int x, int y);
+		void dijRemove(std::vector<Node*>& list, Node* node);
 
 		Grid* mpGridReference;
 		TopNode* mpNodes;

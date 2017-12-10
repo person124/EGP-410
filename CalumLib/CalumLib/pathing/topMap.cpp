@@ -162,10 +162,13 @@ std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 
 	std::reverse(path.begin(), path.end());
 
+	//Initally add the start node
+	truePath.push_back(new Node(startX, startY));
+
 	Node last = pathStartNode(startX, startY, path.at(0), truePath);
-	for (unsigned int i = 1; i < truePath.size() - 1; i++)
+	for (unsigned int i = 1; i < path.size() - 1; i++)
 		last = pathNode(last, path.at(i), truePath);
-	breadthFirst(last.x, last.y, goal.x, goal.y, truePath);
+	breadthFirst(last.x, last.y, goalX, goalY, truePath);
 
 	return truePath;
 }
@@ -345,14 +348,14 @@ void TopMap::remove(std::vector<TopNode*>& list, TopNode* node)
 	}
 }
 
-Node TopMap::pathStartNode(int startX, int startY, TopNode* top, const std::vector<Node*>& path)
+Node TopMap::pathStartNode(int startX, int startY, TopNode* top, std::vector<Node*>& path)
 {
 	int direction = nodeToDirection(top);
 
 	return breadthFirstNode(startX, startY, direction, path);
 }
 
-Node TopMap::pathNode(const Node& start, TopNode* top, const std::vector<Node*>& path)
+Node TopMap::pathNode(const Node& start, TopNode* top, std::vector<Node*>& path)
 {
 	int direction = nodeToDirection(top);
 
@@ -374,7 +377,7 @@ int TopMap::nodeToDirection(const TopNode* top)
 	return direction;
 }
 
-Node TopMap::breadthFirstNode(int startX, int startY, int direction, const std::vector<Node*>& path)
+Node TopMap::breadthFirstNode(int startX, int startY, int direction, std::vector<Node*>& path)
 {
 	Node goal = Node();
 
@@ -432,7 +435,143 @@ Node TopMap::breadthFirstNode(int startX, int startY, int direction, const std::
 	return goal;
 }
 
-void TopMap::breadthFirst(int startX, int startY, int endX, int endY, const std::vector<Node*>& path)
+void TopMap::breadthFirst(int startX, int startY, int endX, int endY, std::vector<Node*>& path)
 {
-	//TODO
+	int res = GC::TOP_MAP_RESOLUTION;
+	int minX = startX / res * res - 1;
+	int maxX = startX / res * res + res;
+	int minY = startY / res * res - 1;
+	int maxY = startY / res * res + res;
+
+	std::vector<Node*> nodes;
+
+	Node* start = new Node(startX, startY);
+	Node goal = Node(endX, endY);
+
+	nodes.push_back(start);
+
+	//Dijkstra
+	Node* current = NULL;
+	while (nodes.size() > 0)
+	{
+		//Getting the smallest node
+		int cost = 0;
+		int pos = -1;
+		for (unsigned int i = 0; i < nodes.size(); i++)
+		{
+			if (nodes.at(i)->estimatedCost == 0 && (pos == -1 || nodes.at(i)->cost < cost))
+			{
+				pos = i;
+				cost = nodes.at(i)->cost;
+			}
+		}
+
+		if (pos == -1)
+			return;
+
+		current = nodes.at(pos);
+		current->estimatedCost = 1;
+
+		//Getting the neighborus
+		for (int i = 0; i < 4; i++)
+		{
+			//Get the value of x and y we're checking
+			Node* toCheck = NULL;
+			int checkX = -1;
+			int checkY = -1;
+			switch (i)
+			{
+				case up:
+					checkX = current->x;
+					checkY = current->y - 1;
+					break;
+				case down:
+					checkX = current->x;
+					checkY = current->y + 1;
+					break;
+				case left:
+					checkX = current->x - 1;
+					checkY = current->y;
+					break;
+				case right:
+					checkX = current->x + 1;
+					checkY = current->y;
+					break;
+			}
+
+			//Check to make sure the x and y values are within bounds
+			if (checkX != goal.x && (checkX <= minX || checkX >= maxX))
+				continue;
+			if (checkY != goal.y && (checkY <= minY || checkY >= maxY))
+				continue;
+
+			//See if the node already exists
+			toCheck = dijGet(nodes, checkX, checkY);
+			//If it does, update the cost if we have to
+			if (toCheck != NULL)
+			{
+				if (toCheck->cost > current->cost + 1)
+				{
+					toCheck->connect(*current);
+					toCheck->cost = current->cost + 1;
+				}
+				continue;
+			}
+
+			//Otherwise, make the new node
+			toCheck = new Node(checkX, checkY);
+			toCheck->connect(*current);
+			toCheck->cost = current->cost + 1;
+
+			nodes.push_back(toCheck);
+		} //End of for loop
+
+		if (*current == goal)
+			break;
+	} //End of while loop
+
+	std::vector<Node*> tempPath;
+
+	//Make a new vector that contains the newest path
+	while (*current != *start)
+	{
+		tempPath.push_back(current);
+		dijRemove(nodes, current);
+		current = dijGet(nodes, current->connectX, current->connectY);
+	}
+
+	//Delete all the unused nodes
+	for (unsigned int i = 0; i < nodes.size(); i++)
+		delete nodes.at(i);
+
+	//Reverse the new path so its in the right order
+	std::reverse(tempPath.begin(), tempPath.end());
+
+	//Connect the last node in the current path with the first node in the new path
+	path.at(path.size() - 1)->connect(*tempPath.at(0));
+
+	//Add the rest of the nodes
+	for (int i = 0; i < tempPath.size(); i++)
+		path.push_back(tempPath.at(i));
+}
+
+Node* TopMap::dijGet(const std::vector<Node*>& list, int x, int y)
+{
+	for (unsigned int i = 0; i < list.size(); i++)
+	{
+		Node* n = list.at(i);
+		if (n->x == x && n->y == y)
+			return n;
+	}
+
+	return NULL;
+}
+
+void TopMap::dijRemove(std::vector<Node*>& list, Node* node)
+{
+	for (unsigned int i = 0; i < list.size(); i++)
+	{
+		if (*list.at(i) == *node)
+			list.erase(list.begin() + i);
+	}
 }

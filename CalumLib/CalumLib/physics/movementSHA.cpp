@@ -101,19 +101,19 @@ void MovementSHA::calculateMovement()
 
 	switch (mpUnit->getCurrentState())
 	{
-	case shaSearching:
-		calculateSearching();
-		break;
-	case shaFleeing:
-		break;
-	case shaTracking:
-		//calculateTracking();
-		break;
-	case shaDead:
-		mpUnit->setRotation(DIR_ANGLES[0]);
-		break;
-	default:
-		break;
+		case shaSearching:
+			calculateSearching();
+			break;
+		case shaFleeing:
+			break;
+		case shaTracking:
+			calculateTracking();
+			break;
+		case shaDead:
+			mpUnit->setRotation(DIR_ANGLES[0]);
+			break;
+		default:
+			break;
 	}
 }
 
@@ -146,15 +146,13 @@ void MovementSHA::calculateTracking()
 	std::vector<Node*> temp = level->getPath(start.x, start.y, goal.x, goal.y);
 	for (unsigned int i = 0; i < temp.size(); i++)
 	{
-		Node* merp = temp.at(i);
-		printf("%i, %i, %i\n", i, merp->x, merp->y);
-		delete merp;
+		delete temp.at(i);
 	}
 
 	std::vector<Node> path;// = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
 
 	//Don't calculate the path if the path is 0 length
-	if (path.size() == 0)
+	//if (path.size() == 0)
 		return;
 
 	Vector2 target = getPointInPath(path, start);
