@@ -93,7 +93,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir);..\..\External Libs\Allegro5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>allegro-5.0.10-monolith-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\External Libs\Allegro5\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -166,9 +174,8 @@
     <ClInclude Include="gui\guiSelectable.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="pathing\grid.h" />
+    <ClInclude Include="pathing\nodeList.h" />
     <ClInclude Include="pathing\node.h" />
-    <ClInclude Include="pathing\pathing.h" />
-    <ClInclude Include="pathing\pathList.h" />
     <ClInclude Include="pathing\spawnLocation.h" />
     <ClInclude Include="pathing\tile.h" />
     <ClInclude Include="pathing\topNode.h" />
@@ -229,8 +236,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pathing\grid.cpp" />
     <ClCompile Include="pathing\node.cpp" />
-    <ClCompile Include="pathing\pathing.cpp" />
-    <ClCompile Include="pathing\pathList.cpp" />
+    <ClCompile Include="pathing\nodeList.cpp" />
     <ClCompile Include="pathing\tile.cpp" />
     <ClCompile Include="pathing\topMap.cpp" />
     <ClCompile Include="pathing\topNode.cpp" />

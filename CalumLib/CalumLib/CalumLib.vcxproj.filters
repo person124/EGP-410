@@ -138,12 +138,6 @@
     <ClInclude Include="pathing\node.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
-    <ClInclude Include="pathing\pathing.h">
-      <Filter>Header Files\pathing</Filter>
-    </ClInclude>
-    <ClInclude Include="pathing\pathList.h">
-      <Filter>Header Files\pathing</Filter>
-    </ClInclude>
     <ClInclude Include="pathing\tile.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
@@ -294,6 +288,9 @@
     <ClInclude Include="pathing\topNode.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
+    <ClInclude Include="pathing\nodeList.h">
+      <Filter>Header Files\pathing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -339,12 +336,6 @@
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="pathing\node.cpp">
-      <Filter>Source Files\pathing</Filter>
-    </ClCompile>
-    <ClCompile Include="pathing\pathing.cpp">
-      <Filter>Source Files\pathing</Filter>
-    </ClCompile>
-    <ClCompile Include="pathing\pathList.cpp">
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="pathing\tile.cpp">
@@ -471,6 +462,9 @@
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="pathing\topNode.cpp">
+      <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="pathing\nodeList.cpp">
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
   </ItemGroup>

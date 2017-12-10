@@ -10,7 +10,7 @@ TopNode::TopNode(int x, int y) : Node(x, y)
 
 TopNode& TopNode::operator=(TopNode& other)
 {
-	this->operator=(other);
+	Node::operator=(other);
 
 	up = other.up;
 	down = other.down;

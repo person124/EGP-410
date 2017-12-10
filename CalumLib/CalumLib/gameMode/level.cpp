@@ -1,9 +1,12 @@
 #include "level.h"
 
+#include "game.h"
 #include "globalConst.h"
 
 #include "events/eventSystem.h"
 #include "events/eventPickupCoin.h"
+
+#include "graphics/graphicsSystem.h"
 
 #include "gui/guiLevel.h"
 
@@ -60,6 +63,8 @@ void Level::draw()
 	mpUnits->draw();
 
 	mpGUI->draw();
+
+	Game::pInstance->getGraphics()->drawGridOutline(0, 0, 32 * 5, 32 * 5, 5, 5);
 }
 
 void Level::addScore(int s)
@@ -82,6 +87,17 @@ void Level::createGraph()
 {
 	mpMap = new TopMap(mpGrid);
 	mpMap->generateNodes();
+
+	std::vector<TopNode*> path = mpMap->getPath(1, 1, 27, 27);
+
+	for (unsigned int i = 0; i < path.size(); i++)
+	{
+		TopNode* node = path.at(i);
+
+		printf("%i, %i, %i\n", i, node->x, node->y);
+		
+		delete node;
+	}
 }
 
 void Level::initSpawns()

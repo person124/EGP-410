@@ -5,8 +5,6 @@
 
 #include "audio/audioSystem.h"
 
-#include "pathing/pathing.h"
-
 #include "physics/raycast.h"
 
 #include "stateTree/states/statesSHA.h"
@@ -138,7 +136,7 @@ void MovementSHA::calculateTracking()
 	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
 	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
 
-	std::vector<Node> path = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
+	std::vector<Node> path;// = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
 
 	//Don't calculate the path if the path is 0 length
 	if (path.size() == 0)
