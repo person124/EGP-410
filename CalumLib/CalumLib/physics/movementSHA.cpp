@@ -5,6 +5,10 @@
 
 #include "audio/audioSystem.h"
 
+#include "gameMode/level.h"
+
+#include "pathing/node.h"
+
 #include "physics/raycast.h"
 
 #include "stateTree/states/statesSHA.h"
@@ -135,6 +139,17 @@ void MovementSHA::calculateTracking()
 
 	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
 	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
+
+	static Level* level = NULL;
+	if (level == NULL)
+		level = (Level*)Game::pInstance->getCurrentMode();
+	std::vector<Node*> temp = level->getPath(start.x, start.y, goal.x, goal.y);
+	for (unsigned int i = 0; i < temp.size(); i++)
+	{
+		Node* merp = temp.at(i);
+		printf("%i, %i, %i\n", i, merp->x, merp->y);
+		delete merp;
+	}
 
 	std::vector<Node> path;// = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
 

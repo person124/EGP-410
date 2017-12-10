@@ -74,6 +74,11 @@ void Level::addScore(int s)
 	((GUILevel*)mpGUI)->setScore(mScore);
 }
 
+std::vector<Node*> Level::getPath(int startX, int startY, int endX, int endY)
+{
+	return mpMap->getPath(startX, startY, endX, endY);
+}
+
 void Level::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_PICKUP_COIN)
@@ -87,17 +92,6 @@ void Level::createGraph()
 {
 	mpMap = new TopMap(mpGrid);
 	mpMap->generateNodes();
-
-	std::vector<TopNode*> path = mpMap->getPath(1, 1, 27, 27);
-
-	for (unsigned int i = 0; i < path.size(); i++)
-	{
-		TopNode* node = path.at(i);
-
-		printf("%i, %i, %i\n", i, node->x, node->y);
-		
-		delete node;
-	}
 }
 
 void Level::initSpawns()

@@ -80,7 +80,7 @@ void UnitSHA::update(double dt)
 			if (mpPlayerRef->isInvincible())
 				mpStateTree->transfer(shaDead);
 			else;
-			//Deaded
+			//Player Deaded
 		}
 	}
 
@@ -135,7 +135,8 @@ void UnitSHA::handleEvent(const Event& theEvent)
 {
 	if (theEvent.getType() == EVENT_CANDY_START)
 	{
-		mpStateTree->transfer(shaFleeing);
+		if (mpStateTree->getID() != shaDead)
+			mpStateTree->transfer(shaFleeing);
 	}
 	else if (theEvent.getType() == EVENT_CANDY_END)
 	{

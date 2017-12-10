@@ -5,8 +5,11 @@
 
 #include "gameMode/gameMode.h"
 
+#include <vector>
+
 class UnitManager;
 class TopMap;
+struct Node;
 
 class Level : public GameMode, public EventListener
 {
@@ -20,6 +23,7 @@ class Level : public GameMode, public EventListener
 		void addScore(int s);
 
 		UnitManager* getUnits() { return mpUnits; };
+		std::vector<Node*> getPath(int startX, int startY, int endX, int endY);
 
 		void handleEvent(const Event& theEvent);
 	private:

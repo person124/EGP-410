@@ -1,13 +1,14 @@
 #ifndef TOP_MAP_H
 #define TOP_MAP_H
 
-#include "pathing/topNode.h"
+#include "pathing/node.h"
 
 #include "utils/trackable.h"
 
 #include <vector>
 
 class Grid;
+struct TopNode;
 
 class TopMap : public Trackable
 {
@@ -15,7 +16,7 @@ class TopMap : public Trackable
 		TopMap(Grid* grid);
 		~TopMap();
 
-		std::vector<TopNode*> getPath(int startX, int startY, int goalX, int goalY);
+		std::vector<Node*> getPath(int startX, int startY, int goalX, int goalY);
 		void generateNodes();
 	private:
 		TopNode* getNode(int x, int y);
@@ -27,6 +28,12 @@ class TopMap : public Trackable
 		TopNode* find(const std::vector<TopNode*>& list, TopNode* node);
 		TopNode* find(const std::vector<TopNode*>& list, int x, int y);
 		void remove(std::vector<TopNode*>&, TopNode* node);
+
+		Node pathStartNode(int startX, int startY, TopNode* top, const std::vector<Node*>& path);
+		Node pathNode(const Node& start, TopNode* top, const std::vector<Node*>& path);
+		int nodeToDirection(const TopNode* top);
+		Node breadthFirstNode(int startX, int startY, int direction, const std::vector<Node*>& path);
+		void breadthFirst(int startX, int startY, int endX, int endY, const std::vector<Node*>& path);
 
 		Grid* mpGridReference;
 		TopNode* mpNodes;

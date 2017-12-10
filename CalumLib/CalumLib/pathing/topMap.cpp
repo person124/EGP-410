@@ -4,6 +4,16 @@
 
 #include "pathing/grid.h"
 #include "pathing/nodeList.h"
+#include "pathing/topNode.h"
+
+//Simple direction enum for internal usage for breadth first searching
+enum Direction
+{
+	up,
+	down,
+	left,
+	right
+};
 
 int min(int var1, int var2)
 {
@@ -33,7 +43,7 @@ TopMap::~TopMap()
 		delete[] mpNodes;
 }
 
-std::vector<TopNode*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
+std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 {
 	std::vector<TopNode*> open, closed;
 
@@ -124,12 +134,14 @@ std::vector<TopNode*> TopMap::getPath(int startX, int startY, int goalX, int goa
 		closed.push_back(copy);
 	} //end of the while loop
 
-	std::vector<TopNode*> path;
+	std::vector<Node*> truePath;
 
 	if (*current != goal)
 	{
-		return path;
+		return truePath;
 	}
+
+	std::vector<TopNode*> path;
 
 	//Make the closed version of current
 	TopNode* copy = new TopNode(*current);
@@ -142,12 +154,20 @@ std::vector<TopNode*> TopMap::getPath(int startX, int startY, int goalX, int goa
 		current = find(closed, current->connectX, current->connectY);
 	}
 
+	for (unsigned int i = 0; i < closed.size(); i++)
+		delete closed.at(i);
+
 	TopNode* startCopy = new TopNode(*start);
 	path.push_back(startCopy);
 
 	std::reverse(path.begin(), path.end());
 
-	return path;
+	Node last = pathStartNode(startX, startY, path.at(0), truePath);
+	for (unsigned int i = 1; i < truePath.size() - 1; i++)
+		last = pathNode(last, path.at(i), truePath);
+	breadthFirst(last.x, last.y, goal.x, goal.y, truePath);
+
+	return truePath;
 }
 
 void TopMap::generateNodes()
@@ -323,4 +343,96 @@ void TopMap::remove(std::vector<TopNode*>& list, TopNode* node)
 			return;
 		}
 	}
+}
+
+Node TopMap::pathStartNode(int startX, int startY, TopNode* top, const std::vector<Node*>& path)
+{
+	int direction = nodeToDirection(top);
+
+	return breadthFirstNode(startX, startY, direction, path);
+}
+
+Node TopMap::pathNode(const Node& start, TopNode* top, const std::vector<Node*>& path)
+{
+	int direction = nodeToDirection(top);
+
+	return breadthFirstNode(start.x, start.y, direction, path);
+}
+
+int TopMap::nodeToDirection(const TopNode* top)
+{
+	int direction = 0;
+	if (top->x < top->connectX)
+		direction = left;
+	else if (top->x > top->connectX)
+		direction = right;
+	else if (top->y < top->connectY)
+		direction = up;
+	else if (top->y > top->connectY)
+		direction = down;
+
+	return direction;
+}
+
+Node TopMap::breadthFirstNode(int startX, int startY, int direction, const std::vector<Node*>& path)
+{
+	Node goal = Node();
+
+	int baseX = startX / 5;
+	int baseY = startY / 5;
+
+	for (int i = 0; i < GC::TOP_MAP_RESOLUTION; i++)
+	{
+		int checkX1 = baseX;
+		int checkX2 = baseX;
+		int checkY1 = baseY;
+		int checkY2 = baseY;
+
+		//True if doing up or down
+		if (direction < left)
+		{
+			checkX1 += i;
+			checkX2 += i;
+
+			//If were going up need the one above
+			if (direction == up)
+				checkY2 -= 1;
+			//If going down need to lower both
+			else if (direction == down)
+			{
+				checkY1 += GC::TOP_MAP_RESOLUTION - 1;
+				checkY2 += GC::TOP_MAP_RESOLUTION;
+			}
+		}
+		//True if doing left or right
+		else
+		{
+			checkY1 += i;
+			checkY2 += i;
+
+			if (direction == left)
+				checkX2 -= 1;
+			else if (direction == right)
+			{
+				checkX1 += GC::TOP_MAP_RESOLUTION - 1;
+				checkX2 += GC::TOP_MAP_RESOLUTION;
+			}
+		}
+
+		if (!mpGridReference->isSolid(checkX1, checkY1) &&
+			!mpGridReference->isSolid(checkX2, checkY2))
+		{
+			goal.x = checkX2;
+			goal.y = checkY2;
+		}
+	}
+
+	//Goal tile gotten
+	breadthFirst(startX, startY, goal.x, goal.y, path);
+	return goal;
+}
+
+void TopMap::breadthFirst(int startX, int startY, int endX, int endY, const std::vector<Node*>& path)
+{
+	//TODO
 }

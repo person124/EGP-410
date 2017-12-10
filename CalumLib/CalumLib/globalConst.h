@@ -31,6 +31,7 @@ struct GlobalConst
 	const static int AUDIO_COUNT;
 
 	const static int TOP_MAP_RESOLUTION;
+	const static int CHUNK_SIZE;
 };
 
 typedef GlobalConst GC;
