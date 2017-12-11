@@ -138,7 +138,7 @@ void MovementSHA::calculateTracking()
 	Vector2 track = mpUnit->getTargetLocation();
 
 	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
-	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
+	Node goal = Node(track.x, track.y);
 
 	static Level* level = NULL;
 	if (level == NULL)

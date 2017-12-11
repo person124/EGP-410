@@ -171,6 +171,7 @@ std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 	breadthFirst(last.x, last.y, goalX, goalY, truePath);
 
 	return truePath;
+
 }
 
 void TopMap::generateNodes()
@@ -265,6 +266,13 @@ void TopMap::generateNodes()
 
 			mpNodes[pos] = node;
 		}
+
+	for (unsigned int i = 0; i < mWidth * mHeight; i++)
+	{
+		printf("%i: %i %i\n", i, mpNodes[i].x, mpNodes[i].y);
+	}
+
+	return;
 }
 
 TopNode* TopMap::getNode(int x, int y)
