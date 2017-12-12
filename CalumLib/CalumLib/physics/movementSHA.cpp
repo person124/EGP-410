@@ -55,7 +55,7 @@ float MovementSHA::directionToAngle(Direction dir)
 	return DIR_ANGLES[(int)dir];
 }
 
-Vector2 MovementSHA::getPointInPath(std::vector<Node> path, const Node& start)
+Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& start)
 {
 	Vector2 goal = Vector2();
 
@@ -63,18 +63,18 @@ Vector2 MovementSHA::getPointInPath(std::vector<Node> path, const Node& start)
 
 	for (unsigned int i = 0; i < path.size(); i++)
 	{
-		Vector2 nodeVect = Vector2(path.at(i).x, path.at(i).y);
+		Vector2 nodeVect = Vector2(path.at(i)->x, path.at(i)->y);
 
 		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
 		{
-			goal.x = (float)path.at(i - 1).x * GC::TILE_SIZE;
-			goal.y = (float)path.at(i - 1).y * GC::TILE_SIZE;
+			goal.x = (float)path.at(i - 1)->x * GC::TILE_SIZE;
+			goal.y = (float)path.at(i - 1)->y * GC::TILE_SIZE;
 			break;
 		}
 	}
 
-	goal.x = (float)path.at(path.size() - 1).x * GC::TILE_SIZE;
-	goal.y = (float)path.at(path.size() - 1).y * GC::TILE_SIZE;
+	goal.x = (float)path.at(path.size() - 1)->x * GC::TILE_SIZE;
+	goal.y = (float)path.at(path.size() - 1)->y * GC::TILE_SIZE;
 
 	return goal;
 }
@@ -138,24 +138,21 @@ void MovementSHA::calculateTracking()
 	Vector2 track = mpUnit->getTargetLocation();
 
 	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
-	Node goal = Node(track.x, track.y);
+	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
 
 	static Level* level = NULL;
 	if (level == NULL)
 		level = (Level*)Game::pInstance->getCurrentMode();
-	std::vector<Node*> temp = level->getPath(start.x, start.y, goal.x, goal.y);
-	for (unsigned int i = 0; i < temp.size(); i++)
-	{
-		delete temp.at(i);
-	}
 
-	std::vector<Node> path;// = pathing::aStar(Game::pInstance->getCurrentGrid(), &start, &goal, pathing::heurDistance);
+	std::vector<Node*> path = level->getPath(start.x, start.y, goal.x, goal.y);
 
-	//Don't calculate the path if the path is 0 length
-	//if (path.size() == 0)
+	if (path.size() == 0)
 		return;
 
 	Vector2 target = getPointInPath(path, start);
+
+	for (unsigned int i = 0; i < path.size(); i++)
+		delete path.at(i);
 
 	//Then turn to face and the like
 	Vector2 targetVect = target - pos;

@@ -125,7 +125,7 @@ void GraphicsSystem::draw(int x, int y, GraphicsBuffer* buffer, float scale, flo
 		y + height * scale,
 		scale,
 		scale,
-		angle,
+		-angle,
 		0
 	);
 }

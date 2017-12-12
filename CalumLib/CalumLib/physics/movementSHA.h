@@ -27,7 +27,7 @@ class MovementSHA : public Trackable
 	public:
 		static Vector2 directionToVelocity(Direction dir);
 		static float directionToAngle(Direction dir);
-		static Vector2 getPointInPath(std::vector<Node> path, const Node& start);
+		static Vector2 getPointInPath(const std::vector<Node*>& path, const Node& start);
 
 	public:
 		MovementSHA(UnitSHA* unit);
