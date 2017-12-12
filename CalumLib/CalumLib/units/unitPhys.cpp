@@ -81,8 +81,8 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();;
 
-	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
-	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
+	int width = (int)(getWidth() * mAniScale);
+	int height = (int)(getHeight() * mAniScale);
 
 	int x1 = (int)((pos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
 	int x2 = (int)((pos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
@@ -110,8 +110,8 @@ bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 	if (grid == NULL)
 		grid = Game::pInstance->getCurrentGrid();
 
-	int width = (int)(mpAnim->getCurrent()->getWidth() * mAniScale);
-	int height = (int)(mpAnim->getCurrent()->getHeight() * mAniScale);
+	int width = (int)(getWidth() * mAniScale);
+	int height = (int)(getHeight() * mAniScale);
 
 	int x1 = (int)((offset.x + mPos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
 	int x2 = (int)((offset.x + mPos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);

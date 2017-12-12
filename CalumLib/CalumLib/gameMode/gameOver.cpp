@@ -14,11 +14,14 @@
 #include "graphics/animationManager.h"
 
 #include "gui/guiGameOver.h"
+#include "gui/guiGameOverScore.h"
 
 #include "utils/timer.h"
 
-GameOver::GameOver()
+GameOver::GameOver(int score)
 {
+	mScore = score;
+
 	mpGUI = new GUIGameOver();
 
 	mpAudio = Game::pInstance->getAudio()->get("bites_the_dust");
@@ -64,17 +67,19 @@ void GameOver::update(double dt)
 	}
 
 	double time = mpTimer->getElapsedTime();
+	
 	if (time >= 3)
 	{
 		mpGUI->update(dt);
 	}
-	else if (time >= 6.9)
+
+	if (time >= 6.4)
 	{
 		mpTimer->stop();
 		delete mpGUI;
-		//TODO
-		//Set to the Final Score GUI
-		mpGUI = NULL;
+
+		mpGUI = new GUIGameOverScore(mScore);
+		mAnimationDone = true;
 	}
 }
 
@@ -82,7 +87,7 @@ void GameOver::draw()
 {
 	if (mAnimationDone)
 	{
-
+		mpGUI->draw();
 		return;
 	}
 

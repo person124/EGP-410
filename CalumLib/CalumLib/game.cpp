@@ -8,6 +8,7 @@
 #include "events/eventSystem.h"
 #include "events/eventSwitchState.h"
 #include "events/eventLoadLevel.h"
+#include "events/EventGameOver.h"
 
 #include "graphics/graphicsSystem.h"
 #include "graphics/graphicsBufferManager.h"
@@ -45,6 +46,7 @@ Game::Game()
 	gpEventSystem->addListener(EVENT_QUIT, this);
 	gpEventSystem->addListener(EVENT_SWITCH_STATE, this);
 	gpEventSystem->addListener(EVENT_LOAD_LEVEL, this);
+	gpEventSystem->addListener(EVENT_GAME_OVER, this);
 }
 
 Game::~Game()
@@ -177,6 +179,14 @@ void Game::handleEvent(const Event& theEvent)
 		mNextState = STATE_IN_GAME;
 		e.getLevelName(mLevelToLoad);
 	}
+	else if (theEvent.getType() == EVENT_GAME_OVER)
+	{
+		const EventGameOver& e = static_cast<const EventGameOver&>(theEvent);
+
+		mScore = e.getScore();
+
+		mNextState = STATE_GAME_OVER;
+	}
 }
 
 GraphicsBufferManager* Game::getBufferManager()
@@ -219,7 +229,7 @@ void Game::switchState()
 			mpGameMode = new Editor();
 			break;
 		case STATE_GAME_OVER:
-			mpGameMode = new GameOver();
+			mpGameMode = new GameOver(mScore);
 			break;
 		case STATE_IN_GAME:
 			GameMode* old = mpGameMode;

@@ -135,6 +135,7 @@
     <ClInclude Include="events\event.h" />
     <ClInclude Include="events\eventCandyEnd.h" />
     <ClInclude Include="events\eventClick.h" />
+    <ClInclude Include="events\eventGameOver.h" />
     <ClInclude Include="events\eventKeypress.h" />
     <ClInclude Include="events\eventListener.h" />
     <ClInclude Include="events\eventLoadLevel.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="gui\guiEditor.h" />
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiGameOver.h" />
+    <ClInclude Include="gui\guiGameOverScore.h" />
     <ClInclude Include="gui\guiLevel.h" />
     <ClInclude Include="gui\guiSelectLevel.h" />
     <ClInclude Include="gui\guiListener.h" />
@@ -227,6 +229,7 @@
     <ClCompile Include="gui\gui.cpp" />
     <ClCompile Include="gui\guiEditor.cpp" />
     <ClCompile Include="gui\guiGameOver.cpp" />
+    <ClCompile Include="gui\guiGameOverScore.cpp" />
     <ClCompile Include="gui\guiLevel.cpp" />
     <ClCompile Include="gui\guiSelectLevel.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />

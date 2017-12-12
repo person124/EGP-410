@@ -16,6 +16,7 @@ enum EventType
 	EVENT_PICKUP_COIN,
 	EVENT_CANDY_START,
 	EVENT_CANDY_END,
+	EVENT_GAME_OVER,
 	NUM_EVENT_TYPES
 };
 
@@ -27,7 +28,8 @@ const std::string EVENT_NAMES[NUM_EVENT_TYPES] = {
 	"Load Level Event",
 	"Coin Pickup Event",
 	"Candy Effect Start Event",
-	"Candy Effect End Event"
+	"Candy Effect End Event",
+	"Game Over Event"
 };
 
 class Event : public Trackable

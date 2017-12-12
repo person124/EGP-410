@@ -291,6 +291,12 @@
     <ClInclude Include="pathing\nodeList.h">
       <Filter>Header Files\pathing</Filter>
     </ClInclude>
+    <ClInclude Include="events\eventGameOver.h">
+      <Filter>Header Files\events</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiGameOverScore.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -466,6 +472,9 @@
     </ClCompile>
     <ClCompile Include="pathing\nodeList.cpp">
       <Filter>Source Files\pathing</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiGameOverScore.cpp">
+      <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

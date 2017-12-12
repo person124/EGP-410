@@ -13,7 +13,7 @@ class Color;
 class GameOver : public GameMode, public EventListener
 {
 	public:
-		GameOver();
+		GameOver(int score);
 		~GameOver();
 
 		void update(double dt);
@@ -21,6 +21,8 @@ class GameOver : public GameMode, public EventListener
 
 		void handleEvent(const Event& theEvent);
 	private:
+		int mScore;
+
 		AudioClip* mpAudio;
 		Timer* mpTimer;
 
