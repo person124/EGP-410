@@ -20,7 +20,7 @@ class UnitPlayer;
 class UnitSHA : public UnitPhys, public EventListener
 {
 	public:
-		UnitSHA(SHAColor color, Unit* player);
+		UnitSHA(float x, float y, SHAColor color, Unit* player);
 		~UnitSHA();
 
 		void update(double dt);
@@ -32,7 +32,9 @@ class UnitSHA : public UnitPhys, public EventListener
 
 		void setTargetLocation(Vector2 pos) { mTarget = pos; };
 		Vector2 getTargetLocation() { return mTarget; };
+		Vector2 getSpawnLocation() { return mSpawn; };
 	private:
+		Vector2 mSpawn;
 		Vector2 mTarget;
 
 		Animation* mpAniBase;

@@ -24,9 +24,12 @@ const std::string COLOR_NAME[SHA_COLOR_COUNT] =
 	"yellow"
 };
 
-UnitSHA::UnitSHA(SHAColor color, Unit* player) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c_str())
+UnitSHA::UnitSHA(float x, float y, SHAColor color, Unit* player) : UnitPhys(("sha_color_" + COLOR_NAME[color]).c_str())
 {
 	mpPlayerRef = (UnitPlayer*)player;
+	mPos.x = x;
+	mPos.y = y;
+	mSpawn = Vector2(x, y);
 
 	//Animations
 	mpAniBase = Game::pInstance->getAnimationManager()->get("sha");
@@ -143,7 +146,10 @@ void UnitSHA::handleEvent(const Event& theEvent)
 		if (mpStateTree->getID() != shaDead)
 			mpStateTree->transfer(shaSearching);
 		else
+		{
 			mpStateTree->getTimer()->start();
+			mPos = mSpawn;
+		}
 	}
 }
 

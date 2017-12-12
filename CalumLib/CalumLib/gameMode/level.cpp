@@ -63,8 +63,6 @@ void Level::draw()
 	mpUnits->draw();
 
 	mpGUI->draw();
-
-	Game::pInstance->getGraphics()->drawGridOutline(0, 0, 32 * 5, 32 * 5, 5, 5);
 }
 
 void Level::addScore(int s)

@@ -55,13 +55,13 @@ float MovementSHA::directionToAngle(Direction dir)
 	return DIR_ANGLES[(int)dir];
 }
 
-Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& start)
+Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& start, unsigned int& startNum)
 {
 	Vector2 goal = Vector2();
 
 	Vector2 startVect = Vector2((float)start.x, (float)start.y);
 
-	for (unsigned int i = 0; i < path.size(); i++)
+	for (unsigned int i = startNum; i < path.size(); i++)
 	{
 		Vector2 nodeVect = Vector2(path.at(i)->x, path.at(i)->y);
 
@@ -69,12 +69,14 @@ Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& 
 		{
 			goal.x = (float)path.at(i - 1)->x * GC::TILE_SIZE;
 			goal.y = (float)path.at(i - 1)->y * GC::TILE_SIZE;
-			break;
+			startNum = i;
+			return goal;
 		}
 	}
 
 	goal.x = (float)path.at(path.size() - 1)->x * GC::TILE_SIZE;
 	goal.y = (float)path.at(path.size() - 1)->y * GC::TILE_SIZE;
+	startNum = path.size();
 
 	return goal;
 }
@@ -87,6 +89,8 @@ MovementSHA::MovementSHA(UnitSHA* unit)
 
 	mDashing = false;
 	mpLastPos = NULL;
+
+	mPathCalculated = false;
 }
 
 MovementSHA::~MovementSHA()
@@ -105,12 +109,14 @@ void MovementSHA::calculateMovement()
 			calculateSearching();
 			break;
 		case shaFleeing:
+			calculateFleeing();
 			break;
 		case shaTracking:
 			calculateTracking();
 			break;
 		case shaDead:
 			mpUnit->setRotation(DIR_ANGLES[0]);
+			mDashing = false;
 			break;
 		default:
 			break;
@@ -126,6 +132,44 @@ void MovementSHA::calculateSearching()
 	moveInDirection();
 }
 
+#include "utils/timer.h"
+void MovementSHA::calculateFleeing()
+{
+	Node start = Node(mpUnit->getPosition().x * GC::GRID_SCALE, mpUnit->getPosition().y * GC::GRID_SCALE);
+	if (!mPathCalculated || mPath.size() == 0)
+	{
+		static Level* level = NULL;
+		if (level == NULL)
+			level = (Level*)Game::pInstance->getCurrentMode();
+
+		start = Node(mpUnit->getPosition().x * GC::GRID_SCALE, mpUnit->getPosition().y * GC::GRID_SCALE);
+		Node goal = Node(mpUnit->getSpawnLocation().x * GC::GRID_SCALE, mpUnit->getSpawnLocation().y * GC::GRID_SCALE);
+
+		mPath = level->getPath(start.x, start.y, goal.x, goal.y);
+		mLastNode = 0;
+		mDashing = false;
+		mPathCalculated = true;
+	}
+
+	if (mPath.size() == 0)
+		return;
+
+	if (!mDashing)
+	{
+		mTrackPoint = MovementSHA::getPointInPath(mPath, start, mLastNode);
+		goToPoint(mTrackPoint);
+	}
+	else
+	{
+		if (mLastNode == mPath.size())
+			return;
+
+		if (start.x == mTrackPoint.x && start.y == mTrackPoint.y)
+			mTrackPoint = MovementSHA::getPointInPath(mPath, start, mLastNode);
+		goToPoint(mTrackPoint);
+	}
+}
+
 void MovementSHA::calculateTracking()
 {
 	if (mDashing)
@@ -137,25 +181,8 @@ void MovementSHA::calculateTracking()
 	Vector2 pos = mpUnit->getPosition();
 	Vector2 track = mpUnit->getTargetLocation();
 
-	Node start = Node(pos.x * GC::GRID_SCALE, pos.y * GC::GRID_SCALE);
-	Node goal = Node(track.x * GC::GRID_SCALE, track.y * GC::GRID_SCALE);
-
-	static Level* level = NULL;
-	if (level == NULL)
-		level = (Level*)Game::pInstance->getCurrentMode();
-
-	std::vector<Node*> path = level->getPath(start.x, start.y, goal.x, goal.y);
-
-	if (path.size() == 0)
-		return;
-
-	Vector2 target = getPointInPath(path, start);
-
-	for (unsigned int i = 0; i < path.size(); i++)
-		delete path.at(i);
-
 	//Then turn to face and the like
-	Vector2 targetVect = target - pos;
+	Vector2 targetVect = track - pos;
 
 	float targetAngle = targetVect.asAngle();
 	float angleInBetween = abs(targetAngle - mpUnit->getAngle());
@@ -164,6 +191,7 @@ void MovementSHA::calculateTracking()
 	{
 		//Dash forward
 		mDashing = true;
+		mpUnit->setAngle(targetAngle);
 		Game::pInstance->getAudio()->play("sha_dash", false);
 		dash();
 	}
@@ -190,6 +218,27 @@ void MovementSHA::dash()
 	if (mpLastPos == NULL)
 		mpLastPos = new Vector2();
 	*mpLastPos = mpUnit->getPosition();
+}
+
+void MovementSHA::goToPoint(Vector2& point)
+{
+	Vector2 current = Vector2(mpUnit->getPosition().x * GC::TILE_SCALE, mpUnit->getPosition().y * GC::TILE_SCALE);
+
+	if (point.x == current.x && point.y == current.y)
+		return;
+
+	float pointAngle = point.asAngle();
+
+	float angleBetween = abs(pointAngle - mpUnit->getAngle());
+
+	if (angleBetween <= DEGREES_5)
+	{
+		mpUnit->setAngle(pointAngle);
+		mpUnit->setVelocity(point.normal() * DASH_SPEED / 5);
+		mDashing = true;
+	}
+	else
+		turnToFace(angleBetween);
 }
 
 void MovementSHA::moveInDirection()
@@ -248,6 +297,13 @@ void MovementSHA::turnToFace(float dest)
 
 void MovementSHA::getNewDirection()
 {
+	//Fixes x and y position if stuck in a wall
+	float currentX = mpUnit->getPosition().x;
+	float currentY = mpUnit->getPosition().y;
+	int newPosX = currentX / 5 * 5;
+	int newPosY = currentY / 5 * 5;
+	mpUnit->setPosition(newPosX, newPosY);
+
 	bool noWall[DIRECTION_COUNT];
 	int sum = 0;
 
