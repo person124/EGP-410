@@ -34,10 +34,20 @@ void Unit::draw()
 	Game::pInstance->getGraphics()->drawOffset((int) mPos.x, (int) mPos.y, mpAnim->getCurrent(), mAniScale);
 }
 
+int Unit::getWidth()
+{
+	return mpAnim->getCurrent()->getWidth();
+}
+
+int Unit::getHeight()
+{
+	return mpAnim->getCurrent()->getHeight();
+}
+
 bool Unit::isPointInsideUnit(Vector2& point)
 {
-	float width = (float) mpAnim->getCurrent()->getWidth();
-	float height = (float)mpAnim->getCurrent()->getHeight();
+	float width = (float)getWidth();
+	float height = (float)getHeight();
 
 	float x = point.x;
 	float y = point.y;
@@ -51,30 +61,20 @@ bool Unit::isPointInsideUnit(Vector2& point)
 
 bool Unit::isUnitTouching(Unit* otherUnit)
 {
-	Vector2 pos = mPos;
+	Vector2 thisMin = mPos;
+	Vector2 thisMax = thisMin;
+	thisMax.x += getWidth();
+	thisMax.y += getHeight();
 
-	//Top left
-	if (otherUnit->isPointInsideUnit(pos))
-		return true;
+	Vector2 otherMin = otherUnit->getPosition();
+	Vector2 otherMax = otherMin;
+	otherMax.x += otherUnit->getWidth();
+	otherMax.y += otherUnit->getHeight();
 
-	int width = mpAnim->getCurrent()->getWidth();
-	pos.x += width;
-
-	//Top Right
-	if (otherUnit->isPointInsideUnit(pos))
-		return true;
-
-	int height = mpAnim->getCurrent()->getHeight();
-	pos.y += height;
-
-	//Bottom Right
-	if (otherUnit->isPointInsideUnit(pos))
-		return true;
-
-	pos.x -= width;
-
-	//Bottom Left
-	if (otherUnit->isPointInsideUnit(pos))
+	if (thisMin.x < otherMax.x &&
+		thisMax.x > otherMin.x &&
+		thisMin.y < otherMax.y &&
+		thisMax.y > otherMin.y)
 		return true;
 
 	return false;

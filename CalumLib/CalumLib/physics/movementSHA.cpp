@@ -132,7 +132,6 @@ void MovementSHA::calculateSearching()
 	moveInDirection();
 }
 
-#include "utils/timer.h"
 void MovementSHA::calculateFleeing()
 {
 	Node start = Node(mpUnit->getPosition().x * GC::GRID_SCALE, mpUnit->getPosition().y * GC::GRID_SCALE);
@@ -146,6 +145,9 @@ void MovementSHA::calculateFleeing()
 		Node goal = Node(mpUnit->getSpawnLocation().x * GC::GRID_SCALE, mpUnit->getSpawnLocation().y * GC::GRID_SCALE);
 
 		mPath = level->getPath(start.x, start.y, goal.x, goal.y);
+
+		for (unsigned int i = 0; i < mPath.size(); i++)
+			printf("%i, %i\n", mPath.at(i)->x, mPath.at(i)->y);
 		mLastNode = 0;
 		mDashing = false;
 		mPathCalculated = true;
@@ -161,10 +163,7 @@ void MovementSHA::calculateFleeing()
 	}
 	else
 	{
-		if (mLastNode == mPath.size())
-			return;
-
-		if (start.x == mTrackPoint.x && start.y == mTrackPoint.y)
+		if ((mLastNode != mPath.size()) || (start.x == mTrackPoint.x && start.y == mTrackPoint.y))
 			mTrackPoint = MovementSHA::getPointInPath(mPath, start, mLastNode);
 		goToPoint(mTrackPoint);
 	}

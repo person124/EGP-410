@@ -28,6 +28,9 @@ class Unit : public Trackable
 		Vector2& getPosition() { return mPos; };
 		float getX() { return mPos.x; };
 		float getY() { return mPos.y; };
+
+		int getWidth();
+		int getHeight();
 	
 		//Misc Functions
 		bool isPointInsideUnit(Vector2& point);
