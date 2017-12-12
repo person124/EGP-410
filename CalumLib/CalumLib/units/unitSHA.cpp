@@ -4,6 +4,9 @@
 
 #include "events/event.h"
 #include "events/eventSystem.h"
+#include "events/eventGameOver.h"
+
+#include "gameMode/level.h"
 
 #include "graphics/animationManager.h"
 #include "graphics/graphicsSystem.h"
@@ -82,8 +85,11 @@ void UnitSHA::update(double dt)
 		{
 			if (mpPlayerRef->isInvincible())
 				mpStateTree->transfer(shaDead);
-			else;
-			//Player Deaded
+			else
+			{
+				EventGameOver e = EventGameOver(((Level*)Game::pInstance->getCurrentMode())->getScore());
+				gpEventSystem->fireEvent(e);
+			}
 		}
 	}
 

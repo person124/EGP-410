@@ -21,6 +21,7 @@ class Level : public GameMode, public EventListener
 		void draw();
 
 		void addScore(int s);
+		int getScore() { return mScore; };
 
 		UnitManager* getUnits() { return mpUnits; };
 		std::vector<Node*> getPath(int startX, int startY, int endX, int endY);
