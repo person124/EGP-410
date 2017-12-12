@@ -19,9 +19,6 @@ enum EditorSelections
 	EDITOR_SELECTIONS_COUNT
 };
 
-//TODO
-//Add ability to change size, add ability to specifiy nav zones
-
 class Editor : public GameMode, public EventListener
 {
 	public:

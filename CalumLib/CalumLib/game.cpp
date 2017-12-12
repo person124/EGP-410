@@ -56,49 +56,51 @@ Game::~Game()
 
 bool Game::initGame(int width, int height)
 {
-	//TODO reorder
 	mpGraphics = new GraphicsSystem(width, height);
 	if (!mpGraphics->init())
-		return false;
-
-	mpAudio = new AudioSystem();
-	if (!mpAudio->init())
-		return false;
-
-	mpInputManager = new InputManager();
-	if (!mpInputManager->init())
 		return false;
 
 	mpBufferManager = new GraphicsBufferManager();
 	mpAnimationManager = new AnimationManager();
 
-	// Game assets
 	IOUtils::loadGraphicsBuffers(GC::PATH_GRAPHICS_BUFFERS);
 	IOUtils::loadAnimations(GC::PATH_ANIMATIONS);
+
+	mpAudio = new AudioSystem();
+	if (!mpAudio->init())
+		return false;
+
 	IOUtils::loadAudio(GC::PATH_AUDIO);
+
+	mpInputManager = new InputManager();
+	if (!mpInputManager->init())
+		return false;
 
 	mFPS = 0.0f;
 
 	mNextState = STATE_MAIN_MENU;
 	switchState();
 
+	srand(unsigned(time(NULL)));
+
 	return true;
 }
 
 void Game::destroy()
 {
-	//TODO reorder
 	if (mpGraphics == NULL)
 		return;
-
-	delete mpInputManager;
 
 	delete mpBufferManager;
 	delete mpAnimationManager;
 
+	delete mpInputManager;
+
 	if (mpGameMode != NULL)
 		delete mpGameMode;
 
+	//Audio is last to make sure all clips have been cleared
+	//first before deleted
 	delete mpAudio;
 
 	mpGraphics->destroy();

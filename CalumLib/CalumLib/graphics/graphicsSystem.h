@@ -50,7 +50,6 @@ class GraphicsSystem : public Trackable
 		//Drawing Primitives
 		void drawCircle(int x, int y, int radius, const Color& color);
 		void drawLine(int x1, int y1, int x2, int y2, const Color& color);
-		void drawGridOutline(int startX, int startY, int width, int height, int xCount, int yCount);
 
 		//Misc
 		void clear();

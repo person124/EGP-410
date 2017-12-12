@@ -7,8 +7,6 @@
 #include "utils/memoryTracker.h"
 
 #include <iostream>
-#include <stdlib.h>
-#include <ctime>
 
 int main()
 {
@@ -16,11 +14,7 @@ int main()
 	Game::init();
 
 	if (Game::pInstance->initGame(GC::WINDOW_WIDTH, GC::WINDOW_HEIGHT))
-	{
-		//TODO Move this to inside Game
-		srand(unsigned(time(NULL)));
 		Game::pInstance->mainLoop();
-	}
 
 	Game::cleanup();
 

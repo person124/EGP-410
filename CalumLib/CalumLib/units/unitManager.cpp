@@ -10,6 +10,8 @@
 #include "units/unitCoin.h"
 #include "units/unitCandy.h"
 
+#include <assert.h>
+
 UnitManager::UnitManager()
 {
 	mpPlayer = NULL;
@@ -107,7 +109,7 @@ void UnitManager::addPlayer(int x, int y)
 {
 	if (mpPlayer != NULL)
 	{
-		//TODO output error, player alreay exists
+		assert(false);
 		return;
 	}
 

@@ -203,22 +203,6 @@ void GraphicsSystem::drawLine(int x1, int y1, int x2, int y2, const Color& color
 	al_draw_line(x1, y1, x2, y2, *color.mColor, 2);
 }
 
-void GraphicsSystem::drawGridOutline(int startX, int startY, int width, int height, int xCount, int yCount)
-{
-	for (int y = 0; y <= yCount; y++)
-		for (int x = 0; x <= xCount; x++)
-		{
-			int x1 = x * width + startX - mXOffset;
-			int x2 = x1 + width;
-
-			int y1 = y * height + startY - mYOffset;
-			int y2 = y1 + height;
-
-			//TODO add color option
-			al_draw_rectangle(x1, y1, x2, y2, al_map_rgb(255, 0, 0), 2);
-		}
-}
-
 void GraphicsSystem::clear()
 {
 	al_draw_filled_rectangle(0, 0, mWidth, mHeight, *mpColorBlack->mColor);

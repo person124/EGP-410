@@ -5,12 +5,11 @@
 
 #include "utils/trackable.h"
 
-//TODO Reorder
 class GraphicsSystem;
-class InputManager;
 class GraphicsBufferManager;
 class AnimationManager;
 class AudioSystem;
+class InputManager;
 class GameMode;
 class Grid;
 
@@ -45,12 +44,11 @@ class Game : public EventListener
 
 		bool mRunning;
 	
-		//TODO Reorder
 		GraphicsSystem* mpGraphics;
-		InputManager* mpInputManager;
 		GraphicsBufferManager* mpBufferManager;
 		AnimationManager* mpAnimationManager;
 		AudioSystem* mpAudio;
+		InputManager* mpInputManager;
 		GameMode* mpGameMode;
 	
 		float mFPS;

@@ -84,16 +84,6 @@ void Editor::draw()
 		mpGrid->drawSolidity();
 	mpGrid->drawSpawnLocations();
 
-	mpGraphics->drawGridOutline
-	(
-		0,
-		0,
-		GC::CHUNK_SIZE,
-		GC::CHUNK_SIZE,
-		mpGrid->getWidth() / 5,
-		mpGrid->getHeight() / 5
-	);
-
 	mpGUI->draw();
 }
 
