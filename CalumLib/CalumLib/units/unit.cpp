@@ -31,7 +31,7 @@ void Unit::update(double dt)
 
 void Unit::draw()
 {
-	Game::pInstance->getGraphics()->drawOffset((int) mPos.x, (int) mPos.y, mpAnim->getCurrent(), mAniScale);
+	Game::pInstance->getGraphics()->drawOffset(mPos.x, mPos.y, mpAnim->getCurrent(), mAniScale);
 }
 
 int Unit::getWidth()

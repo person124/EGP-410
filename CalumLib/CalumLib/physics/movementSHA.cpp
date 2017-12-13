@@ -63,7 +63,7 @@ Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& 
 
 	for (unsigned int i = startNum; i < path.size(); i++)
 	{
-		Vector2 nodeVect = Vector2(path.at(i)->x, path.at(i)->y);
+		Vector2 nodeVect = Vector2((float)path.at(i)->x, (float)path.at(i)->y);
 
 		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
 		{
@@ -134,15 +134,15 @@ void MovementSHA::calculateSearching()
 
 void MovementSHA::calculateFleeing()
 {
-	Node start = Node(mpUnit->getPosition().x * GC::GRID_SCALE, mpUnit->getPosition().y * GC::GRID_SCALE);
+	Node start = Node((int)(mpUnit->getPosition().x * GC::GRID_SCALE), (int)(mpUnit->getPosition().y * GC::GRID_SCALE));
 	if (!mPathCalculated || mPath.size() == 0)
 	{
 		static Level* level = NULL;
 		if (level == NULL)
 			level = (Level*)Game::pInstance->getCurrentMode();
 
-		start = Node(mpUnit->getPosition().x * GC::GRID_SCALE, mpUnit->getPosition().y * GC::GRID_SCALE);
-		Node goal = Node(mpUnit->getSpawnLocation().x * GC::GRID_SCALE, mpUnit->getSpawnLocation().y * GC::GRID_SCALE);
+		start = Node((int)(mpUnit->getPosition().x * GC::GRID_SCALE), (int)(mpUnit->getPosition().y * GC::GRID_SCALE));
+		Node goal = Node((int)(mpUnit->getSpawnLocation().x * GC::GRID_SCALE), (int)(mpUnit->getSpawnLocation().y * GC::GRID_SCALE));
 
 		mPath = level->getPath(start.x, start.y, goal.x, goal.y);
 
@@ -299,8 +299,8 @@ void MovementSHA::getNewDirection()
 	//Fixes x and y position if stuck in a wall
 	float currentX = mpUnit->getPosition().x;
 	float currentY = mpUnit->getPosition().y;
-	int newPosX = currentX / 5 * 5;
-	int newPosY = currentY / 5 * 5;
+	int newPosX = (int)(currentX / 5) * 5;
+	int newPosY = (int)(currentY / 5) * 5;
 	mpUnit->setPosition(newPosX, newPosY);
 
 	bool noWall[DIRECTION_COUNT];

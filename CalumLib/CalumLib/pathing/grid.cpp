@@ -64,7 +64,7 @@ void Grid::drawSpawnLocations()
 	for (unsigned int i = 0; i < mSpawnLocations.size(); i++)
 	{
 		SpawnLocation sl = mSpawnLocations.at(i);
-		Game::pInstance->getGraphics()->drawOffset(sl.x * GC::TILE_SIZE, sl.y * GC::TILE_SIZE, mpSpawnAni->getSprite(sl.type), GC::TILE_SCALE);
+		Game::pInstance->getGraphics()->drawOffset((float)(sl.x * GC::TILE_SIZE), (float)(sl.y * GC::TILE_SIZE), mpSpawnAni->getSprite(sl.type), (float)GC::TILE_SCALE);
 	}
 }
 

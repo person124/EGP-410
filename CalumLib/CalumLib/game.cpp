@@ -99,7 +99,7 @@ void Game::destroy()
 	if (mpGameMode != NULL)
 		delete mpGameMode;
 
-	//Audio is last to make sure all clips have been cleared
+	//Audio is deleted last (almost) to make sure all clips have been cleared
 	//first before deleted
 	delete mpAudio;
 

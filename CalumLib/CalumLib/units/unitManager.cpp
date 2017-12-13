@@ -118,7 +118,7 @@ void UnitManager::addPlayer(int x, int y)
 
 void UnitManager::addSheerHeartAttack(int x, int y, int color)
 {
-	Vector2 spawn = Vector2(x * GC::TILE_SIZE, y * GC::TILE_SIZE);
+	Vector2 spawn = Vector2((float)(x * GC::TILE_SIZE), (float)(y * GC::TILE_SIZE));
 	UnitSHA* sha = new UnitSHA(spawn.x, spawn.y, (SHAColor) color, mpPlayer);
 
 	addUnit(sha);

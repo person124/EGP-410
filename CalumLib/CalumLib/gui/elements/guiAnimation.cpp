@@ -34,7 +34,7 @@ void GUIAnimation::update(double dt)
 
 void GUIAnimation::draw()
 {
-	Game::pInstance->getGraphics()->draw(mX, mY, mpAni->getCurrent(), mScale);
+	Game::pInstance->getGraphics()->draw((float)mX, (float)mY, mpAni->getCurrent(), mScale);
 }
 
 void GUIAnimation::setFrame(int frame)

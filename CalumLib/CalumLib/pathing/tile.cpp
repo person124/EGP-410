@@ -33,12 +33,12 @@ Tile::~Tile()
 
 void Tile::draw(int x, int y)
 {
-	Game::pInstance->getGraphics()->drawOffset(x * GC::TILE_SIZE, y * GC::TILE_SIZE, mpSprite, GC::TILE_SCALE);
+	Game::pInstance->getGraphics()->drawOffset((float)(x * GC::TILE_SIZE), (float)(y * GC::TILE_SIZE), mpSprite, (float)GC::TILE_SCALE);
 }
 
 void Tile::drawSolidity(int x, int y)
 {
-	Game::pInstance->getGraphics()->drawOffset(x * GC::TILE_SIZE, y * GC::TILE_SIZE, Tile::mspSolidAnimation->getSprite(mID), GC::TILE_SCALE);
+	Game::pInstance->getGraphics()->drawOffset((float)(x * GC::TILE_SIZE), (float)(y * GC::TILE_SIZE), Tile::mspSolidAnimation->getSprite(mID), (float)GC::TILE_SCALE);
 }
 
 bool Tile::isSolid()

@@ -100,17 +100,17 @@ void GameOver::draw()
 		{
 			mpGUI->draw();
 			if (time >= 3.7)
-				Game::pInstance->getGraphics()->drawCircle(mWMid, mHMid, (int)(GC::WINDOW_WIDTH * ((time - 3.7) / 3.0)), *mpColor);
+				Game::pInstance->getGraphics()->drawCircle((float)mWMid, (float)mHMid, GC::WINDOW_WIDTH * ((((float)time) - 3.7f) / 3), *mpColor);
 		}
 	}
 
-	double scale = (time < 4.9) ? 0 : ((time - 4.9) / (6.3 - 4.9));
+	float scale = (float)((time < 4.9) ? 0 : ((time - 4.9) / (6.3 - 4.9)));
 	if (time > 6.3)
 		scale = 1;
-	Game::pInstance->getGraphics()->draw((int)(mWMid * scale), (int)(mHMid * scale), mpPlayer->getCurrent(), GC::TILE_SCALE);
+	Game::pInstance->getGraphics()->draw(mWMid * scale, mHMid * scale, mpPlayer->getCurrent(), (float)GC::TILE_SCALE);
 
 	if (time >= 4.5)
-		Game::pInstance->getGraphics()->drawCircle(mWMid + 5, mHMid + 5, 50, *mpColor);
+		Game::pInstance->getGraphics()->drawCircle((float)(mWMid + 5), (float)(mHMid + 5), 50.0f, *mpColor);
 }
 
 void GameOver::handleEvent(const Event& theEvent)

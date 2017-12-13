@@ -31,15 +31,15 @@ class GraphicsSystem : public Trackable
 		int getYOffset();
 
 		//drawing buffers
-		void draw(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
-		void draw(int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
-		void draw(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
-        void draw(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void draw(float x, float y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void draw(float x, float y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void draw(GraphicsBuffer* toDraw, float x, float y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+        void draw(GraphicsBuffer* buffer, float x, float y, Sprite* sprite, float scale = 1.0f, float angle = 0);
         //Drawing buffers w/ offset
-		void drawOffset(int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
-		void drawOffset(int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
-		void drawOffset(GraphicsBuffer* toDraw, int x, int y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
-		void drawOffset(GraphicsBuffer* buffer, int x, int y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void drawOffset(float x, float y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void drawOffset(float x, float y, Sprite* sprite, float scale = 1.0f, float angle = 0);
+		void drawOffset(GraphicsBuffer* toDraw, float x, float y, GraphicsBuffer* buffer, float scale = 1.0f, float angle = 0);
+		void drawOffset(GraphicsBuffer* buffer, float x, float y, Sprite* sprite, float scale = 1.0f, float angle = 0);
 
 		//Writing text
 		void writeText(int x, int y, const Font& font, const Color& color, const std::string& text);
@@ -48,19 +48,19 @@ class GraphicsSystem : public Trackable
 		void writeText(int x, int y, const std::string& text);
 
 		//Drawing Primitives
-		void drawCircle(int x, int y, int radius, const Color& color);
-		void drawLine(int x1, int y1, int x2, int y2, const Color& color);
+		void drawCircle(float x, float y, float radius, const Color& color);
+		void drawLine(float x1, float y1, float x2, float y2, const Color& color);
 
 		//Misc
 		void clear();
 		void flip();
-		void setOffset(int x, int y);
-		void offsetOffset(int xOff, int yOff);
+		void setOffset(float x, float y);
+		void offsetOffset(float xOff, float yOff);
 	private:
 		ALLEGRO_DISPLAY* mpDisplay;
 		int mWidth, mHeight;
 
-		int mXOffset, mYOffset;
+		float mXOffset, mYOffset;
 
 		Color* mpColorBlack;
 

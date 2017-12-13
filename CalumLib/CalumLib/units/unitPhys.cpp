@@ -50,8 +50,8 @@ void UnitPhys::draw()
 {
 	Game::pInstance->getGraphics()->drawOffset
 	(
-		(int)mPos.x,
-		(int)mPos.y,
+		mPos.x,
+		mPos.y,
 		mpAnim->getCurrent(),
 		mAniScale,
 		mAngle

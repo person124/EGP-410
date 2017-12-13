@@ -28,5 +28,5 @@ GUIImage::~GUIImage()
 
 void GUIImage::draw()
 {
-	Game::pInstance->getGraphics()->draw(mX, mY, mpBuffer, mScale);
+	Game::pInstance->getGraphics()->draw((float)mX, (float)mY, mpBuffer, mScale);
 }

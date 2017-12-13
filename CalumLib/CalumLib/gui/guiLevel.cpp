@@ -63,7 +63,8 @@ void GUILevel::draw()
 {
 	if (mRenderBorder)
 	{
-		Game::pInstance->getGraphics()->draw(
+		Game::pInstance->getGraphics()->draw
+		(
 			0,
 			0,
 			mpBorder,
@@ -74,11 +75,12 @@ void GUILevel::draw()
 	GUI::draw();
 	if (mRenderSpawn)
 	{
-		Game::pInstance->getGraphics()->draw(
-			mOraX,
-			mOraY,
+		Game::pInstance->getGraphics()->draw
+		(
+			(float)mOraX,
+			(float)mOraY,
 			mpOraSpawn->getCurrent(),
-			1
+			1.0f
 		);
 	}
 }

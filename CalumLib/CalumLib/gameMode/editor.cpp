@@ -172,8 +172,8 @@ void Editor::handleEvent(const Event& theEvent)
 		const EventClick& e = static_cast<const EventClick&>(theEvent);
 
 		//Place a tile / spawn at click
-		int tileX = (e.getX() + mpGraphics->getXOffset()) * GC::GRID_SCALE;
-		int tileY = (e.getY() + mpGraphics->getYOffset()) * GC::GRID_SCALE;
+		int tileX = (int)((e.getX() + mpGraphics->getXOffset()) * GC::GRID_SCALE);
+		int tileY = (int)((e.getY() + mpGraphics->getYOffset()) * GC::GRID_SCALE);
 
 		if (mCurrentType == TILE)
 			mpGrid->setID(tileX, tileY, mCurrent[TILE]);

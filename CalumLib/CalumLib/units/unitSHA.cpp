@@ -102,8 +102,8 @@ void UnitSHA::draw()
 	if (mpStateTree->getID() == shaDead)
 		Game::pInstance->getGraphics()->drawOffset
 		(
-			(int)mPos.x,
-			(int)mPos.y,
+			mPos.x,
+			mPos.y,
 			mpAniRespawn->getCurrent(),
 			(float) (mAniScale * (mpStateTree->getTimer()->getElapsedTime() / 10.0)),
 			mAngle
@@ -120,8 +120,8 @@ void UnitSHA::draw()
 
 		Game::pInstance->getGraphics()->drawOffset
 		(
-			(int)mPos.x,
-			(int)mPos.y,
+			mPos.x,
+			mPos.y,
 			toRender->getCurrent(),
 			mAniScale,
 			mAngle
@@ -132,8 +132,8 @@ void UnitSHA::draw()
 	{
 		Game::pInstance->getGraphics()->drawOffset
 		(
-			(int)(mPos.x - 8),
-			(int)(mPos.y - 8),
+			mPos.x - 8,
+			mPos.y - 8,
 			mpAniORA->getCurrent(),
 			(float)3
 		);
