@@ -12,7 +12,7 @@ class GameMode : public Trackable
 		GameMode();
 		virtual ~GameMode();
 
-		virtual void update(double dt) {};
+		virtual void update(const double& dt) {};
 		virtual void draw() {};
 
 		Grid* getGrid() { return mpGrid; };

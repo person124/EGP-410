@@ -48,7 +48,7 @@ UnitPlayer::~UnitPlayer()
 	delete mpTimer;
 }
 
-void UnitPlayer::update(double dt)
+void UnitPlayer::update(const double& dt)
 {
 	Game::pInstance->getGraphics()->setOffset(mPos.x + mXOffset, mPos.y + mYOffset);
 

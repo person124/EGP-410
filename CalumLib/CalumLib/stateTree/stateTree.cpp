@@ -12,7 +12,7 @@ StateTree::~StateTree()
 	delete[] mpStates;
 }
 
-void StateTree::update(double dt)
+void StateTree::update(const double& dt)
 {
 	int newState = mpCurrentState->update(this, dt);
 	if (newState != mpCurrentState->getID())

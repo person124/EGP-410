@@ -9,7 +9,7 @@ class UnitCoin : public Unit
 		UnitCoin(int x, int y, Unit* player);
 		~UnitCoin();
 
-		void update(double dt);
+		void update(const double& dt);
 	private:
 		Unit* mpPlayerRef;
 };

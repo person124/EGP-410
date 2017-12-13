@@ -48,7 +48,7 @@ GUILevel::~GUILevel()
 	gpEventSystem->removeListener(EVENT_CANDY_END, this);
 }
 
-void GUILevel::update(double dt)
+void GUILevel::update(const double& dt)
 {
 	GUI::update(dt);
 	if (mRenderSpawn)

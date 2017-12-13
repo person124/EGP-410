@@ -16,7 +16,7 @@ class GameOver : public GameMode, public EventListener
 		GameOver(int score);
 		~GameOver();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void handleEvent(const Event& theEvent);

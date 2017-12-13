@@ -23,7 +23,7 @@ class UnitSHA : public UnitPhys, public EventListener
 		UnitSHA(float x, float y, SHAColor color, Unit* player);
 		~UnitSHA();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void handleEvent(const Event& theEvent);

@@ -48,7 +48,7 @@ void Animation::addSprite(Sprite* sprite)
 	mSprites.push_back(sprite);
 }
 
-void Animation::update(double dt)
+void Animation::update(const double& dt)
 {
 	if (mDone)
 		return;

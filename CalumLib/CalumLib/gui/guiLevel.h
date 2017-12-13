@@ -14,7 +14,7 @@ class GUILevel : public GUI, public EventListener
 		GUILevel();
 		~GUILevel();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void setScore(int s);

@@ -37,7 +37,7 @@ class Game : public EventListener
 		GameMode* getCurrentMode();
 		Grid* getCurrentGrid();
 	private:
-		void update(float dt);
+		void update(const double& dt);
 		void draw();
 
 		void switchState();

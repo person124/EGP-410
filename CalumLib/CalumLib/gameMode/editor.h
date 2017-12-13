@@ -25,7 +25,7 @@ class Editor : public GameMode, public EventListener
 		Editor();
 		~Editor();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void handleEvent(const Event& theEvent);

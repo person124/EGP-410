@@ -17,7 +17,7 @@ class Level : public GameMode, public EventListener
 		Level(const char* levelName);
 		~Level();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void addScore(int s);

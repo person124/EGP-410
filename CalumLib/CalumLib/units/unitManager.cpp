@@ -80,7 +80,7 @@ int UnitManager::getSize()
 	return mUnits.size();
 }
 
-void UnitManager::update(double dt)
+void UnitManager::update(const double& dt)
 {
 	bool doDeletions = false;
 

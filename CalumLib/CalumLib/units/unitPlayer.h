@@ -14,7 +14,7 @@ class UnitPlayer : public UnitPhys, public EventListener
 		UnitPlayer(int x, int y);
 		~UnitPlayer();
 
-		void update(double dt);
+		void update(const double& dt);
 
 		void handleEvent(const Event& theEvent);
 

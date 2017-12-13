@@ -12,7 +12,7 @@ class StateTree : public Trackable
 		StateTree(Unit* unit);
 		virtual ~StateTree();
 
-		void update(double dt);
+		void update(const double& dt);
 		virtual void transfer(int state) {};
 
 		int getID();

@@ -15,7 +15,7 @@ GUI::~GUI()
 	delete[] mpElements;
 }
 
-void GUI::update(double dt)
+void GUI::update(const double& dt)
 {
 	for (int i = 0; i < mElementCount; i++)
 		mpElements[i]->update(dt);

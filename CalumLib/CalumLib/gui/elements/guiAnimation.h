@@ -12,7 +12,7 @@ class GUIAnimation : public GUIElement
 		GUIAnimation(int x, int y, const char* animString, float scale = 1.0f);
 		~GUIAnimation();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		void setFrame(int frame);

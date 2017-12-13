@@ -25,7 +25,7 @@ UnitPhys::~UnitPhys()
 {
 }
 
-void UnitPhys::update(double dt)
+void UnitPhys::update(const double& dt)
 {
 	Unit::update(dt);
 

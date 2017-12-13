@@ -27,7 +27,7 @@ UnitCandy::~UnitCandy()
 	delete mpTimer;
 }
 
-void UnitCandy::update(double dt)
+void UnitCandy::update(const double& dt)
 {
 	if (mEnabled)
 	{

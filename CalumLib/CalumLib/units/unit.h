@@ -14,7 +14,7 @@ class Unit : public Trackable
 		virtual ~Unit();
 
 		//Drawing and movement
-		virtual void update(double dt);
+		virtual void update(const double& dt);
 		virtual void draw();
 	
 		// Getters and Setters

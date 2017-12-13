@@ -18,7 +18,7 @@ class Animation : public Trackable
 
 		//Misc.
 		void addSprite(Sprite* sprite);
-		void update(double dt);
+		void update(const double& dt);
 		void destroy();
 
 		//Setters

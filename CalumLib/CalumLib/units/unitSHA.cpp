@@ -69,7 +69,7 @@ UnitSHA::~UnitSHA()
 	delete mpMovement;
 }
 
-void UnitSHA::update(double dt)
+void UnitSHA::update(const double& dt)
 {
 	mpAniBase->update(dt);
 	mpAniEnraged->update(dt);

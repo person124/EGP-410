@@ -27,7 +27,7 @@ GUIAnimation::~GUIAnimation()
 	delete mpAni;
 }
 
-void GUIAnimation::update(double dt)
+void GUIAnimation::update(const double& dt)
 {
 	mpAni->update(dt);
 }

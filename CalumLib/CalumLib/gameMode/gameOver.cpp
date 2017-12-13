@@ -49,7 +49,7 @@ GameOver::~GameOver()
 	delete mpColor;
 }
 
-void GameOver::update(double dt)
+void GameOver::update(const double& dt)
 {
 	if (mAnimationDone)
 	{

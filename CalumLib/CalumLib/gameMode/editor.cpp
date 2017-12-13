@@ -66,7 +66,7 @@ Editor::~Editor()
 	delete mpTimer;
 }
 
-void Editor::update(double dt)
+void Editor::update(const double& dt)
 {
 	if (mpTimer->getElapsedTime() > 2)
 	{

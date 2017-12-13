@@ -24,7 +24,7 @@ Unit::~Unit()
 		delete mpAnim;
 }
 
-void Unit::update(double dt)
+void Unit::update(const double& dt)
 {
 	mpAnim->update(dt);
 }

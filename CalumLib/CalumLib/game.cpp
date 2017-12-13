@@ -136,7 +136,7 @@ void Game::mainLoop()
 	delete FPSTimer;
 }
 
-void Game::update(float dt)
+void Game::update(const double& dt)
 {
 	mpInputManager->update();
 

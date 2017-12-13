@@ -11,7 +11,7 @@ class UnitPhys : public Unit
 		UnitPhys(const char* animString);
 		~UnitPhys();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 
 		//Getters and Setters

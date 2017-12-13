@@ -49,7 +49,7 @@ Level::~Level()
 	gpEventSystem->removeListener(EVENT_PICKUP_COIN, this);
 }
 
-void Level::update(double dt)
+void Level::update(const double& dt)
 {
 	mpUnits->update(dt);
 

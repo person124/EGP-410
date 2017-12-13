@@ -15,7 +15,7 @@ UnitCoin::~UnitCoin()
 {
 }
 
-void UnitCoin::update(double dt)
+void UnitCoin::update(const double& dt)
 {
 	if (isUnitTouching(mpPlayerRef))
 	{

@@ -11,7 +11,7 @@ class UnitCandy : public Unit
 		UnitCandy(int x, int y, Unit* player);
 		~UnitCandy();
 
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 	private:
 		Unit* mpPlayerRef;

@@ -28,7 +28,7 @@ class UnitManager : public Trackable
 		UnitPlayer* getPlayer() { return mpPlayer; };
 	
 		// Update Functions
-		void update(double dt);
+		void update(const double& dt);
 		void draw();
 	
 		// Special Unit Adders
