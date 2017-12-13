@@ -38,8 +38,6 @@ void UnitPhys::update(const double& dt)
 
 	mAngle += mRotation * t;
 
-	//TODO clamp velocity?
-
 	while (mAngle < 0)
 		mAngle += PI2;
 	while (mAngle > PI2)
@@ -77,17 +75,8 @@ void UnitPhys::stop()
 
 bool UnitPhys::checkForWalls(const Vector2& pos)
 {
-	static Grid* grid;
-	if (grid == NULL)
-		grid = Game::pInstance->getCurrentGrid();;
-
-	int width = (int)(getWidth() * mAniScale);
-	int height = (int)(getHeight() * mAniScale);
-
-	int x1 = (int)((pos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
-	int x2 = (int)((pos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
-	int y1 = (int)((pos.y + COLLISION_BUFFER) * GC::GRID_SCALE);
-	int y2 = (int)((pos.y + height - COLLISION_BUFFER) * GC::GRID_SCALE);
+	int x1, y1, x2, y2;
+	Grid* grid = wallPointCalculator(pos, x1, y1, x2, y2);
 
 	if ((mVel.x < 0 || mVel.y < 0) && grid->isSolid(x1, y1))
 		return true;
@@ -101,22 +90,10 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 	return false;
 }
 
-//TODO
-//Make this function and checkForWalls not use so much of the same code
-//Maybe make another function
 bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 {
-	static Grid* grid;
-	if (grid == NULL)
-		grid = Game::pInstance->getCurrentGrid();
-
-	int width = (int)(getWidth() * mAniScale);
-	int height = (int)(getHeight() * mAniScale);
-
-	int x1 = (int)((offset.x + mPos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
-	int x2 = (int)((offset.x + mPos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
-	int y1 = (int)((offset.y + mPos.y + COLLISION_BUFFER) * GC::GRID_SCALE);
-	int y2 = (int)((offset.y + mPos.y + height - COLLISION_BUFFER) * GC::GRID_SCALE);
+	int x1, y1, x2, y2;
+	Grid* grid = wallPointCalculator(offset, x1, y1, x2, y2);
 
 	if ((offset.x < 0 || offset.y < 0) && grid->isSolid(x1, y1))
 		return true;
@@ -128,4 +105,22 @@ bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 		return true;
 
 	return false;
+}
+
+Grid* UnitPhys::wallPointCalculator(const Vector2& pos, int& x1, int& y1, int& x2, int& y2)
+{
+	static Grid* grid = NULL;
+	if (grid == NULL)
+		grid = Game::pInstance->getCurrentGrid();
+
+	int width = (int)(getWidth() * mAniScale);
+	int height = (int)(getHeight() * mAniScale);
+
+	x1 = (int)((pos.x + COLLISION_BUFFER) * GC::GRID_SCALE);
+	y1 = (int)((pos.y + COLLISION_BUFFER) * GC::GRID_SCALE);
+
+	x2 = (int)((pos.x + width - COLLISION_BUFFER) * GC::GRID_SCALE);
+	y2 = (int)((pos.y + height - COLLISION_BUFFER) * GC::GRID_SCALE);
+
+	return grid;
 }

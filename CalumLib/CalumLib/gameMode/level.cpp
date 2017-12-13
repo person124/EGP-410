@@ -19,6 +19,7 @@
 #include "utils/ioUtils.h"
 
 #include <string>
+#include <assert.h>
 
 Level::Level(const char* levelName)
 {
@@ -95,14 +96,23 @@ void Level::createGraph()
 void Level::initSpawns()
 {
 	std::vector<SpawnLocation> spawns = mpGrid->getSpawnLocations();
+	bool foundPlayer = false;
 
 	for (unsigned int i = 0; i < spawns.size(); i++)
 	{
 		SpawnLocation* s = &spawns.at(i);
+		if (!foundPlayer && s->type != PLAYER)
+			continue;
+
 		switch (s->type)
 		{
 			case PLAYER:
+				if (foundPlayer)
+					continue;
+
 				mpUnits->addPlayer(s->x, s->y);
+				foundPlayer = true;
+				i = 0;
 				break;
 			case ENEMY_BLUE:
 			case ENEMY_RED:
@@ -114,6 +124,8 @@ void Level::initSpawns()
 				break;
 		}
 	}
+
+	assert(foundPlayer);
 }
 
 void Level::populateCoins()

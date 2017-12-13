@@ -55,27 +55,27 @@ float MovementSHA::directionToAngle(Direction dir)
 	return DIR_ANGLES[(int)dir];
 }
 
-Vector2 MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& start, unsigned int& startNum)
+Node MovementSHA::getPointInPath(const std::vector<Node*>& path, const Node& start, unsigned int& startNum)
 {
-	Vector2 goal = Vector2();
+	if (startNum == path.size())
+		return *path.at(path.size() - 1);
 
-	Vector2 startVect = Vector2((float)start.x, (float)start.y);
+	Node goal = Node();
 
+	Node* n = NULL;
 	for (unsigned int i = startNum; i < path.size(); i++)
 	{
-		Vector2 nodeVect = Vector2((float)path.at(i)->x, (float)path.at(i)->y);
+		n = path.at(i);
 
-		if (!RayCast(Game::pInstance->getCurrentGrid(), startVect, nodeVect))
+		if (!RayCast(Game::pInstance->getCurrentGrid(), start, *n))
 		{
-			goal.x = (float)path.at(i - 1)->x * GC::TILE_SIZE;
-			goal.y = (float)path.at(i - 1)->y * GC::TILE_SIZE;
 			startNum = i;
-			return goal;
+			break;
 		}
 	}
 
-	goal.x = (float)path.at(path.size() - 1)->x * GC::TILE_SIZE;
-	goal.y = (float)path.at(path.size() - 1)->y * GC::TILE_SIZE;
+	goal.x = n->x;
+	goal.y = n->y ;
 	startNum = path.size();
 
 	return goal;
@@ -219,21 +219,25 @@ void MovementSHA::dash()
 	*mpLastPos = mpUnit->getPosition();
 }
 
-void MovementSHA::goToPoint(Vector2& point)
+void MovementSHA::goToPoint(Node& point)
 {
-	Vector2 current = Vector2(mpUnit->getPosition().x * GC::TILE_SCALE, mpUnit->getPosition().y * GC::TILE_SCALE);
+	Node current = Node((int)(mpUnit->getPosition().x * GC::GRID_SCALE), (int)(mpUnit->getPosition().y * GC::GRID_SCALE));
 
 	if (point.x == current.x && point.y == current.y)
 		return;
 
-	float pointAngle = point.asAngle();
+	Vector2 difference;
+	difference.x = (float)(point.x - current.x);
+	difference.y = (float)(point.y - current.y);
+
+	float pointAngle = difference.asAngle();
 
 	float angleBetween = abs(pointAngle - mpUnit->getAngle());
 
 	if (angleBetween <= DEGREES_5)
 	{
 		mpUnit->setAngle(pointAngle);
-		mpUnit->setVelocity(point.normal() * DASH_SPEED / 5);
+		mpUnit->setVelocity(difference.normal() * DASH_SPEED / 5);
 		mDashing = true;
 	}
 	else

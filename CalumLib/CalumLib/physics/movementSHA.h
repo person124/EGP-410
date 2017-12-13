@@ -27,7 +27,7 @@ class MovementSHA : public Trackable
 	public:
 		static Vector2 directionToVelocity(Direction dir);
 		static float directionToAngle(Direction dir);
-		static Vector2 getPointInPath(const std::vector<Node*>& path, const Node& start, unsigned int& startNum);
+		static Node getPointInPath(const std::vector<Node*>& path, const Node& start, unsigned int& startNum);
 
 	public:
 		MovementSHA(UnitSHA* unit);
@@ -41,7 +41,7 @@ class MovementSHA : public Trackable
 
 		void dash();
 
-		void goToPoint(Vector2& point);
+		void goToPoint(Node& point);
 
 		void moveInDirection();
 		void turnToFace(float dest);
@@ -58,7 +58,7 @@ class MovementSHA : public Trackable
 		//For fleeing
 		bool mPathCalculated;
 		std::vector<Node*> mPath;
-		Vector2 mTrackPoint;
+		Node mTrackPoint;
 		unsigned int mLastNode;
 };
 

@@ -86,7 +86,7 @@ std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 
 			Node* connection = find(closed, cx, cy);
 			int cost = current->cost + 1;
-			int costHeuristic;
+			int costHeuristic = heuristic(cx * GC::TILE_SIZE, cy * GC::TILE_SIZE, goalX, goalY);
 
 			//If connection is in closed
 			if (connection != NULL)
@@ -95,7 +95,7 @@ std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 					continue;
 
 				remove(closed, connection);
-				costHeuristic = connection->estimatedCost - cost;
+				costHeuristic = costHeuristic;
 			}
 			else
 			{
@@ -107,13 +107,13 @@ std::vector<Node*> TopMap::getPath(int startX, int startY, int goalX, int goalY)
 					if (connection->cost <= cost)
 						continue;
 
-					costHeuristic = connection->estimatedCost - cost;
+					costHeuristic = costHeuristic;
 				}
 				//If connection hasn't been found yet
 				else
 				{
 					connection = new Node(cx, cy);
-					costHeuristic = heuristic(connection->x, connection->y, goal.x, goal.y);
+					costHeuristic = costHeuristic;
 				}
 			}
 

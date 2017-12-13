@@ -5,6 +5,8 @@
 
 #include "units/unit.h"
 
+class Grid;
+
 class UnitPhys : public Unit
 {
 	public:
@@ -36,6 +38,8 @@ class UnitPhys : public Unit
 		bool checkForWalls(const Vector2& pos);
 		bool checkForWallsOffset(const Vector2& offset);
 	protected:
+		Grid* wallPointCalculator(const Vector2& pos, int& x1, int& y1, int& x2, int& y2);
+
 		Vector2 mVel;
 		float mAngle, mRotation;
 
