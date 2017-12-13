@@ -285,12 +285,6 @@
     <ClInclude Include="events\eventCandyEnd.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
-    <ClInclude Include="pathing\topNode.h">
-      <Filter>Header Files\pathing</Filter>
-    </ClInclude>
-    <ClInclude Include="pathing\nodeList.h">
-      <Filter>Header Files\pathing</Filter>
-    </ClInclude>
     <ClInclude Include="events\eventGameOver.h">
       <Filter>Header Files\events</Filter>
     </ClInclude>
@@ -465,12 +459,6 @@
       <Filter>Source Files\units</Filter>
     </ClCompile>
     <ClCompile Include="pathing\topMap.cpp">
-      <Filter>Source Files\pathing</Filter>
-    </ClCompile>
-    <ClCompile Include="pathing\topNode.cpp">
-      <Filter>Source Files\pathing</Filter>
-    </ClCompile>
-    <ClCompile Include="pathing\nodeList.cpp">
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiGameOverScore.cpp">

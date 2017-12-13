@@ -97,6 +97,9 @@ MovementSHA::~MovementSHA()
 {
 	if (mpLastPos != NULL)
 		delete mpLastPos;
+	if (mPath.size() > 0)
+		for (unsigned int i = 0; i < mPath.size(); i++)
+			delete mPath.at(i);
 }
 
 void MovementSHA::calculateMovement()
@@ -144,10 +147,12 @@ void MovementSHA::calculateFleeing()
 		start = Node((int)(mpUnit->getPosition().x * GC::GRID_SCALE), (int)(mpUnit->getPosition().y * GC::GRID_SCALE));
 		Node goal = Node((int)(mpUnit->getSpawnLocation().x * GC::GRID_SCALE), (int)(mpUnit->getSpawnLocation().y * GC::GRID_SCALE));
 
+		if (mPath.size() > 0)
+			for (unsigned int i = 0; i < mPath.size(); i++)
+				delete mPath.at(i);
+
 		mPath = level->getPath(start.x, start.y, goal.x, goal.y);
 
-		for (unsigned int i = 0; i < mPath.size(); i++)
-			printf("%i, %i\n", mPath.at(i)->x, mPath.at(i)->y);
 		mLastNode = 0;
 		mDashing = false;
 		mPathCalculated = true;

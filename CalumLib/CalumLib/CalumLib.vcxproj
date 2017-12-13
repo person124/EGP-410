@@ -176,11 +176,9 @@
     <ClInclude Include="gui\guiSelectable.h" />
     <ClInclude Include="inputManager.h" />
     <ClInclude Include="pathing\grid.h" />
-    <ClInclude Include="pathing\nodeList.h" />
     <ClInclude Include="pathing\node.h" />
     <ClInclude Include="pathing\spawnLocation.h" />
     <ClInclude Include="pathing\tile.h" />
-    <ClInclude Include="pathing\topNode.h" />
     <ClInclude Include="physics\movementSHA.h" />
     <ClInclude Include="physics\raycast.h" />
     <ClInclude Include="physics\vector2.h" />
@@ -239,10 +237,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pathing\grid.cpp" />
     <ClCompile Include="pathing\node.cpp" />
-    <ClCompile Include="pathing\nodeList.cpp" />
     <ClCompile Include="pathing\tile.cpp" />
     <ClCompile Include="pathing\topMap.cpp" />
-    <ClCompile Include="pathing\topNode.cpp" />
     <ClCompile Include="physics\movementSHA.cpp" />
     <ClCompile Include="physics\raycast.cpp" />
     <ClCompile Include="physics\vector2.cpp" />

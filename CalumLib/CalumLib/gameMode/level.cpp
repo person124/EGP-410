@@ -90,7 +90,6 @@ void Level::handleEvent(const Event& theEvent)
 void Level::createGraph()
 {
 	mpMap = new TopMap(mpGrid);
-	mpMap->generateNodes();
 }
 
 void Level::initSpawns()
