@@ -27,6 +27,8 @@ class Level : public GameMode, public EventListener
 		std::vector<Node*> getPath(int startX, int startY, int endX, int endY);
 
 		void handleEvent(const Event& theEvent);
+
+		bool isDebugOn() { return mDebug; };
 	private:
 		void createGraph();
 		void initSpawns();
@@ -38,6 +40,8 @@ class Level : public GameMode, public EventListener
 		int mTotalCoins, mCurrentCoins;
 
 		TopMap* mpMap;
+
+		bool mDebug;
 };
 
 #endif

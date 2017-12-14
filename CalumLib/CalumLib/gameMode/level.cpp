@@ -5,6 +5,7 @@
 
 #include "events/eventSystem.h"
 #include "events/eventPickupCoin.h"
+#include "events/eventKeypress.h"
 
 #include "graphics/graphicsSystem.h"
 
@@ -32,6 +33,7 @@ Level::Level(const char* levelName)
 	mpUnits = new UnitManager();
 
 	gpEventSystem->addListener(EVENT_PICKUP_COIN, this);
+	gpEventSystem->addListener(EVENT_KEYPRESS, this);
 
 	createGraph();
 	initSpawns();
@@ -40,6 +42,8 @@ Level::Level(const char* levelName)
 	mpGUI = new GUILevel();
 
 	mScore = 0;
+
+	mDebug = false;
 }
 
 Level::~Level()
@@ -48,6 +52,7 @@ Level::~Level()
 	delete mpMap;
 
 	gpEventSystem->removeListener(EVENT_PICKUP_COIN, this);
+	gpEventSystem->removeListener(EVENT_KEYPRESS, this);
 }
 
 void Level::update(const double& dt)
@@ -59,7 +64,10 @@ void Level::update(const double& dt)
 
 void Level::draw()
 {
-	mpGrid->draw();
+	if (!mDebug)
+		mpGrid->draw();
+	else
+		mpGrid->drawSolidity();
 
 	mpUnits->draw();
 
@@ -84,6 +92,13 @@ void Level::handleEvent(const Event& theEvent)
 	{
 		mCurrentCoins--;
 		addScore(25);
+	}
+	else if (theEvent.getType() == EVENT_KEYPRESS)
+	{
+		const EventKeypress& e = static_cast<const EventKeypress&>(theEvent);
+
+		if (e.getKey() == KEYS_TOGGLE_SOLIDITY)
+			mDebug = !mDebug;
 	}
 }
 

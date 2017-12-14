@@ -81,14 +81,18 @@ void UnitSHA::update(const double& dt)
 
 	if (isUnitTouching(mpPlayerRef))
 	{
+
 		if (mpStateTree->getID() != shaDead)
 		{
 			if (mpPlayerRef->isInvincible())
 				mpStateTree->transfer(shaDead);
 			else
 			{
-				EventGameOver e = EventGameOver(((Level*)Game::pInstance->getCurrentMode())->getScore());
-				gpEventSystem->fireEvent(e);
+				if (!((Level*)Game::pInstance->getCurrentMode())->isDebugOn())
+				{
+					EventGameOver e = EventGameOver(((Level*)Game::pInstance->getCurrentMode())->getScore());
+					gpEventSystem->fireEvent(e);
+				}
 			}
 		}
 	}
