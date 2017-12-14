@@ -93,11 +93,11 @@ bool UnitPhys::checkForWalls(const Vector2& pos)
 bool UnitPhys::checkForWallsOffset(const Vector2& offset)
 {
 	int x1, y1, x2, y2;
-	Grid* grid = wallPointCalculator(offset, x1, y1, x2, y2);
+	Grid* grid = wallPointCalculator((const Vector2)mPos + offset, x1, y1, x2, y2);
 
 	if ((offset.x < 0 || offset.y < 0) && grid->isSolid(x1, y1))
 		return true;
-	if ((mVel.x > 0 || offset.y < 0) && grid->isSolid(x2, y1))
+	if ((offset.x > 0 || offset.y < 0) && grid->isSolid(x2, y1))
 		return true;
 	if ((offset.x > 0 || offset.y > 0) && grid->isSolid(x2, y2))
 		return true;

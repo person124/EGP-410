@@ -40,12 +40,15 @@ UnitPlayer::UnitPlayer(int x, int y) : UnitPhys("player_front")
 	mpTimer = new Timer();
 
 	mpORA = Game::pInstance->getAudio()->get("ora");
+	mCandyStage = NONE;
 }
 
 UnitPlayer::~UnitPlayer()
 {
 	mpORA->stop();
 	delete mpTimer;
+
+	gpEventSystem->removeListenerFromAllEvents(this);
 }
 
 void UnitPlayer::update(const double& dt)

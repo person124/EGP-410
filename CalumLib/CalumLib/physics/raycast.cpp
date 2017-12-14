@@ -13,7 +13,7 @@ bool RayCast(Grid* grid, const Node& begin, const Node& end)
 	int dY = end.y - begin.y;
 
 	//Check for horizontal or vertical lines
-	if (begin.x == end.y) //Vertical Line
+	if (begin.x == end.x) //Vertical Line
 	{
 		int x = begin.x;
 		for (int y = begin.y; y != end.y; (dY > 0) ? y++ : y--)

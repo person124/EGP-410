@@ -117,6 +117,11 @@ Vector2& Vector2::operator/=(float right)
 
 Vector2 operator+(Vector2& left, Vector2& right)
 {
+	return operator+((const Vector2)left, (const Vector2)right);
+}
+
+Vector2 operator+(const Vector2& left, const Vector2& right)
+{
 	Vector2 output = left;
 	output.x += right.x;
 	output.y += right.y;

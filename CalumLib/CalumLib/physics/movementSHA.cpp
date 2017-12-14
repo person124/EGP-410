@@ -308,9 +308,8 @@ void MovementSHA::getNewDirection()
 	//Fixes x and y position if stuck in a wall
 	float currentX = mpUnit->getPosition().x;
 	float currentY = mpUnit->getPosition().y;
-	int newPosX = (int)(currentX / 5) * 5;
-	int newPosY = (int)(currentY / 5) * 5;
-	mpUnit->setPosition(newPosX, newPosY);
+	int newPosX = (int)(currentX / GC::TILE_SIZE) * GC::TILE_SIZE;
+	int newPosY = (int)(currentY / GC::TILE_SIZE) * GC::TILE_SIZE;
 
 	bool noWall[DIRECTION_COUNT];
 	int sum = 0;

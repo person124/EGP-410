@@ -49,6 +49,7 @@ UnitSHA::UnitSHA(float x, float y, SHAColor color, Unit* player) : UnitPhys(("sh
 
 	//The rest of the data
 	mpStateTree = new StateTreeSHA(this);
+	mpStateTree->transfer(shaSearching);
 
 	mpMovement = new MovementSHA(this);
 
@@ -88,6 +89,7 @@ void UnitSHA::update(const double& dt)
 				mpStateTree->transfer(shaDead);
 			else
 			{
+				//If debug is on, then don't kill player
 				if (!((Level*)Game::pInstance->getCurrentMode())->isDebugOn())
 				{
 					EventGameOver e = EventGameOver(((Level*)Game::pInstance->getCurrentMode())->getScore());
