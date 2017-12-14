@@ -10,16 +10,17 @@
 #include "events/eventLoadLevel.h"
 #include "events/EventGameOver.h"
 
-#include "graphics/graphicsSystem.h"
-#include "graphics/graphicsBufferManager.h"
-#include "graphics/animationManager.h"
-
 #include "gameMode/gameMode.h"
 #include "gameMode/mainMenu.h"
 #include "gameMode/editor.h"
 #include "gameMode/level.h"
 #include "gameMode/levelSelect.h"
 #include "gameMode/gameOver.h"
+#include "gameMode/help.h"
+
+#include "graphics/graphicsSystem.h"
+#include "graphics/graphicsBufferManager.h"
+#include "graphics/animationManager.h"
 
 #include "utils/timer.h"
 #include "utils/ioUtils.h"
@@ -223,6 +224,9 @@ void Game::switchState()
 		default:
 		case STATE_MAIN_MENU:
 			mpGameMode = new MainMenu();
+			break;
+		case STATE_HELP:
+			mpGameMode = new Help();
 			break;
 		case STATE_SELECT_LEVEL:
 			mpGameMode = new LevelSelect(GC::PATH_LEVELS);

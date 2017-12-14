@@ -14,14 +14,14 @@ GUIMainMenu::GUIMainMenu()
 	mpElements[5] = new GUIFixedText(150, 300, "Heart Attack Escape!");
 
 	mpElements[1] = new GUIFixedText(150, 350, "Start Game");
-	mpElements[2] = new GUIFixedText(150, 400, "Options");
+	mpElements[2] = new GUIFixedText(150, 400, "Help");
 	mpElements[3] = new GUIFixedText(150, 450, "Editor");
 	mpElements[4] = new GUIFixedText(150, 500, "Quit");
 
 	//Selectable items
 	setSelectableCount(4);
 	addSelectable(1, new EventSwitchState(STATE_SELECT_LEVEL));
-	addSelectable(2, new EventSwitchState(STATE_GAME_OVER));
+	addSelectable(2, new EventSwitchState(STATE_HELP));
 	addSelectable(3, new EventSwitchState(STATE_EDITOR));
 	addSelectable(4, new EventQuit());
 

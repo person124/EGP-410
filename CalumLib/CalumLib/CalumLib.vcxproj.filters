@@ -291,6 +291,12 @@
     <ClInclude Include="gui\guiGameOverScore.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
+    <ClInclude Include="gameMode\help.h">
+      <Filter>Header Files\gameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\guiHelp.h">
+      <Filter>Header Files\gui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -462,6 +468,12 @@
       <Filter>Source Files\pathing</Filter>
     </ClCompile>
     <ClCompile Include="gui\guiGameOverScore.cpp">
+      <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="gameMode\help.cpp">
+      <Filter>Source Files\gameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="gui\guiHelp.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
   </ItemGroup>

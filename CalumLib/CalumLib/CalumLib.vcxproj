@@ -148,6 +148,7 @@
     <ClInclude Include="gameMode\editor.h" />
     <ClInclude Include="gameMode\gameMode.h" />
     <ClInclude Include="gameMode\gameOver.h" />
+    <ClInclude Include="gameMode\help.h" />
     <ClInclude Include="gameMode\level.h" />
     <ClInclude Include="gameMode\levelSelect.h" />
     <ClInclude Include="gameMode\mainMenu.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="gui\guiElement.h" />
     <ClInclude Include="gui\guiGameOver.h" />
     <ClInclude Include="gui\guiGameOverScore.h" />
+    <ClInclude Include="gui\guiHelp.h" />
     <ClInclude Include="gui\guiLevel.h" />
     <ClInclude Include="gui\guiSelectLevel.h" />
     <ClInclude Include="gui\guiListener.h" />
@@ -209,6 +211,7 @@
     <ClCompile Include="gameMode\editor.cpp" />
     <ClCompile Include="gameMode\gameMode.cpp" />
     <ClCompile Include="gameMode\gameOver.cpp" />
+    <ClCompile Include="gameMode\help.cpp" />
     <ClCompile Include="gameMode\level.cpp" />
     <ClCompile Include="gameMode\levelSelect.cpp" />
     <ClCompile Include="gameMode\mainMenu.cpp" />
@@ -228,6 +231,7 @@
     <ClCompile Include="gui\guiEditor.cpp" />
     <ClCompile Include="gui\guiGameOver.cpp" />
     <ClCompile Include="gui\guiGameOverScore.cpp" />
+    <ClCompile Include="gui\guiHelp.cpp" />
     <ClCompile Include="gui\guiLevel.cpp" />
     <ClCompile Include="gui\guiSelectLevel.cpp" />
     <ClCompile Include="gui\guiListener.cpp" />
